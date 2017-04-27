@@ -37,13 +37,19 @@ input, textarea{
 .btn.login:active{
     background: #3479e1;
 }
-.AppPage{
+.AppContainer{
     position: fixed;
     left: 0;
     bottom: 0;
     top: 0;
     right: 0;
     overflow: hidden;
+    display: flex;
+    align-items: stretch;
+}
+.AppPage{
+    flex-grow: 1;
+    overflow: scroll;
 }
 .formStyle1 {
     background: #FFF;
@@ -81,6 +87,19 @@ input, textarea{
 }
 .formStyle1 .weui-cell .weui-cell__bd .weui-select{
     direction: rtl;
+}
+
+
+/*color*/
+.blue {
+    color: #3479e1
+}
+.green {
+    color: #64c600
+}
+
+.contentTitle{
+    
 }
    
 
