@@ -1,0 +1,87 @@
+*{
+    overflow-scrolling:touch;
+    -webkit-overflow-scrolling:touch;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+  	margin: 0;
+  	padding: 0;
+  	font-family: sans-serif;
+}
+input, textarea{
+    -webkit-user-select:text;
+    -moz-user-select:text;
+    -ms-user-select:text;
+    user-select:text;
+    outline: none;
+    resize: none;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    border-radius: 6px;
+}
+.btn.Primary{
+    background: #3479e1;
+    color: #FFF;
+}
+.btn.Primary:active{
+    background: #2a6bce;
+}
+.btn.login{
+    background: #72aaff;
+}
+.btn.login:active{
+    background: #3479e1;
+}
+.AppPage{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+}
+.formStyle1 {
+    background: #FFF;
+}
+.formStyle1 .weui-label img{
+    width: 24px;
+    margin-right: 10px;
+}
+.formStyle1 .weui-cell{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.formStyle1 .weui-cell .weui-label{
+    display: flex;
+    align-items: center;
+}
+.formStyle1 .weui-cell .weui-label > span{
+    font-size: 14px;
+    color: #666666;
+}
+.formStyle1 .weui-cell .weui-cell__bd{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+.formStyle1 .weui-cell .weui-cell__bd > div{
+    flex-grow: 1;
+}
+.formStyle1 .weui-cell .weui-cell__bd > span{
+    margin-left: 10px;
+}
+.formStyle1 .weui-cell .weui-cell__bd input{
+    text-align: right;
+}
+.formStyle1 .weui-cell .weui-cell__bd .weui-select{
+    direction: rtl;
+}
+   
+
+

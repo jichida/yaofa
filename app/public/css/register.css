@@ -1,0 +1,86 @@
+.registerPage{
+    padding:20px;
+    background: #eff3f6;
+}
+.registerPage .registerForm{
+    display: flex;
+    flex-direction: column;
+}
+.registerPage .registerForm .li{
+    height: 50px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: #FFF;
+    padding-left: 15px;
+}
+.registerPage .registerForm .li.yaoqing{
+	background: #f1f2f4;
+	padding-left:0;
+}
+.registerPage .registerForm .li input{
+	font-size: 16px;
+	flex-grow: 1;
+	border-radius: 10px;
+	border: none;
+}
+.registerPage .registerForm .li.yaoqing input{
+	background: #f1f2f4;
+	text-align: center;
+}
+.registerPage .submitBtn{
+	padding-top: 20px;
+	display: flex;
+	flex-direction: column;
+}
+.registerPage .submitBtn botton{
+	background: #72aaff;
+	color: #FFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 44px;
+	border-radius: 6px;
+	margin-bottom: 10px;
+}
+.registerPage .submitBtn botton.register{
+	color: #3479e1;
+	border: 1px solid #3479e1;
+	background: none;
+}
+.registerPage .registerForm .li .btn.getYanzhen{
+	color: #FFF;
+	display: flex;
+	height: 36px;
+	border-radius: 4px;
+	flex-shrink: 0;
+	width: 110px;
+	align-self: center;
+	margin-right: 10px;
+}
+
+.registerPage .registerForm .agreeCheckbox .weui-cells{
+	margin-top: 0;
+	background: none;
+}
+.registerPage .registerForm .agreeCheckbox .weui-cells:before,
+.registerPage .registerForm .agreeCheckbox .weui-cells:after{
+	content:none;
+}
+.weui-cells_checkbox .weui-check:checked + .weui-icon-checked:before{
+	color: #3479e1;
+}
+.registerPage .registerForm .agreeCheckbox .weui-cells .weui-cell{
+	padding: 5px 0;
+}
+.registerPage .registerForm .agreeCheckbox .weui-cells .weui-cell .weui-cell__bd{
+	font-size: 14px;
+}
+.registerPage .registerForm .agreeCheckbox .weui-cells .weui-cell .weui-icon-checked:before{
+	font-size: 18px;
+}
+
+

@@ -1,0 +1,66 @@
+.loginPage{
+    padding:20px;
+    background: #eff3f6;
+}
+.loginPage .loginForm{
+    display: flex;
+    flex-direction: column;
+}
+.loginPage .loginForm .li{
+    height: 50px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background: #FFF;
+    justify-content: space-between;
+}
+.loginPage .loginForm .li span.icon{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #f1f2f4;
+	width: 50px;
+	margin-right: 15px;
+	flex-shrink: 0;
+}
+.loginPage .loginForm .li span.icon img{
+	width: 30px;
+	height: 30px;
+}
+.loginPage .loginForm .li input{
+	font-size: 16px;
+	flex-grow: 1;
+	border-radius: 10px;
+	border: none;
+	flex-shrink: 1;
+}
+.loginPage .submitBtn{
+	padding-top: 20px;
+	display: flex;
+	flex-direction: column;
+}
+.loginPage .submitBtn botton{
+	color: #FFF;
+	margin-bottom: 10px;
+}
+.loginPage .submitBtn botton.register{
+	color: #3479e1;
+	border: 1px solid #3479e1;
+	background: none;
+}
+.loginPage .loginForm .li .btn.getYanzhen{
+	color: #FFF;
+	display: flex;
+	height: 36px;
+	border-radius: 4px;
+	flex-shrink: 0;
+	width: 110px;
+	align-self: center;
+	margin-right: 10px;
+}
+
+
+
