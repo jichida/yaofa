@@ -79,6 +79,10 @@ let UserLenderSchema = new Schema({
         avatar:'img/myprofile/1.png'},
         sex:'男'
     },
+    truename:String,  //真实用户名
+    phonenumber:String,//手机号
+    urlphoneid1:String,//身份证照片正面
+    urlphoneid2:String,//身份证照片反面
     balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     isapprovaled:{ type: Boolean, default: false },
 });
