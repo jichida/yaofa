@@ -25,7 +25,6 @@ let UserBorrowerSchema = new Schema({
         avatar:'img/myprofile/1.png'},
         sex:'男'
     },
-    defaultaddress:{ type: Schema.Types.ObjectId, ref: 'Address' },
     useragencyfrom:{ type: Schema.Types.ObjectId, ref: 'UserAgency' },//中介
     balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     //认证相关
@@ -80,7 +79,6 @@ let UserLenderSchema = new Schema({
         avatar:'img/myprofile/1.png'},
         sex:'男'
     },
-    defaultaddress:{ type: Schema.Types.ObjectId, ref: 'Address' },
     balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     isapprovaled:{ type: Boolean, default: false },
 });
@@ -99,8 +97,6 @@ let UserAgencySchema = new Schema({
         avatar:'img/myprofile/1.png'},
         sex:'男'
     },
-    defaultaddress:{ type: Schema.Types.ObjectId, ref: 'Address' },
-    useragencyfrom:{ type: Schema.Types.ObjectId, ref: 'UserAgency' },
     invitecode:String,
     balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     isapprovaled:{ type: Boolean, default: false },
