@@ -12,22 +12,26 @@ import {
     fillprofile_result,
 
     getabouthtml_request,
-    getabouthtml_result
+    getabouthtml_result,
 
+    common_err,
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
   'register_result':register_result,
   'login_result':login_result,
-  'sendauth_result':sendauth_result,
+  'loginsendauth_result':sendauth_result,
   'fillprofile_result':fillprofile_result,
   'getabouthtml_result':getabouthtml_result,
+  'common_err':common_err,
 };
 
 //非验证发送接口
 exports.sendmessagefnsz = {
     'login':`${login_request}`,
+    'loginsendauth':`${sendauth_request}`,
+    'register':`${register_request}`,
     'getabouthtml':`${getabouthtml_request}`,
 };
 
