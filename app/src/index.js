@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Root from './env/root';
+import {sagaMiddleware} from './env/store';
+import rootSaga from './sagas';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+<Root />,
+    document.getElementById('root')
 );
+
+sagaMiddleware.run(rootSaga);
