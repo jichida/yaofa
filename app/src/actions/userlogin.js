@@ -12,6 +12,10 @@ export const login_result = createAction('login_result');
 export const sendauth_request = createAction('sendauth_request');
 export const sendauth_result = createAction('sendauth_result');
 
+export const findpwd_request = createAction('findpwd_request');
+export const findpwd_result = createAction('findpwd_result');
+
+
 export const fillprofile_request = createAction('fillprofile_request');
 export const fillprofile_result = createAction('fillprofile_result');
 

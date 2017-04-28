@@ -1,21 +1,22 @@
 import {
-  register_request,
+  findpwd_request,
 } from '../actions';
 
 let setusertype = (usertype)=>{
     localStorage.setItem('usertype',usertype);
 }
 
-let test_register =(dispatch,usertype)=>{
+let test_findpwd =(dispatch,usertype)=>{
     setusertype(usertype);
 
-    let payload = {
-        username:'15961125167',
-        authcode:'9235',
-        password:'123456',
-    };
+    let payload = {};
     if(usertype === 'userborrow'){
-      payload.invitecode = '';
+      payload = {
+        username:'15961125167',
+        authcode:'6699',
+        password:'123456',
+        invitecode:'',
+      }
     }
     else if(usertype === 'userlender'){
 
@@ -23,10 +24,10 @@ let test_register =(dispatch,usertype)=>{
     else  if(usertype === 'useragency'){
 
     }
-    dispatch(register_request(payload));
+    dispatch(findpwd_request(payload));
 }
 
 
 export {
-  test_register,
+  test_findpwd,
 };

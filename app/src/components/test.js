@@ -10,7 +10,8 @@ import
 {
   test_getabouthtml_request,
   test_register,
-  test_sendauth
+  test_sendauth,
+  test_findpwd
 } from '../test';
 
 // let curcharact = {
@@ -30,6 +31,7 @@ let Page =(props)=>{
           <botton className="btn Primary" onClick={()=>{test_register(props.dispatch,'useragency')}}>中介注册</botton><br />
           <br />
           <botton className="btn Primary" onClick={()=>{test_sendauth(props.dispatch)}}>发送验证码</botton><br />
+          <botton className="btn Primary" onClick={()=>{test_findpwd(props.dispatch)}}>找回密码</botton><br />
   
           <botton className="btn Primary" onClick={()=>{test_getabouthtml_request(props.dispatch)}}>测试关于信息</botton><br />
           <br />
