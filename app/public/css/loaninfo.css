@@ -1,0 +1,45 @@
+.loaninfoPage {
+	background: #EEE;
+}
+.loaninfoPage .submitBtn{
+	padding: 15px;
+}
+.loaninfoPage .info{
+	line-height: 30px;
+	font-size: 14px;
+}
+.loaninfoPage .weui-media-box__desc{
+	-webkit-line-clamp: 1000;
+}
+.loaninfoPage .weui-media-box_appmsg {
+	align-items: flex-start;
+}
+.loaninfoPage .weui-media-box_appmsg .weui-media-box__hd{
+	height: 50px;
+	width: 50px;
+}
+.loaninfoPage .weui-media-box_appmsg .weui-media-box__hd img{
+	width: 50px;
+	height: 50px;
+}
+.loaninfoPage .weui-media-box_appmsg .weui-media-box__bd .userinfo{
+	margin-bottom: 15px;
+}
+.loaninfoPage .weui-media-box_appmsg .weui-media-box__bd .number{
+	border-top: 1px solid #EEE;
+	padding-top: 10px;
+}
+.loaninfoPage .weui-media-box__title{
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+.loaninfoPage .weui-media-box .weui-media-box__desc{
+	color: #666;
+}
+.loaninfoPage .userinfo .weui-media-box__desc{
+	font-size: 16px;
+}
+.loaninfoPage .pageDesc{
+	color: #999;
+	padding: 0 20px;
+}
