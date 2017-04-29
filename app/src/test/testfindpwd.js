@@ -14,15 +14,19 @@ let test_findpwd =(dispatch,usertype)=>{
       payload = {
         username:'15961125167',
         authcode:'6699',
-        password:'123456',
-        invitecode:'',
       }
     }
     else if(usertype === 'userlender'){
-
+      payload = {
+        username:'15961125167',
+        authcode:'6699',
+      }
     }
     else  if(usertype === 'useragency'){
-
+      payload = {
+        username:'15961125167',
+        authcode:'6699',
+      }
     }
     dispatch(findpwd_request(payload));
 }

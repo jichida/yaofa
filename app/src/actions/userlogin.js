@@ -6,6 +6,8 @@ import { createAction } from 'redux-act';
 export const register_request = createAction('register_request');
 export const register_result = createAction('register_result');
 
+export const loginwithweixinopenid_request  = createAction('loginwithweixinopenid_request');
+export const loginwithtoken_request  = createAction('loginwithtoken_request');
 export const login_request = createAction('login_request');
 export const login_result = createAction('login_result');
 
