@@ -1,0 +1,50 @@
+.usertypePage{
+    padding:20px;
+    background: #eff3f6;
+}
+.usertypePage .usertypePageTitle{
+	text-align: center;
+	margin-bottom: 10px;
+}
+.usertypePage .list{
+	display: flex;
+}
+.usertypePage .list .li{
+	width: 33%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.usertypePage .list .li img{
+	max-width: 70%;
+	margin-bottom: 10px;
+}
+.usertypePage .list .li> div>div>span{
+	width: 24px;
+	height: 24px;
+}
+.usertypePage .list .li> div>div>span:before{
+	content:"\EA01";
+	color: #999;
+	font-size: 20px;
+}
+.usertypePage .list .li> div.sel>div>span:before{
+	content:"\EA06";
+	color: #3479e1;
+	font-size: 20px;
+}
+.usertypePage .list .li> div{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.usertypePage .list .li> div>span{
+	margin-left: 5px;
+}
+.usertypePage .list .li> div.sel>span{
+	color: #3479e1;
+}
+.usertypePage .btn{
+	margin: 40px 0 0;
+}

@@ -19,7 +19,7 @@ class Page extends Component {
         return (
     		<div className="registerPage AppPage">
     			<DocumentTitle title="注册" />
-    			<div className="registerForm formStyle1">
+    			<div className="registerForm">
     				<div className="li">
     					<input placeholder='请输入手机号' type="text" name="username" />
     				</div>
@@ -36,18 +36,8 @@ class Page extends Component {
                     <div className="li yaoqing">
                         <input placeholder='如果您有邀请码,请输入' type="text" name="yaoqing" />
                     </div>
-                    <div className="agreeCheckbox">
-                        <Form checkbox>
-                            <FormCell checkbox>
-                                <CellHeader>
-                                    <Checkbox name="checkbox1" value="1"/>
-                                </CellHeader>
-                                <CellBody>同意运营条款</CellBody>
-                            </FormCell>
-                        </Form>
-                    </div>
                     <Agreement>
-                        &nbsp;&nbsp;<a href="#">同意运营条款</a>
+                        &nbsp;&nbsp;同意<a href="#">运营条款</a>
                     </Agreement>
     				<div className="submitBtn">
     					<botton className="btn login">登录</botton>

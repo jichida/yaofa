@@ -1,0 +1,9 @@
+.validationZhimaPage {
+	background: #eff3f6;
+}
+.validationZhimaPage .btn.Primary{
+	margin: 30px;
+}
+.validationZhimaPage .weui-cell{
+	height: 40px;
+}

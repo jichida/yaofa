@@ -1,0 +1,87 @@
+.borrowuserinfoPage {
+	background: #EEE;
+}
+
+/*
+.borrowuserinfoPage .headcontent{
+	margin-bottom: 30px;
+	background: #3479e1;
+	color: #FFF;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px 0;
+	font-size: 14px;
+	margin: 0;
+}
+.borrowuserinfoPage .headcontent .quota{
+	font-size: 30px;
+	font-weight: bold;
+}
+.borrowuserinfoPage .userinfo{
+	display: flex;
+	background: #FFF;
+	padding: 15px;
+}
+.borrowuserinfoPage .userinfo > img{
+	width: 50px;
+	height: 50px;
+	margin-right: 15px;
+}
+.borrowuserinfoPage .userinfo > div{
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	line-height: 26px;
+}
+.borrowuserinfoPage .userinfo > div > span > span{
+	margin-right: 10px;
+}
+*/
+
+.borrowuserinfoPage .weui-cell__bd p{
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	line-height: 24px;
+}
+.borrowuserinfoPage .weui-cell__ft p{
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+	line-height: 24px;
+	color: #333;
+}
+.borrowuserinfoPage .form{
+	flex-grow: 1;
+	overflow: scroll;
+	flex-shrink: 1;
+}
+.borrowuserinfoPage .btn{
+	margin: 10px 30px;
+}
+
+.borrowuserinfoPage .headcontent{
+	position: relative;
+}
+.borrowuserinfoPage .headcontent > img{
+	max-width: 100%;
+	display: flex;
+}
+.borrowuserinfoPage .headcontent .userinfo{
+	height: 100px;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	color: #FFF;
+	font-size: 14px;
+	background: #3479e1;
+}
+.borrowuserinfoPage .headcontent .userinfo img{
+	width: 60px;
+	height: 60px;
+}
+

@@ -1,0 +1,43 @@
+.borrowlistPage {
+	background: #EEE;
+}
+.borrowlistPage .weui-navbar__item.weui-bar__item_on{
+	background: none;
+	position: relative;
+	color: #3479e1;
+}
+.borrowlistPage .weui-navbar__item.weui-bar__item_on:before{
+	height: 2px;
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: #3479e1;
+	width: 100%;
+}
+.borrowlistPage .weui-cell__hd{
+	display: flex;
+	align-items: center;
+}
+.borrowlistPage .weui-cell__hd >img{
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	border-radius: 50px;
+}
+.borrowlistPage .weui-cell__hd > .userinfo{
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+}
+.borrowlistPage .weui-cell__bd{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	font-size: 14px;
+	padding-right: 5px;
+	color: #666;
+}
+.borrowlistPage .weui-cell_access{
+	line-height: 24px;
+}

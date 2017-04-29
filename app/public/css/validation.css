@@ -1,0 +1,53 @@
+.validationPage {
+	background: #eff3f6;
+}
+.validationPage .list{
+	margin-top: 15px;
+	padding: 30px;
+	background: #FFF;
+	margin-bottom: 40px;
+}
+.validationPage .list > div{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 50px;
+	position: relative;
+}
+.validationPage .list > div:first-child:before{
+	content: none;
+}
+.validationPage .list > div:before{
+	content: "";
+	position: absolute;
+	height: 55px;
+	width: 1px;
+	background: #EEE;
+	bottom: 20px;
+	left: 9px;
+	z-index: 1;
+}
+.validationPage .list > div .name{
+	flex-grow: 1;
+}
+.validationPage .list > div .circular{
+	width: 18px;
+	background: #EEE;
+	height: 18px;
+	border-radius: 18px;
+	margin-right: 10px;
+	position: relative;
+	z-index: 2;
+}
+.validationPage .list > div.true .circular{
+	background: #3479e1;
+}
+.validationPage .list > div.true:before{
+	background: #3479e1;
+}
+.validationPage .list > div.false{
+
+}
+.validationPage .btn.Primary{
+	margin: 30px;
+}

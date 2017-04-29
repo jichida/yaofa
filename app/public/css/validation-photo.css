@@ -1,0 +1,50 @@
+.validationPhotoPage {
+	background: #eff3f6;
+}
+.validationPhotoPage .list{
+	margin-top: 15px;
+	padding: 15px;
+	background: #FFF;
+	margin-bottom: 40px;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+.validationPhotoPage .list > div.li{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	border-bottom: 1px solid #EEE;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+}
+.validationPhotoPage .list > div.li:last-child{
+	border: none;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+.validationPhotoPage .list > div.li img{
+	max-width: 55%;
+	margin-right: 15px;
+}
+.validationPhotoPage .list > div.li >div{
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	justify-content: center;
+}
+.validationPhotoPage .list > div.li >div .tit{
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+.validationPhotoPage .list > div.li >div .lnk{
+	
+}
+.validationPhotoPage .btn.Primary{
+	margin: 0 30px;
+}
+.validationPhotoPage .validationPhotoTitle{
+	text-align: center;
+	margin-top: 20px;
+}

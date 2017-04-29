@@ -1,81 +1,66 @@
 /*
-    借款信息
+    借款详情
 */
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import '../../../public/css/addborrow.css';
+import '../../../public/css/borrowinfo.css';
 const { 
-    FormCell,
-    Checkbox,
-    Form,
-    Select,
-
-
-    Panel,
-    PanelBody,
-    MediaBox,
     Cells,
     Cell,
-    CellHeader,
     CellBody,
+    CellHeader,
     CellFooter,
-    Input,
-    Label
+    Panel,
+    PanelHeader,
+    PanelBody,
+    MediaBox
     } = WeUI;
 
 class Page extends Component {
 
 	render() {
         return (
-    		<div className="addborrowPage AppPage">
+    		<div className="borrowinfoPage AppPage">
     			<DocumentTitle title="借款详情" />
-                <Form className="formStyle1">
-                    <FormCell>
-                        <CellHeader>
-                            <Label><img src="img/13.png" /> <span>借款额度</span></Label>
-                        </CellHeader>
-                        <CellBody>
-                            <Input type="tel" placeholder="Enter your qq#"/>
-                            <span>元</span>
-                        </CellBody>
-                    </FormCell>
-                    <FormCell>
-                        <CellHeader>
-                            <Label><img src="img/32.png" /> <span>借款周期</span></Label>
-                        </CellHeader>
-                        <CellBody>
-                            <Input type="tel" placeholder="Enter your qq#"/>
-                            <span>天</span>
-                        </CellBody>
-                    </FormCell>
-                    <FormCell select selectPos="after">
-                        <CellHeader>
-                            <Label><img src="img/15.png" /> <span>借款用途</span></Label>
-                        </CellHeader>
-                        <CellBody>
-                            <Select data={[
-                                {
-                                    value: 1,
-                                    label: '临时周转'
-                                },
-                                {
-                                    value: 2,
-                                    label: '买房'
-                                },
-                                {
-                                    value: 3,
-                                    label: '买车'
-                                }
-                            ]} />
-                        </CellBody>
-                    </FormCell>
-                </Form>
-                <div className="submitBtn">
-                    <botton className="btn Primary">确定</botton>
+                <div className="headcontent">
+                    <div>借 <span className="quota">3,000</span> 元</div>
+                    <div>等待放款...</div>
                 </div>
+                <div className="userinfo">
+                    <img src="img/6.png" />
+                    <div>
+                        <span><span>借款人:</span>爱喝水的宝宝</span>
+                        <span><span>发布时间:</span>2017-07-07</span>
+                    </div>
+                </div>
+                <Panel>
+                    <PanelHeader>
+                        借款纪录
+                    </PanelHeader>
+                    <PanelBody>
+                        <MediaBox type="small_appmsg">
+                            <Cells>
+                                <Cell access>
+                                    <CellBody>
+                                        <p>
+                                            <span>放贷人:牛魔王</span>
+                                            <span className="gray">放款时间: 2017-09-09</span>
+                                        </p>
+                                    </CellBody>
+                                    <CellFooter>
+                                        <p>
+                                            <span>放款 <span className="blue">10,000</span> 元</span>
+                                            <span className="color_warning">待确认</span>
+                                        </p>
+                                    </CellFooter>
+                                </Cell>
+                            </Cells>
+                        </MediaBox>
+                    </PanelBody>
+                </Panel>
     		</div>
     	)
     }

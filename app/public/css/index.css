@@ -1,0 +1,127 @@
+.indexPage {
+	background: #eff3f6;
+}
+.indexPage .weui-navbar__item.weui-bar__item_on{
+	background: none;
+	position: relative;
+	color: #3479e1;
+}
+.indexPage .weui-navbar__item.weui-bar__item_on:before{
+	height: 2px;
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: #3479e1;
+	width: 100%;
+}
+.indexPage .weui-cell__hd{
+	display: flex;
+	align-items: center;
+}
+.indexPage .weui-cell__hd >img{
+	width: 40px;
+	height: 40px;
+	margin-right: 10px;
+	border-radius: 50px;
+}
+.indexPage .weui-cell__hd > .userinfo{
+	display: flex;
+	flex-direction: column;
+	font-size: 14px;
+}
+.indexPage .weui-cell__bd{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	font-size: 14px;
+	padding-right: 5px;
+	color: #666;
+}
+.indexPage .weui-cell_access{
+	line-height: 24px;
+}
+.indexPage .weui-cells{
+	margin-top: 0;
+}
+.indexPage .list{
+	padding-bottom: 8px;
+	flex-grow: 1;
+	overflow: scroll;
+}
+.indexPage .nodata{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	color: #999
+}
+.indexPage .nodata img{
+	max-width: 30%;
+	margin: 30px 0 20px 0;
+}
+.indexPage .nodata .btn{
+	margin: 20px 30px;
+	align-self: stretch;
+	border-radius: 60px;
+}
+
+
+.bossindexfiller {
+	display: flex;
+	justify-content: space-between;
+}
+.bossindexfiller .filler{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	width: 80px;
+}
+.bossindexfiller .filler.sel{
+	color: #3479e1;
+}
+
+.bossindexfiller .filler img{
+	width: 26px;
+}
+
+.fillerBox{display: none}
+.fillerBox .weui-cell {
+	display: flex;
+	justify-content: space-between;
+}
+.fillerBox .weui-cell .weui-cell__bd{
+	display: flex;
+	flex-grow: 1;
+	flex-shrink: 0;
+	flex-direction: row;
+    justify-content: flex-end;
+}
+.fillerBox .weui-cell .weui-cell__hd{
+	font-size: 14px;
+}
+.fillerBox .weui-cell .weui-cell__ft{
+	font-size: 14px;
+	margin: 0;
+}
+.fillerBox .weui-cell .weui-cell__bd >div>input{
+	text-align: right;
+	height: 32px;
+	font-size: 16px;
+}
+.fillerBox .weui-cell.weui-cell_switch .weui-cell__ft{
+	flex-grow: 1;
+}
+.fillerBox .weui-cell.weui-cell_select .weui-cell__bd .weui-select{
+	direction: rtl;
+	font-size: 16px;
+}
+.fillerBox .btn{
+	margin:20px;
+}
+
+
+
+
+

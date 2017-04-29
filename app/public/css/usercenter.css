@@ -1,0 +1,35 @@
+.usercenterPage {
+	background: #EEE;
+}
+.usercenterPage .headcontent{
+	position: relative;
+}
+.usercenterPage .headcontent > img{
+	max-width: 100%;
+	display: flex;
+}
+.usercenterPage .headcontent .userinfo{
+	position: absolute;
+	height: 100%;
+	display: flex;
+	top:0;
+	left:0;
+	width: 100%;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	color: #FFF;
+	font-size: 14px;
+}
+.usercenterPage .headcontent .userinfo img{
+	width: 60px;
+	height: 60px;
+}
+.usercenterPage .weui-cell_access .weui-cell__hd{
+	display: flex;
+	align-items: center;
+}
+.usercenterPage .weui-cell_access .weui-cell__hd img{
+	width: 30px;
+	margin-right: 5px;
+}

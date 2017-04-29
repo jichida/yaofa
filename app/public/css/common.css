@@ -8,6 +8,7 @@
   	margin: 0;
   	padding: 0;
   	font-family: sans-serif;
+    font-weight: 200;
 }
 input, textarea{
     -webkit-user-select:text;
@@ -49,10 +50,14 @@ input, textarea{
 }
 .AppPage{
     flex-grow: 1;
-    overflow: scroll;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 .formStyle1 {
     background: #FFF;
+    flex-shrink: 0;
 }
 .formStyle1 .weui-label img{
     width: 24px;
@@ -88,7 +93,19 @@ input, textarea{
 .formStyle1 .weui-cell .weui-cell__bd .weui-select{
     direction: rtl;
 }
-
+.formStyle1 .weui-cell.weui-check__label .weui-check:checked+.weui-icon-checked:before{
+    content: '\EA06';
+    color: #3479e1;
+}
+.formStyle1 .weui-cell.weui-check__label .weui-icon-checked:before{
+    content: '\EA01';
+    color: #c9c9c9;
+    font-size: 23px;
+    display: block;
+}
+.formStyle1 .weui-cell.weui-check__label .weui-cell__bd >div{
+    text-align: right;
+}
 
 /*color*/
 .blue {
@@ -97,10 +114,113 @@ input, textarea{
 .green {
     color: #64c600
 }
+.gray{
+    color: #999;
+}
+.color_warning{
+    color: #f49d05;
+}
+.color_error{
+    color: #C00;
+}
 
 .contentTitle{
     
 }
-   
+/*footer*/
+.footer{
+    height: 53px;
+    flex-shrink: 0;
+}
+.footer .weui-tab{
+    height: 53px;
+}
+.footer .weui-tabbar{
+    background: #FFF;
+}
+.footer .weui-tab .weui-tab__panel{
+    display: none;
+}
+.footer .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
+    color: #3479e1;
+}
+.footer .addBorrowLnk {
+    margin-top: -40px;
+    z-index: 1000;
+}
+.footer .addBorrowLnk .weui-tabbar__icon{
+    height: 60px;
+    width: 60px;
+    background: #3479e1;
+    color: #FFF;
+    border-radius: 60px;
+    margin-bottom: 6px;
+    border:4px solid rgba(255,255,255,.4);
+    position: relative;
+}
+.footer .addBorrowLnk .weui-tabbar__icon:before{
+    content: "";
+    width: 40px;
+    height: 4px;
+    position: absolute;
+    left: 10px;
+    top: 28px;
+    background: #FFF;
+}
+.footer .addBorrowLnk .weui-tabbar__icon:after{
+    content: "";
+    width: 4px;
+    height: 40px;
+    position: absolute;
+    left: 28px;
+    top: 10px;
+    background: #FFF;
+}
+.footer .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
+    color: #999;
+}
+
+/*banner广告图片*/
+.swiper-slide img{
+    max-width: 100%;
+    display: flex;
+}
+
+/**/
+.pageTitle{
+    height:40px;
+    display: flex;
+    align-items: center;
+    background: #FFF;
+    flex-shrink: 0;
+}
+.pageTitle span{
+    border-left: 3px solid #3479e1;
+    font-size: 14px;
+    padding-left: 15px;
+    line-height: 24px;
+}
+.warningBox{
+    background: #fffbf2;
+    border: 1px solid #f6e0af;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+.warningBox .tit{
+    display: flex;
+    align-items: center;
+}
+.warningBox .tit img{
+    width: 20px;
+    margin-right: 5px;
+    margin-bottom: 4px;
+}
+.warningBox .text{
+    padding-left: 6px;
+}
+.swiper-container {
+    flex-shrink: 0;
+}
 
 

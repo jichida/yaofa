@@ -1,0 +1,31 @@
+.validationPhonePage{
+
+}
+.validationPhonePage .btn{
+	margin:30px 30px 10px 30px;
+}
+.validationPhonePage .warningBox{
+	margin:20px 30px;
+}
+.validationPhonePage .weui-cell__bd.yanzhen{
+	display: flex;
+	flex-shrink: 0;
+}
+.validationPhonePage .weui-cell__bd.yanzhen >div{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-grow: 1;
+}
+.validationPhonePage .weui-cell{
+	height: 36px;
+}
+.validationPhonePage .weui-cell__bd.yanzhen .btn.yanzhenbtn{
+	margin:0;
+	flex-shrink: 0;
+	height: 34px;
+	width: 60px;
+}
+.validationPhonePage .weui-label{
+	width: 80px;
+}
