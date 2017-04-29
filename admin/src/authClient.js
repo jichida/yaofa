@@ -1,4 +1,4 @@
-import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK } from 'admin-on-rest';
+import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_CHECK, AUTH_ERROR  } from 'admin-on-rest';
 import {apipost} from './util/util.js';
 
 export default (type, params) => {
@@ -18,6 +18,9 @@ export default (type, params) => {
                     localStorage.removeItem('admintoken');
                 }
             });
+    }
+    if (type === AUTH_ERROR) {
+         return Promise.resolve();
     }
     if (type === AUTH_LOGOUT) {
         localStorage.removeItem('admintoken');

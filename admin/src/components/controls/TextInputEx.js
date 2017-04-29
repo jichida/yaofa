@@ -1,4 +1,5 @@
-import React, { PropTypes }  from 'react';
+import React  from 'react';
+import PropTypes from 'prop-types';
 import {TextInput,NumberInput} from 'admin-on-rest/lib/mui';
 import TextField from 'material-ui/TextField';
 import get from 'lodash.get';

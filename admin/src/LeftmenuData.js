@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React  from 'react';
+import PropTypes from 'prop-types';
 import { translate } from 'admin-on-rest';
 
 
@@ -24,7 +25,7 @@ const items = [
   { name: 'order', icon: <UserIcon /> },
   
   { name: 'useragency', icon: <UserIcon /> },
-  { name: 'userborrow', icon: <UserIcon /> },
+  { name: 'userborrower', icon: <UserIcon /> },
   { name: 'userlender', icon: <UserIcon /> },
 
   { name: 'about', icon: <MycouponIcon /> },

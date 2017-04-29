@@ -21,7 +21,7 @@ export default {
     userlender:{
       name: '放款人列表 |||| 放款人列表',
     },
-    userborrow:{
+    userborrower:{
       name: '借款人列表 |||| 借款人列表',
     },
     withdrawcash:{

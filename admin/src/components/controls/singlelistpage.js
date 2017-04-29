@@ -1,8 +1,9 @@
 /* eslint jsx-a11y/anchor-has-content: off */
-import React, { Component, PropTypes,cloneElement } from 'react';
+import React, { Component,cloneElement } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { propTypes, reduxForm, Field } from 'redux-form';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import buildSchema from 'redux-form-schema';
 import { Card, CardActions, CardTitle, CardHeader } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';

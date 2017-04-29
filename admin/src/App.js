@@ -1,7 +1,6 @@
 import 'babel-polyfill';
 import React, { Component } from 'react';
-import { Admin, Resource } from 'admin-on-rest';
-import { Delete } from 'admin-on-rest/lib/mui';
+import { Admin, Resource ,Delete} from 'admin-on-rest';
 import themeReducer from './themeReducer';
 import authClient from './authClient';
 
@@ -43,7 +42,7 @@ class App extends Component {
                 <Resource name="systemconfig" list={SystemconfigList} show={SystemconfigShow} edit={SystemconfigEdit}  create={SystemconfigCreate} />
                 <Resource name="order" list={OrderlistList} edit={OrderlistEdit}/>
                 <Resource name="useragency" list={UserAgencylistList} edit={UserAgencylistEdit}/>
-                <Resource name="userborrow" list={UserBorrowlistList} edit={UserBorrowlistEdit}/>
+                <Resource name="userborrower" list={UserBorrowlistList} edit={UserBorrowlistEdit}/>
                 <Resource name="userlender" list={UserLenderlistList} edit={UserLenderlistEdit}/>
            </Admin>
         );

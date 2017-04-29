@@ -4,7 +4,7 @@
   "private": true,
   "homepage": ".",
   "dependencies": {
-    "admin-on-rest": "^0.9.4",
+    "admin-on-rest": "^1.0.0",
     "antd": "^2.9.0",
     "aor-language-chinese": "^1.0.1",
     "aor-summernote-input": "^1.0.0",
