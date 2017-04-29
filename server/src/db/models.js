@@ -59,7 +59,7 @@ let UserBorrowerSchema = new Schema({
     hasyuqijilu:{ type: Boolean, default: false },//有无逾期记录
     hasshenfenzhengyuanjian:{ type: Boolean, default: false },//身份证原件
 
-
+    weixinopenid:String,
     isapprovaled:{ type: Boolean, default: false },//是否审批通过
 
 
@@ -84,6 +84,7 @@ let UserLenderSchema = new Schema({
     urlphoneid1:String,//身份证照片正面
     urlphoneid2:String,//身份证照片反面
     balance:{ type: Schema.Types.Number,default: 0 },//用户余额
+    weixinopenid:String,
     isapprovaled:{ type: Boolean, default: false },
 });
 UserLenderSchema.plugin(mongoosePaginate);
@@ -103,6 +104,7 @@ let UserAgencySchema = new Schema({
     },
     invitecode:String,
     balance:{ type: Schema.Types.Number,default: 0 },//用户余额
+    weixinopenid:String,
     isapprovaled:{ type: Boolean, default: false },
 });
 UserAgencySchema.plugin(mongoosePaginate);
@@ -127,11 +129,11 @@ let OrderSchema = new Schema({
     moneylimit:Number,//借款额度
     moneyperiod:Number,//借款周期（天）
     moneyusefor:String,//借款用途
-    moneylender:Number,//放款服务费
+    moneylender:Number,//放款额度
     feeservice:Number,//服务费
     depositratio:Number,//押金比
-    realprice:Number,//实付价
-    orderstatus:Number,//0:借款中,1:（待确认／已接单）,2:（放款中／已确认）,3:放款成功！／4:订单完成
+    moneyreal:Number,//实付价
+    orderstatus:{ type: Number, default:0},//0:借款中,1:（待确认／已接单）,2:（放款中／已确认）,3:放款成功！／4:订单完成
     statusforborrower:String,//借款中/待确认/放款中/放款成功/订单完成
     statusforlender:String,//借款中／已接单/已确认/放款成功/订单完成
     paystatus:{ type: String, default:'未支付'},
@@ -142,9 +144,9 @@ OrderSchema.plugin(mongoosePaginate);
 let Order  = mongoose.model('Order',  OrderSchema);
 
 
-//充值记录
+//充值记录（提现记录）
 let RechargerecordSchema = new Schema({
-    creator:{ type: Schema.Types.ObjectId, ref: 'User' },
+    creator:{ type: Schema.Types.ObjectId, ref: 'UserAgency' },
     fromorder:{ type: Schema.Types.ObjectId, ref: 'Order' },
     fromwithdrawcashapply:{ type: Schema.Types.ObjectId, ref: 'Withdrawcashapply' },
     fromuser:{ type: Schema.Types.ObjectId, ref: 'UserBorrower' },

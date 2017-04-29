@@ -6,6 +6,9 @@ export const insertorder_result = createAction('insertorder_result');
 export const getmyorders_request = createAction('getmyorders_request');
 export const getmyorders_result = createAction('getmyorders_result');
 
+export const queryintrestedorder_request = createAction('queryintrestedorder_request');
+export const queryintrestedorder_result = createAction('queryintrestedorder_result');
+
 export const acceptorder_request = createAction('acceptorder_request');
 export const acceptorder_result = createAction('acceptorder_result');
 

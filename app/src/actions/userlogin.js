@@ -23,3 +23,6 @@ export const fillprofile_result = createAction('fillprofile_result');
 
 export const logout_request = createAction('logout_request');
 export const logout_result = createAction('logout_result');
+
+export const userauthentication_request  = createAction('userauthentication_request');
+export const userauthentication_result = createAction('userauthentication_result');

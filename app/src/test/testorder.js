@@ -3,7 +3,8 @@ import {
   insertorder_request,
   getmyorders_request,
   acceptorder_request,
-  confirmorder_request
+  confirmorder_request,
+  queryintrestedorder_request,
 } from '../actions';
 
 let setusertype = (usertype)=>{
@@ -45,6 +46,11 @@ let test_acceptorder =(dispatch)=>{
     dispatch(acceptorder_request(payload));
 };
 
+let test_queryintrestedorder =(dispatch)=>{
+    //查询符合条件的借款请求
+    dispatch(queryintrestedorder_request({query:{}}));
+};
+
 let test_userloginagency =(dispatch)=>{
     setusertype('useragency');
     dispatch(loginwithweixinopenid_request({weixinopenid:'39927caa-fa12-4704'}));
@@ -62,5 +68,6 @@ export {
     test_acceptorder,
     test_getmyorders,
     test_userloginagency,
+    test_queryintrestedorder,
     test_confirmorder
 };

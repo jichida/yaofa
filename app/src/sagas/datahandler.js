@@ -26,6 +26,11 @@ import {
     acceptorder_result,
     confirmorder_request,
     confirmorder_result,
+    queryintrestedorder_request,
+    queryintrestedorder_result,
+
+    userauthentication_request,
+    userauthentication_result,
     common_err,
 } from '../actions';
 
@@ -42,6 +47,8 @@ exports.recvmessagetoresultpair = {
   'getmyorders_result':getmyorders_result,
   'acceptorder_result':acceptorder_result,
   'confirmorder_result':confirmorder_result,
+  'queryintrestedorder_result':queryintrestedorder_result,
+  'userauthentication_result':userauthentication_result,
 };
 
 //非验证发送接口
@@ -52,6 +59,7 @@ exports.sendmessagefnsz = {
     'register':register_request,
     'getabouthtml':getabouthtml_request,
     'findpwd':findpwd_request,
+    'queryintrestedorder':queryintrestedorder_request,
 };
 
 //验证发送接口
@@ -61,6 +69,7 @@ exports.sendmessageauthfnsz = {
     'acceptorder':acceptorder_request,
     'getmyorders':getmyorders_request,
     'confirmorder':confirmorder_request,
+    'userauthentication':userauthentication_request,
 };
 
 
