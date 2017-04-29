@@ -1,47 +1,26 @@
 import React from 'react';
-import { List, EmailField } from 'admin-on-rest/lib/mui';
-import { CardActions } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import {
-  CreateButton,
-  RichTextField,
-  NumberInput,
   DateField,
-  Create,
   Edit,
-  SimpleForm,
-  DisabledInput,
-  TextInput,
-  Show,
-  SimpleShowLayout,
-  ShowButton,
-  DateInput,
-  LongTextInput,
-  ReferenceManyField,
+  TabbedForm,
+  FormTab,
   NumberField,
   Datagrid,
   TextField,
   ReferenceField,
   EditButton,
   SelectInput,
-  BooleanInput,
-  BooleanField,
+  List,
   Filter,
   ReferenceInput
-} from 'admin-on-rest/lib/mui';
-
-import { Field,FieldArray } from 'redux-form';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import TimePicker from 'material-ui/TimePicker';
-import moment from 'moment';
-
-import OrderProductDetail from './orderproductdetail';
+} from 'admin-on-rest';
 
 export const OrderFilter = props => (
     <Filter {...props}>
-         <ReferenceInput source="creator" reference="user">
+         <ReferenceInput source="creator" reference="userborrower">
+            <SelectInput optionText="username" />
+        </ReferenceInput>
+        <ReferenceInput source="userlender" reference="userlender">
             <SelectInput optionText="username" />
         </ReferenceInput>
         <SelectInput source="paystatus" choices={[
@@ -57,41 +36,42 @@ const OrderlistTitle = ({ record }) => {
 
 const OrderlistEdit = (props) => {
       return (<Edit title={<OrderlistTitle />} {...props}>
-          <SimpleForm>
-                <DisabledInput label="Id" source="id" />
-                <OrderProductDetail />
-                <DisabledInput label="订单标题" source="ordertitle" />
-                <DisabledInput label="订单详情" source="body" />
-                <DisabledInput label="实付价" source="realprice" />
-                <DisabledInput label="应付价" source="orderprice" />
-                <DisabledInput label="支付状态" source="paystatus" />
-                <ReferenceInput source="expressid" reference="express" allowEmpty
-                filterToQuery={searchText => ({ expressname: searchText })}
-                filter={{ isvisiable: true }}>
-                  <SelectInput optionText={item=>(`${item.expressname}(${item.expresscode})`)} />
-                </ReferenceInput>
-                <SelectInput source="orderstatus" choices={[
-                    { id: '未支付', name: '未支付' },
-                    { id: '待发货', name: '待发货' },
-                    { id: '待收货', name: '待收货' },
-                    { id: '已完成', name: '已完成' },
-                    { id: '已取消', name: '已取消' },
-                ]} />
-                 <TextInput label="运单号" source="expressbarid" />
-          </SimpleForm>
+          <TabbedForm>
+              <FormTab label="resources.order.tabs.orderinfo">
+                
+              <TextField label="订单标题"  source="ordertitle" />
+              <TextField label="订单详情"  source="orderdetail" />
+              <TextField label="支付状态"  source="paystatus" />
+              <DateField label="生成时间"  source="created_at" />
+              <DateField label="支付时间"  source="pay_at" />
+              <NumberField label="实付价" source="moneyreal"  style={{ textAlign: 'left' }}  />
+             
+              </FormTab>
+              <FormTab label="resources.order.tabs.borrower">
+                 
+              <NumberField label="借款金额" source="moneylimit"  style={{ textAlign: 'left' }}/>
+              <NumberField label="借款周期（天）" source="moneyperiod"  style={{ textAlign: 'left' }}/>
+              <TextField label="借款用途"  source="moneyusefor" />
+              <TextField label="借款人状态"  source="statusforborrower" />
+              <ReferenceField label="借款人" source="creator" reference="userborrower" >
+                <TextField source="username" />
+              </ReferenceField>
+           
+              </FormTab>
+              <FormTab label="resources.order.tabs.lender">
+              <NumberField label="放款额度" source="moneylender" style={{ textAlign: 'left' }}/>
+              <NumberField label="服务费" source="feeservice"  style={{ textAlign: 'left' }}/>
+              <NumberField label="押金比" source="depositratio"  style={{ textAlign: 'left' }}/>
+              <TextField label="放款人状态"  source="statusforlender" />
+              <ReferenceField label="放款人" source="userlender" reference="userlender" allowEmpty>
+                <TextField source="username" />
+              </ReferenceField>
+              </FormTab>
+          </TabbedForm>
       </Edit>);
 
 };
 
-
-const OrderlistShow = (props) => (
-       <Show title={<OrderlistTitle />} {...props}>
-           <SimpleShowLayout>
-               <TextField source="id" />
-               <TextField label="公司名" source="Ordername" />
-           </SimpleShowLayout>
-       </Show>
-);
 
 
 
@@ -99,11 +79,16 @@ const OrderlistList = (props) => (//
      <List title="订单列表" {...props}  filters={<OrderFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <DateField label="生成时间" source="created_at" showTime />
-        <ReferenceField label="订单用户" source="creator" reference="user" addLabel={false}>
+        <ReferenceField label="借款人" source="creator" reference="userborrower" >
             <TextField source="username" />
         </ReferenceField>
-        <NumberField label="订单金额" source="orderprice" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
-        <TextField label="订单状态" source="orderstatus" />
+        <ReferenceField label="放款人" source="userlender" reference="userlender" allowEmpty>
+            <TextField source="username" />
+        </ReferenceField>
+        <NumberField label="借款金额" source="moneylimit" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
+        <NumberField label="放款金额" source="moneylender" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
+        <NumberField label="实际金额" source="moneyreal" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
+        <TextField label="借款人状态"  source="statusforborrower" />
         <TextField label="支付状态"  source="paystatus" />
         <EditButton />
         </Datagrid>

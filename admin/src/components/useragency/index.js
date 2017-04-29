@@ -1,39 +1,18 @@
 import React from 'react';
-import { List, EmailField } from 'admin-on-rest/lib/mui';
-import { CardActions } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import {
-  CreateButton,
-  RichTextField,
-  NumberInput,
-  Create,
   Edit,
   SimpleForm,
-  DisabledInput,
   TextInput,
-  Show,
-  SimpleShowLayout,
-  ShowButton,
-  DateInput,
-  LongTextInput,
-  ReferenceManyField,
   Datagrid,
   TextField,
   DateField,
   EditButton,
-  SelectInput,
+  List,
   BooleanInput,
   BooleanField,
   Filter
-} from 'admin-on-rest/lib/mui';
-
-import { Field,FieldArray } from 'redux-form';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import TimePicker from 'material-ui/TimePicker';
-
-import moment from 'moment';
+} from 'admin-on-rest';
+import ApproveButton from './btn';
 
 
 export const UserAgencyFilter = props => (
@@ -43,29 +22,19 @@ export const UserAgencyFilter = props => (
 );
 
 const UserAgencylistTitle = ({ record }) => {
-   return <span>显示 用户</span>;
+   return <span>中介</span>;
 };
-
-const UserAgencylistShow = (props) => (
-       <Show title={<UserAgencylistTitle />} {...props}>
-           <SimpleShowLayout>
-               <TextField source="id" />
-               <TextField label="手机号" source="username" />
-               <DateField label="注册时间" source="created_at"  showTime/>
-               <DateField label="上次登录时间" source="updated_at"  showTime/>
-               <TextField label="真实姓名" source="truename" />
-           </SimpleShowLayout>
-       </Show>
-);
 
 const UserAgencylistEdit = (props) => {
       return (<Edit title={<UserAgencylistTitle />} {...props}>
           <SimpleForm>
-              <DisabledInput label="Id" source="id" />
-              <DisabledInput label="手机号"  source="username" />
+              <TextField label="Id" source="id" />
+              <TextField label="手机号"  source="username" />
               <DateField label="注册时间" source="created_at"  showTime/>
               <DateField label="上次登录时间" source="updated_at"  showTime/>
-              <TextField label="真实姓名" source="truename" />
+              <TextField label="邀请码" source="invitecode" />
+              <TextField label="余额" source="balance" />
+               <BooleanInput label="是否审批通过" source="isapprovaled" defaultValue={true} />
           </SimpleForm>
       </Edit>);
 
@@ -73,16 +42,16 @@ const UserAgencylistEdit = (props) => {
 
 
 const UserAgencylistList = (props) => (//
-     <List title="用户列表" {...props}  filters={<UserAgencyFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
+     <List title="中介列表" {...props}  filters={<UserAgencyFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <TextField label="手机号" source="username" />
         <DateField label="注册时间" source="created_at"  showTime/>
         <DateField label="上次登录时间" source="updated_at"  showTime/>
-        <TextField label="真实姓名" source="truename" />
-        <ShowButton />
+        <ApproveButton style={{ padding: 0 }}  label="审批"/>
+        <EditButton style={{ padding: 0 }} />
         </Datagrid>
     </List>
 );
 
 
-export  {UserAgencylistList,UserAgencylistEdit,UserAgencylistShow};
+export  {UserAgencylistList,UserAgencylistEdit};

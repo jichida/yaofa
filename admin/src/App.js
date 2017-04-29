@@ -15,9 +15,9 @@ import CustomRoutes from './routes';
 import translations from './i18n';
 
 import {AboutlistList,AboutlistEdit,AboutlistCreate} from './components/abouts/index.js';
-import {UserAgencylistList,UserAgencylistEdit,UserAgencylistShow} from './components/useragency/index.js';
-import {UserBorrowlistList,UserBorrowlistEdit,UserBorrowlistShow} from './components/userborrow/index.js';
-import {UserLenderlistList,UserLenderlistEdit,UserLenderlistShow} from './components/userlender/index.js';
+import {UserAgencylistList,UserAgencylistEdit} from './components/useragency/index.js';
+import {UserBorrowlistList,UserBorrowlistEdit} from './components/userborrow/index.js';
+import {UserLenderlistList,UserLenderlistEdit} from './components/userlender/index.js';
 import {SystemconfigList,SystemconfigShow,SystemconfigCreate,SystemconfigEdit} from './components/systemconfig/index.js';
 import {OrderlistList,OrderlistEdit} from './components/orders/index.js';
 

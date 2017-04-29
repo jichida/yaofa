@@ -17,32 +17,59 @@ export default {
     },
     useragency:{
       name: '中介列表 |||| 中介列表',
+      notification:{
+        approved_success:'审批成功',
+        approved_error:'审批失败',
+        rejected_success:'拒绝成功',
+        rejected_error:'拒绝失败',
+      },
+      tabs:{
+        basicinfo:'基本信息'
+      }
     },
     userlender:{
       name: '放款人列表 |||| 放款人列表',
+      notification:{
+        approved_success:'审批成功',
+        approved_error:'审批失败',
+        rejected_success:'拒绝成功',
+        rejected_error:'拒绝失败',
+      },
+      tabs:{
+        basicinfo:'基本信息',
+        realinfo:'实名资料',
+      }
     },
     userborrower:{
       name: '借款人列表 |||| 借款人列表',
+      notification:{
+        approved_success:'审批成功',
+        approved_error:'审批失败',
+        rejected_success:'拒绝成功',
+        rejected_error:'拒绝失败',
+      },
+      tabs:{
+        basicinfo:'基本信息',
+        realinfo:'实名资料',
+        authresult:'认证结果',
+        personalasset:'个人资产'
+      }
     },
     withdrawcash:{
       name: '提现管理 |||| 提现管理',
     },
     order:{
       name: '订单管理 |||| 订单管理',
+      tabs:{
+        orderinfo:'详情',
+        borrower:'借款',
+        lender:'放款'
+      },
       fields:{
         orderstatus:'订单状态',
         paystatus:'支付状态',
         creator:'关联用户',
-        expressid:'选择快递公司(仅设为可见的快递公司才会列出)',
-        expresscode:'快递公司编码',
-        orderprice:'商品总额',
-        realprice:'实付价',
-        couponprice:'优惠价抵扣',
-        pointprice:'积分抵扣',
-        productname:'产品名',
-        productnumber:'购买数量',
-        productprice:'产品单价',
-        producttotalprice:'产品总价'
+        userlender:'放款用户',
       }
     },
     systemconfig:{

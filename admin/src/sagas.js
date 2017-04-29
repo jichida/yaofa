@@ -1,11 +1,9 @@
-import customSaga from './customSaga';
-// import topicvisiableSaga from './components/topic/visiablesetsaga';
-// import commentvisiableSaga from './components/topiccomment/visiablesetsaga';
-// import productenableSaga from './components/product/enablesetsaga';
+import reviewSaga0 from './components/userborrow/saga';
+import reviewSaga1 from './components/userlender/saga';
+import reviewSaga2 from './components/useragency/saga';
 
 export default [
-    customSaga,
-    // topicvisiableSaga,
-    // commentvisiableSaga,
-    // productenableSaga
+    reviewSaga0,
+    reviewSaga1,
+    reviewSaga2
 ];

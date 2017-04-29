@@ -1,40 +1,21 @@
 import React from 'react';
-import { List, EmailField } from 'admin-on-rest/lib/mui';
-import { CardActions } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
-import NavigationRefresh from 'material-ui/svg-icons/navigation/refresh';
 import {
-  CreateButton,
-  RichTextField,
-  NumberInput,
-  Create,
   Edit,
-  SimpleForm,
-  DisabledInput,
-  TextInput,
-  Show,
-  SimpleShowLayout,
-  ShowButton,
-  DateInput,
-  LongTextInput,
-  ReferenceManyField,
+  TabbedForm,
+  FormTab,
   Datagrid,
   TextField,
   DateField,
+  TextInput,
+  List,
   EditButton,
   SelectInput,
-  BooleanInput,
   BooleanField,
+  BooleanInput,
+  ImageField,
   Filter
-} from 'admin-on-rest/lib/mui';
-
-import { Field,FieldArray } from 'redux-form';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import TimePicker from 'material-ui/TimePicker';
-
-import moment from 'moment';
-
+} from 'admin-on-rest';
+import ApproveButton from './btn';
 
 export const UserBorrowFilter = props => (
     <Filter {...props}>
@@ -43,46 +24,77 @@ export const UserBorrowFilter = props => (
 );
 
 const UserBorrowlistTitle = ({ record }) => {
-   return <span>显示 用户</span>;
+   return <span>借款人</span>;
 };
 
-const UserBorrowlistShow = (props) => (
-       <Show title={<UserBorrowlistTitle />} {...props}>
-           <SimpleShowLayout>
-               <TextField source="id" />
-               <TextField label="手机号" source="username" />
-               <DateField label="注册时间" source="created_at"  showTime/>
-               <DateField label="上次登录时间" source="updated_at"  showTime/>
-               <TextField label="真实姓名" source="truename" />
-           </SimpleShowLayout>
-       </Show>
-);
 
 const UserBorrowlistEdit = (props) => {
       return (<Edit title={<UserBorrowlistTitle />} {...props}>
-          <SimpleForm>
-              <DisabledInput label="Id" source="id" />
-              <DisabledInput label="手机号"  source="username" />
+           <TabbedForm>
+              <FormTab label="resources.userborrower.tabs.basicinfo">
+              <TextField label="Id" source="id" />
+              <TextField label="手机号"  source="username" />
               <DateField label="注册时间" source="created_at"  showTime/>
               <DateField label="上次登录时间" source="updated_at"  showTime/>
               <TextField label="真实姓名" source="truename" />
-          </SimpleForm>
+              <BooleanInput label="是否审批通过" source="isapprovaled" defaultValue={true} />
+              </FormTab>
+              <FormTab label="resources.userborrower.tabs.realinfo">
+              <TextField label="真实姓名" source="truename" />
+              <TextField label="身份证号"  source="idcard" />
+              <TextField label="手机号"  source="phonenumber" />
+              <TextField label="手机密码"  source="phonepassword" />
+              <TextField label="淘宝账号"  source="taobaoaccount" />
+              <TextField label="淘宝密码"  source="taobaopassword" />
+              <ImageField source="urlphoneid1" label="身份证照片正面" addLabel={true}/>
+              <ImageField source="urlphoneid2" label="身份证照片反面" addLabel={true}/>
+              <ImageField source="urlphoneid3" label="身份证照片手持" addLabel={true}/>
+              </FormTab>
+              <FormTab label="resources.userborrower.tabs.authresult">
+               <BooleanField label="身份认证结果" source="resultid"  elStyle={{ float: 'left' }}/>
+               <TextField label="失败原因"  source="resultiderrreason" />
+               <BooleanField label="运营商认证结果" source="resultphone"  elStyle={{ float: 'left' }}/>
+               <TextField label="失败原因"  source="resultphoneerrreason" />
+               <BooleanField label="芝麻分认证结果" source="resultzhima"   elStyle={{ float: 'left' }}/>
+               <TextField label="失败原因"  source="resultzhimaerrreason" />
+               <BooleanField label="淘宝认证结果" source="resulttaobao"  elStyle={{ float: 'left' }}/>
+               <TextField label="失败原因"  source="resulttaobaoerrreason" />
+               <BooleanField label="实名认证结果" source="resultrealname"  elStyle={{ float: 'left' }}/>
+               <TextField label="失败原因"  source="resultrealnameerrreason" />
+              </FormTab>
+              <FormTab label="resources.userborrower.tabs.personalasset">
+                  <TextField label="户口"  source="hukou" />
+                  <TextField label="花呗额度"  source="limithuabei" />
+                  <TextField label="借呗额度"  source="limitjiebei" />
+                  <TextField label="借贷宝负债"  source="jiedaibaofuzai" />
+                  <TextField label="借贷宝已还"  source="jiedaobaoyihuan" />
+                  <TextField label="手机号实名时间（年）"  source="realtimeforphoneyear" />
+                  <BooleanField label="是否有固定资产" source="hasgudingzichan"  elStyle={{ float: 'left' }}/>
+                  <BooleanField label="是否有工作单位" source="hasdanwei"   elStyle={{ float: 'left' }}/>
+                  <BooleanField label="是否有公积金" source="hasgongjijin"   elStyle={{ float: 'left' }}/>
+                  <BooleanField label="是否有社保" source="hasshebao"   elStyle={{ float: 'left' }}/>
+                  <BooleanField label="三号是否统一" source="hassanhaotongyi"   elStyle={{ float: 'left' }}/>
+                  <BooleanField label="有无今日还款" source="hasjinrihuankuan"   elStyle={{ float: 'left' }}/>
+                  <BooleanField label="有无逾期记录" source="hasyuqijilu"  elStyle={{ float: 'left' }}/>
+                  <BooleanField label="身份证原件" source="hasshenfenzhengyuanjian"   elStyle={{ float: 'left' }}/>
+              </FormTab>   
+          </TabbedForm>
       </Edit>);
 
 };
 
 
 const UserBorrowlistList = (props) => (//
-     <List title="用户列表" {...props}  filters={<UserBorrowFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
+     <List title="借款人列表" {...props}  filters={<UserBorrowFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <TextField label="手机号" source="username" />
         <DateField label="注册时间" source="created_at"  showTime/>
         <DateField label="上次登录时间" source="updated_at"  showTime/>
-        <TextField label="真实姓名" source="truename" />
-        <ShowButton />
+        <ApproveButton style={{ padding: 0 }}  label="审批"/>
+        <EditButton style={{ padding: 0 }} />
         </Datagrid>
     </List>
 );
 
 
-export  {UserBorrowlistList,UserBorrowlistEdit,UserBorrowlistShow};
+export  {UserBorrowlistList,UserBorrowlistEdit};
