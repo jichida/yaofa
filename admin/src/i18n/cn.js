@@ -25,6 +25,10 @@ export default {
       },
       tabs:{
         basicinfo:'基本信息'
+      },
+      fields:{
+        useragencyfrom:'来自中介',
+        userborrower:'借款人列表'
       }
     },
     userlender:{

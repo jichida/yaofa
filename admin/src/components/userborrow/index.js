@@ -10,6 +10,8 @@ import {
   List,
   EditButton,
   SelectInput,
+  ReferenceField,
+  ReferenceInput,
   BooleanField,
   BooleanInput,
   ImageField,
@@ -20,6 +22,9 @@ import ApproveButton from './btn';
 export const UserBorrowFilter = props => (
     <Filter {...props}>
          <TextInput label="搜索用户" source="username_q" />
+         <ReferenceInput source="useragencyfrom" reference="useragency">
+            <SelectInput optionText="username" />
+        </ReferenceInput>
     </Filter>
 );
 
@@ -37,6 +42,9 @@ const UserBorrowlistEdit = (props) => {
               <DateField label="注册时间" source="created_at"  showTime/>
               <DateField label="上次登录时间" source="updated_at"  showTime/>
               <TextField label="真实姓名" source="truename" />
+              <ReferenceField label="来自中介" source="useragencyfrom" reference="useragency" allowEmpty addLabel={true}>
+                <TextField source="username" />
+              </ReferenceField>
               <BooleanInput label="是否审批通过" source="isapprovaled" defaultValue={true} />
               </FormTab>
               <FormTab label="resources.userborrower.tabs.realinfo">
@@ -88,6 +96,9 @@ const UserBorrowlistList = (props) => (//
      <List title="借款人列表" {...props}  filters={<UserBorrowFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
         <TextField label="手机号" source="username" />
+        <ReferenceField label="来自中介" source="useragencyfrom" reference="useragency" allowEmpty>
+            <TextField source="username" />
+        </ReferenceField>
         <DateField label="注册时间" source="created_at"  showTime/>
         <DateField label="上次登录时间" source="updated_at"  showTime/>
         <ApproveButton style={{ padding: 0 }}  label="审批"/>
