@@ -28,18 +28,11 @@ import {
   BooleanField,
   ReferenceInput,
   Filter
-} from 'admin-on-rest/lib/mui';
-
-import { Field,FieldArray } from 'redux-form';
-import ActionDelete from 'material-ui/svg-icons/action/delete';
-import ContentAdd from 'material-ui/svg-icons/content/add';
-import TimePicker from 'material-ui/TimePicker';
-import moment from 'moment';
-import {EditStatus} from './editstatus';
+} from 'admin-on-rest';
 
 export const WithdrawcashFilter = props => (
     <Filter {...props}>
-         <ReferenceInput label="用户" source="creator" reference="user" addLabel={false}>
+         <ReferenceInput label="用户" source="creator" reference="useragency" addLabel={false}>
             <SelectInput optionText="username" />
         </ReferenceInput>
     </Filter>
@@ -59,7 +52,7 @@ const WithdrawcashlistEdit = (props) => {
              <DisabledInput label="银行卡号" source="bankaccount" />
              <DisabledInput label="银行名" source="bankname" />
              <DisabledInput label="提现金额" source="cashmoney" />
-             <EditStatus  label="状态"  source="status" choices={[
+             <SelectInput  label="状态"  source="status" choices={[
                     { id: '未验证', name: '未验证' },
                     { id: '已验证', name: '已验证' },
                     { id: '已支付', name: '已支付' },
@@ -96,4 +89,4 @@ const WithdrawcashlistList = (props) => (//
 );
 
 
-export  {WithdrawcashlistList,WithdrawcashlistEdit,WithdrawcashlistShow};
+export  {WithdrawcashlistList,WithdrawcashlistEdit};

@@ -28,6 +28,8 @@ const items = [
   { name: 'userborrower', icon: <UserIcon /> },
   { name: 'userlender', icon: <UserIcon /> },
 
+  { name: 'withdrawcash', icon: <UserIcon /> },
+
   { name: 'about', icon: <MycouponIcon /> },
 
 ];

@@ -20,6 +20,7 @@ import {UserBorrowlistList,UserBorrowlistEdit} from './components/userborrow/ind
 import {UserLenderlistList,UserLenderlistEdit} from './components/userlender/index.js';
 import {SystemconfigList,SystemconfigShow,SystemconfigCreate,SystemconfigEdit} from './components/systemconfig/index.js';
 import {OrderlistList,OrderlistEdit} from './components/orders/index.js';
+import {WithdrawcashlistList,WithdrawcashlistEdit} from './components/withdrawcashapply/index.js';
 
 import restClient from './restClient';
 class App extends Component {
@@ -44,6 +45,7 @@ class App extends Component {
                 <Resource name="useragency" list={UserAgencylistList} edit={UserAgencylistEdit}/>
                 <Resource name="userborrower" list={UserBorrowlistList} edit={UserBorrowlistEdit}/>
                 <Resource name="userlender" list={UserLenderlistList} edit={UserLenderlistEdit}/>
+                <Resource name="withdrawcash" list={WithdrawcashlistList} edit={WithdrawcashlistEdit}/>
            </Admin>
         );
     }
