@@ -31,6 +31,10 @@ import {
 
     userauthentication_request,
     userauthentication_result,
+
+    getrechargerecords_request,
+    getrechargerecords_result,
+
     common_err,
 } from '../actions';
 
@@ -49,6 +53,7 @@ exports.recvmessagetoresultpair = {
   'confirmorder_result':confirmorder_result,
   'queryintrestedorder_result':queryintrestedorder_result,
   'userauthentication_result':userauthentication_result,
+  'getrechargerecords_result':getrechargerecords_result
 };
 
 //非验证发送接口
@@ -70,6 +75,7 @@ exports.sendmessageauthfnsz = {
     'getmyorders':getmyorders_request,
     'confirmorder':confirmorder_request,
     'userauthentication':userauthentication_request,
+    'getrechargerecords':getrechargerecords_request
 };
 
 

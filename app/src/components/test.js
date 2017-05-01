@@ -24,7 +24,8 @@ import
   test_userauthentication_phone,
   test_userauthentication_zhima,
   test_userauthentication_taobao,
-  test_userauthentication_realname
+  test_userauthentication_realname,
+  test_getrechargerecords
 } from '../test';
 
 // let curcharact = {
@@ -39,6 +40,10 @@ let Page =(props)=>{
     };
     return (<div>
         <p style={{textAlign: 'center'}}>
+          <botton className="btn Primary" onClick={()=>{test_userloginagency(props.dispatch)}}>中介微信登录</botton>
+          <botton className="btn Primary" onClick={()=>{test_getrechargerecords(props.dispatch)}}>我的提成(提现）记录</botton>
+          <botton className="btn Primary" onClick={()=>{test_getmyorders(props.dispatch)}}>我的放款人订单</botton>
+          <br />
           <botton className="btn Primary" onClick={()=>{test_userloginborrow(props.dispatch)}}>借款人微信登录</botton>
          
           <botton className="btn Primary" onClick={()=>{test_userauthentication_id(props.dispatch)}}>身份认证</botton>
@@ -57,9 +62,7 @@ let Page =(props)=>{
           <botton className="btn Primary" onClick={()=>{test_getmyorders(props.dispatch)}}>我的放款</botton>
           <botton className="btn Primary" onClick={()=>{test_confirmorder(props.dispatch)}}>放款成功</botton>
           <br />
-          <botton className="btn Primary" onClick={()=>{test_userloginagency(props.dispatch)}}>中介微信登录</botton>
-          <botton className="btn Primary" onClick={()=>{test_getmyorders(props.dispatch)}}>我的放款人订单</botton>
-          <br />
+
          <botton className="btn Primary" onClick={()=>{test_register(props.dispatch,'userborrow')}}>借款人注册</botton>
           <botton className="btn Primary" onClick={()=>{test_register(props.dispatch,'userlender')}}>放款人注册</botton>
           <botton className="btn Primary" onClick={()=>{test_register(props.dispatch,'useragency')}}>中介注册</botton>
