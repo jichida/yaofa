@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
+import WeuiTool from './components/tools/weuitool';
 
 //测试
 import Test from "./components/test.js";
@@ -93,7 +94,10 @@ const CoApp = (props) => {
 class AppRoot extends React.Component {
     render() {        
         return (
-            <div className="AppContainer"><CoApp /></div>
+            <div className="AppContainer">
+                <WeuiTool />
+                <CoApp />
+            </div>
         );
     }
 }

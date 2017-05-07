@@ -1,0 +1,30 @@
+.formvalidation.form_input{
+	position: relative;
+	align-self: stretch;
+	flex-grow: 1;
+	flex-shrink: 1;
+	justify-self: stretch;
+	display: flex;
+	align-items: center;
+}
+.formvalidation.form_input input{
+	flex-grow: 1;
+	align-self: stretch;
+	border-radius: 0;
+}
+.formvalidation.form_input.warning input{
+	color: #C00;
+}
+.formvalidation.form_input.warning .warningtext{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background: #C00;
+	color: #FFF;
+	font-size: 16px;
+	line-height: 20px;
+	display: flex;
+	justify-content: center;
+	border-radius: 20px;
+	margin: 0 10px;
+}
