@@ -1,24 +1,16 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
-import WeUI from 'react-weui';
-import 'weui';
-import 'react-weui/lib/react-weui.min.css';
 import '../../public/css/login.css';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Fields, Field, reduxForm, Form } from 'redux-form';
 import { required, InputValidation, phone, length4 } from "./tools/formvalidation"
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-    <div>
-        <label>{label}</label>
-        <div>
-            <input {...input} placeholder={label} type={type}/>
-            {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-        </div>
-    </div>
-)
-
 export class LoginPage extends Component {
+
+    pagePush=(name)=>{
+        this.props.history.push(name);
+    }
 
 	render() {
         const { handleSubmit,onClickLogin } = this.props;
@@ -70,7 +62,10 @@ export class LoginPage extends Component {
                     <span className="btn Primary getYanzhen">获取验证码</span>
                 </div>
 
-                <span className="getPassword">
+                <span 
+                    className="getPassword"
+                    onClick={()=>{this.pagePush("/resetpassword")}}
+                    >
                     忘记密码?
                 </span>
 				<div className="submitBtn">
@@ -79,12 +74,12 @@ export class LoginPage extends Component {
                         >
                         登录
                     </button>
-                    <button
+                    <span
                         className="btn register"
-                        onClick={()=>{this.props.history.push("/register")}}
+                        onClick={()=>{this.pagePush("/register")}}
                         >
                         注册
-                    </button>
+                    </span>
 				</div>
 			</Form>
     	)
@@ -94,6 +89,9 @@ export class LoginPage extends Component {
 LoginPage = reduxForm({
     form: 'simple'
 })(LoginPage);
+
+LoginPage = withRouter(LoginPage);
+
 
 export class Page extends Component {
     componentWillMount() {

@@ -20,6 +20,9 @@ const initial = {
         balance: 0,
         openid: '',
         usertype: '',//用户类型 userborrower useragency userlender
+
+        //register
+        
     },
 };
 

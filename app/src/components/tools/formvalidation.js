@@ -53,19 +53,25 @@ export const email = value => value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}
 export const phone = value => value && (value.match(/\D/g)||value.length !== 11||!value.match(/^1/)) ? '手机号格式不正确' : undefined
 //不能有空格
 export const space = value => value && value.match(/\s/g) ? '不能有空格' : undefined
+//判断是否被选中
+export const ischecked = value => value? value:undefined
+//二次密码验证
+let password = '';
+export const passwordA = value => {password = value; return undefined};
+export const passwordB = value => value && value !== password? "两次密码输入不一致":  undefined;
 
 
-
+//input表单验证
 let InputValidation = (props) => {
 
-	const {onError,input, label, type, meta: { touched, error, warning }} = props;
+	const {onError,input, placeholder, type, meta: { touched, error, warning }} = props;
 	let err1 = (touched && error);
 	let err2 = (touched && warning);
 	let style = "formvalidation form_input";
 	style = err1||err2?"formvalidation form_input warning":"formvalidation form_input";
 	return (
 	  	<div className={style}>
-		    <input {...input} placeholder={label} type={type}/>
+		    <input {...input} placeholder={placeholder} type={type}/>
 		    {	touched && 
 		    	((error && 
 		    		<span 
@@ -82,7 +88,7 @@ let InputValidation = (props) => {
 	  	</div>
 	);
 }
-const mapDispatchToProps = (dispatch) => {
+const inputDispatchToProps = (dispatch) => {
   	return {
 	    onError:(err)=>{
 	      	let toast = {
@@ -94,10 +100,10 @@ const mapDispatchToProps = (dispatch) => {
 	    },
 	}
 };
-const data = (state) => {
+const inputData = (state) => {
     return state;
 };
-InputValidation = connect(data,mapDispatchToProps)(InputValidation);
+InputValidation = connect(inputData,inputDispatchToProps)(InputValidation);
 export {InputValidation};
 
 
