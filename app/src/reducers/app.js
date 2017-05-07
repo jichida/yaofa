@@ -11,7 +11,8 @@ const initial = {
         title: '',
         msg: '',
         ispop: false,
-        newmsgnumber:0
+        newmsgnumber:0,
+        islogin : false,//判断是否登录
     },
 
 };

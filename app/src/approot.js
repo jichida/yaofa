@@ -61,6 +61,10 @@ import BossBorrowUserInfo from "./components/boss/borrowuserinfo";
 //借款人详情
 import BossAddLoan from "./components/boss/addloan";
 
+
+/*中介端*/
+
+
 import {requireAuthentication} from './components/requireauthentication';
 
 import {
@@ -74,7 +78,11 @@ const CoApp = (props) => {
     return (
         <Switch>
             <CustomRoute exact path="/" component={Test}/>
-            <CustomRoute exact path="/bossaddloan" component={BossAddLoan}/>
+            <CustomRoute exact path="/usertype" component={UserType}/>
+            <CustomRoute exact path="/login" component={Login}/>
+            <CustomRoute exact path="/register" component={Register}/>
+
+            <CustomRoute exact path="/bossaddloan" component={requireAuthentication(BossAddLoan)}/>
             <CustomRoute exact path="/bossborrowuserinfo" component={BossBorrowUserInfo}/>
         </Switch>
     );

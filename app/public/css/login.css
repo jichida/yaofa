@@ -5,6 +5,7 @@
 .loginPage .loginForm{
     display: flex;
     flex-direction: column;
+    background: none;
 }
 .loginPage .loginForm .li{
     height: 50px;
@@ -36,17 +37,19 @@
 	border-radius: 10px;
 	border: none;
 	flex-shrink: 1;
+	width: 1px;
 }
 .loginPage .submitBtn{
 	padding-top: 20px;
 	display: flex;
 	flex-direction: column;
 }
-.loginPage .submitBtn botton{
+.loginPage .submitBtn button{
 	color: #FFF;
 	margin-bottom: 10px;
+	font-size: 16px;
 }
-.loginPage .submitBtn botton.register{
+.loginPage .submitBtn button.btn.register{
 	color: #3479e1;
 	border: 1px solid #3479e1;
 	background: none;
@@ -61,6 +64,5 @@
 	align-self: center;
 	margin-right: 10px;
 }
-
 
 

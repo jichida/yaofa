@@ -1,5 +1,5 @@
 import {
-  register_request,
+    register_request,
 } from '../actions';
 
 let setusertype = (usertype)=>{
@@ -15,7 +15,7 @@ let test_register =(dispatch,usertype)=>{
         password:'123456',
     };
     if(usertype === 'userborrow'){
-      payload.invitecode = '';
+        payload.invitecode = '';
     }
     else if(usertype === 'userlender'){
 
@@ -28,5 +28,5 @@ let test_register =(dispatch,usertype)=>{
 
 
 export {
-  test_register,
+    test_register,
 };

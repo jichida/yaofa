@@ -34,6 +34,9 @@ input, textarea{
 }
 .btn.login{
     background: #72aaff;
+    border: none;
+    color: #FFF;
+    font-size: 16px;
 }
 .btn.login:active{
     background: #3479e1;
