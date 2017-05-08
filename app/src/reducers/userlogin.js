@@ -20,7 +20,7 @@ const initial = {
         invitecode: '',
         balance: 0,
         openid: '',
-        usertype: '',//用户类型 借款userborrower 中介useragency 放款userlender
+        usertype: '',//用户类型 借款userborrow 中介useragency 放款userlender
 
         //register
         
@@ -35,7 +35,7 @@ const userlogin = createReducer({
     },
     //设置用户类型
     [user_type]:(state, type) => {
-        localStorage.setItem('usertype',type);
+        localStorage.setItem('usertype', type);
         return { ...state, usertype: type }
     },
     //发送验证码回调

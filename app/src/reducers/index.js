@@ -5,12 +5,14 @@ import app from './app';
 import about from './about';
 import userlogin from './userlogin';
 import weui from './weui';
+import useragency from './useragency';
 export default combineReducers(
   { 
     app,
     about,
     userlogin,
     weui,
+    useragency,
     form: formReducer
   }
 );

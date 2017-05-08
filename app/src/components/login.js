@@ -4,12 +4,30 @@ import '../../public/css/login.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Fields, Field, reduxForm, Form } from 'redux-form';
+import {
+  loginwithweixinopenid_request,
+} from '../actions';
 import { required, InputValidation, phone, length4 } from "./tools/formvalidation"
 
 export class LoginPage extends Component {
 
+    //根据openid自动登录
+    // componentWillMount() {
+    //     this.props.dispatch(
+    //         loginwithweixinopenid_request({weixinopenid:'1111111111'}));
+    // }
+
     pagePush=(name)=>{
         this.props.history.push(name);
+    }
+
+    login1=()=>{
+        this.props.dispatch(
+            loginwithweixinopenid_request({weixinopenid:'1111111111'}));
+    }
+    login2=()=>{
+        this.props.dispatch(
+            loginwithweixinopenid_request({weixinopenid:'1111111112'}));
     }
 
     //发送验证码
@@ -91,6 +109,13 @@ export class LoginPage extends Component {
                         注册
                     </span>
 				</div>
+
+                <div
+                    onClick={this.login1} 
+                    >中介登录</div>
+                <div
+                    onClick={this.login2} 
+                    >借款人登录</div>
 			</Form>
     	)
     }
@@ -120,6 +145,7 @@ export class Page extends Component {
         if(usertype === 'userborrow'){
             payload.invitecode = '';
         }
+
     }
     render() {
         return (
@@ -131,8 +157,8 @@ export class Page extends Component {
     }
 }
 
-const data = ({userlogin:{usertype}}) => {
-    return {usertype};
+const data = ({userlogin:{usertype,loginsuccess}}) => {
+    return {usertype,loginsuccess};
 };
 
 Page = connect(data)(Page);

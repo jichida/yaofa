@@ -32,6 +32,7 @@ export class RegisterPage extends Component {
     }
 
 	render() {
+        const usertype = localStorage.getItem('usertype');
         const { handleSubmit,onClickRegister,sendCode,hasAggree,username } = this.props;
         return (
             <Form 
@@ -89,6 +90,18 @@ export class RegisterPage extends Component {
                         validate={[ required, passwordB ]}
                     />
                 </div>
+
+                {usertype==="userborrow"?(
+                    <div className="li" data="29958019">
+                        <Field
+                            name="invitecode"
+                            id="invitecode"
+                            placeholder="请输入邀请码"
+                            type="text"
+                            component={ InputValidation }
+                        />
+                    </div>
+                ):''}
 
                 <div className="aggreeForm">
                     <Field 
@@ -163,7 +176,7 @@ export class Page extends Component {
             username: value.username,
             authcode: value.authcode,
             password: value.password,
-            weixinopenid: "1111111111",//微信openid
+            weixinopenid: "1111111112",//微信openid
         };
         if(usertype === 'userborrow'){
             payload.invitecode = '';

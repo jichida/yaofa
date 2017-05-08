@@ -37,10 +37,10 @@ class Page extends Component {
     			<div className="list">
     				<div 
                         className="li"
-                        onClick={()=>{this.selusertype("userborrower")}}
+                        onClick={()=>{this.selusertype("userborrow")}}
                         >
                         <img src="img/22.png" />
-    					<div className={usertype==="userborrower"?"sel":""}>
+    					<div className={usertype==="userborrow"?"sel":""}>
                             <Checkbox name="checkbox1" value="1" />
                             <span>借款人</span>
                         </div>

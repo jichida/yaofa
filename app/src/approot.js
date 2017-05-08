@@ -64,8 +64,11 @@ import BossAddLoan from "./components/boss/addloan";
 
 
 /*中介端*/
-import AgencyIndex from "./components/boss/index";
-//Agency/index
+import AgencyIndex from "./components/agency/index";
+//中介个人中心
+import AgencyUserCenter from "./components/agency/usercenter";
+//借款列表
+import AgencyBorrowList from "./components/agency/borrowlist";
 
 import {requireAuthentication} from './components/requireauthentication';
 
@@ -86,7 +89,12 @@ const CoApp = (props) => {
             <CustomRoute exact path="/register" component={Register}/>
             <CustomRoute exact path="/userindex" component={UserIndex}/>
             <CustomRoute exact path="/bossindex" component={BossIndex}/>
+
+
+
             <CustomRoute exact path="/agencyindex" component={AgencyIndex}/>
+            <CustomRoute exact path="/agencyusercenter" component={AgencyUserCenter}/>
+            <CustomRoute exact path="/agencyborrowlist" component={AgencyBorrowList}/>
 
 
             <CustomRoute exact path="/bossaddloan" component={requireAuthentication(BossAddLoan)}/>

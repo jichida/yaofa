@@ -33,3 +33,7 @@
 	width: 30px;
 	margin-right: 5px;
 }
+.usercenterPage .list{
+	flex-grow: 1;
+	overflow: scroll;
+}

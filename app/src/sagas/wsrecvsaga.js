@@ -19,21 +19,24 @@ export function* wsrecvsagaflow() {
   yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
       let {payload:result} = action;
       yield put(sendauth_result(result));
-      yield put(showpopmessage({
-        title:'成功',
-        msg:result.popmessage,
-        type:'success'
-      }));
+      // yield put(showpopmessage({
+      //   title:'成功',
+      //   msg:result.popmessage,
+      //   type:'success'
+      // }));
+      console.log("result"+JSON.stringify(result));
   });
 
   yield takeEvery(`${common_err}`, function*(action) {
       let {payload:result} = action;
 
-        yield put(showpopmessage({
-          title:result.title,
-          msg:result.errmsg,
-          type:'error'
-        }));
+        // yield put(showpopmessage({
+        //   title:result.title,
+        //   msg:result.errmsg,
+        //   type:'error'
+        // }));
+        console.log("error"+JSON.stringify(result));
+
 
   });
 

@@ -1,5 +1,5 @@
 /*
-    借款信息
+    借款列表
 */
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
@@ -50,7 +50,7 @@ class Page extends Component {
                         </Cells>
                     </TabBody>
                 </Tab>
-                <Footer action={0}/>
+                <Footer action={1}/>
             </div>
     	)
     }

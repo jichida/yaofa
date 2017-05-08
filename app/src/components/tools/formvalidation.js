@@ -42,6 +42,8 @@ export const sureLength = length => value => value && value.length !== length ? 
 export const length4 = sureLength(4)
 export const length5 = sureLength(5)
 export const length6 = sureLength(6)
+export const length7 = sureLength(7)
+export const length8 = sureLength(8)
 
 
 //年龄必须18岁以上
