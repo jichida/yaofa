@@ -156,10 +156,6 @@ export class Page extends Component {
         let payload = {phonenumber:value};
         this.props.dispatch(sendauth_request(payload));
     }
-    //goIndex
-    goIndex =()=>{
-        this.props.history.push("/userindex");
-    }
     //点击注册
     onClickRegister =(value)=>{
         let usertype = this.props.usertype;
@@ -182,7 +178,6 @@ export class Page extends Component {
                     onClickRegister={this.onClickRegister}
                     sendCode = {this.sendCode}
                 />
-                <span onClick={this.goIndex}>回首页</span>
             </div>
         )
     }
