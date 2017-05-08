@@ -1,6 +1,6 @@
 import {
     login_request,
-    login_result,
+    md_login_result,
 
     register_request,
     register_result,
@@ -9,7 +9,7 @@ import {
     findpwd_result,
 
     sendauth_request,
-    sendauth_result,
+    md_loginsendauth_result,
 
     fillprofile_request,
     fillprofile_result,
@@ -41,8 +41,8 @@ import {
 //接收的对应关系
 exports.recvmessagetoresultpair = {
   'register_result':register_result,
-  'login_result':login_result,
-  'loginsendauth_result':sendauth_result,
+  'login_result':md_login_result,
+  'loginsendauth_result':md_loginsendauth_result,
   'fillprofile_result':fillprofile_result,
   'getabouthtml_result':getabouthtml_result,
   'common_err':common_err,
@@ -77,5 +77,3 @@ exports.sendmessageauthfnsz = {
     'userauthentication':userauthentication_request,
     'getrechargerecords':getrechargerecords_request
 };
-
-

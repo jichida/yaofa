@@ -6,7 +6,12 @@ import React from 'react';
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import thunk from 'redux-thunk';
+import { routerMiddleware } from 'react-router-redux';
 
+import createHistory from 'history/createHashHistory';
+const history = createHistory();
+
+const middleware = routerMiddleware(history);
 
 import reducer from '../reducers';
 import DevTools from './devtools';
@@ -20,7 +25,7 @@ let configureStore = (initialState)=> {
     const store = createStore(
         reducer, initialState,
         compose(
-            applyMiddleware(thunk,sagaMiddleware)
+            applyMiddleware(thunk,middleware,sagaMiddleware)
         )
     );
 
@@ -29,5 +34,5 @@ let configureStore = (initialState)=> {
 
 const store = configureStore(initialState);
 
-export {sagaMiddleware};
+export {sagaMiddleware,history};
 export default store;

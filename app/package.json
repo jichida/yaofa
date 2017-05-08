@@ -22,6 +22,7 @@
     "react-dynamic-swiper": "^1.0.7",
     "react-redux": "^5.0.4",
     "react-router-dom": "^4.1.1",
+    "react-router-redux": "^4.0.8",
     "react-swipeable-views": "^0.12.1",
     "react-swipeable-views-utils": "^0.12.0",
     "react-weui": "^1.0.3",
