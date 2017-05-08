@@ -8,7 +8,9 @@ import { connect } from 'react-redux';
 import WeuiTool from './components/tools/weuitool';
 
 //测试
-import Test from "./components/test.js";
+import Test from "./components/test";
+//跳转首页
+import Index from "./components/index";
 //登录
 import Login from "./components/login";
 //注册
@@ -79,7 +81,8 @@ const CoApp = (props) => {
     let CustomRoute = Route;
     return (
         <Switch>
-            <CustomRoute exact path="/" component={Test}/>
+            <CustomRoute exact path="/" component={Index}/>
+            <CustomRoute exact path="/test" component={Test}/>
             <CustomRoute exact path="/usertype" component={UserType}/>
             <CustomRoute exact path="/login" component={Login}/>
             <CustomRoute exact path="/register" component={Register}/>
