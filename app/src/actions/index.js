@@ -4,3 +4,4 @@ export * from './app';
 export * from './orders';
 export * from './rechargerecords';
 export * from './md';
+export * from './weui';

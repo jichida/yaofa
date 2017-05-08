@@ -1,0 +1,15 @@
+.weui-mask{
+	z-index: 5000;
+}
+
+.weui-icon-warn {
+    font-size: 50px;
+    color: #FFF;
+    margin-bottom: 10px;
+}
+.weui-toast_content{
+	max-width: 86%;
+	margin: auto;
+	text-align: center;
+	margin-bottom: 10px;
+}
