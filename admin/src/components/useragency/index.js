@@ -34,7 +34,8 @@ const UserAgencylistEdit = (props) => {
               <DateField label="上次登录时间" source="updated_at"  showTime/>
               <TextField label="邀请码" source="invitecode" />
               <TextField label="余额" source="balance" />
-               <BooleanInput label="是否审批通过" source="isapprovaled" defaultValue={true} />
+              <TextField label="weixinopenid" source="weixinopenid" />
+              <BooleanInput label="是否审批通过" source="isapprovaled" defaultValue={true} />
           </SimpleForm>
       </Edit>);
 

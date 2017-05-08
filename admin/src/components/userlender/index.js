@@ -39,6 +39,7 @@ const UserLenderlistEdit = (props) => {
               <DateField label="上次登录时间" source="updated_at"  showTime/>
               <TextField label="真实姓名" source="truename" />
               <BooleanInput label="是否审批通过" source="isapprovaled" defaultValue={true} />
+              <TextField label="weixinopenid" source="weixinopenid" />
               </FormTab>
               <FormTab label="resources.userlender.tabs.realinfo">
               <TextField label="真实姓名" source="truename" />

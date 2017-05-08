@@ -45,6 +45,7 @@ const UserBorrowlistEdit = (props) => {
               <ReferenceField label="来自中介" source="useragencyfrom" reference="useragency" allowEmpty addLabel={true}>
                 <TextField source="username" />
               </ReferenceField>
+              <TextField label="weixinopenid" source="weixinopenid" />
               <BooleanInput label="是否审批通过" source="isapprovaled" defaultValue={true} />
               </FormTab>
               <FormTab label="resources.userborrower.tabs.realinfo">
@@ -85,7 +86,7 @@ const UserBorrowlistEdit = (props) => {
                   <BooleanField label="有无今日还款" source="hasjinrihuankuan"   elStyle={{ float: 'left' }}/>
                   <BooleanField label="有无逾期记录" source="hasyuqijilu"  elStyle={{ float: 'left' }}/>
                   <BooleanField label="身份证原件" source="hasshenfenzhengyuanjian"   elStyle={{ float: 'left' }}/>
-              </FormTab>   
+              </FormTab>
           </TabbedForm>
       </Edit>);
 
