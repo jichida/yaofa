@@ -12,6 +12,13 @@ export class LoginPage extends Component {
         this.props.history.push(name);
     }
 
+    //发送验证码
+    sendcode=(value)=>{
+        console.log(value);
+        //let payload = {phonenumber:'15961125167'};
+        //dispatch(sendauth_request(payload));
+    }
+
 	render() {
         const { handleSubmit,onClickLogin } = this.props;
         return (
@@ -59,7 +66,10 @@ export class LoginPage extends Component {
                         component={ InputValidation }
                         validate={[ required,length4 ]}
                     />
-                    <span className="btn Primary getYanzhen">获取验证码</span>
+                    <span 
+                        className="btn Primary getYanzhen"
+                        onClick={this.sendcode}
+                        >获取验证码</span>
                 </div>
 
                 <span 
@@ -100,9 +110,16 @@ export class Page extends Component {
         };
     };
     //点击登陆
-    onClickLogin =(values)=>{
-        console.log(values);
-        //
+    onClickLogin =(value)=>{
+        let usertype = this.props.usertype;
+        let payload = {
+            username: value.username,
+            authcode: value.authcode,
+            password: value.password,
+        };
+        if(usertype === 'userborrow'){
+            payload.invitecode = '';
+        }
     }
     render() {
         return (

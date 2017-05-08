@@ -63,3 +63,12 @@
 	align-self: center;
 	margin-right: 10px;
 }
+.registerPage .aggreeForm{
+	display: flex;
+	align-items: center;
+	height: 30px;
+}
+.registerPage .aggreeForm label{
+	padding-left: 10px;
+	flex-grow: 1;
+}

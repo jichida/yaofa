@@ -5,7 +5,8 @@ import { createReducer } from 'redux-act';
 import {
     login_result,
     register_result,
-    user_type
+    user_type,
+    sendauth_result
 } from '../actions/index.js';
 
 const initial = {
@@ -19,7 +20,7 @@ const initial = {
         invitecode: '',
         balance: 0,
         openid: '',
-        usertype: '',//用户类型 userborrower useragency userlender
+        usertype: '',//用户类型 借款userborrower 中介useragency 放款userlender
 
         //register
         
@@ -28,16 +29,25 @@ const initial = {
 
 const userlogin = createReducer({
 
-    //注册用户
-    [register_result]: (state, result) => {
-        console.log("userlogin::::>"+JSON.stringify(result));
-        return state;
+    //登录回调
+    [login_result]: (state, userinfo) => {
+        return { ...state, ...userinfo};
     },
     //设置用户类型
     [user_type]:(state, type) => {
+        localStorage.setItem('usertype',type);
         return { ...state, usertype: type }
+    },
+    //发送验证码回调
+    [sendauth_result]:(state, result) => {
+        console.log(result);
+        return { ...state }
+    },
+    //注册回调
+    [register_result]:(state, result)=>{
+        console.log(result);
+        return { ...state }
     }
-    //
 
 }, initial.userlogin);
 
