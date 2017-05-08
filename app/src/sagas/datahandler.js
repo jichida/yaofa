@@ -35,11 +35,15 @@ import {
     getrechargerecords_request,
     getrechargerecords_result,
 
+    getmyborrowusers_request,
+    getmyborrowusers_result,
+
     common_err,
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'getmyborrowusers_result':getmyborrowusers_result,
   'register_result':register_result,
   'login_result':md_login_result,
   'loginsendauth_result':md_loginsendauth_result,
@@ -75,5 +79,6 @@ exports.sendmessageauthfnsz = {
     'getmyorders':getmyorders_request,
     'confirmorder':confirmorder_request,
     'userauthentication':userauthentication_request,
-    'getrechargerecords':getrechargerecords_request
+    'getrechargerecords':getrechargerecords_request,
+    'getmyborrowusers_request':getmyborrowusers_request,
 };
