@@ -2,9 +2,7 @@
  * Created by wangxiaoqing on 2017/3/27.
  */
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
+
 import WeuiTool from './components/tools/weuitool';
 
 //测试
@@ -73,7 +71,7 @@ import {requireAuthentication} from './components/requireauthentication';
 
 import {
     HashRouter as Router,
-    Route,
+    Route,Redirect,
     Switch
 } from 'react-router-dom';
 
@@ -100,7 +98,7 @@ const CoApp = (props) => {
 
 //app
 class AppRoot extends React.Component {
-    render() {        
+    render() {
         return (
             <div className="AppContainer">
                 <WeuiTool />

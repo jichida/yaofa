@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
@@ -74,9 +74,9 @@ export class Page extends Component {
         dispatch(set_weui({ alert:alertDefault }));
     };
     render(){
-        const { 
-            toast, 
-            alert, 
+        const {
+            toast,
+            alert,
             confirm,
             loading,
             action
@@ -85,14 +85,14 @@ export class Page extends Component {
         return (
             <div className="weuiPage">
 
-                <Toast 
+                <Toast
                     icon={icon[toast.type]}
                     show={toast.show}
                     >
                     {toast.text}
                 </Toast>
 
-                <Dialog 
+                <Dialog
                     id="weuiAlert"
                     type="ios"
                     title={alert.title}
@@ -110,7 +110,7 @@ export class Page extends Component {
                     {alert.text}
                 </Dialog>
 
-                <Dialog 
+                <Dialog
                     id="weuiConfirm"
                     type="ios"
                     title={confirm.title}
@@ -133,14 +133,14 @@ export class Page extends Component {
                     {confirm.text}
                 </Dialog>
 
-                <Toast 
+                <Toast
                     id="weuiLoading"
                     icon="loading"
                     show={loading.show}>
                     Loading...
                 </Toast>
 
-                
+
             </div>
         )
     }
@@ -154,5 +154,3 @@ let data =  ({weui}) =>{
 Page = connect(data)(Page);
 
 export default Page;
-
-
