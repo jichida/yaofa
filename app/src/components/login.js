@@ -5,17 +5,23 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Fields, Field, reduxForm, Form } from 'redux-form';
 import {
-  loginwithweixinopenid_request,
+  loginwithtoken_request,
+  loginwithweixinopenid_request
 } from '../actions';
 import { required, InputValidation, phone, length4 } from "./tools/formvalidation"
 
 export class LoginPage extends Component {
 
-    //根据openid自动登录
-    // componentWillMount() {
-    //     this.props.dispatch(
-    //         loginwithweixinopenid_request({weixinopenid:'1111111111'}));
-    // }
+    componentWillMount() {
+        let usertype = localStorage.getItem('usertype');
+        let token = localStorage.getItem(`${usertype}_user_token`);
+        if(token){
+            this.props.dispatch(loginwithtoken_request({token}));
+        }else{
+            this.props.dispatch(loginwithweixinopenid_request({weixinopenid:'1111111114'}));
+        }
+        
+    }
 
     pagePush=(name)=>{
         this.props.history.push(name);
@@ -43,9 +49,10 @@ export class LoginPage extends Component {
 			<Form 
                 className="loginForm formStyle1"
                 onSubmit={handleSubmit(onClickLogin)}
+                style={{display:"none"}}
                 >
 
-                <div className="li">
+                <div className="li" >
                     <span className="icon">
                         <img src="img/16.png" />
                     </span>
@@ -87,7 +94,9 @@ export class LoginPage extends Component {
                     <span 
                         className="btn Primary getYanzhen"
                         onClick={this.sendcode}
-                        >获取验证码</span>
+                        >
+                        获取验证码
+                    </span>
                 </div>
 
                 <span 

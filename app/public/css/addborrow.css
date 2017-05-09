@@ -6,4 +6,8 @@
 }
 .addborrowPage .submitBtn{
 	padding: 15px;
+	flex-grow: 1;
+}
+.addborrowPage .submitBtn .btn{
+	width: 100%;
 }

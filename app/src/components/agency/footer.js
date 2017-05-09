@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 class Page extends Component {
 
     clickItem =(name)=>{
-        console.log("clickItem");
         this.props.history.replace(name);
     }
 
@@ -63,5 +62,4 @@ class Page extends Component {
     	)
     }
 }
-Page = withRouter(Page);
-export default Page;
+export default withRouter(Page);

@@ -9,9 +9,11 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/index.css';
 import Footer from './footer';
+import _ from 'lodash';
 import SwiperBanner from '../tools/swiperbanner';
 import {
   getmyborrowusers_request,
+  set_borrowinfo
 } from '../../actions';
 
 const { 
@@ -36,7 +38,13 @@ class Page extends Component {
         this.props.dispatch(getmyborrowusers_request({}));
     }
 
+    clickitem =(borrowinfo)=>{
+        this.props.dispatch(set_borrowinfo(borrowinfo));
+        this.props.history.push("/bossborrowuserinfo");
+    }
+
 	render() {
+        const { borrowlist } = this.props;
         return (
             <div className="indexPage AppPage">
         		<SwiperBanner data={this.headBanner()} />
@@ -44,32 +52,46 @@ class Page extends Component {
                     <span>我的邀请列表</span>
                 </div>
                 <div className="list">
+                {borrowlist.length==0?(
+                    <div className="nodata">
+                        <img src="img/21.png" />
+                        <span>当前您暂无邀请纪录</span>
+                        <botton className="btn Primary">立刻去邀请</botton>
+                    </div>
+                ):(
                     <Cells>
-                        <Cell access>
-                            <CellHeader>
-                                <img src="img/6.png" alt="" />
-                                <div className="userinfo">
-                                    <span className="name">爱喝水的宝宝</span>
-                                </div>
-                            </CellHeader>
-                            <CellBody>
-                                <div className="color_warning">13661214711</div>
-                            </CellBody>
-                            <CellFooter/>
-                        </Cell>
-                        
+                        {
+                            _.map(borrowlist, (userborrow,index)=>{
+                                return (
+                                    <Cell 
+                                        access 
+                                        key={index}
+                                        onClick={()=>{this.clickitem(userborrow)}}
+                                        >
+                                        <CellHeader>
+                                            <img src="img/6.png" alt="" />
+                                            <div className="userinfo">
+                                                <span className="name">{userborrow.profile.nickname}</span>
+                                            </div>
+                                        </CellHeader>
+                                        <CellBody>
+                                            <div className="color_warning">{userborrow.username}</div>
+                                        </CellBody>
+                                        <CellFooter/>
+                                    </Cell>
+                                )
+                            })
+                        }
                     </Cells>
-                </div>
-                <div className="nodata">
-                    <img src="img/21.png" />
-                    <span>当前您暂无邀请纪录</span>
-                    <botton className="btn Primary">立刻去邀请</botton>
-                </div>
+                )}
+                 </div>
                 <Footer action={0}/>
             </div>
     	)
     }
 }
-
-Page = connect()(Page);
+const data = ({useragency:{borrowlist}}) => {
+    return {borrowlist};
+};
+Page = connect(data)(Page);
 export default Page;

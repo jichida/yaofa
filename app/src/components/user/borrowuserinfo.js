@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
+import { connect } from 'react-redux';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/borrowuserinfo.css';
@@ -17,6 +18,7 @@ const {
 class Page extends Component {
 
 	render() {
+        const { borrowinfo } = this.props;
         return (
     		<div className="borrowuserinfoPage AppPage">
     			<DocumentTitle title="我的借款资料" />
@@ -47,5 +49,8 @@ class Page extends Component {
     	)
     }
 }
-
+const data = ({userborrow:{borrowinfo}}) => {
+    return {borrowinfo};
+};
+Page = connect(data)(Page);
 export default Page;

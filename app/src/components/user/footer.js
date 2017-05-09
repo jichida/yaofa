@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
+import { withRouter } from 'react-router-dom';
 const {
     Tab,
     TabBarItem,
@@ -8,6 +9,10 @@ const {
     } = WeUI;
 
 class Page extends Component {
+
+    clickItem =(name)=>{
+        this.props.history.replace(name);
+    }
 
 	render() {
 
@@ -37,28 +42,32 @@ class Page extends Component {
 
         return (
             <div
-                className="footer"
+                className="footer userfooter"
                 >
-        		<Tab 
-                    type="tabbar"
+                <div
+                    onClick={()=>{this.clickItem("/agencyindex")}}
+                    className="item"
                     >
-                    <TabBarItem 
-                        icon={<img src={icon1} />} 
-                        label="借款纪录" 
-                        />
-                    <TabBarItem 
-                        icon={<span></span>} 
-                        label="我要借款" 
-                        className="addBorrowLnk"
-                        />
-                    <TabBarItem 
-                        icon={<img src={icon2} />} 
-                        label="我的" 
-                        />
-                </Tab>
+                    <img src={icon1} />
+                    <span>借款纪录</span>
+                </div>
+                <div
+                    onClick={()=>{this.clickItem("/addborrow")}}
+                    className="item"
+                    >
+                    <span className="addBorrowBtn"><span></span></span>
+                    <span>我要借款</span>
+                </div>
+                <div
+                    onClick={()=>{this.clickItem("/agencyusercenter")}}
+                    className="item"
+                    >
+                    <img src={icon2} />
+                    <span>我的</span>
+                </div>
             </div>
     	)
     }
 }
 
-export default Page;
+export default withRouter(Page);

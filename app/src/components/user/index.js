@@ -61,7 +61,7 @@ class Page extends Component {
                         <botton className="btn Primary">立刻发布借款信息</botton>
                     </div>
                 </div>
-                <Footer action={0}/>
+                <Footer action={1}/>
             </div>
     	)
     }

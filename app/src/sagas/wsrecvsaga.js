@@ -7,7 +7,7 @@ import {
   login_result,
   common_err,
 } from '../actions';
-import { push,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 export function* wsrecvsagaflow() {
   yield takeEvery(`${md_login_result}`, function*(action) {
@@ -16,20 +16,22 @@ export function* wsrecvsagaflow() {
       yield put(push('/'));
   });
 
-  yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
-      let {payload:result} = action;
-      yield put(sendauth_result(result));
-      // yield put(showpopmessage({
-      //   title:'成功',
-      //   msg:result.popmessage,
-      //   type:'success'
-      // }));
-      console.log("result"+JSON.stringify(result));
-  });
+    yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
+        let {payload:result} = action;
+        yield put(sendauth_result(result));
+        // yield put(showpopmessage({
+        //   title:'成功',
+        //   msg:result.popmessage,
+        //   type:'success'
+        // }));
+        console.log("result"+JSON.stringify(result));
+    });
 
-  yield takeEvery(`${common_err}`, function*(action) {
-      let {payload:result} = action;
-
+    yield takeEvery(`${common_err}`, function*(action) {
+        let {payload:result} = action;
+        if(result.type === 'login'){
+            yield put(replace('/register'));
+        }
         // yield put(showpopmessage({
         //   title:result.title,
         //   msg:result.errmsg,

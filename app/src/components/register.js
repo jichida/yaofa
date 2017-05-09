@@ -22,13 +22,19 @@ import {
 
 import {
     sendauth_request,
-    register_request
+    register_request,
+    loginwithweixinopenid_request
     } from '../actions';
 
 export class RegisterPage extends Component {
 
     pageReplace=(name)=>{
         this.props.history.replace(name);
+    }
+
+    login1=()=>{
+        this.props.dispatch(
+            loginwithweixinopenid_request({weixinopenid:'1111111111'}));
     }
 
 	render() {
@@ -135,6 +141,11 @@ export class RegisterPage extends Component {
                         登录
                     </span>
 				</div>
+
+                <div
+                    onClick={this.login1} 
+                    >中介登录</div>
+
 			</Form>
     	)
     }
@@ -179,7 +190,7 @@ export class Page extends Component {
             weixinopenid: "1111111112",//微信openid
         };
         if(usertype === 'userborrow'){
-            payload.invitecode = '';
+            payload.invitecode = value.invitecode;
         }
         this.props.dispatch(register_request(payload));
     }

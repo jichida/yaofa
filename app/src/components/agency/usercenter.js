@@ -7,6 +7,8 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/usercenter.css';
+import { connect } from 'react-redux';
+
 import Footer from './footer';
 const {
     Cells,
@@ -17,6 +19,10 @@ const {
     } = WeUI;
 
 class Page extends Component {
+
+    pushUrl = (name)=>{
+        this.props.history.push(name);
+    }
 
 	render() {
         return (
@@ -69,7 +75,10 @@ class Page extends Component {
                         </Cell>
                     </Cells>
                     <Cells>
-                        <Cell access>
+                        <Cell 
+                            access
+                            onClick={()=>{this.pushUrl("/settings")}}
+                            >
                             <CellHeader>
                                 <img src="img/10.png" alt="" />
                             </CellHeader>
@@ -86,4 +95,9 @@ class Page extends Component {
     }
 }
 
-export default Page;
+const mapStateToProps =  ({userlogin}) =>{
+    return {...userlogin};
+};
+export default connect(
+    mapStateToProps
+)(Page);

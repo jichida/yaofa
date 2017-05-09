@@ -6,7 +6,8 @@ import {
     login_result,
     register_result,
     user_type,
-    sendauth_result
+    sendauth_result,
+    logout_result
 } from '../actions/index.js';
 
 const initial = {
@@ -31,7 +32,13 @@ const userlogin = createReducer({
 
     //登录回调
     [login_result]: (state, userinfo) => {
+        //console.log("loginwithweixinopenid result ::"+JSON.stringify(userinfo));
+        let usertype = localStorage.getItem("usertype");
+        localStorage.setItem(`${usertype}_user_token`, userinfo.token);
         return { ...state, ...userinfo};
+    },
+    [logout_result]:(state, result) => {
+        return { ...state,...initial.userlogin}
     },
     //设置用户类型
     [user_type]:(state, type) => {
@@ -40,15 +47,14 @@ const userlogin = createReducer({
     },
     //发送验证码回调
     [sendauth_result]:(state, result) => {
-        console.log(result);
+        //console.log(result);
         return { ...state }
     },
     //注册回调
     [register_result]:(state, result)=>{
-        console.log(result);
+        //console.log(result);
         return { ...state }
-    }
-
+    },
 }, initial.userlogin);
 
 export default userlogin;

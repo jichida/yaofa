@@ -17,6 +17,8 @@ import Register from "./components/register";
 import ResetPassword from "./components/resetpassword";
 //选择用户类型
 import UserType from "./components/usertype";
+//设置
+import Settings from "./components/settings";
 
 /*
     借款人端
@@ -49,8 +51,7 @@ import ValidationTaobao from "./components/user/validation-taobao";
 import BorrowUserInfo from "./components/user/borrowuserinfo";
 //完善借款资料
 import AddBorrowUserInfo from "./components/user/addborrowuserinfo";
-//设置
-import Settings from "./components/user/settings";
+
 
 /*放款端*/
 //首页
@@ -72,6 +73,7 @@ import AgencyBorrowList from "./components/agency/borrowlist";
 
 import {requireAuthentication} from './components/requireauthentication';
 
+
 import {
     HashRouter as Router,
     Route,Redirect,
@@ -89,16 +91,21 @@ const CoApp = (props) => {
             <CustomRoute exact path="/register" component={Register}/>
             <CustomRoute exact path="/userindex" component={UserIndex}/>
             <CustomRoute exact path="/bossindex" component={BossIndex}/>
-
+            <CustomRoute exact path="/settings" component={Settings}/>
 
 
             <CustomRoute exact path="/agencyindex" component={AgencyIndex}/>
             <CustomRoute exact path="/agencyusercenter" component={AgencyUserCenter}/>
             <CustomRoute exact path="/agencyborrowlist" component={AgencyBorrowList}/>
 
-
             <CustomRoute exact path="/bossaddloan" component={requireAuthentication(BossAddLoan)}/>
             <CustomRoute exact path="/bossborrowuserinfo" component={BossBorrowUserInfo}/>
+            
+            <CustomRoute exact path="/addborrow" component={AddBorrow}/>
+            <CustomRoute exact path="/addBorrowUserInfo" component={AddBorrowUserInfo}/>
+
+
+
         </Switch>
     );
 }

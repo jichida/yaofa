@@ -28,6 +28,7 @@ input, textarea{
 .btn.Primary{
     background: #3479e1;
     color: #FFF;
+    border: none;
 }
 .btn.Primary:active{
     background: #2a6bce;
@@ -139,6 +140,9 @@ input, textarea{
     justify-content: space-between;
     background: #FFF;
 }
+.footer.userfooter{
+    overflow: visible;
+}
 .footer >div.item{
     flex-grow: 1;
     display: flex;
@@ -147,6 +151,7 @@ input, textarea{
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 .footer >div.item > img{
     width: 30px;
@@ -155,6 +160,47 @@ input, textarea{
     font-size: 12px;
     margin: 3px 0;
     line-height: 14px;
+}
+
+.footer >div.item > span.addBorrowBtn{
+    height: 60px;
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 22px;
+}
+.footer >div.item > span.addBorrowBtn > span{
+    height: 60px;
+    width: 60px;
+    display: block;
+    background: #3479e1;
+    border-radius: 60px;
+    position: relative;
+}
+.footer >div.item > span.addBorrowBtn > span:before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 3px;
+    background: #FFF;
+    left: 10px;
+    top: 28px;
+}
+.footer >div.item > span.addBorrowBtn > span:after{
+    content: "";
+    position: absolute;
+    width: 3px;
+    height: 40px;
+    background: #FFF;
+    top: 10px;
+    left: 28px;
+}
+.footer >div.item > span.addBorrowBtn + span{
+    margin-top: 34px;
 }
 .footer .weui-tab{
     height: 53px;
