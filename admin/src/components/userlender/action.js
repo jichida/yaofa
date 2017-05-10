@@ -35,10 +35,3 @@ export const reviewApproveStart = (id, data, basePath) => ({
 
 
 
-export const reviewApprove = (id, data, basePath) => ({
-    type: REVIEW_APPROVE,
-    payload: { id, data: { ...data, isapprovaled:true}, basePath },
-    meta: { resource: 'userlender', fetch: UPDATE, cancelPrevious: false },
-});
-
-
