@@ -30,6 +30,13 @@ input, textarea{
     color: #FFF;
     border: none;
 }
+.btn.Default{
+    color: #666;
+    border: 1px solid #EEE;
+}
+.btn.Default:active{
+    background: #EEE;
+}
 .btn.Primary:active{
     background: #2a6bce;
 }
@@ -249,13 +256,11 @@ input, textarea{
 .footer .weui-tabbar__item.weui-bar__item_on .weui-tabbar__label{
     color: #999;
 }
-
 /*banner广告图片*/
 .swiper-slide img{
     max-width: 100%;
     display: flex;
 }
-
 /**/
 .pageTitle{
     height:40px;
@@ -263,12 +268,31 @@ input, textarea{
     align-items: center;
     background: #FFF;
     flex-shrink: 0;
+    justify-content: space-between;
 }
 .pageTitle span{
     border-left: 3px solid #3479e1;
     font-size: 14px;
     padding-left: 15px;
     line-height: 24px;
+}
+.pageTitle span.rightlnk{
+    margin-right: 15px;
+    border: none;
+    display: flex;
+    align-items: center
+}
+.pageTitle span.rightlnk:after{
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #C8C8CD;
+    border-style: solid;
+    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    position: relative;
+    margin-left: 5px;
 }
 .warningBox{
     background: #fffbf2;
@@ -291,6 +315,10 @@ input, textarea{
 }
 .swiper-container {
     flex-shrink: 0;
+}
+
+.AppPage .weui-loadmore_line .weui-loadmore__tips{
+    background: #EEE;
 }
 
 

@@ -20,6 +20,9 @@ import {
     loginwithweixinopenid_request,
     insertorder_request,
     insertorder_result,
+
+
+
     getmyorders_request,
     getmyorders_result,
     acceptorder_request,
@@ -42,6 +45,9 @@ import {
     logout_request,
     logout_result,
     common_err,
+
+    md_insertorder_result,
+
 } from '../actions';
 
 //接收的对应关系
@@ -55,7 +61,7 @@ exports.recvmessagetoresultpair = {
   'getabouthtml_result':getabouthtml_result,
   'common_err':common_err,
   'findpwd_result':findpwd_result,
-  'insertorder_result':insertorder_result,
+  'insertorder_result':md_insertorder_result,
   'getmyorders_result':getmyorders_result,
   'acceptorder_result':acceptorder_result,
   'confirmorder_result':confirmorder_result,

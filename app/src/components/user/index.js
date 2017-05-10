@@ -8,8 +8,14 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/index.css';
 import Footer from './footer';
+import _ from "lodash";
+import { connect } from 'react-redux';
 import SwiperBanner from '../tools/swiperbanner';
-
+import moment from "moment";
+import { 
+    getmyorders_request,
+    set_orderinfo
+    }  from "../../actions";
 const { 
     Tab,
     NavBar,
@@ -32,34 +38,81 @@ class Page extends Component {
         return data;
     }
 
+    componentWillMount() {
+        this.props.dispatch(getmyorders_request({
+            query:{
+
+            },
+            options:{
+                page: 1,
+                limit: 2,
+            }
+        }));
+    }
+
+    pushUrl = (name)=>{
+        this.props.history.push(name);
+    }
+
+    gotoBorrowInfo =(order)=>{
+        this.props.dispatch(set_orderinfo(order));
+        this.pushUrl("/borrowinfo");
+    }
+
 	render() {
+        const { myorderlist } = this.props;
         return (
             <div className="indexPage AppPage">
+                <DocumentTitle title="耀发钱庄" />
         		<SwiperBanner data={this.headBanner()} />
-                <div className="pageTitle"><span>我的最新借款</span></div>
+                <div className="pageTitle">
+                    <span>我的最新借款</span>
+                    <span 
+                        className="rightlnk"
+                        onClick={()=>{this.pushUrl("/borrowlist")}}
+                        >查看全部</span>
+                </div>
                 <div className="list">
-                    <Cells>
-                        <Cell access>
-                            <CellHeader>
-                                <img src="img/6.png" alt="" />
-                                <div className="userinfo">
-                                    <span className="name">爱喝水的宝宝</span>
-                                    <span className="time">2017-09-09</span>
-                                </div>
-                            </CellHeader>
-                            <CellBody>
-                                <div>借 <span className="blue">30,000</span> 元</div>
-                                <div>已借到 <span className="blue">10,000</span> 元</div>
-                            </CellBody>
-                            <CellFooter/>
-                        </Cell>
-                    </Cells>
+                    {myorderlist.length>0?(
+                        <Cells>
+                            {
+                                _.map(myorderlist, (order,index)=>{
 
-                    <div className="nodata">
-                        <img src="img/21.png" />
-                        <span>当前您暂无借款记录</span>
-                        <botton className="btn Primary">立刻发布借款信息</botton>
-                    </div>
+                                    return (
+                                        <Cell
+                                            access
+                                            key={index}
+                                            onClick={()=>{
+                                                this.gotoBorrowInfo(order);
+                                            }}
+                                            >
+                                            <CellHeader>
+                                                <div className="userinfo">
+                                                    <span className="name">借款额度:{order.moneylimit}</span>
+                                                    <span className="name">借款期限:{order.moneyperiod}</span>
+                                                    <span className="time">{moment(order.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
+                                                </div>
+                                            </CellHeader>
+                                            <CellBody>
+                                                {order.statusforlender}
+                                            </CellBody>
+                                            <CellFooter/>
+                                        </Cell>
+                                    )
+                                })
+                            }
+                        </Cells>
+                    ):(
+                        <div className="nodata">
+                            <img src="img/21.png" />
+                            <span>当前您暂无借款记录</span>
+                            <botton 
+                                className="btn Primary"
+                                >
+                                立刻发布借款信息
+                            </botton>
+                        </div>
+                    )}
                 </div>
                 <Footer action={1}/>
             </div>
@@ -67,4 +120,10 @@ class Page extends Component {
     }
 }
 
+const data = ({order:{myorderlist}}) => {
+    myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
+    return {myorderlist};
+};
+Page = connect(data)(Page);
 export default Page;
+

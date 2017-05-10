@@ -7,6 +7,7 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/borrowuserinfo.css';
+import { connect } from 'react-redux';
 const { 
     Form,
     FormCell,
@@ -173,4 +174,9 @@ class Page extends Component {
     }
 }
 
+const data = ({userlogin:{profile}}) => {
+    return {profile};
+};
+Page = connect(data)(Page);
 export default Page;
+

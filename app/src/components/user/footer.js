@@ -24,20 +24,15 @@ class Page extends Component {
         let icon1 = iconlist[0][0];
         let icon2 = iconlist[1][0];
 
-        //首页
-        if(this.props.action==0){
-            icon1 = iconlist[0][0];
-            icon2 = iconlist[1][0];
-        }
-        //借款列表
+        //个人首页
         if(this.props.action==1){
             icon1 = iconlist[0][1];
             icon2 = iconlist[1][0];
         }
         //个人中心
         if(this.props.action==2){
-            icon2 = iconlist[0][1];
-            icon1 = iconlist[1][0];
+            icon1 = iconlist[0][0];
+            icon2 = iconlist[1][1];
         }
 
         return (
@@ -45,21 +40,21 @@ class Page extends Component {
                 className="footer userfooter"
                 >
                 <div
-                    onClick={()=>{this.clickItem("/agencyindex")}}
+                    onClick={()=>{this.clickItem("/userindex")}}
                     className="item"
                     >
                     <img src={icon1} />
-                    <span>借款纪录</span>
+                    <span>放款纪录</span>
                 </div>
                 <div
                     onClick={()=>{this.clickItem("/addborrow")}}
                     className="item"
                     >
                     <span className="addBorrowBtn"><span></span></span>
-                    <span>我要借款</span>
+                    <span>我要放款</span>
                 </div>
                 <div
-                    onClick={()=>{this.clickItem("/agencyusercenter")}}
+                    onClick={()=>{this.clickItem("/usercenter")}}
                     className="item"
                     >
                     <img src={icon2} />

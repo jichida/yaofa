@@ -17,6 +17,10 @@ const {
 
 class Page extends Component {
 
+    pushUrl = (name)=>{
+        this.props.history.push(name);
+    }
+    
 	render() {
         const { borrowinfo } = this.props;
         return (

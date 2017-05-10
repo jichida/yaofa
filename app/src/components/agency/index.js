@@ -12,8 +12,8 @@ import Footer from './footer';
 import _ from 'lodash';
 import SwiperBanner from '../tools/swiperbanner';
 import {
-  getmyborrowusers_request,
-  set_borrowinfo
+    getmyborrowusers_request,
+    set_borrowinfo
 } from '../../actions';
 
 const { 

@@ -120,6 +120,16 @@
 .fillerBox .btn{
 	margin:20px;
 }
+.fillerBox{
+	display: block;
+}
+.formStyle1 .btnContent{
+	display: flex;
+	justify-content: space-between;
+}
+.formStyle1 .btnContent .btn{
+	width: 48%
+}
 
 
 

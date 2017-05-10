@@ -73,10 +73,8 @@ class AddborrowForm extends Component {
                         id="moneyusefor"
                         Option={[{value: "临时周转",label: '临时周转'},{value: "买房",label: '买房'},{value: "买车",label: '买车'}]}
                         component={ WeuiSelectValidation }
-                        validate={[ required ]}
                         HeadIcon="img/15.png"
                         InputTit="借款用途"
-                        
                     />
 
                 </FormUI>
@@ -120,7 +118,6 @@ class Page extends Component {
     	)
     }
 }
-
 Page = connect()(Page);
 export default Page;
 

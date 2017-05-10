@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
+import { withRouter } from 'react-router-dom';
 const {
     Tab,
     TabBarItem,
@@ -8,6 +9,10 @@ const {
     } = WeUI;
 
 class Page extends Component {
+
+    pushUrl = (name)=>{
+        this.props.history.push(name);
+    }
 
 	render() {
 
@@ -38,25 +43,30 @@ class Page extends Component {
             <div
                 className="footer"
                 >
-        		<Tab 
-                    type="tabbar"
+                <div
+                    onClick={()=>{this.pushUrl("")}}
+                    className="item"
                     >
-                    <TabBarItem 
-                        icon={<img src={icon1} />} 
-                        label="借款信息" 
-                        />
-                    <TabBarItem 
-                        icon={<img src={icon2} />} 
-                        label="我的借款"
-                        />
-                    <TabBarItem 
-                        icon={<img src={icon3} />} 
-                        label="我的" 
-                        />
-                </Tab>
+                    <img src={icon1} />
+                    <span>借款信息</span>
+                </div>
+                <div
+                    onClick={()=>{this.pushUrl("")}}
+                    className="item"
+                    >
+                    <img src={icon2} />
+                    <span>我的放款</span>
+                </div>
+                <div
+                    onClick={()=>{this.pushUrl("/bossusercenter")}}
+                    className="item"
+                    >
+                    <img src={icon3} />
+                    <span>我的</span>
+                </div>
             </div>
     	)
     }
 }
 
-export default Page;
+export default withRouter(Page);

@@ -21,7 +21,7 @@ const initial = {
         invitecode: '',
         balance: 0,
         openid: '',
-        usertype: '',//用户类型 借款userborrow 中介useragency 放款userlender
+        usertype: '',//用户类型 借款 userborrow 中介 useragency 放款 userlender
 
         //register
         
@@ -32,7 +32,7 @@ const userlogin = createReducer({
 
     //登录回调
     [login_result]: (state, userinfo) => {
-        //console.log("loginwithweixinopenid result ::"+JSON.stringify(userinfo));
+        console.log("login_result login_result ::"+JSON.stringify(userinfo));
         let usertype = localStorage.getItem("usertype");
         localStorage.setItem(`${usertype}_user_token`, userinfo.token);
         return { ...state, ...userinfo};

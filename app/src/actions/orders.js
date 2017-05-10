@@ -15,3 +15,6 @@ export const acceptorder_result = createAction('acceptorder_result');
 export const confirmorder_request = createAction('confirmorder_request');
 export const confirmorder_result = createAction('confirmorder_result');
 
+
+export const set_myorderlistStatus = createAction('set_myorderlistStatus');
+export const set_orderinfo = createAction('set_orderinfo');

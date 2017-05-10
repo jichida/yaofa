@@ -56,12 +56,16 @@ import AddBorrowUserInfo from "./components/user/addborrowuserinfo";
 /*放款端*/
 //首页
 import BossIndex from "./components/boss/index";
+//首页
+import BossFiller from "./components/boss/filler";
 //个人中心
 import BossUserCenter from "./components/boss/usercenter";
 //借款人详情
-import BossBorrowUserInfo from "./components/boss/borrowuserinfo";
-//借款人详情
 import BossAddLoan from "./components/boss/addloan";
+//我的放款列表  //未完成
+import BossLoanList from "./components/boss/loanlist";
+//放款详情  //未完成
+//import BossLoanList from "./components/boss/loanlist";
 
 
 /*中介端*/
@@ -98,11 +102,24 @@ const CoApp = (props) => {
             <CustomRoute exact path="/agencyusercenter" component={AgencyUserCenter}/>
             <CustomRoute exact path="/agencyborrowlist" component={AgencyBorrowList}/>
 
-            <CustomRoute exact path="/bossaddloan" component={requireAuthentication(BossAddLoan)}/>
-            <CustomRoute exact path="/bossborrowuserinfo" component={BossBorrowUserInfo}/>
-            
+            <CustomRoute exact path="/bossaddloan" component={BossAddLoan}/>
+            <CustomRoute exact path="/bossfiller" component={BossFiller}/>
+            <CustomRoute exact path="/bossusercenter" component={BossUserCenter}/>
+            <CustomRoute exact path="/bossloanlist" component={BossLoanList}/>
+
             <CustomRoute exact path="/addborrow" component={AddBorrow}/>
             <CustomRoute exact path="/addBorrowUserInfo" component={AddBorrowUserInfo}/>
+            <CustomRoute exact path="/usercenter" component={UserCenter}/>
+            <CustomRoute exact path="/borrowlist" component={BorrowList}/>
+            <CustomRoute exact path="/borrowinfo" component={BorrowInfo}/>
+            <CustomRoute exact path="/validation" component={Validation}/>
+            <CustomRoute exact path="/borrowuserinfo" component={BorrowUserInfo}/>
+            <CustomRoute exact path="/addborrowuserinfo" component={AddBorrowUserInfo}/>
+            <CustomRoute exact path="/validationshenfen" component={ValidationShenfen}/>
+            <CustomRoute exact path="/validationphone" component={ValidationPhone}/>
+            <CustomRoute exact path="/validationtaobao" component={ValidationTaobao}/>
+            <CustomRoute exact path="/validationzhima" component={ValidationZhima}/>
+
 
 
 

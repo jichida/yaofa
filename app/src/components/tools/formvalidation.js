@@ -18,7 +18,9 @@ const {
     Label,
     Input,
     Select,
-    Checkbox
+    Checkbox,
+    Switch,
+    CellFooter
     } = WeUI;
 
 //判断是否必填
@@ -138,7 +140,10 @@ let WeuiInputValidation = (props) => {
 	return (
 	    <FormCell className={style}>
             <CellHeader>
-                <Label><img src={HeadIcon} /> <span>{InputTit}</span></Label>
+                <Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
             </CellHeader>
             <CellBody>
                 <Input {...input} type={type} placeholder={placeholder}/>
@@ -173,7 +178,10 @@ let WeuiSelectValidation = (props) => {
 	return (
 		<FormCell select selectPos="after">
             <CellHeader>
-                <Label><img src={HeadIcon} /> <span>{InputTit}</span></Label>
+                <Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
             </CellHeader>
             <CellBody>
                 <Select data={Option} {...input}/>
@@ -181,11 +189,36 @@ let WeuiSelectValidation = (props) => {
         </FormCell>
 	);
 }
-						
+
+// weui switch
+let WeuiSwitchValidation = (props) => {
+	const {
+		Option,
+		HeadIcon,
+		InputTit,
+		input
+	} = props;
+	return (
+		<FormCell switch>
+            <CellHeader>
+            	<Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
+            </CellHeader>
+            <CellFooter>
+                <Switch {...input} />
+            </CellFooter>
+        </FormCell>
+	);
+}					
 
 const inputData = (state) => {
     return state;
 };
+
+WeuiSwitchValidation = connect(inputData,inputDispatchToProps)(WeuiSwitchValidation);
+export {WeuiSwitchValidation};
 
 InputValidation = connect(inputData,inputDispatchToProps)(InputValidation);
 export {InputValidation};

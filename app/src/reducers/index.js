@@ -7,6 +7,8 @@ import userlogin from './userlogin';
 import weui from './weui';
 import useragency from './useragency';
 import userborrow from './userborrow';
+import order from './order';
+import userlender from './userlender';
 export default combineReducers(
   { 
     app,
@@ -15,6 +17,8 @@ export default combineReducers(
     weui,
     useragency,
     userborrow,
+    userlender,
+    order,
     form: formReducer
   }
 );
