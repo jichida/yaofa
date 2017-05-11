@@ -54,6 +54,7 @@ export default {
       },
       tabs:{
         basicinfo:'基本信息',
+        picvaild:'照片认证',
         realinfo:'实名资料',
         authresult:'认证结果',
         personalasset:'个人资产'

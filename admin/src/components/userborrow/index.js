@@ -55,6 +55,13 @@ const UserBorrowlistEdit = (props) => {
                   { id: '已拒绝', name: '拒绝(填写拒绝理由)' },
               ]} />
               </FormTab>
+              <FormTab label="resources.userborrower.tabs.picvaild">
+              <ImageField source="urlphoneid1" label="身份证照片正面" addLabel={true}/>
+              <ImageField source="urlphoneid2" label="身份证照片反面" addLabel={true}/>
+              <ImageField source="urlphoneid3" label="身份证照片手持" addLabel={true}/>
+              <TextInput label="认证结果(拒绝理由)" source="resultrealname_obj" />
+              <BooleanInput label="实名认证结果" source="resultrealname"  elStyle={{ float: 'left' }}/>
+              </FormTab>
               <FormTab label="resources.userborrower.tabs.realinfo">
               <TextField label="真实姓名" source="truename" />
               <TextField label="身份证号"  source="idcard" />
@@ -62,9 +69,6 @@ const UserBorrowlistEdit = (props) => {
               <TextField label="手机密码"  source="phonepassword" />
               <TextField label="淘宝账号"  source="taobaoaccount" />
               <TextField label="淘宝密码"  source="taobaopassword" />
-              <ImageField source="urlphoneid1" label="身份证照片正面" addLabel={true}/>
-              <ImageField source="urlphoneid2" label="身份证照片反面" addLabel={true}/>
-              <ImageField source="urlphoneid3" label="身份证照片手持" addLabel={true}/>
               </FormTab>
               <FormTab label="resources.userborrower.tabs.authresult">
                <BooleanField label="身份认证结果" source="resultid"  elStyle={{ float: 'left' }}/>
