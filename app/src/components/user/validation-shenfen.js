@@ -79,8 +79,8 @@ class Page extends Component {
 
     testSubmit = ()=>{
       let payload = {
-        truename:'王小庆',
-        cardno:'320421197909101357'
+        truename:'真实姓名',
+        cardno:'身份证号码'
       };
 
       this.props.dispatch(userauthentication_request({
