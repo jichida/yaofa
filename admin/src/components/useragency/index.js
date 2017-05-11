@@ -10,7 +10,8 @@ import {
   List,
   BooleanInput,
   BooleanField,
-  Filter
+  Filter,
+  SelectInput,
 } from 'admin-on-rest';
 import ApproveButton from './btn';
 
