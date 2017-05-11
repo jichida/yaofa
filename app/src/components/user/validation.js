@@ -18,11 +18,11 @@ class Page extends Component {
 	render() {
 
         let list = [
-            {name: "身份认证", status: true},
-            {name: "运营商认证", status: true},
-            {name: "芝麻认证", status: true},
-            {name: "淘宝认证", status: false},
-            {name: "照片认证", status: false}
+            {name: "身份认证", status: true,url:'/validationshenfen'},
+            {name: "运营商认证", status: true,url:'/validationhtml/phone'},
+            {name: "芝麻认证", status: true,url:'/validationhtml/taobao'},
+            {name: "淘宝认证", status: false,url:'/validationhtml/taobao'},
+            {name: "照片认证", status: false,url:'/validationhtml/taobao'}
         ]
 
         return (
@@ -32,9 +32,12 @@ class Page extends Component {
                     {_.map(list,(data, index)=>{
                         let style = data.status?"true":"false";
                         return (
-                            <div 
+                            <div
                                 key={index}
                                 className={style}
+                                onClick={()=>{
+                                  this.props.history.push(data.url);
+                                }}
                                 >
                                 <span className="circular"></span>
                                 <span className="name">{data.name}</span>
@@ -43,7 +46,7 @@ class Page extends Component {
                                 ):(
                                     <span className="statustxt">待认证</span>
                                 )}
-                                
+
                             </div>
                         )
                     })}

@@ -39,11 +39,11 @@ let UserBorrowerSchema = new Schema({
     urlphoneid2:String,//身份证照片反面
     urlphoneid3:String,//身份证照片手持
 
-    resultiderrreason:String,//身份认证错误原因
-    resultphoneerrreason:String,//运营商认证错误原因
-    resultzhimaerrreason:String,//芝麻分错误原因
-    resulttaobaoerrreason:String,//淘宝错误原因
-    resultrealnameerrreason:String,//实名认证错误原因
+    resultid_obj:String,//身份认证错误原因
+    resultphone_obj:String,//运营商认证错误原因
+    resultzhima_obj:String,//芝麻分错误原因
+    resulttaobao_obj:String,//淘宝错误原因
+    resultrealname_obj:String,//实名认证错误原因
     resultid:{ type: Boolean, default: false },//身份认证
     resultphone:{ type: Boolean, default: false },//运营商认证
     resultzhima:{ type: Boolean, default: false },//芝麻分

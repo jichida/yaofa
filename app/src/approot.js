@@ -77,6 +77,10 @@ import AgencyBorrowList from "./components/agency/borrowlist";
 
 import {requireAuthentication} from './components/requireauthentication';
 
+//认证，集成第三方页面，运营商认证和淘宝认证
+import Validationhtml from './components/user/validationhtml';
+import NotifySuc from './components/user/notifysuc';
+import NotifyFailed from './components/user/notifyfailed';
 
 import {
     HashRouter as Router,
@@ -120,8 +124,9 @@ const CoApp = (props) => {
             <CustomRoute exact path="/validationtaobao" component={ValidationTaobao}/>
             <CustomRoute exact path="/validationzhima" component={ValidationZhima}/>
 
-
-
+            <CustomRoute exact path="/validationhtml/:type" component={requireAuthentication(Validationhtml)}/>
+            <CustomRoute exact path="/notifysuc" component={NotifySuc}/>
+            <CustomRoute exact path="/notifyfailed" component={NotifyFailed}/>
 
         </Switch>
     );

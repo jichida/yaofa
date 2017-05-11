@@ -9,12 +9,15 @@ import useragency from './useragency';
 import userborrow from './userborrow';
 import order from './order';
 import userlender from './userlender';
+import validationhtml from './validationhtml';
+
 export default combineReducers(
-  { 
+  {
     app,
     about,
     userlogin,
     weui,
+    validationhtml,
     useragency,
     userborrow,
     userlender,

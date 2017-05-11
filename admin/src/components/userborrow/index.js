@@ -68,15 +68,15 @@ const UserBorrowlistEdit = (props) => {
               </FormTab>
               <FormTab label="resources.userborrower.tabs.authresult">
                <BooleanField label="身份认证结果" source="resultid"  elStyle={{ float: 'left' }}/>
-               <TextField label="失败原因"  source="resultiderrreason" />
+               <TextField label="结果"  source="resultid_obj" />
                <BooleanField label="运营商认证结果" source="resultphone"  elStyle={{ float: 'left' }}/>
-               <TextField label="失败原因"  source="resultphoneerrreason" />
+               <TextField label="结果"  source="resultphone_obj" />
                <BooleanField label="芝麻分认证结果" source="resultzhima"   elStyle={{ float: 'left' }}/>
-               <TextField label="失败原因"  source="resultzhimaerrreason" />
+               <TextField label="结果"  source="resultzhima_obj" />
                <BooleanField label="淘宝认证结果" source="resulttaobao"  elStyle={{ float: 'left' }}/>
-               <TextField label="失败原因"  source="resulttaobaoerrreason" />
+               <TextField label="结果"  source="resulttaobao_obj" />
                <BooleanField label="实名认证结果" source="resultrealname"  elStyle={{ float: 'left' }}/>
-               <TextField label="失败原因"  source="resultrealnameerrreason" />
+               <TextField label="结果"  source="resultrealname_obj" />
               </FormTab>
               <FormTab label="resources.userborrower.tabs.personalasset">
                   <TextField label="户口"  source="hukou" />

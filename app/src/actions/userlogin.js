@@ -19,6 +19,7 @@ export const logout_request = createAction('logout_request');
 export const logout_result = createAction('logout_result');
 export const userauthentication_request  = createAction('userauthentication_request');
 export const userauthentication_result = createAction('userauthentication_result');
-
+export const userauthenticationhtml_request  = createAction('userauthenticationhtml_request');
+export const userauthenticationhtml_result = createAction('userauthenticationhtml_result');
 //选择用户类型
 export const user_type = createAction('user_type');

@@ -48,10 +48,13 @@ import {
 
     md_insertorder_result,
 
+    userauthenticationhtml_request,
+    userauthenticationhtml_result
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'userauthenticationhtml_result':userauthenticationhtml_result,
   'logout_result':logout_result,
   'getmyborrowusers_result':getmyborrowusers_result,
   'register_result':register_result,
@@ -91,6 +94,7 @@ exports.sendmessageauthfnsz = {
     'getmyorders':getmyorders_request,
     'confirmorder':confirmorder_request,
     'userauthentication':userauthentication_request,
+    'userauthenticationhtml':userauthenticationhtml_request,
     'getrechargerecords':getrechargerecords_request,
     'getmyborrowusers':getmyborrowusers_request,
 };

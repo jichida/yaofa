@@ -13,13 +13,13 @@ import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {
     insertorder_request
 } from '../../actions';
-import { 
-    required, 
-    InputValidation, 
+import {
+    required,
+    InputValidation,
     WeuiInputValidation,
     WeuiSelectValidation
     } from "../tools/formvalidation"
-const { 
+const {
     FormCell,
     Checkbox,
     Form:FormUI,
@@ -35,7 +35,6 @@ const {
     Input,
     Label
     } = WeUI;
-
 
 class AddborrowForm extends Component {
 
@@ -120,5 +119,3 @@ class Page extends Component {
 }
 Page = connect()(Page);
 export default Page;
-
-
