@@ -26,6 +26,16 @@ const {
     MediaBox
     } = WeUI;
 
+const orderstatusArray ={
+    0 : ["借款中","借款中"],
+    1 : ["已接单","待确认"],
+    2 : ["用户已认同","放款中"],//商家需要填写放款金额
+    3 : ["成功放款","待确认"],
+    4 : ["已完成","已成功"],
+    5 : ["放款失败","放款失败"],
+    5 : ["放款失败","放款失败"],
+}
+
 class GetBorrowStatusInfo extends Component{
 
     gotoBossaddloan=(id)=>{
@@ -42,13 +52,13 @@ class GetBorrowStatusInfo extends Component{
                     <div
                         onClick={()=>{this.gotoBossaddloan(orderInfo._id)}}
                         >
-                        {orderInfo.orderstatus}
+                        {orderstatusArray[orderInfo.orderstatus]}
                         ***{orderInfo._id}
                     </div>
                 ):""}
                 {usertype=="userborrow"||usertype=="userlender"?(
                     <div>
-                        {orderInfo.orderstatus}
+                        {orderstatusArray[orderInfo.orderstatus]}
                         {orderInfo._id}
                     </div>
                 ):""}
@@ -60,7 +70,7 @@ GetBorrowStatusInfo = connect()(GetBorrowStatusInfo);
 GetBorrowStatusInfo = withRouter(GetBorrowStatusInfo);
 
 // moneyusefor
-// orderstatus
+// orderstatus 1:借款中,借款中  2:已接单／待确认
 // paystatus
 // statusforborrower
 // statusforlender

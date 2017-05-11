@@ -44,14 +44,14 @@ class Page extends Component {
                     className="item"
                     >
                     <img src={icon1} />
-                    <span>放款纪录</span>
+                    <span>借款纪录</span>
                 </div>
                 <div
                     onClick={()=>{this.clickItem("/addborrow")}}
                     className="item"
                     >
                     <span className="addBorrowBtn"><span></span></span>
-                    <span>我要放款</span>
+                    <span>我要借款</span>
                 </div>
                 <div
                     onClick={()=>{this.clickItem("/usercenter")}}

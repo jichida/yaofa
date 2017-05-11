@@ -44,14 +44,14 @@ class Page extends Component {
                 className="footer"
                 >
                 <div
-                    onClick={()=>{this.pushUrl("")}}
+                    onClick={()=>{this.pushUrl("/bossindex")}}
                     className="item"
                     >
                     <img src={icon1} />
                     <span>借款信息</span>
                 </div>
                 <div
-                    onClick={()=>{this.pushUrl("")}}
+                    onClick={()=>{this.pushUrl("/bossloanlist")}}
                     className="item"
                     >
                     <img src={icon2} />

@@ -96,8 +96,9 @@ class Page extends Component {
                                                 <img src="img/6.png" alt="" />
                                                 <div className="userinfo">
                                                     <span className="name">borrow.created.profile.nickname</span>
-                                                    <span className="time">发布时间: {moment(borrow.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
                                                     <span className="time">借款期限: {borrow.moneyperiod}</span>
+                                                    <span className="time">发布时间: {moment(borrow.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
+                                                    
                                                 </div>
                                             </CellHeader>
                                             <CellBody>

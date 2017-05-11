@@ -120,7 +120,7 @@ class Page extends Component {
     }
 }
 
-const data = ({order:{myorderlist}}) => {
+const data = ({userborrow:{myorderlist}}) => {
     myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
     return {myorderlist};
 };
