@@ -67,7 +67,7 @@ let getallmenus = (valuesel, translate,onMenuTap)=>{
 
 const Menu = ({ onMenuTap, translate, logout }) => (
     <div style={styles.main}>
-        <DashboardMenuItem onTouchTap={onMenuTap} />
+        
         {getallmenus('baseinfocompany', translate,onMenuTap)}
         {logout}
     </div>

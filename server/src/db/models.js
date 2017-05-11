@@ -9,6 +9,7 @@ let SystemConfigSchema = new Schema({
     percentborrowpre: Number,//预借款金额比例
     percentborrowreal: Number,//实际借款金额比例
     timeexporder:Number,//超时时间（小时为单位）
+    bonuslevel1:Number,//提成比例
 });
 SystemConfigSchema.plugin(mongoosePaginate);
 let SystemConfig  = mongoose.model('SystemConfig',  SystemConfigSchema);
@@ -37,6 +38,12 @@ let UserBorrowerSchema = new Schema({
     urlphoneid1:String,//身份证照片正面
     urlphoneid2:String,//身份证照片反面
     urlphoneid3:String,//身份证照片手持
+
+    resultiderrreason:String,//身份认证错误原因
+    resultphoneerrreason:String,//运营商认证错误原因
+    resultzhimaerrreason:String,//芝麻分错误原因
+    resulttaobaoerrreason:String,//淘宝错误原因
+    resultrealnameerrreason:String,//实名认证错误原因
     resultid:{ type: Boolean, default: false },//身份认证
     resultphone:{ type: Boolean, default: false },//运营商认证
     resultzhima:{ type: Boolean, default: false },//芝麻分
@@ -60,7 +67,8 @@ let UserBorrowerSchema = new Schema({
     hasshenfenzhengyuanjian:{ type: Boolean, default: false },//身份证原件
 
     weixinopenid:String,
-    isapprovaled:{ type: Boolean, default: false },//是否审批通过
+    approvalrejectseason:{type:String,default:''},
+    approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
 
 
 });
@@ -83,9 +91,10 @@ let UserLenderSchema = new Schema({
     phonenumber:String,//手机号
     urlphoneid1:String,//身份证照片正面
     urlphoneid2:String,//身份证照片反面
-    balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     weixinopenid:String,
-    isapprovaled:{ type: Boolean, default: false },
+    approvalrejectseason:{type:String,default:''},
+    approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
+
 });
 UserLenderSchema.plugin(mongoosePaginate);
 let UserLender  = mongoose.model('UserLender',  UserLenderSchema);
@@ -105,7 +114,9 @@ let UserAgencySchema = new Schema({
     invitecode:String,
     balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     weixinopenid:String,
-    isapprovaled:{ type: Boolean, default: false },
+    approvalrejectseason:{type:String,default:''},
+    approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
+
 });
 UserAgencySchema.plugin(mongoosePaginate);
 let UserAgency  = mongoose.model('UserAgency',  UserAgencySchema);

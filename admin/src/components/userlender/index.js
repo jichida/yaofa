@@ -38,7 +38,14 @@ const UserLenderlistEdit = (props) => {
               <DateField label="注册时间" source="created_at"  showTime/>
               <DateField label="上次登录时间" source="updated_at"  showTime/>
               <TextField label="真实姓名" source="truename" />
-              <BooleanInput label="是否审批通过" source="isapprovaled" defaultValue={true} />
+              <TextInput label="拒绝理由" source="approvalrejectseason" />
+              <SelectInput  label="审核状态"  source="approvalstatus" choices={[
+                  { id: '未递交', name: '未递交资料' },
+                  { id: '待审核', name: '待审核' },
+                  { id: '审核中', name: '审核中' },
+                  { id: '已审核', name: '已审核' },
+                  { id: '已拒绝', name: '拒绝(填写拒绝理由)' },
+              ]} />
               <TextField label="weixinopenid" source="weixinopenid" />
               </FormTab>
               <FormTab label="resources.userlender.tabs.realinfo">
