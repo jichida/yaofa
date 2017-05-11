@@ -115,7 +115,7 @@ class Page extends Component {
     }
 }
 
-const data = ({order:{myorderlist, myorderlistStatus}}) => {
+const data = ({userborrow:{myorderlist, myorderlistStatus}}) => {
     myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
     return {myorderlist, myorderlistStatus};
 };
