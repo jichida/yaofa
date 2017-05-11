@@ -15,7 +15,7 @@
 .formvalidation.form_input.warning input{
 	color: #C00;
 }
-.formvalidation.form_input.warning .warningtext{
+.warning .warningtext{
 	display: inline-block;
 	width: 20px;
 	height: 20px;
@@ -27,4 +27,7 @@
 	justify-content: center;
 	border-radius: 20px;
 	margin: 0 10px;
+}
+.weui-cell_select .weui-cell__bd:after{
+	position: relative;	
 }

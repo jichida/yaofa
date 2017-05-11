@@ -6,7 +6,8 @@ import {
     login_result,
     register_result,
     user_type,
-    sendauth_result
+    sendauth_result,
+    logout_result
 } from '../actions/index.js';
 
 const initial = {
@@ -20,7 +21,7 @@ const initial = {
         invitecode: '',
         balance: 0,
         openid: '',
-        usertype: '',//用户类型 借款userborrow 中介useragency 放款userlender
+        usertype: '',//用户类型 借款 userborrow 中介 useragency 放款 userlender
 
         //register
         
@@ -31,7 +32,13 @@ const userlogin = createReducer({
 
     //登录回调
     [login_result]: (state, userinfo) => {
+        console.log("login_result login_result ::"+JSON.stringify(userinfo));
+        let usertype = localStorage.getItem("usertype");
+        localStorage.setItem(`${usertype}_user_token`, userinfo.token);
         return { ...state, ...userinfo};
+    },
+    [logout_result]:(state, result) => {
+        return { ...state,...initial.userlogin}
     },
     //设置用户类型
     [user_type]:(state, type) => {
@@ -40,15 +47,14 @@ const userlogin = createReducer({
     },
     //发送验证码回调
     [sendauth_result]:(state, result) => {
-        console.log(result);
+        //console.log(result);
         return { ...state }
     },
     //注册回调
     [register_result]:(state, result)=>{
-        console.log(result);
+        //console.log(result);
         return { ...state }
-    }
-
+    },
 }, initial.userlogin);
 
 export default userlogin;

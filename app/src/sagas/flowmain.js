@@ -11,6 +11,8 @@ import {
     login_result,
     logout_result
 } from '../actions';
+import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+
 
 let getusertype = ()=>{
     let usertype = localStorage.getItem('usertype');
@@ -85,11 +87,13 @@ function* handleIOWithAuth(socket) {
 
         let action = yield take(`${logout_result}`);
         yield put(action);
-        localStorage.removeItem(`${getusertype()}_user_token`);
-
+        //console.log("logout_result");
+        //localStorage.removeItem(`${getusertype()}_user_token`);
+        localStorage.removeItem('usertype');
         for (let task of tasksz) {
             yield cancel(task);
         }
+        yield put(replace('/usertype'));
     }
 }
 

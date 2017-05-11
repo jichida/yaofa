@@ -17,6 +17,8 @@ import Register from "./components/register";
 import ResetPassword from "./components/resetpassword";
 //选择用户类型
 import UserType from "./components/usertype";
+//设置
+import Settings from "./components/settings";
 
 /*
     借款人端
@@ -49,18 +51,21 @@ import ValidationTaobao from "./components/user/validation-taobao";
 import BorrowUserInfo from "./components/user/borrowuserinfo";
 //完善借款资料
 import AddBorrowUserInfo from "./components/user/addborrowuserinfo";
-//设置
-import Settings from "./components/user/settings";
+
 
 /*放款端*/
 //首页
 import BossIndex from "./components/boss/index";
+//首页
+import BossFiller from "./components/boss/filler";
 //个人中心
 import BossUserCenter from "./components/boss/usercenter";
 //借款人详情
-import BossBorrowUserInfo from "./components/boss/borrowuserinfo";
-//借款人详情
 import BossAddLoan from "./components/boss/addloan";
+//我的放款列表  //未完成
+import BossLoanList from "./components/boss/loanlist";
+//放款详情  //未完成
+//import BossLoanList from "./components/boss/loanlist";
 
 
 /*中介端*/
@@ -71,6 +76,7 @@ import AgencyUserCenter from "./components/agency/usercenter";
 import AgencyBorrowList from "./components/agency/borrowlist";
 
 import {requireAuthentication} from './components/requireauthentication';
+
 
 import {
     HashRouter as Router,
@@ -89,16 +95,34 @@ const CoApp = (props) => {
             <CustomRoute exact path="/register" component={Register}/>
             <CustomRoute exact path="/userindex" component={UserIndex}/>
             <CustomRoute exact path="/bossindex" component={BossIndex}/>
-
+            <CustomRoute exact path="/settings" component={Settings}/>
 
 
             <CustomRoute exact path="/agencyindex" component={AgencyIndex}/>
             <CustomRoute exact path="/agencyusercenter" component={AgencyUserCenter}/>
             <CustomRoute exact path="/agencyborrowlist" component={AgencyBorrowList}/>
 
+            <CustomRoute exact path="/bossaddloan" component={BossAddLoan}/>
+            <CustomRoute exact path="/bossfiller" component={BossFiller}/>
+            <CustomRoute exact path="/bossusercenter" component={BossUserCenter}/>
+            <CustomRoute exact path="/bossloanlist" component={BossLoanList}/>
 
-            <CustomRoute exact path="/bossaddloan" component={requireAuthentication(BossAddLoan)}/>
-            <CustomRoute exact path="/bossborrowuserinfo" component={BossBorrowUserInfo}/>
+            <CustomRoute exact path="/addborrow" component={AddBorrow}/>
+            <CustomRoute exact path="/addBorrowUserInfo" component={AddBorrowUserInfo}/>
+            <CustomRoute exact path="/usercenter" component={UserCenter}/>
+            <CustomRoute exact path="/borrowlist" component={BorrowList}/>
+            <CustomRoute exact path="/borrowinfo" component={BorrowInfo}/>
+            <CustomRoute exact path="/validation" component={Validation}/>
+            <CustomRoute exact path="/borrowuserinfo" component={BorrowUserInfo}/>
+            <CustomRoute exact path="/addborrowuserinfo" component={AddBorrowUserInfo}/>
+            <CustomRoute exact path="/validationshenfen" component={ValidationShenfen}/>
+            <CustomRoute exact path="/validationphone" component={ValidationPhone}/>
+            <CustomRoute exact path="/validationtaobao" component={ValidationTaobao}/>
+            <CustomRoute exact path="/validationzhima" component={ValidationZhima}/>
+
+
+
+
         </Switch>
     );
 }

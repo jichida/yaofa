@@ -4,9 +4,8 @@ import { withRouter } from 'react-router-dom';
 
 class Page extends Component {
 
-    clickItem =(name)=>{
-        console.log("clickItem");
-        this.props.history.replace(name);
+    pushUrl = (name)=>{
+        this.props.history.push(name);
     }
 
 	render() {
@@ -39,21 +38,21 @@ class Page extends Component {
                 className="footer"
                 >
                 <div
-                    onClick={()=>{this.clickItem("/agencyindex")}}
+                    onClick={()=>{this.pushUrl("/agencyindex")}}
                     className="item"
                     >
                     <img src={icon1} />
                     <span>邀请列表</span>
                 </div>
                 <div
-                    onClick={()=>{this.clickItem("/agencyborrowlist")}}
+                    onClick={()=>{this.pushUrl("/agencyborrowlist")}}
                     className="item"
                     >
                     <img src={icon2} />
                     <span>借贷订单</span>
                 </div>
                 <div
-                    onClick={()=>{this.clickItem("/agencyusercenter")}}
+                    onClick={()=>{this.pushUrl("/agencyusercenter")}}
                     className="item"
                     >
                     <img src={icon3} />
@@ -63,5 +62,4 @@ class Page extends Component {
     	)
     }
 }
-Page = withRouter(Page);
-export default Page;
+export default withRouter(Page);

@@ -6,7 +6,7 @@
  */
 import { createReducer } from 'redux-act';
 import {
-    
+    getmyborrowusers_result
 } from '../actions/index.js';
 
 const initial = {
@@ -17,7 +17,10 @@ const initial = {
 };
 
 const useragency = createReducer({
-    
+    [getmyborrowusers_result]:(state, result) =>{
+    	console.log(result);
+    	return { ...state, borrowlist:result.list}
+    },
 }, initial.useragency);
 
 export default useragency;

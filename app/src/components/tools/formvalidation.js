@@ -7,6 +7,21 @@ import { connect } from 'react-redux';
 import {
     set_weui
 } from '../../actions';
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+const { 
+    Form,
+    FormCell,
+    CellHeader,
+    CellBody,
+    Label,
+    Input,
+    Select,
+    Checkbox,
+    Switch,
+    CellFooter
+    } = WeUI;
 
 //判断是否必填
 export const required = value => value ? undefined : '必填项'
@@ -63,6 +78,19 @@ export const passwordA = value => {password = value; return undefined};
 export const passwordB = value => value && value !== password? "两次密码输入不一致":  undefined;
 
 
+const inputDispatchToProps = (dispatch) => {
+  	return {
+	    onError:(err)=>{
+	      	let toast = {
+			    show : true,
+			    text : err,
+			    type : "warning"
+			}
+			dispatch(set_weui({ toast }));	
+	    },
+	}
+};
+
 //input表单验证
 let InputValidation = (props) => {
 
@@ -86,27 +114,125 @@ let InputValidation = (props) => {
 			    			className="warningtext"
 			    			onClick={()=>{onError(warning)}}
 			    			>!</span>
-		    		))}
+		    		))
+		    }
 	  	</div>
 	);
 }
-const inputDispatchToProps = (dispatch) => {
-  	return {
-	    onError:(err)=>{
-	      	let toast = {
-			    show : true,
-			    text : err,
-			    type : "warning"
-			}
-			dispatch(set_weui({ toast }));	
-	    },
-	}
-};
+
+//weui input表单验证
+let WeuiInputValidation = (props) => {
+
+	const {
+		onError,
+		input, 
+		placeholder, 
+		type, 
+		meta: { touched, error, warning },
+		Company,
+		InputTit,
+		HeadIcon
+	} = props;
+	let err1 = (touched && error);
+	let err2 = (touched && warning);
+	let style = "";
+	style = err1||err2?"warning":"";
+	return (
+	    <FormCell className={style}>
+            <CellHeader>
+                <Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
+            </CellHeader>
+            <CellBody>
+                <Input {...input} type={type} placeholder={placeholder}/>
+                <span>{Company}</span>
+            </CellBody>
+            {	touched && 
+		    	((error && 
+		    		<span 
+		    			className="warningtext"
+		    			onClick={()=>{onError(error)}}
+		    			>!</span>
+		    		) 
+		    		|| (warning && 
+		    			<span 
+			    			className="warningtext"
+			    			onClick={()=>{onError(warning)}}
+			    			>!</span>
+		    		))
+		    }
+        </FormCell>
+	);
+}
+
+//weui select
+let WeuiSelectValidation = (props) => {
+	const {
+		Option,
+		HeadIcon,
+		InputTit,
+		input
+	} = props;
+	return (
+		<FormCell select selectPos="after">
+            <CellHeader>
+                <Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
+            </CellHeader>
+            <CellBody>
+                <Select data={Option} {...input}/>
+            </CellBody>
+        </FormCell>
+	);
+}
+
+// weui switch
+let WeuiSwitchValidation = (props) => {
+	const {
+		Option,
+		HeadIcon,
+		InputTit,
+		input
+	} = props;
+	return (
+		<FormCell switch>
+            <CellHeader>
+            	<Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
+            </CellHeader>
+            <CellFooter>
+                <Switch {...input} />
+            </CellFooter>
+        </FormCell>
+	);
+}					
+
 const inputData = (state) => {
     return state;
 };
+
+WeuiSwitchValidation = connect(inputData,inputDispatchToProps)(WeuiSwitchValidation);
+export {WeuiSwitchValidation};
+
 InputValidation = connect(inputData,inputDispatchToProps)(InputValidation);
 export {InputValidation};
+
+WeuiInputValidation = connect(inputData,inputDispatchToProps)(WeuiInputValidation);
+export {WeuiInputValidation};
+
+WeuiSelectValidation = connect(inputData)(WeuiSelectValidation);
+export {WeuiSelectValidation};
+
+
+
+
+
 
 
 

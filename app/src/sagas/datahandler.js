@@ -20,6 +20,9 @@ import {
     loginwithweixinopenid_request,
     insertorder_request,
     insertorder_result,
+
+
+
     getmyorders_request,
     getmyorders_result,
     acceptorder_request,
@@ -38,11 +41,18 @@ import {
     getmyborrowusers_request,
     getmyborrowusers_result,
 
+    loginwithtoken_request,
+    logout_request,
+    logout_result,
     common_err,
+
+    md_insertorder_result,
+
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'logout_result':logout_result,
   'getmyborrowusers_result':getmyborrowusers_result,
   'register_result':register_result,
   'login_result':md_login_result,
@@ -51,7 +61,7 @@ exports.recvmessagetoresultpair = {
   'getabouthtml_result':getabouthtml_result,
   'common_err':common_err,
   'findpwd_result':findpwd_result,
-  'insertorder_result':insertorder_result,
+  'insertorder_result':md_insertorder_result,
   'getmyorders_result':getmyorders_result,
   'acceptorder_result':acceptorder_result,
   'confirmorder_result':confirmorder_result,
@@ -62,6 +72,8 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+    'loginwithtoken':loginwithtoken_request,
+    'logout':logout_request,
     'login':login_request,
     'loginsendauth':sendauth_request,
     'loginwithweixinopenid':loginwithweixinopenid_request,
@@ -80,5 +92,5 @@ exports.sendmessageauthfnsz = {
     'confirmorder':confirmorder_request,
     'userauthentication':userauthentication_request,
     'getrechargerecords':getrechargerecords_request,
-    'getmyborrowusers_request':getmyborrowusers_request,
+    'getmyborrowusers':getmyborrowusers_request,
 };

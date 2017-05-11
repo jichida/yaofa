@@ -4,6 +4,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
+import { connect } from 'react-redux';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/borrowuserinfo.css';
@@ -16,14 +17,19 @@ const {
 
 class Page extends Component {
 
+    pushUrl = (name)=>{
+        this.props.history.push(name);
+    }
+    
 	render() {
+        const { borrowinfo } = this.props;
         return (
     		<div className="borrowuserinfoPage AppPage">
     			<DocumentTitle title="借款人详情" />
                 <div className="headcontent">
                     <div className="userinfo">
-                        <img src="img/6.png" />
-                        <span>爱喝水的宝宝</span>
+                        <img src={borrowinfo.profile.avatar} />
+                        <span>{borrowinfo.profile.nickname}</span>
                     </div>
                 </div>
                 <div className="form">
@@ -36,13 +42,13 @@ class Page extends Component {
                         <Cell><CellBody>手机号实名时间</CellBody><CellFooter>1年</CellFooter></Cell>
                     </Cells>
                     <Cells>
-                        <Cell><CellBody>是否有固定资产</CellBody><CellFooter>有</CellFooter></Cell>
-                        <Cell><CellBody>是否有工作单位</CellBody><CellFooter>无</CellFooter></Cell>
-                        <Cell><CellBody>是否有公积金</CellBody><CellFooter>有</CellFooter></Cell>
-                        <Cell><CellBody>是否有社保</CellBody><CellFooter>有</CellFooter></Cell>
-                        <Cell><CellBody>三号是否统一</CellBody><CellFooter>有</CellFooter></Cell>
-                        <Cell><CellBody>有无今日还款</CellBody><CellFooter>有</CellFooter></Cell>
-                        <Cell><CellBody>有无身份证原件</CellBody><CellFooter>有</CellFooter></Cell>
+                        <Cell><CellBody>是否有固定资产</CellBody><CellFooter>{borrowinfo.hasgudingzichan?"有":"无"}</CellFooter></Cell>
+                        <Cell><CellBody>是否有工作单位</CellBody><CellFooter>{borrowinfo.hasdanwei?"有":"无"}</CellFooter></Cell>
+                        <Cell><CellBody>是否有公积金</CellBody><CellFooter>{borrowinfo.hasgongjijin?"有":"无"}</CellFooter></Cell>
+                        <Cell><CellBody>是否有社保</CellBody><CellFooter>{borrowinfo.hasshebao?"有":"无"}</CellFooter></Cell>
+                        <Cell><CellBody>三号是否统一</CellBody><CellFooter>{borrowinfo.hassanhaotongyi?"有":"无"}</CellFooter></Cell>
+                        <Cell><CellBody>有无今日还款</CellBody><CellFooter>{borrowinfo.hasjinrihuankuan?"有":"无"}</CellFooter></Cell>
+                        <Cell><CellBody>有无身份证原件</CellBody><CellFooter>{borrowinfo.hasshenfenzhengyuanjian?"有":"无"}</CellFooter></Cell>
                     </Cells>
                 </div>
     		</div>
@@ -50,4 +56,8 @@ class Page extends Component {
     }
 }
 
+const data = ({userborrow:{borrowinfo}}) => {
+    return {borrowinfo};
+};
+Page = connect(data)(Page);
 export default Page;

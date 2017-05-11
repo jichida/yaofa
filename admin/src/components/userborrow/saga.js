@@ -6,6 +6,8 @@ import {
     REVIEW_APPROVE_FAILURE,
     REVIEW_REJECT_SUCCESS,
     REVIEW_REJECT_FAILURE,
+    REVIEW_APPROVESTART_SUCCESS,
+    REVIEW_APPROVESTART_FAILURE,
 } from './action';
 
 export default function* reviewSaga() {
@@ -28,5 +30,17 @@ export default function* reviewSaga() {
             yield put(showNotification('resources.userborrower.notification.rejected_error', 'warning'));
             console.error(error);
         }),
+        takeEvery(REVIEW_APPROVESTART_SUCCESS, function* (action) {
+            yield put(showNotification('resources.userborrower.notification.approvedstart_success'));
+            yield put(push('/userborrower'));
+        }),
+        takeEvery(REVIEW_APPROVESTART_FAILURE, function* (action) {
+            const {error} = action;
+            yield put(showNotification('resources.userborrower.notification.approvedstart_error', 'warning'));
+            console.error(error);
+        }),
     ];
 }
+
+
+
