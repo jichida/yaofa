@@ -38,7 +38,7 @@ export class Page extends React.Component {
     }
     console.log(`------------>${JSON.stringify(html)}`);
     return ( <div>
-              {success && <iframe src={html.url} />}
+              {success && <iframe height='600px' width='800px' src={html.url} />}
             </div>
      );
   }
