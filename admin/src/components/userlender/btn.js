@@ -32,7 +32,7 @@ class ApproveButton extends Component {
               <FlatButton label="开始审核" primary={true}  onClick={this.handleStartApprove} />
             </span>);
         }
-        else{
+        else if(record.approvalstatus !== '未递交'){
           co = (
               <span>
                   <FlatButton label="通过" primary={true} onClick={this.handleApprove} disabled={record.approvalstatus === '已审核'}/>
@@ -40,7 +40,11 @@ class ApproveButton extends Component {
               </span>
           );
         }
-
+        else{
+          co = (<span>
+          未递交
+          </span>);
+        }
 
         return co;
     }
