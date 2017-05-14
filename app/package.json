@@ -17,6 +17,7 @@
     "moment": "^2.18.1",
     "normalizr": "^3.2.2",
     "prop-types": "^15.5.8",
+    "qrcode.react": "^0.7.1",
     "react": "^15.5.4",
     "react-document-title": "^2.0.3",
     "react-dom": "^15.5.4",

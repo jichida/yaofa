@@ -210,7 +210,7 @@ PageForm = connect(state => {
 
 class Page extends Component {
     subBorrowuserinfo=(value)=>{
-        this.props.dispatch(fillrealnameprofile_request(value));
+        this.props.dispatch(fillrealnameprofile_request({data:value}));
     }
 	render() {
         return (
@@ -230,9 +230,3 @@ const data = ({userlogin}) => {
 };
 Page = connect(data)(Page);
 export default Page;
-
-
-
-
-
-
