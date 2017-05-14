@@ -32,7 +32,7 @@ class Page extends Component {
     			<DocumentTitle title="我的邀请码" />
                 <div className="list">
                     <QRCode
-                        value={`${config.serverurl}/app/registerborrow/${invitecode}`}
+                        value={`${config.serverurl}/app/#/registerborrow/${invitecode}`}
                         size={200}
                         />
                     <div className="desc">
