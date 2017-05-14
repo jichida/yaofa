@@ -9,6 +9,7 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/agencyqrcode.css';
 import { connect } from 'react-redux';
 import QRCode from "qrcode.react";
+import config from '../../env/config.js';
 
 const {
     Cells,
@@ -25,12 +26,13 @@ class Page extends Component {
     }
     //invitecode
 	render() {
+    const {invitecode} = this.props;
         return (
     		<div className="agencyqrcodePage AppPage">
     			<DocumentTitle title="我的邀请码" />
                 <div className="list">
-                    <QRCode 
-                        value="http://facebook.github.io/react/"
+                    <QRCode
+                        value={`${config.serverurl}/app/registerborrow/${invitecode}`}
                         size={200}
                         />
                     <div className="desc">
@@ -49,8 +51,3 @@ const mapStateToProps =  ({userlogin:{invitecode}}) =>{
 export default connect(
     mapStateToProps
 )(Page);
-
-
-
-
-
