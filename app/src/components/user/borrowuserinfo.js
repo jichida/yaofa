@@ -20,6 +20,22 @@ class Page extends Component {
     pushUrl = (name)=>{
         this.props.history.push(name);
     }
+
+    // hukou:String,
+    // limithuabei:Number,//花呗额度
+    // limitjiebei:Number,//借呗额度
+    // jiedaibaofuzai:Number,//借贷宝负债
+    // jiedaobaoyihuan:Number,//借贷宝已还
+    // realtimeforphoneyear:Number,//手机号实名时间（年）
+
+    // hasgudingzichan:{ type: Boolean, default: false },//是否有固定资产
+    // hasdanwei:{ type: Boolean, default: false },//是否有工作单位
+    // hasgongjijin:{ type: Boolean, default: false },//是否有公积金
+    // hasshebao:{ type: Boolean, default: false },//是否有社保
+    // hassanhaotongyi:{ type: Boolean, default: false },//三号是否统一
+    // hasjinrihuankuan:{ type: Boolean, default: false },//有无今日还款
+    // hasyuqijilu:{ type: Boolean, default: false },//有无逾期记录
+    // hasshenfenzhengyuanjian:{ type: Boolean, default: false },//身份证原件
     
 	render() {
         const { borrowinfo,usertype } = this.props;
@@ -29,8 +45,8 @@ class Page extends Component {
                 {usertype=="userborrow"?(
                     <div className="headcontent">
                         <div className="userinfo">
-                            <img src='borrowinfo.profile.avatar' />
-                            <span>borrowinfo.profile.nickname</span>
+                            <img src={borrowinfo.profile.avatar} />
+                            <span>{borrowinfo.profile.nickname}</span>
                         </div>
                     </div>
                 ):(
@@ -72,3 +88,6 @@ const data = ({userborrow:{borrowinfo}}) => {
 };
 Page = connect(data)(Page);
 export default Page;
+
+
+

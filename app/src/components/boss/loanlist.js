@@ -1,5 +1,5 @@
 /*
-    借款列表
+    借款信息
 */
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
@@ -7,14 +7,15 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/borrowlist.css';
-import _ from "lodash";
-import moment from "moment";
-import Footer from './footer';
 import { connect } from 'react-redux';
-import {
+import moment from "moment";
+import _ from "lodash";
+import { 
     getmyorders_request,
+    set_myorderlistStatus,
     set_orderinfo
-} from '../../actions';
+    }  from "../../actions";
+
 const { 
     Tab,
     NavBar,
@@ -24,96 +25,107 @@ const {
     Cell,
     CellHeader,
     CellBody,
-    CellFooter
+    CellFooter,
+    LoadMore,
     } = WeUI;
 
-
-
 class Page extends Component {
-    componentWillMount() {
-        this.props.dispatch(getmyorders_request({
-            query:{
 
-            },
-            options:{
-                page: 1,
-                limit: 100,
-            }
-        }));
+    componentWillMount() {
+        this.getList(this.props.myorderlistStatus);
     }
+
     pushUrl = (name)=>{
         this.props.history.push(name);
     }
+
+    setStatus = (status)=>{
+        this.props.dispatch(set_myorderlistStatus(status));
+        this.getList(status);
+    }
+
     gotoBorrowInfo =(order)=>{
         this.props.dispatch(set_orderinfo(order));
         this.pushUrl("/borrowinfo");
     }
 
+    getList =(status)=>{
+        let query = {};
+        if(status=="已完成"){
+            query.statusforlender = "订单完成";
+        }else{
+            query.statusforlender = { $ne: "订单完成" };
+        }
+        this.props.dispatch(getmyorders_request({query,options:{
+                page: 1,
+                limit: 100,
+        }}));
+    }
+
     render() {
-        const { myorderlist } = this.props;
+        const { myorderlist, myorderlistStatus } = this.props;
         return (
             <div className="borrowlistPage AppPage">
+                <DocumentTitle title="我的借款" />
                 <Tab>
                     <NavBar>
-                        <NavBarItem active={true}>借款中</NavBarItem>
-                        <NavBarItem active={false}>已完成</NavBarItem>
+                        <NavBarItem 
+                            active={myorderlistStatus=="借款中"}
+                            onClick={()=>{this.setStatus("借款中")}}
+                            >
+                            借款中
+                        </NavBarItem>
+                        <NavBarItem 
+                            active={myorderlistStatus=="已完成"}
+                            onClick={()=>{this.setStatus("已完成")}}
+                            >
+                            已完成
+                        </NavBarItem>
                     </NavBar>
-                    <TabBody className="list"
-                        style={{overflow:"scoll",flexGrow:"1"}}
-                        >
+                    <TabBody>
                         {myorderlist.length>0?(
                             <Cells>
-                                {
-                                    _.map(myorderlist, (order,index)=>{
-
-                                        return (
-                                            <Cell
-                                                access
-                                                key={index}
-                                                onClick={()=>{
-                                                    this.gotoBorrowInfo(order);
-                                                }}
-                                                >
-                                                <CellHeader>
-                                                    <div className="userinfo">
-                                                        <span className="name">借款额度:{order.moneylimit}</span>
-                                                        <span className="name">借款期限:{order.moneyperiod}</span>
-                                                        <span className="time">{moment(order.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
-                                                    </div>
-                                                </CellHeader>
-                                                <CellBody>
-                                                    {order.statusforlender}
-                                                </CellBody>
-                                                <CellFooter/>
-                                            </Cell>
-                                        )
-                                    })
-                                }
+                                {_.map(myorderlist,(order,index)=>{
+                                    return (
+                                         <Cell
+                                            access
+                                            key={index}
+                                            onClick={()=>{this.gotoBorrowInfo(order);}}
+                                            >
+                                            <CellHeader>
+                                                <div className="userinfo">
+                                                    <span className="name">借款额度:{order.moneylimit}</span>
+                                                    <span className="name">借款期限:{order.moneyperiod}</span>
+                                                    <span className="time">{moment(order.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
+                                                </div>
+                                            </CellHeader>
+                                            <CellBody>
+                                                {order.statusforlender}
+                                            </CellBody>
+                                            <CellFooter/>
+                                        </Cell>
+                                    )
+                                })}
                             </Cells>
                         ):(
-                            <div className="nodata">
-                                <img src="img/21.png" />
-                                <span>当前您暂无借款记录</span>
-                                <botton 
-                                    className="btn Primary"
-                                    >
-                                    立刻发布借款信息
-                                </botton>
-                            </div>
+                                <LoadMore showLine>暂无数据</LoadMore>
                         )}
+                        
                     </TabBody>
                 </Tab>
-                <Footer action={1}/>
-
             </div>
         )
     }
 }
 
-const data = ({userlender:{myorderlist}}) => {
-    myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
-    return {myorderlist};
+const data = ({userlender:{myorderlist},order:{myorderlistStatus}}) => {
+    myorderlist = _.sortBy(myorderlist, [function(o){ 
+        if(o.orderstatus<0){
+            o.orderstatus = -(o.orderstatus)+4
+        }
+        return -o.orderstatus;
+     }]);
+    return {myorderlist, myorderlistStatus};
 };
 Page = connect(data)(Page);
 export default Page;
-

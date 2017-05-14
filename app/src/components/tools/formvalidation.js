@@ -193,7 +193,6 @@ let WeuiSelectValidation = (props) => {
 // weui switch
 let WeuiSwitchValidation = (props) => {
 	const {
-		Option,
 		HeadIcon,
 		InputTit,
 		input

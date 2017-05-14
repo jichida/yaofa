@@ -13,6 +13,8 @@ import Index from "./components/index";
 import Login from "./components/login";
 //注册
 import Register from "./components/register";
+//邀请码注册借款人
+import Registerborrow from "./components/registerborrow";
 //忘记密码
 import ResetPassword from "./components/resetpassword";
 //选择用户类型
@@ -74,6 +76,8 @@ import AgencyIndex from "./components/agency/index";
 import AgencyUserCenter from "./components/agency/usercenter";
 //借款列表
 import AgencyBorrowList from "./components/agency/borrowlist";
+//我的邀请码
+import AgencyQRcode from "./components/agency/agencyqrcode";
 
 import {requireAuthentication} from './components/requireauthentication';
 
@@ -97,9 +101,12 @@ const CoApp = (props) => {
             <CustomRoute exact path="/usertype" component={UserType}/>
             <CustomRoute exact path="/login" component={Login}/>
             <CustomRoute exact path="/register" component={Register}/>
+            <CustomRoute exact path="/registerborrow/:code" component={Registerborrow}/>
             <CustomRoute exact path="/userindex" component={UserIndex}/>
             <CustomRoute exact path="/bossindex" component={BossIndex}/>
             <CustomRoute exact path="/settings" component={Settings}/>
+            <CustomRoute exact path="/resetpassword" component={ResetPassword}/>
+
 
 
             <CustomRoute exact path="/agencyindex" component={AgencyIndex}/>
@@ -119,6 +126,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/borrowlist" component={BorrowList}/>
             <CustomRoute exact path="/borrowinfo" component={BorrowInfo}/>
             <CustomRoute exact path="/validation" component={Validation}/>
+            <CustomRoute exact path="/agencyqrcode" component={AgencyQRcode}/>
             <CustomRoute exact path="/borrowuserinfo" component={BorrowUserInfo}/>
             <CustomRoute exact path="/addborrowuserinfo" component={AddBorrowUserInfo}/>
             <CustomRoute exact path="/validationshenfen" component={ValidationShenfen}/>

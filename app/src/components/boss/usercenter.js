@@ -8,6 +8,8 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/usercenter.css';
 import Footer from './footer';
+import { connect } from "react-redux";
+
 const {
     Cells,
     Cell,
@@ -23,14 +25,15 @@ class Page extends Component {
     }
 
 	render() {
+        const { avatar, nickname } = this.props;
         return (
     		<div className="usercenterPage AppPage">
     			<DocumentTitle title="个人中心" />
                 <div className="headcontent">
                     <img src="img/27.png" />
                     <div className="userinfo">
-                        <img src="img/6.png" />
-                        <span>爱喝水的宝宝</span>
+                        <img src={avatar} />
+                        <span>{nickname}</span>
                     </div>
                 </div>
                 <div className="list">
@@ -75,4 +78,9 @@ class Page extends Component {
     }
 }
 
+const data = ({userlogin:{profile}}) => {
+    return {...profile};
+};
+Page = connect(data)(Page);
 export default Page;
+

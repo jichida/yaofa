@@ -31,7 +31,8 @@ const {
     Panel,
     PanelHeader,
     PanelBody,
-    MediaBox
+    MediaBox,
+    MediaBoxDescription
     } = WeUI;
 
 const orderstatusArray ={
@@ -62,13 +63,22 @@ class LenderConfirminput extends Component {
         let success = this.props.endorder_status;
         let payload = {};
         if(success){
-            payload = {
-                query:{_id:this.props.orderid},
-                data:{
-                    moneyreal : this.state.moneyreal,
-                    orderstatus : 3
+            if(this.state.moneyreal>0){
+                payload = {
+                    query:{_id:this.props.orderid},
+                    data:{
+                        moneyreal : this.state.moneyreal,
+                        orderstatus : 3
+                    }
+                };
+            }else{
+                let toast = {
+                    show : true,
+                    text : "放款金额不能为0",
+                    type : "warning"
                 }
-            };
+                this.props.dispatch(set_weui({toast}));
+            }
         }else{
             payload = {
                 query:{_id:this.props.orderid},
@@ -99,16 +109,19 @@ class LenderConfirminput extends Component {
                 <div className="weui-dialog" id="weuiConfirm">
                     <div className="weui-dialog__bd">
                         {endorder_status?(
-                            <input 
-                                name="moneyreal" 
-                                type="number"
-                                placeholder="请输入实际借款金额"
-                                onChange={(e)=>{this.inputOnchange(e)}}
-                                />
+                            <div>
+                                <input 
+                                    name="moneyreal" 
+                                    type="number"
+                                    placeholder="请输入实际借款金额"
+                                    onChange={(e)=>{this.inputOnchange(e)}}
+                                    />
+                                <div style={{paddingTop:"15px"}}>我们会审核该信息，如有乱填和被举报的现象，一经查实，系统将取消您的放贷权限</div>
+                            </div>
                         ):(
                             <div className="falseContent">
                                 <div className="tit" style={{fontSize:"20px"}}>放款失败</div>
-                                <div className="cont">确定放款失败后，您将会有一段时间不能接单，平台将审核该订单，审核通过后将会释放您的放款权限。</div>
+                                <div className="cont" >确定放款失败后，您将会有一段时间不能接单，平台将审核该订单，审核通过后将会释放您的放款权限。</div>
                             </div>
                         )}
                     </div>
@@ -131,7 +144,15 @@ class LenderConfirminput extends Component {
         )
     }
 }
-
+const data1 = ({
+    userlender:{
+        ui_endorder,
+        endorder_status
+        }}) => {
+    return {ui_endorder,endorder_status};
+};
+LenderConfirminput = connect(data1)(LenderConfirminput);
+export {LenderConfirminput};
 
 //借款人端操作弹窗
 //borrow_ui_sureorder
@@ -158,7 +179,10 @@ class BorrowConfirminput extends Component {
     }
     render(){
         const { orderinfo, showBorrowConfirminput } = this.props;
-        const showorderstatus = orderinfo.orderstatus>=0?orderinfo.orderstatus:((-orderinfo.orderstatus)+4);
+        let showorderstatus = 0;
+        if(orderinfo.hasOwnProperty("_id")){
+            showorderstatus = orderinfo.orderstatus>=0?orderinfo.orderstatus:((-orderinfo.orderstatus)+4);
+        }
 
         return(
             <div
@@ -194,7 +218,7 @@ class BorrowConfirminput extends Component {
                             确认无误
                         </a>
                     </div>
-                    <div className="promptinfo">
+                    <div className="promptinfo color_warning">
                         如信息不实，请举报商家，举报属实，平台将现金回报。
                     </div>
                 </div>
@@ -245,14 +269,25 @@ class GetBorrowStatusInfo extends Component{
 
     //商家接单
     lenderGetOrder=(id)=>{
-        this.props.dispatch(set_weui({confirm:{
-            show : true,
-            title : "放款抢单",
-            text : "抢单后必须完成此单，才能接其他订单",
-            buttonsCloseText : "取消",
-            buttonsClickText : "确定",
-            buttonsClick : ()=>{this.gotoBossaddloan(id)}
-        }}))
+        let lenderstatus = this.props.canaccept;
+        //queryacceptstatus
+        if(lenderstatus){
+            this.props.dispatch(set_weui({confirm:{
+                show : true,
+                title : "放款抢单",
+                text : "抢单后必须完成此单，才能接其他订单",
+                buttonsCloseText : "取消",
+                buttonsClickText : "确定",
+                buttonsClick : ()=>{this.gotoBossaddloan(id)}
+            }}))
+        }else{
+            let toast = {
+                show : true,
+                text : "有订单未完成，还不能接单",
+                type : "warning"
+            }
+            this.props.dispatch(set_weui({toast}));
+        }
     }
 
     //完成放款
@@ -264,186 +299,164 @@ class GetBorrowStatusInfo extends Component{
     render(){
         const {orderInfo} = this.props;
         let usertype = localStorage.getItem('usertype');
-        let showorderstatus = orderInfo.orderstatus>=0?orderInfo.orderstatus:((-orderInfo.orderstatus)+4);
+        let showorderstatus = 0;
+        let hasorderinfo = false;
+        if(orderInfo.hasOwnProperty("_id")){
+            showorderstatus = orderInfo.orderstatus>=0?orderInfo.orderstatus:((-orderInfo.orderstatus)+4);
+            hasorderinfo = true;
+        }
+
         return (
-
-            <div className="getBorrowStatusInfo btn">
-                {
-                    //放款人
-                    usertype=="userlender"?(
-                        
-                        <div className="cont">
-                            <span className="info color_warning">{orderstatusArray[showorderstatus][0]}</span>
-                            {
-                                //抢单
-                                orderInfo.orderstatus==0?(
-                                    <span 
-                                        className="btn Primary"
-                                        onClick={()=>{this.lenderGetOrder(orderInfo._id)}}
-                                        >放贷抢单</span>
-                                ):""
-                            }
-                            {
-                                //用户已经确认，获取用户联系方式
-                                orderInfo.orderstatus==2?(
-                                    <div className="btnlist">
-                                        <div className="btn Primary phonelnk">
-                                            <a href={`tel:${orderInfo.creator.phonenumber}`}>联系借款人</a>
-                                        </div>
-                                        <div className="btnli">
-                                            <div 
-                                                className="btn Primary"
-                                                onClick={()=>{this.show_LenderConfirminput(true)}}
-                                                >
-                                                完成放款
-                                            </div>
-                                            <div 
-                                                className="btn Default"
-                                                onClick={()=>{this.show_LenderConfirminput(false)}}
-                                                >
-                                                放款失败
-                                            </div>
-                                        </div>
-                                        <LenderConfirminput orderid={orderInfo._id}/>
-                                    </div>
-                                ):""
-                            }
+           
+                <div className="getBorrowStatusInfo btn">
+                    {
+                        //放款人
+                        usertype=="userlender"?(
                             
-                        </div>
-                    ):""
-                }
-                {
-                    //借款人
-                    usertype=="userborrow"?(
-                        <div className="cont">
-                            <span className="info">{orderstatusArray[showorderstatus][1]}</span>
-                            {
-                                //商家已接单，等待用户确认
-                                orderInfo.orderstatus==1?(
-                                    <span 
-                                        className="btn Primary"
-                                        onClick={()=>{this.borrowAggreelender(orderInfo._id)}}
-                                        >
-                                        接受借款
-                                    </span>
-                                ):""
-                            }
-                            {
-                                //商家已接单，等待用户确认
-                                orderInfo.orderstatus==3?(
-                                    <span 
-                                        className="btn Primary"
-                                        onClick={()=>{this.borrowAggreelender(orderInfo._id)}}
-                                        >
-                                        确认无误
-                                    </span>
-                                ):""
-                            }
-                            <BorrowConfirminput 
-                                orderinfo={orderInfo} 
-                                showBorrowConfirminput={orderInfo.orderstatus==3||orderInfo.orderstatus==-2}
-                                />
-                        </div>
-                    ):""
-                }
-                {
-                    //中介
-                    usertype=="useragency"?(
-                        <div>
-                            {orderstatusArray[orderInfo.orderstatus][2]}
-                        </div>
-                    ):""
-                }
+                            <div className="cont">
+                                <span className="info color_warning">{orderstatusArray[showorderstatus][0]}</span>
+                                {
+                                    //抢单
+                                    orderInfo.orderstatus==0?(
+                                        <span 
+                                            className="btn Primary"
+                                            onClick={()=>{this.lenderGetOrder(orderInfo._id)}}
+                                            >放贷抢单</span>
+                                    ):""
+                                }
+                                {
+                                    //用户已经确认，获取用户联系方式
+                                    orderInfo.orderstatus==2?(
+                                        <div className="btnlist">
+                                            <div className="btn Primary phonelnk">
+                                                <a href={`tel:${orderInfo.creator.phonenumber}`}>联系借款人</a>
+                                            </div>
+                                            <div className="btnli">
+                                                <div 
+                                                    className="btn Primary"
+                                                    onClick={()=>{this.show_LenderConfirminput(true)}}
+                                                    >
+                                                    完成放款
+                                                </div>
+                                                <div 
+                                                    className="btn Default"
+                                                    onClick={()=>{this.show_LenderConfirminput(false)}}
+                                                    >
+                                                    放款失败
+                                                </div>
+                                            </div>
+                                            <LenderConfirminput orderid={orderInfo._id}/>
+                                        </div>
+                                    ):""
+                                }
+                                
+                            </div>
+                        ):""
+                    }
+                    {
+                        //借款人
+                        usertype=="userborrow"?(
+                            <div className="cont">
+                                <span className="info">{orderstatusArray[showorderstatus][1]}</span>
+                                {
+                                    //商家已接单，等待用户确认
+                                    orderInfo.orderstatus==1?(
+                                        <span 
+                                            className="btn Primary"
+                                            onClick={()=>{this.borrowAggreelender(orderInfo._id)}}
+                                            >
+                                            接受借款
+                                        </span>
+                                    ):""
+                                }
+                                {
+                                    //商家已接单，等待用户确认
+                                    orderInfo.orderstatus==3?(
+                                        <span 
+                                            className="btn Primary"
+                                            onClick={()=>{this.borrowAggreelender(orderInfo._id)}}
+                                            >
+                                            确认无误
+                                        </span>
+                                    ):""
+                                }
+                                <BorrowConfirminput 
+                                    orderinfo={orderInfo} 
+                                    showBorrowConfirminput={orderInfo.orderstatus==3||orderInfo.orderstatus==-2}
+                                    />
+                            </div>
+                        ):""
+                    }
+                    {
+                        //中介
+                        usertype=="useragency"?(
+                            <div>
+                                {orderstatusArray[orderInfo.orderstatus][2]}
+                            </div>
+                        ):""
+                    }
 
-            </div>
+                </div>
         )
     }
 }
-GetBorrowStatusInfo = connect()(GetBorrowStatusInfo);
+const dataGetBorrowStatusInfo = ({userlogin:{canaccept}}) => {
+    return {canaccept};
+};
+GetBorrowStatusInfo = connect(dataGetBorrowStatusInfo)(GetBorrowStatusInfo);
 GetBorrowStatusInfo = withRouter(GetBorrowStatusInfo);
 
-// moneyusefor
-// orderstatus 1:借款中,借款中  2:已接单／待确认
-// paystatus
-// statusforborrower
-// statusforlender
-
-
-
-
-
 class Page extends Component {
-
     pushUrl = (name)=>{
         this.props.history.push(name);
     }
-
     gotoUserBorrowInfo=(usertype)=>{
         //这里需要更具用户id获取用户借贷信息
         //this.props.dispatch(set_borrowinfo(info));
         this.pushUrl("/borrowuserinfo");
     }
-
 	render() {
         const { orderInfo } = this.props;
         return (
     		<div className="borrowinfoPage AppPage">
     			<DocumentTitle title="借款详情" />
-
                 <div className="headcontent">
                     <div>借 <span className="quota">{orderInfo.moneylimit}</span> 元</div>
                     <div>借款期限: {orderInfo.moneyperiod}天</div>
                 </div>
-
-                
                 <div 
                     className="userinfo"
                     onClick={()=>{this.gotoUserBorrowInfo()}}
                     >
                     <img src="img/6.png" />
                     <div>
-                        <span><span>借款人:</span>orderInfo.creator.profile</span>
+                        <span><span>借款人:</span>{orderInfo.creator.profile.nickname}</span>
                         <span><span>借款原因:</span>{orderInfo.moneyusefor}</span>
                         <span><span>发布时间:</span>{moment(orderInfo.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
                     </div>
                 </div>
-                
-                
-
-
                 {orderInfo.hasOwnProperty("userlender")?(
-                    <Panel>
-                        <PanelHeader>
-                            借款纪录
-                        </PanelHeader>
-                        <PanelBody>
-                            <MediaBox 
-                                type="small_appmsg"
-                                onClick={()=>{this.pushUrl("/loaninfo")}}
-                                >
-                                <Cells>
-                                    <Cell access>
-                                        <CellBody>
-                                            <p>
-                                                <span>放贷人:{orderInfo.userlender.profile.nickname}</span>
-                                                <span className="gray">
-                                                    放款时间: {moment(orderInfo.userlender.matched_at).format("YYYY-MM-DD H:mm:ss")}
-                                                </span>
-                                            </p>
-                                        </CellBody>
-                                        <CellFooter>
-                                            <p>
-                                                <span>放款 <span className="blue">{orderInfo.moneylender}</span> 元</span>
-                                                <span className="color_warning">查看详情</span>
-                                            </p>
-                                        </CellFooter>
-                                    </Cell>
-                                </Cells>
-                            </MediaBox>
-                        </PanelBody>
-                    </Panel>
+                    <div className="loaninfoPage">
+                        <Panel>
+                            <PanelHeader>
+                                放款信息
+                            </PanelHeader>
+                            <PanelBody>
+                                <MediaBox type="text">
+                                    <MediaBoxDescription>
+                                        <div className="info">
+                                            <div>放贷人:{orderInfo.userlender.profile.nickname}</div>
+                                            <div>放款时间: {moment(orderInfo.userlender.matched_at).format("YYYY-MM-DD H:mm:ss")}</div>
+                                            <div>放款额度: <span className="blue">{orderInfo.moneylender} 元</span></div>
+                                            <div>服务费: <span className="green">{orderInfo.feeservice} 元</span></div>
+                                            <div>押金比: <span className="green">{orderInfo.depositratio} %</span></div>
+                                        </div>
+                                    </MediaBoxDescription>
+                                </MediaBox>
+                            </PanelBody>
+                        </Panel>
+                    </div>
                 ):""}
-                
                 <GetBorrowStatusInfo orderInfo={orderInfo}/>
     		</div>
     	)

@@ -14,6 +14,7 @@ let test_findpwd =(dispatch,usertype)=>{
       payload = {
         username:'15961125167',
         authcode:'6699',
+        password:""
       }
     }
     else if(usertype === 'userlender'){

@@ -7,7 +7,8 @@ import {
     register_result,
     user_type,
     sendauth_result,
-    logout_result
+    logout_result,
+    confirmorder_result
 } from '../actions/index.js';
 
 const initial = {
@@ -24,6 +25,7 @@ const initial = {
         usertype: '',//用户类型 借款 userborrow 中介 useragency 放款 userlender
 
         //register
+        canaccept : true
         
     },
 };
@@ -38,6 +40,7 @@ const userlogin = createReducer({
         return { ...state, ...userinfo};
     },
     [logout_result]:(state, result) => {
+        
         return { ...state,...initial.userlogin}
     },
     //设置用户类型
@@ -54,6 +57,11 @@ const userlogin = createReducer({
     [register_result]:(state, result)=>{
         //console.log(result);
         return { ...state }
+    },
+    //借款人确认商家回调
+    [confirmorder_result]:(state, payload) => {
+        let canaccept = false;
+        return { ...state,  canaccept};
     },
 }, initial.userlogin);
 

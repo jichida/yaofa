@@ -94,8 +94,7 @@ function* handleIOWithAuth(socket) {
 
         let action = yield take(`${logout_result}`);
         yield put(action);
-        //console.log("logout_result");
-        //localStorage.removeItem(`${getusertype()}_user_token`);
+        localStorage.removeItem(`${getusertype()}_user_token`);
         localStorage.removeItem('usertype');
         for (let task of tasksz) {
             yield cancel(task);

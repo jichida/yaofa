@@ -42,9 +42,14 @@ import {
     getmyborrowusers_result,
 
     loginwithtoken_request,
+    loginwithusername_request,
+
     logout_request,
     logout_result,
     common_err,
+
+    fillrealnameprofile_result,
+    fillrealnameprofile_request,
 
     md_insertorder_result,
 
@@ -70,11 +75,14 @@ exports.recvmessagetoresultpair = {
   'confirmorder_result':confirmorder_result,
   'queryintrestedorder_result':queryintrestedorder_result,
   'userauthentication_result':userauthentication_result,
-  'getrechargerecords_result':getrechargerecords_result
+  'getrechargerecords_result':getrechargerecords_result,
+  'fillrealnameprofile_result':fillrealnameprofile_result
 };
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+    'fillrealnameprofile':fillrealnameprofile_request,
+    'loginwithusername':loginwithusername_request,
     'loginwithtoken':loginwithtoken_request,
     'logout':logout_request,
     'login':login_request,

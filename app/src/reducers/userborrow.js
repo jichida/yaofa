@@ -7,7 +7,6 @@
 import { createReducer } from 'redux-act';
 import {
 	getmyorders_result,
-    set_myorderlistStatus,
     set_borrowinfo,
     confirmorder_result,
     logout_result,
@@ -19,7 +18,6 @@ const initial = {
         borrowinfo: {},
         //我的借款列表
         myorderlist: {},
-        myorderlistStatus : "借款中",
 
 
     },
@@ -33,10 +31,6 @@ const userborrow = createReducer({
     [getmyorders_result]: (state, payload) => {
         console.log(payload);
         return { ...state, myorderlist: payload.list.docs };
-    },
-    //设置借款列表状态
-    [set_myorderlistStatus]: (state, payload) => {
-        return { ...state, myorderlistStatus: payload };
     },
     //确认放款回调
     [confirmorder_result]:(state, result) => {

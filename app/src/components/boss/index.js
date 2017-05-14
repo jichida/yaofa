@@ -124,6 +124,7 @@ class Page extends Component {
 }
 
 const data = ({userlender:{borrowlist,borrowlistfiller}}) => {
+    borrowlist = _.sortBy(borrowlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
     return {borrowlist,borrowlistfiller};
 };
 Page = connect(data)(Page);

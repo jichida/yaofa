@@ -9,7 +9,9 @@ import {
     sendauth_result,
     login_result,
     common_err,
-    set_weui
+    set_weui,
+    findpwd_result,
+    acceptorder_result
 } from '../actions';
 import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -19,6 +21,26 @@ export function* wsrecvsagaflow() {
         let {payload:result} = action;
         yield put(login_result(result));
         yield put(push('/'));
+    });
+    //重置密码
+    yield takeEvery(`${findpwd_result}`, function*(action) {
+        let toast = {
+            show : true,
+            text : "重置密码成功",
+            type : "success"
+        }
+        yield put(set_weui({ toast }));
+        yield put(push('/login'));
+    });
+    //放款抢单 acceptorder_result
+    yield takeEvery(`${acceptorder_result}`, function*(action) {
+        let toast = {
+            show : true,
+            text : "抢单成功",
+            type : "success"
+        }
+        yield put(set_weui({ toast }));
+        yield put(push("/borrowinfo"));
     });
     //发送验证码
     yield takeEvery(`${md_loginsendauth_result}`, function*(action) {

@@ -86,7 +86,10 @@ class AddborrowForm extends Component {
 }
 
 AddborrowForm = reduxForm({
-    form: 'selectingFormValues'
+    form: 'selectingFormValues',
+    initialValues:{
+        moneyusefor : ""
+    }
 })(AddborrowForm);
 
 const selector = formValueSelector('selectingFormValues');

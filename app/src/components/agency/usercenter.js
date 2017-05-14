@@ -37,7 +37,9 @@ class Page extends Component {
                 </div>
                 <div className="list">
                     <Cells>
-                        <Cell access>
+                        <Cell 
+                            onClick={()=>{this.pushUrl("/agencyqrcode")}}
+                            access>
                             <CellHeader>
                                 <img src="img/9.png" alt="" />
                             </CellHeader>

@@ -36,11 +36,7 @@ const userlender = createReducer({
     [set_addloanid]: (state, id) => {
         return { ...state, addloanid: id };
     },
-    //放款回调
-    [acceptorder_result]:(state, payload) => {
-        console.log("acceptorder_result>>>:::"+JSON.stringify(payload));
-        return { ...state };
-    },
+    
     //获取我的放款订单列表
     [getmyorders_result]: (state, payload) => {
         console.log(payload);
