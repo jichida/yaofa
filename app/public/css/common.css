@@ -32,7 +32,8 @@ input, textarea{
 }
 .btn.Default{
     color: #666;
-    border: 1px solid #EEE;
+    border: 1px solid #DDD;
+    background: #FFF;
 }
 .btn.Default:active{
     background: #EEE;

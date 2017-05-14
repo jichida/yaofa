@@ -10,6 +10,8 @@ import {
     set_myorderlistStatus,
     set_borrowinfo,
     confirmorder_result,
+    logout_result,
+    borrow_ui_sureorder
 } from '../actions/index.js';
 
 const initial = {
@@ -18,6 +20,7 @@ const initial = {
         //我的借款列表
         myorderlist: {},
         myorderlistStatus : "借款中",
+
 
     },
 };
@@ -28,8 +31,8 @@ const userborrow = createReducer({
     },
     //获取我的借款订单列表
     [getmyorders_result]: (state, payload) => {
-        
-        return { ...state, myorderlist: payload.list };
+        console.log(payload);
+        return { ...state, myorderlist: payload.list.docs };
     },
     //设置借款列表状态
     [set_myorderlistStatus]: (state, payload) => {
@@ -39,6 +42,15 @@ const userborrow = createReducer({
     [confirmorder_result]:(state, result) => {
         console.log(result);
         return { ...state};
+    },
+    //控制弹框是否显示
+    [borrow_ui_sureorder]:(state, sureorder) => {
+        return { ...state, sureorder };
+    },
+
+    //退出登录
+    [logout_result]:(state, result) => {
+        return { ...state,...initial.userborrow}
     },
 }, initial.userborrow);
 

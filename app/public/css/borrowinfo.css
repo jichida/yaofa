@@ -49,4 +49,62 @@
 	line-height: 24px;
 	color: #333;
 }
+.getBorrowStatusInfo.btn{
+	height: auto;
+	display: flex;
+	flex-direction: column;
+}
+.getBorrowStatusInfo.btn .cont{
+	text-align: center;
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	align-self: stretch;
+	padding-top: 15px;
+}
+.getBorrowStatusInfo.btn .cont .info{
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.getBorrowStatusInfo.btn .cont .btn{
+	flex-grow: 1;
+	align-self: stretch;
+	margin: 0 20px;
+}
+.getBorrowStatusInfo.btn .cont .weui-cells{
+	margin-top: 0;
+}
+.getBorrowStatusInfo.btn .cont .weui-cells .weui-cell__bd{
+	text-align: left
+}
+.getBorrowStatusInfo.btn .cont .btnlist .phonelnk{
+	margin-bottom: 10px;
+}
+.getBorrowStatusInfo.btn .cont .btnlist .phonelnk a{
+	display: block;
+	height: 44px;
+	color: #FFF;
+	width: 100%;
+	line-height: 44px;
+}
+.getBorrowStatusInfo.btn .cont .btnlist .btnli{
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	margin: 0 20px;
+}
+.getBorrowStatusInfo.btn .cont .btnlist .btnli .btn{
+	margin: 0;
+	margin-bottom: 10px;
+}
+.getBorrowStatusInfo.btn .cont .btnlist .btnli .btn:first-child{
+	margin-right: 5px;
+}
+.getBorrowStatusInfo.btn .cont .btnlist .btnli .btn:last-child{
+	margin-left: 5px;
+}
+
+
 

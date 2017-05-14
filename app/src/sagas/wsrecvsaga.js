@@ -1,14 +1,15 @@
 import { put,takeEvery } from 'redux-saga/effects';
 import {
-  md_login_result,
-  md_loginsendauth_result,
-  md_insertorder_result,
-  insertorder_result,
-  showpopmessage,
-  sendauth_result,
-  login_result,
-  common_err,
-  set_weui
+    md_login_result,
+    md_loginsendauth_result,
+    md_insertorder_result,
+    
+    insertorder_result,
+    showpopmessage,
+    sendauth_result,
+    login_result,
+    common_err,
+    set_weui
 } from '../actions';
 import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -39,9 +40,9 @@ export function* wsrecvsagaflow() {
             type : "warning"
         }
         yield put(set_weui({ toast }));
-        if(result.type === 'login'){
-            yield put(replace('/register'));
-        }
+        // if(result.type === 'login'){
+        //     yield put(replace('/register'));
+        // }
     });
     //发布借款信息
     yield takeEvery(`${md_insertorder_result}`, function*(action) {

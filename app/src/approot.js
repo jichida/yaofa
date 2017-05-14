@@ -110,6 +110,8 @@ const CoApp = (props) => {
             <CustomRoute exact path="/bossfiller" component={BossFiller}/>
             <CustomRoute exact path="/bossusercenter" component={BossUserCenter}/>
             <CustomRoute exact path="/bossloanlist" component={BossLoanList}/>
+            <CustomRoute exact path="/loaninfo" component={Loaninfo}/>
+
 
             <CustomRoute exact path="/addborrow" component={AddBorrow}/>
             <CustomRoute exact path="/addBorrowUserInfo" component={AddBorrowUserInfo}/>

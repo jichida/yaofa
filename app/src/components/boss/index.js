@@ -16,7 +16,8 @@ import {
     set_lender_borrowlist,
     set_lender_borrowlist_filler,
     queryintrestedorder_request,
-    set_orderinfo
+    set_orderinfo,
+    set_weui
 } from '../../actions';
 
 const { 

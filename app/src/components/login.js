@@ -15,25 +15,14 @@ export class LoginPage extends Component {
     componentWillMount() {
         let usertype = localStorage.getItem('usertype');
         let token = localStorage.getItem(`${usertype}_user_token`);
+        console.log("tokentoken::>"+JSON.stringify(token));
         if(token){
             this.props.dispatch(loginwithtoken_request({token}));
-        }else{
-            this.props.dispatch(loginwithweixinopenid_request({weixinopenid:'1111111114'}));
         }
-        
     }
 
     pagePush=(name)=>{
         this.props.history.push(name);
-    }
-
-    login1=()=>{
-        this.props.dispatch(
-            loginwithweixinopenid_request({weixinopenid:'1111111111'}));
-    }
-    login2=()=>{
-        this.props.dispatch(
-            loginwithweixinopenid_request({weixinopenid:'1111111112'}));
     }
 
     //发送验证码
@@ -49,7 +38,6 @@ export class LoginPage extends Component {
 			<Form 
                 className="loginForm formStyle1"
                 onSubmit={handleSubmit(onClickLogin)}
-                style={{display:"none"}}
                 >
 
                 <div className="li" >
@@ -118,13 +106,6 @@ export class LoginPage extends Component {
                         注册
                     </span>
 				</div>
-
-                <div
-                    onClick={this.login1} 
-                    >中介登录</div>
-                <div
-                    onClick={this.login2} 
-                    >借款人登录</div>
 			</Form>
     	)
     }

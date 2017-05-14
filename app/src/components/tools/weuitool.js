@@ -12,6 +12,7 @@ const {
 } = WeUI;
 
 const icon = {
+    "none" : "",
     "warning" : "warn",
     "success" : "success-no-circle",
     "loading" : "loading"
@@ -27,6 +28,8 @@ const confirmDefault = {
     show : false,
     title : "",
     text : "",
+    buttonsCloseText : "",
+    buttonsClickText : "",
     buttonsClose : ()=>{},
     buttonsClick : ()=>{}
 }
@@ -39,10 +42,12 @@ const alertDefault = {
 }
 
 
+let toastTimeout = null;
+
 export class Page extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.toast.show && !this.props.toast.show) {
-            window.setTimeout(()=> {
+            toastTimeout = window.setTimeout(()=> {
                 let toast = {
                     show : false,
                     text : "",
@@ -51,6 +56,9 @@ export class Page extends Component {
                 this.props.dispatch(set_weui({ toast }));
             }, 1500);
         }
+
+
+
     };
     //confirm close
     confirmClose = (confirm,dispatch)=>{
@@ -79,7 +87,7 @@ export class Page extends Component {
             alert,
             confirm,
             loading,
-            action
+            action,
         } = this.props;
 
         return (
@@ -91,6 +99,7 @@ export class Page extends Component {
                     >
                     {toast.text}
                 </Toast>
+
 
                 <Dialog
                     id="weuiAlert"
@@ -118,12 +127,12 @@ export class Page extends Component {
                         [
                             {
                                 type: 'default',
-                                label: "取消",
+                                label: confirm.buttonsCloseText,
                                 onClick: this.confirmClose.bind(this,confirm,this.props.dispatch)
                             },
                             {
                                 type: 'primary',
-                                label: "确定",
+                                label: confirm.buttonsClickText,
                                 onClick: this.confirmClick.bind(this,confirm,this.props.dispatch)
                             }
                         ]
@@ -132,6 +141,7 @@ export class Page extends Component {
                     >
                     {confirm.text}
                 </Dialog>
+
 
                 <Toast
                     id="weuiLoading"

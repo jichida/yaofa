@@ -45,7 +45,7 @@ class Page extends Component {
             },
             options:{
                 page: 1,
-                limit: 2,
+                limit: 100,
             }
         }));
     }

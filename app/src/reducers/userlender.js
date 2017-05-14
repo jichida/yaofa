@@ -6,8 +6,12 @@ import {
     set_lender_borrowlist_filler,
     queryintrestedorder_result,
     set_addloanid,
-    set_loanlist,
-    acceptorder_result
+    acceptorder_result,
+    logout_result,
+    getmyorders_result,
+    lender_set_endorder_moneyreal,
+    lender_set_ui_endorder,
+    lender_set_endorder_status,
 } from '../actions/index.js';
 
 const initial = {
@@ -15,7 +19,10 @@ const initial = {
         borrowlist : [],
         borrowlistfiller : {},
         addloanid : '',
-        loanlist : []
+        myorderlist: {},
+        ui_endorder : false,
+        endorder_moneyreal: 0,
+        endorder_status : true,
     },
 };
 
@@ -29,14 +36,29 @@ const userlender = createReducer({
     [set_addloanid]: (state, id) => {
         return { ...state, addloanid: id };
     },
-    [set_loanlist]:(state, id) => {
-        return { ...state, addloanid: id };
-    },
     //放款回调
     [acceptorder_result]:(state, payload) => {
         console.log("acceptorder_result>>>:::"+JSON.stringify(payload));
         return { ...state };
     },
+    //获取我的放款订单列表
+    [getmyorders_result]: (state, payload) => {
+        console.log(payload);
+        return { ...state, myorderlist: payload.list.docs };
+    },
+    //退出登录
+    [logout_result]:(state, result) => {
+        return { ...state,...initial.userlender}
+    },
+    //
+    [lender_set_ui_endorder]:(state, ui_endorder) => {
+        return { ...state, ui_endorder}
+    },
+    //
+    [lender_set_endorder_status]:(state, endorder_status) => {
+        return { ...state, endorder_status}
+    },
+    
 }, initial.userlender);
 
 export default userlender;
