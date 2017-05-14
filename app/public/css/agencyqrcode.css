@@ -1,0 +1,15 @@
+.agencyqrcodePage {
+	background: #FFF;
+}
+.agencyqrcodePage .list{
+	flex-grow: 1;
+	overflow: scroll;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.agencyqrcodePage .desc{
+	padding-top: 20px;
+}
