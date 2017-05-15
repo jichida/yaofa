@@ -27,7 +27,6 @@ let UserBorrowerSchema = new Schema({
         sex:'男'
     },
     useragencyfrom:{ type: Schema.Types.ObjectId, ref: 'UserAgency' },//中介
-    balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     //认证相关
     truename:String,  //真实用户名
     idcard:String,//身份证号
@@ -107,7 +106,7 @@ let UserAgencySchema = new Schema({
     created_at: { type: Date, default:new Date()},
     updated_at: Date,
     profile:{ type: Schema.Types.Mixed,default:{
-        nickname:`借款人${chance.string({length: 4,pool: '0123456789'})}`,
+        nickname:`中介${chance.string({length: 4,pool: '0123456789'})}`,
         avatar:'img/myprofile/1.png'},
         sex:'男'
     },

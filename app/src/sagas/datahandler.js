@@ -54,11 +54,18 @@ import {
     md_insertorder_result,
 
     userauthenticationhtml_request,
-    userauthenticationhtml_result
+    userauthenticationhtml_result,
+
+    payorder_request,
+    payorder_result,
+    getpaysign_request,
+    getpaysign_result
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'payorder_result':payorder_result,
+  'getpaysign_result':getpaysign_result,
   'userauthenticationhtml_result':userauthenticationhtml_result,
   'logout_result':logout_result,
   'getmyborrowusers_result':getmyborrowusers_result,
@@ -96,6 +103,8 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+    'payorder':payorder_request,
+    'getpaysign':getpaysign_request,
     'fillprofile':fillprofile_request,
     'insertorder':insertorder_request,
     'acceptorder':acceptorder_request,
