@@ -25,14 +25,15 @@ class Page extends Component {
     }
 
 	render() {
+        const { profile } = this.props;
         return (
     		<div className="usercenterPage AppPage">
     			<DocumentTitle title="个人中心" />
                 <div className="headcontent">
                     <img src="img/27.png" />
                     <div className="userinfo">
-                        <img src="img/6.png" />
-                        <span>爱喝水的宝宝</span>
+                        <img src={profile.avatar} />
+                        <span>中介:{profile.nickname}</span>
                     </div>
                 </div>
                 <div className="list">
@@ -48,25 +49,18 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter/>
                         </Cell>
-                        <Cell access>
-                            <CellHeader>
-                                <img src="img/40.png" alt="" />
-                            </CellHeader>
-                            <CellBody>
-                                借款纪录
-                            </CellBody>
-                            <CellFooter/>
-                        </Cell>
-                        <Cell access>
+                        <Cell 
+                            onClick={()=>{this.pushUrl("/agencyborrowlist")}}
+                            access>
                             <CellHeader>
                                 <img src="img/41.png" alt="" />
                             </CellHeader>
                             <CellBody>
-                                放款纪录
+                                我帐下的借贷纪录
                             </CellBody>
                             <CellFooter/>
                         </Cell>
-                        <Cell access>
+                        <Cell access onClick={()=>{this.pushUrl("/agencyprofit")}}>
                             <CellHeader>
                                 <img src="img/42.png" alt="" />
                             </CellHeader>

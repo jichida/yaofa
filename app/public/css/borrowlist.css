@@ -41,3 +41,51 @@
 .borrowlistPage .weui-cell_access{
 	line-height: 24px;
 }
+
+
+
+
+
+
+.profitPage {
+
+}
+.profitPage .headcontent{
+	background: #3479e1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding: 20px;
+	flex-shrink: 0;
+}
+.profitPage .headcontent .tit{
+	color: #FFF;
+	font-size: 14px;
+	text-align: center;
+}
+.profitPage .headcontent .price{
+	text-align: center;
+	
+	margin: 10px 0;
+	color: #FFF;
+}
+.profitPage .headcontent .price span{
+	font-size: 30px;
+	margin-right: 10px;
+}
+.profitPage .headcontent .btn{
+	text-align: center;
+	color: #FFF;
+	height: 30px;
+	font-size: 14px;
+	min-width: 100px;
+	width: 100px;
+	background: rgba(255,255,255,.3);
+	flex-grow: 0;
+	flex-shrink: 0;
+	align-self: center;
+}
+.profitPage .headcontent .btn:active{
+	background: rgba(255,255,255,.2);
+}
+

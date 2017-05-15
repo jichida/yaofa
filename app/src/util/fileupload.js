@@ -1,7 +1,7 @@
 /**
  * Created by wangxiaoqing on 2017/3/26.
  */
-import {requestpostdatawithtoken} from '../util/util.js';
+import {requestpostdatawithtoken} from './util.js';
 
 export function fileupload(e,usertoken,callbackfn){
     e.preventDefault();

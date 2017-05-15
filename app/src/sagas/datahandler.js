@@ -54,11 +54,23 @@ import {
     md_insertorder_result,
 
     userauthenticationhtml_request,
-    userauthenticationhtml_result
+    userauthenticationhtml_result,
+    
+    withdrawcashapplyauth_request,
+    withdrawcashapplyauth_result,
+
+    withdrawcashapplyaddone_request,
+    withdrawcashapplyaddone_result,
+    md_withdrawcashapplyaddone_result,
+    md_withdrawcashapplyauth_result
+
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'withdrawcashapplyauth_result':md_withdrawcashapplyauth_result,
+  'withdrawcashapplyaddone_result':md_withdrawcashapplyaddone_result,
+
   'userauthenticationhtml_result':userauthenticationhtml_result,
   'logout_result':logout_result,
   'getmyborrowusers_result':getmyborrowusers_result,
@@ -81,6 +93,9 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+    'withdrawcashapplyauth':withdrawcashapplyauth_request,
+    'withdrawcashapplyaddone':withdrawcashapplyaddone_request,
+
     'fillrealnameprofile':fillrealnameprofile_request,
     'loginwithusername':loginwithusername_request,
     'loginwithtoken':loginwithtoken_request,

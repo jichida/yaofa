@@ -4,46 +4,122 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import '../../../public/css/validation-photo.css';
+import { connect } from 'react-redux';
+import config from '../../env/config.js';
+import { fillrealnameprofile_request } from "../../actions";
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+import _ from 'lodash';
+import { renderImageupload } from '../tools/renderimageupload';
+import { Field,Fields,reduxForm,Form} from 'redux-form';
+const {
+    Cells,
+    Cell,
+    CellHeader,
+    CellBody,
+    CellFooter,
+    Form:FormUI,
+    FormCell,
+    Label,
+    Input,
+    Select,
+    CellsTitle
+    } = WeUI;
+
+class PageForm extends Component {
+     
+     render(){
+        const { handleSubmit,submitfn } = this.props;
+
+
+        return(
+            <Form 
+                className="list"
+                onSubmit={handleSubmit(submitfn)}
+                >
+                <div className="li">
+                    <Field 
+                        name="urlphoneid1" 
+                        component={renderImageupload} 
+                    />
+                    <div>
+                        <span className="tit">请上传身份证正面</span>
+                        <span className="lnk blue">查看样例</span>
+                    </div>
+                </div>
+                <div className="li">
+                    <Field 
+                        name="urlphoneid2" 
+                        component={renderImageupload} 
+                    />
+                    <div>
+                        <span className="tit">请上传身份证反面</span>
+                        <span className="lnk blue">查看样例</span>
+                    </div>
+                </div>
+                <div className="li">
+                    <Field 
+                        name="urlphoneid3" 
+                        component={renderImageupload} 
+                    />
+                    <div>
+                        <span className="tit">手持身份证照片</span>
+                        <span className="lnk blue">查看样例</span>
+                    </div>
+                </div>
+                <button className="btn Primary">
+                    确认
+                </button>
+            </Form>  
+        )
+     }
+}
+
+PageForm = reduxForm({
+    form: 'PageForm',
+    initialValues:{
+        
+    }
+})(PageForm);
 
 class Page extends Component {
-
+    submitfn=(value)=>{
+        value.urlphoneid1 = value.urlphoneid1=="img/11.png"?"":value.urlphoneid1;
+        value.urlphoneid2 = value.urlphoneid2=="img/13.png"?"":value.urlphoneid2;
+        value.urlphoneid3 = value.urlphoneid3=="img/45.png"?"":value.urlphoneid3;
+        let payload = {
+            data:{...value}
+        };
+        this.props.dispatch(fillrealnameprofile_request(payload));
+    }
     render() {
-
+        const { userlogin } = this.props;
+        PageForm = reduxForm({
+            form: 'selectingFormValues',
+            initialValues:{
+                urlphoneid1 : userlogin.urlphoneid1==''?"img/11.png":userlogin.userphoto1,
+                urlphoneid2: userlogin.urlphoneid2==''?"img/12.png":userlogin.userphoto2,
+                urlphoneid3: userlogin.urlphoneid3==''?"img/45.png":userlogin.userphoto3,
+            }
+        })(PageForm);
         return (
             <div className="validationPhotoPage AppPage">
                 <DocumentTitle title="身份信息" />
                 <div className="validationPhotoTitle">
                     请拍摄实时照片
                 </div>
-                <div className="list">
-                    <div className="li">
-                        <img src="img/11.png" />
-                        <div>
-                            <span className="tit">请上传身份证正面</span>
-                            <span className="lnk blue">查看样例</span>
-                        </div>
-                    </div>
-                    <div className="li">
-                        <img src="img/11.png" />
-                        <div>
-                            <span className="tit">请上传身份证反面</span>
-                            <span className="lnk blue">查看样例</span>
-                        </div>
-                    </div>
-                    <div className="li">
-                        <img src="img/11.png" />
-                        <div>
-                            <span className="tit">手持身份证照片</span>
-                            <span className="lnk blue">查看样例</span>
-                        </div>
-                    </div>
-                </div>
-                <div className="btn Primary">
-                    确认 ｜ 完成认证
-                </div>
+                <PageForm submitfn={this.submitfn} />
+                
             </div>
         )
     }
 }
-
+const data = ({userlogin}) => {
+    return {userlogin};
+};
+Page = connect(data)(Page);
 export default Page;
+
+
+

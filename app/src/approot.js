@@ -1,4 +1,4 @@
-/**
+    /**
  * Created by wangxiaoqing on 2017/3/27.
  */
 import React from 'react';
@@ -78,8 +78,18 @@ import AgencyUserCenter from "./components/agency/usercenter";
 import AgencyBorrowList from "./components/agency/borrowlist";
 //我的邀请码
 import AgencyQRcode from "./components/agency/agencyqrcode";
+//我的钱包
+import Agencyprofit from "./components/agency/profit";
+//提现第一步
+import Tixian from "./components/agency/tixian";
+//提现第二步
+import Tixian2 from "./components/agency/tixian2";
+//提现第二步
+import Tixian3 from "./components/agency/tixian3";
 
 import {requireAuthentication} from './components/requireauthentication';
+
+
 
 //认证，集成第三方页面，运营商认证和淘宝认证
 import Validationhtml from './components/user/validationhtml';
@@ -133,6 +143,13 @@ const CoApp = (props) => {
             <CustomRoute exact path="/validationphone" component={ValidationPhone}/>
             <CustomRoute exact path="/validationtaobao" component={ValidationTaobao}/>
             <CustomRoute exact path="/validationzhima" component={ValidationZhima}/>
+            <CustomRoute exact path="/validationphoto" component={ValidationPhoto}/>
+            <CustomRoute exact path="/agencyprofit" component={Agencyprofit}/>
+            <CustomRoute exact path="/tixian" component={Tixian}/>
+            <CustomRoute exact path="/tixian2" component={Tixian2}/>
+            <CustomRoute exact path="/tixian3" component={Tixian3}/>
+
+
 
             <CustomRoute exact path="/validationhtml/:type" component={requireAuthentication(Validationhtml)}/>
             <CustomRoute exact path="/notifysuc" component={NotifySuc}/>

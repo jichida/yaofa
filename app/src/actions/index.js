@@ -7,3 +7,4 @@ export * from './md';
 export * from './weui';
 export * from './borrow';
 export * from './lender';
+export * from './profit';

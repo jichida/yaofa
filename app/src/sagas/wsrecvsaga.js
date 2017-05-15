@@ -3,7 +3,12 @@ import {
     md_login_result,
     md_loginsendauth_result,
     md_insertorder_result,
+    md_withdrawcashapplyaddone_result,
+    md_withdrawcashapplyauth_result,
     
+    withdrawcashapplyaddone_result,
+    
+
     insertorder_result,
     showpopmessage,
     sendauth_result,
@@ -12,7 +17,8 @@ import {
     set_weui,
     findpwd_result,
     acceptorder_result,
-    fillrealnameprofile_result
+    fillrealnameprofile_result,
+    profit_set_profitid
 } from '../actions';
 import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -33,12 +39,29 @@ export function* wsrecvsagaflow() {
         yield put(set_weui({ toast }));
         yield put(push('/login'));
     });
+    //生车提现订单
+    yield takeEvery(`${md_withdrawcashapplyaddone_result}`, function*(action) {
+        yield put(withdrawcashapplyaddone_result(action));
+        yield put(profit_set_profitid(action.payload.newitem._id));
+        yield put(replace('/tixian3'));
+    });
+
+    //提现申请成功提交 withdrawcashapplyauth_request
+    yield takeEvery(`${md_withdrawcashapplyauth_result}`, function*(action) {
+        let toast = {
+            show : true,
+            text : "提现申请成功",
+            type : "success"
+        }
+        yield put(set_weui({ toast }));
+        yield put(goBack());
+    });
 
     //修改用户借款资料 fillrealnameprofile_result
     yield takeEvery(`${fillrealnameprofile_result}`, function*(action) {
         let toast = {
             show : true,
-            text : "修改成功",
+            text : "提交成功",
             type : "success"
         }
         yield put(set_weui({ toast }));
