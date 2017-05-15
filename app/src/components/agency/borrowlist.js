@@ -125,7 +125,7 @@ class Page extends Component {
     }
 }
 
-const data = ({useragency:{myorderlist},order:{myorderlistStatus}}) => {
+const data = ({order:{myorderlistStatus,myorderlist}}) => {
     myorderlist = _.sortBy(myorderlist, [function(o){ 
         if(o.orderstatus<0){
             o.orderstatus = -(o.orderstatus)+4

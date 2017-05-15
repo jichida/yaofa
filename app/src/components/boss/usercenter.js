@@ -38,21 +38,14 @@ class Page extends Component {
                 </div>
                 <div className="list">
                     <Cells>
-                        <Cell href="javascript:;" access>
+                        <Cell 
+                            onClick={()=>{this.pushUrl("/settings")}}
+                            access>
                             <CellHeader>
                                 <img src="img/8.png" alt="" />
                             </CellHeader>
                             <CellBody>
                                 我的放款
-                            </CellBody>
-                            <CellFooter/>
-                        </Cell>
-                        <Cell href="javascript:;" access>
-                            <CellHeader>
-                                <img src="img/9.png" alt="" />
-                            </CellHeader>
-                            <CellBody>
-                                我的邀请码
                             </CellBody>
                             <CellFooter/>
                         </Cell>

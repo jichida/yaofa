@@ -53,7 +53,8 @@ import ValidationTaobao from "./components/user/validation-taobao";
 import BorrowUserInfo from "./components/user/borrowuserinfo";
 //完善借款资料
 import AddBorrowUserInfo from "./components/user/addborrowuserinfo";
-
+//完善借款资料
+import Tousu from "./components/user/tousu";
 
 /*放款端*/
 //首页
@@ -148,6 +149,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/tixian" component={Tixian}/>
             <CustomRoute exact path="/tixian2" component={Tixian2}/>
             <CustomRoute exact path="/tixian3" component={Tixian3}/>
+            <CustomRoute exact path="/tousu" component={Tousu}/>
 
 
 

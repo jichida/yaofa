@@ -1,4 +1,4 @@
-    /*
+ /*
     借款详情
 */
 import React, { Component } from 'react';
@@ -176,7 +176,7 @@ class BorrowConfirminput extends Component {
     }
     //举报商家
     Jubao=()=>{
-        //this.props.history.push("/jubao");
+        this.props.history.push("/tousu");
     }
     render(){
         const { orderinfo, showBorrowConfirminput } = this.props;
@@ -208,7 +208,7 @@ class BorrowConfirminput extends Component {
                     <div className="weui-dialog__ft">
                         <a 
                             className="weui-dialog__btn weui-dialog__btn_default"
-                            onClick={this.Jubao}
+                            onClick={this.Jubao.bind(this)}
                             >
                             举报
                         </a>
@@ -235,6 +235,7 @@ const data2 = ({
     return {ui_sureorder};
 };
 BorrowConfirminput = connect(data2)(BorrowConfirminput);
+BorrowConfirminput = withRouter(BorrowConfirminput);
 export {BorrowConfirminput};
 
 class GetBorrowStatusInfo extends Component{
@@ -303,8 +304,6 @@ class GetBorrowStatusInfo extends Component{
             hasorderinfo = true;
         }
 
-        console.log(orderInfo);
-
         return (
            
                 <div className="getBorrowStatusInfo btn">
@@ -328,7 +327,7 @@ class GetBorrowStatusInfo extends Component{
                                     orderInfo.orderstatus==2?(
                                         <div className="btnlist">
                                             <div className="btn Primary phonelnk">
-                                                <a href={`tel:${orderInfo.creator.phonenumber}`}>联系借款人</a>
+                                                <a href={"tel:"+orderInfo.creator.phonenumber}>联系借款人</a>
                                             </div>
                                             <div className="btnli">
                                                 <div 
@@ -460,6 +459,7 @@ class Page extends Component {
     }
 	render() {
         const { orderInfo } = this.props;
+        console.log(this.props);
         return (
     		<div className="borrowinfoPage AppPage">
     			<DocumentTitle title="借款详情" />
@@ -503,14 +503,20 @@ class Page extends Component {
     	)
     }
 }
+let usertypes = localStorage.getItem('usertype');
 
-const data = ({order:{orderInfo}}) => {
-    //console.log(orderInfo);
-    //usertype: userborrow  useragency  userlender
-    return {orderInfo};
+const data = ({order:{orderInfo,myorderlist}}) => {
+    let neworderInfo = orderInfo;
+    let myneworderInfo = myorderlist[orderInfo._id];
+    if(myneworderInfo){
+        neworderInfo = myneworderInfo;
+    }
+    return {orderInfo:neworderInfo};
 };
 Page = connect(data)(Page);
 export default Page;
+
+
 
 
 

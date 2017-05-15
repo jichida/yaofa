@@ -2,6 +2,7 @@
  * Created by wangxiaoqing on 2017/3/20.
  */
 import { createReducer } from 'redux-act';
+import _ from 'lodash';
 import {
     set_lender_borrowlist_filler,
     queryintrestedorder_result,
@@ -36,12 +37,14 @@ const userlender = createReducer({
     [set_addloanid]: (state, id) => {
         return { ...state, addloanid: id };
     },
-    
     //获取我的放款订单列表
-    [getmyorders_result]: (state, payload) => {
-        console.log(payload);
-        return { ...state, myorderlist: payload.list.docs };
-    },
+    // [getmyorders_result]: (state, payload) => {
+    //     let newmyorderlist = {};
+    //     _.map(payload.list.docs, (order,index)=>{
+    //         newmyorderlist[order._id]=order;
+    //     })
+    //     return { ...state, myorderlist:newmyorderlist };
+    // },
     //退出登录
     [logout_result]:(state, result) => {
         return { ...state,...initial.userlender}

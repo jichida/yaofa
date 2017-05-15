@@ -22,3 +22,5 @@ export const getpaysign_result = createAction('getpaysign_result');
 
 export const set_myorderlistStatus = createAction('set_myorderlistStatus');
 export const set_orderinfo = createAction('set_orderinfo');
+export const set_tousucontent = createAction('set_tousucontent');
+//set_tousucontent

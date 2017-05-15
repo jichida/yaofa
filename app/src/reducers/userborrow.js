@@ -5,6 +5,7 @@
  * Created by wangxiaoqing on 2017/3/20.
  */
 import { createReducer } from 'redux-act';
+import _ from 'lodash';
 import {
 	getmyorders_result,
     set_borrowinfo,
@@ -28,11 +29,14 @@ const userborrow = createReducer({
     [set_borrowinfo]:(state, userinfo) =>{
     	return { ...state, borrowinfo: userinfo}
     },
-    //获取我的借款订单列表
-    [getmyorders_result]: (state, payload) => {
-        // console.log(payload);
-        return { ...state, myorderlist: payload.list.docs };
-    },
+    //获取我的放款订单列表
+    // [getmyorders_result]: (state, payload) => {
+    //     let newmyorderlist = {};
+    //     _.map(payload.list.docs, (order,index)=>{
+    //         newmyorderlist[order._id]=order;
+    //     })
+    //     return { ...state, myorderlist:newmyorderlist };
+    // },
     //确认放款回调
     [confirmorder_result]:(state, result) => {
         // console.log(result);
