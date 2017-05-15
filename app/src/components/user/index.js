@@ -14,7 +14,8 @@ import SwiperBanner from '../tools/swiperbanner';
 import moment from "moment";
 import { 
     getmyorders_request,
-    set_orderinfo
+    set_orderinfo,
+    set_weui,
     }  from "../../actions";
 const { 
     Tab,
@@ -39,6 +40,68 @@ class Page extends Component {
     }
 
     componentWillMount() {
+
+        //console.log("userlog:::"+JSON.stringify(this.props.userlogin));
+        let userlogin = this.props.userlogin;
+        // "resultid": false,
+        // "resultphone": false,
+        // "resultzhima": false,
+        // "resulttaobao": false,
+        // "resultrealname": true,
+        // hukou:String,
+        // limithuabei:Number,//花呗额度
+        // limitjiebei:Number,//借呗额度
+        // jiedaibaofuzai:Number,//借贷宝负债
+        // jiedaobaoyihuan:Number,//借贷宝已还
+        // realtimeforphoneyear:Number,//手机号实名时间（年）
+        if(
+            userlogin.resultid&&
+            userlogin.resultphone&&
+            userlogin.resultzhima&&
+            userlogin.resulttaobao&&
+            userlogin.resultrealname
+        ){
+            if(
+                userlogin.hasOwnProperty("hukou")&&
+                userlogin.hasOwnProperty("limithuabei")&&
+                userlogin.hasOwnProperty("limitjiebei")&&
+                userlogin.hasOwnProperty("jiedaibaofuzai")&&
+                userlogin.hasOwnProperty("jiedaobaoyihuan")&&
+                userlogin.hasOwnProperty("realtimeforphoneyear")
+            ){
+                return false;
+            }else{
+                if(userlogin.approvalstatus=="未递交"){
+                    this.props.dispatch(set_weui({confirm:{
+                        show : true,
+                        title : "完善借款资料",
+                        text : "完善资料后,商家更放心把钱借给你",
+                        buttonsCloseText : "暂不",
+                        buttonsClickText : "去完善",
+                        buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
+                    }}))
+                }
+                if(userlogin.approvalstatus=="待审核"){
+                    this.props.dispatch(set_weui({alert:{
+                        show : true,
+                        title : "待审核",
+                        text : "我们已经接收到您提交的资料,会以最快的速度给你审核",
+                    }}))
+                }
+                return false;
+            }
+
+        }else{
+            this.props.dispatch(set_weui({confirm:{
+                show : true,
+                title : "认证通知",
+                text : "您还没有通过人认证",
+                buttonsCloseText : "暂不",
+                buttonsClickText : "去认证",
+                buttonsClick : ()=>{this.props.history.push("/validation")}
+            }}))
+        }
+
         this.props.dispatch(getmyorders_request({
             query:{
 
@@ -48,6 +111,8 @@ class Page extends Component {
                 limit: 100,
             }
         }));
+
+
     }
 
     pushUrl = (name)=>{
@@ -120,9 +185,9 @@ class Page extends Component {
     }
 }
 
-const data = ({userborrow:{myorderlist}}) => {
+const data = ({userborrow:{myorderlist}, userlogin}) => {
     myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
-    return {myorderlist};
+    return {myorderlist,userlogin};
 };
 Page = connect(data)(Page);
 export default Page;
