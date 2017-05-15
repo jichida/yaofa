@@ -9,7 +9,8 @@ import {
 import {
   payorder_result,
   getpaysign_request,
-  getpaysign_result
+  getpaysign_result,
+  confirmorder_result
 } from '../actions';
 import { push,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -32,7 +33,7 @@ export function* payflow() {
              out_trade_no: orderinfo._id,
              subject: orderinfo.ordertitle || '商品名称',//$('#subject').val(),//'WL144626511265842',//$('#subject').val(),
              body: orderinfo.body|| '商品详情',//$('#body').val(),//'WL144626511265842',//
-             total_fee: orderinfo.moneyreal*100,//$('#fee').val(),//'9.00',
+             total_fee: orderinfo.realprice*100,//$('#fee').val(),//'9.00',
            };
           yield put(getpaysign_request({
               paytype:'weixin',
@@ -42,6 +43,8 @@ export function* payflow() {
           let { payload:paysign } = yield take(`${getpaysign_result}`);
           let payresult = yield call(takepay,paysign,orderinfo);
           console.log(`payresult:${JSON.stringify(payresult)}`);
+          // confirmorder_result
+          yield put(replace('/'));
     });
 
 
