@@ -45,7 +45,7 @@ const WithdrawcashlistTitle = ({ record }) => {
 const WithdrawcashlistEdit = (props) => {
       return (<Edit title={<WithdrawcashlistTitle />} {...props}>
           <SimpleForm>
-             <ReferenceField label="提现用户" source="creator" reference="user" addLabel={true}>
+             <ReferenceField label="提现用户" source="creator" reference="useragency" addLabel={true}>
                 <TextField source="username" />
              </ReferenceField>
              <DisabledInput label="真实姓名" source="truename" />
@@ -76,7 +76,7 @@ const WithdrawcashlistShow = (props) => (
 const WithdrawcashlistList = (props) => (//
      <List title="提现列表" {...props}  filters={<WithdrawcashFilter />} sort={{ field: 'created_at', order: 'DESC' }}>
         <Datagrid>
-        <ReferenceField label="提现用户" source="creator" reference="user" addLabel={true}>
+        <ReferenceField label="提现用户" source="creator" reference="useragency" addLabel={true}>
            <TextField source="username" />
         </ReferenceField>
         <TextField label="真实姓名" source="truename" />
