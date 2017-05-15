@@ -40,7 +40,7 @@ class Page extends Component {
 
     clickitem =(borrowinfo)=>{
         this.props.dispatch(set_borrowinfo(borrowinfo));
-        this.props.history.push("/bossborrowuserinfo");
+        this.props.history.push("/borrowuserinfo");
     }
 
 	render() {

@@ -9,6 +9,7 @@
   	padding: 0;
   	font-family: sans-serif;
     font-weight: 200;
+    border:none;
 }
 input, textarea{
     -webkit-user-select:text;

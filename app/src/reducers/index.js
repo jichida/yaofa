@@ -10,6 +10,7 @@ import userborrow from './userborrow';
 import order from './order';
 import userlender from './userlender';
 import validationhtml from './validationhtml';
+import profit from './profit';
 
 export default combineReducers(
   {
@@ -22,6 +23,7 @@ export default combineReducers(
     userborrow,
     userlender,
     order,
+    profit,
     form: formReducer
   }
 );

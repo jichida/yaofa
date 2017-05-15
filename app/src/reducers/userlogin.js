@@ -26,7 +26,11 @@ const initial = {
         usertype: '',//用户类型 借款 userborrow 中介 useragency 放款 userlender
 
         //register
-        canaccept : true
+        canaccept : true,
+
+        urlphoneid1:'',//身份证照片正面
+        urlphoneid2:'',//身份证照片反面
+        urlphoneid3:'',//身份证照片手持
         
     },
 };

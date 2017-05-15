@@ -10,14 +10,12 @@ export function requireAuthentication(Component) {
         let redirectAfterLogin = props.location.pathname;
         loginroute = '/login?next=' + redirectAfterLogin;
       }
-      return (
-            <div>
-                {props.loginsuccess === true
-                    ? <Component {...props}/>
-                    : <Redirect to={loginroute}/>
-                }
-            </div>
-        );
+      if(props.loginsuccess === true){
+        return (<Component {...props}/>)
+      }else{
+        return (<Redirect to={loginroute}/>)
+      }
+      
     };
 
     const mapStateToProps =  ({userlogin}) =>{

@@ -9,6 +9,8 @@
 	display: flex;
 	justify-content: space-between;
 	flex-direction: column;
+	overflow: scroll;
+	flex-grow: 1;
 }
 .validationPhotoPage .list > div.li{
 	display: flex;
@@ -18,6 +20,10 @@
 	border-bottom: 1px solid #EEE;
 	padding-bottom: 15px;
 	margin-bottom: 15px;
+	flex-shrink: 0;
+}
+.validationPhotoPage .list > button.btn{
+	flex-shrink: 0;
 }
 .validationPhotoPage .list > div.li:last-child{
 	border: none;
@@ -25,8 +31,7 @@
 	margin-bottom: 0;
 }
 .validationPhotoPage .list > div.li img{
-	max-width: 55%;
-	margin-right: 15px;
+	
 }
 .validationPhotoPage .list > div.li >div{
 	display: flex;
@@ -47,4 +52,10 @@
 .validationPhotoPage .validationPhotoTitle{
 	text-align: center;
 	margin-top: 20px;
+}
+
+.validationPhotoPage .list > div.li .avatar-uploader{
+	width: 50%;
+	flex-shrink: 0;
+	margin-right: 15px;
 }

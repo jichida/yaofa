@@ -60,12 +60,27 @@ import {
     payorder_result,
     getpaysign_request,
     getpaysign_result
+
+    withdrawcashapplyauth_request,
+    withdrawcashapplyauth_result,
+
+    withdrawcashapplyaddone_request,
+    withdrawcashapplyaddone_result,
+    md_withdrawcashapplyaddone_result,
+    md_withdrawcashapplyauth_result
+
+
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+
   'payorder_result':payorder_result,
   'getpaysign_result':getpaysign_result,
+
+  'withdrawcashapplyauth_result':md_withdrawcashapplyauth_result,
+  'withdrawcashapplyaddone_result':md_withdrawcashapplyaddone_result,
+
   'userauthenticationhtml_result':userauthenticationhtml_result,
   'logout_result':logout_result,
   'getmyborrowusers_result':getmyborrowusers_result,
@@ -105,6 +120,10 @@ exports.sendmessagefnsz = {
 exports.sendmessageauthfnsz = {
     'payorder':payorder_request,
     'getpaysign':getpaysign_request,
+
+    'withdrawcashapplyauth':withdrawcashapplyauth_request,
+    'withdrawcashapplyaddone':withdrawcashapplyaddone_request,
+
     'fillprofile':fillprofile_request,
     'insertorder':insertorder_request,
     'acceptorder':acceptorder_request,

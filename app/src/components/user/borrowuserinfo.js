@@ -44,14 +44,14 @@ class Page extends Component {
     		<div className="borrowuserinfoPage AppPage">
     			<DocumentTitle title="我的借款资料" />
                 {usertype=="userborrow"?(
+                    <div className="pageTitle"><span>我的借款资料</span></div>
+                ):(
                     <div className="headcontent">
                         <div className="userinfo">
                             <img src={borrowinfo.profile.avatar} />
                             <span>{borrowinfo.profile.nickname}</span>
                         </div>
                     </div>
-                ):(
-                    <div className="pageTitle"><span>我的借款资料</span></div>
                 )}
                 <div className="form">
                     <Cells>
@@ -72,12 +72,14 @@ class Page extends Component {
                         <Cell><CellBody>有无身份证原件</CellBody><CellFooter>{borrowinfo.hasshenfenzhengyuanjian?greenhave:"无"}</CellFooter></Cell>
                     </Cells>
                 </div>
+                {usertype=="userborrow"?(
                 <div className="submitBtn">
                     <botton 
                         className="btn Primary"
                         onClick={()=>{this.pushUrl("/addborrowuserinfo")}}
                         >去修改</botton>
                 </div>
+                ):""}
     		</div>
     	)
     }

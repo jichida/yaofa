@@ -32,7 +32,8 @@ const {
     PanelHeader,
     PanelBody,
     MediaBox,
-    MediaBoxDescription
+    MediaBoxDescription,
+    CellsTitle
     } = WeUI;
 
 const orderstatusArray ={
@@ -166,7 +167,7 @@ class BorrowConfirminput extends Component {
     //确认信息无误
     SureOrder=()=>{
         let payload = {
-            query:{_id:this.props.orderid},
+            query:{_id:this.props.orderinfo._id},
             data:{
                 orderstatus : 4
             }
@@ -236,9 +237,6 @@ const data2 = ({
 BorrowConfirminput = connect(data2)(BorrowConfirminput);
 export {BorrowConfirminput};
 
-
-
-
 class GetBorrowStatusInfo extends Component{
 
     //商家确认接单
@@ -246,7 +244,6 @@ class GetBorrowStatusInfo extends Component{
         this.props.dispatch(set_addloanid(id));
         this.props.history.push("/bossaddloan");
     }
-
     
     //用户同意接受
     borrowAggreelender=(id)=>{
@@ -306,6 +303,8 @@ class GetBorrowStatusInfo extends Component{
             hasorderinfo = true;
         }
 
+        console.log(orderInfo);
+
         return (
            
                 <div className="getBorrowStatusInfo btn">
@@ -349,6 +348,28 @@ class GetBorrowStatusInfo extends Component{
                                         </div>
                                     ):""
                                 }
+                                {
+                                    orderInfo.orderstatus>=3&&orderInfo.moneyreal>0?(
+                                        <div className="payorget">
+                                            <Cells>
+                                                <Cell>
+                                                    <CellBody>
+                                                        订单收费
+                                                    </CellBody>
+                                                    <CellFooter>
+                                                        <button 
+                                                            className="btn Primary"
+                                                            >去支付</button>
+                                                    </CellFooter>
+                                                </Cell>
+                                            </Cells>
+                                            <CellsTitle>
+                                                支付后才能继续接单,点击查看
+                                                <span className="blue">收费标准说明</span>
+                                            </CellsTitle>
+                                        </div>
+                                    ):""
+                                }
                                 
                             </div>
                         ):""
@@ -380,8 +401,30 @@ class GetBorrowStatusInfo extends Component{
                                         </span>
                                     ):""
                                 }
+                                {
+                                    orderInfo.orderstatus>=3&&orderInfo.moneyreal>0&&orderInfo.paystatus=="已支付"?(
+                                        <div className="payorget">
+                                            <Cells>
+                                                <Cell>
+                                                    <CellBody>
+                                                        收益
+                                                    </CellBody>
+                                                    <CellFooter>
+                                                        <button 
+                                                            className="btn Primary"
+                                                            >去提现</button>
+                                                    </CellFooter>
+                                                </Cell>
+                                            </Cells>
+                                            <CellsTitle>
+                                                点击查看
+                                                <span className="blue">受益规则</span>
+                                            </CellsTitle>
+                                        </div>
+                                    ):""
+                                }
                                 <BorrowConfirminput 
-                                    orderinfo={orderInfo} 
+                                    orderinfo={orderInfo}
                                     showBorrowConfirminput={orderInfo.orderstatus==3||orderInfo.orderstatus==-2}
                                     />
                             </div>
@@ -443,7 +486,6 @@ class Page extends Component {
                             </PanelHeader>
                             <PanelBody>
                                 <MediaBox type="text">
-                                    <MediaBoxDescription>
                                         <div className="info">
                                             <div>放贷人:{orderInfo.userlender.profile.nickname}</div>
                                             <div>放款时间: {moment(orderInfo.userlender.matched_at).format("YYYY-MM-DD H:mm:ss")}</div>
@@ -451,7 +493,6 @@ class Page extends Component {
                                             <div>服务费: <span className="green">{orderInfo.feeservice} 元</span></div>
                                             <div>押金比: <span className="green">{orderInfo.depositratio} %</span></div>
                                         </div>
-                                    </MediaBoxDescription>
                                 </MediaBox>
                             </PanelBody>
                         </Panel>
@@ -464,7 +505,7 @@ class Page extends Component {
 }
 
 const data = ({order:{orderInfo}}) => {
-    console.log(orderInfo);
+    //console.log(orderInfo);
     //usertype: userborrow  useragency  userlender
     return {orderInfo};
 };
