@@ -1,7 +1,7 @@
 /**
  * Created by wangxiaoqing on 2017/3/25.
  */
-import { put,takeEvery,call} from 'redux-saga/effects';
+import { put,takeEvery,call,take} from 'redux-saga/effects';
 import {
   payorder
 } from '../env/pay.js';
@@ -13,9 +13,9 @@ import {
 } from '../actions';
 import { push,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
-function takepay(param) {
+function takepay(paysign,orderinfo) {
     return new Promise(resolve => {
-      payorder(param,(result)=>{
+      payorder(paysign,orderinfo,(result)=>{
         resolve(result);
       });
     });
@@ -38,8 +38,10 @@ export function* payflow() {
               paytype:'weixin',
               paypage:'orderdetailpage',
               orderdoc:orderdoc,
-          });
+          }));
           let { payload:paysign } = yield take(`${getpaysign_result}`);
+          let payresult = yield call(takepay,paysign,orderinfo);
+          console.log(`payresult:${JSON.stringify(payresult)}`);
     });
 
 

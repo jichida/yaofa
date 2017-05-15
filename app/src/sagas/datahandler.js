@@ -59,7 +59,7 @@ import {
     payorder_request,
     payorder_result,
     getpaysign_request,
-    getpaysign_result
+    getpaysign_result,
 
     withdrawcashapplyauth_request,
     withdrawcashapplyauth_result,

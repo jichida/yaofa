@@ -3,7 +3,7 @@ import {
   requestpost,
 } from '../util/util.js';
 
-export const payorder = (paysign,callbackfn)=>{
+export const payorder = (paysign,orderinfo,callbackfn)=>{
   let postdata = {
       "out_trade_no":orderinfo._id
   };

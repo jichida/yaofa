@@ -143,6 +143,7 @@ let OrderSchema = new Schema({
     feeservice:Number,//服务费
     depositratio:Number,//押金比
     moneyreal:Number,//实付价
+    realprice:Number,//实际支付给平台的价格
     orderstatus:{ type: Number, default:0},//0:借款中,1:（待确认／已接单）,2:（放款中／已确认）,3:放款成功！(待支付)／4:订单完成/-1:异常订单，-2：放款失败
     statusforborrower:String,//借款中/待确认/放款中/放款成功/订单完成
     statusforlender:String,//借款中／已接单/已确认/放款成功/订单完成
