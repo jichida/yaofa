@@ -10,7 +10,7 @@ import '../../../public/css/borrowinfo.css';
 import { connect } from 'react-redux';
 import moment from "moment";
 import { withRouter } from 'react-router-dom';
-import { 
+import {
     set_borrowinfo,
     set_addloanid,
     confirmorder_request,
@@ -20,9 +20,10 @@ import {
     lender_set_endorder_status,
     lender_set_moneyreal,
 
-    borrow_ui_sureorder
+    borrow_ui_sureorder,
+    payorder_request
     }  from "../../actions";
-const { 
+const {
     Cells,
     Cell,
     CellBody,
@@ -41,7 +42,7 @@ const orderstatusArray ={
     0 : ["借款中","借款中","借款中"],
     1 : ["等待借款人确认","待确认","已接单"],
     2 : ["订单已确认，请尽联系用户进行放贷","借款确认订单，等待商家联系您...","订单已确认"],//商家需要填写放款金额   //放款失败
-    3 : ["成功放款","商家已完成放款","商家已完成放款"],//用户确认放款金额  //或选择放款失败 
+    3 : ["成功放款","商家已完成放款","商家已完成放款"],//用户确认放款金额  //或选择放款失败
     4 : ["已完成","已完成","已完成"],
     5 : ["订单异常","订单异常","订单异常"],//用户举报放款金额
     6 : ["放款失败","放款失败","放款失败"],//等待平台审核
@@ -49,8 +50,8 @@ const orderstatusArray ={
 //商家端操作弹窗
 class LenderConfirminput extends Component {
 
-    constructor(props) {  
-        super(props); 
+    constructor(props) {
+        super(props);
         this.state = {
             moneyreal : 0
         }
@@ -103,7 +104,7 @@ class LenderConfirminput extends Component {
             } = this.props;
         return(
             <div
-                className="LenderConfirminput" 
+                className="LenderConfirminput"
                 style={{display:ui_endorder?"block":"none"}}
                 >
                 <div className="weui-mask"></div>
@@ -111,8 +112,8 @@ class LenderConfirminput extends Component {
                     <div className="weui-dialog__bd">
                         {endorder_status?(
                             <div>
-                                <input 
-                                    name="moneyreal" 
+                                <input
+                                    name="moneyreal"
                                     type="number"
                                     placeholder="请输入实际借款金额"
                                     onChange={(e)=>{this.inputOnchange(e)}}
@@ -127,13 +128,13 @@ class LenderConfirminput extends Component {
                         )}
                     </div>
                     <div className="weui-dialog__ft">
-                        <a 
+                        <a
                             className="weui-dialog__btn weui-dialog__btn_default"
                             onClick={this.close}
                             >
                             取消
                         </a>
-                        <a 
+                        <a
                             className="weui-dialog__btn weui-dialog__btn_primary"
                             onClick={()=>{this.lenderEndOrder()}}
                             >
@@ -187,7 +188,7 @@ class BorrowConfirminput extends Component {
 
         return(
             <div
-                className="BorrowConfirminput" 
+                className="BorrowConfirminput"
                 style={{display:showBorrowConfirminput?"block":"none"}}
                 >
                 <div className="weui-mask"></div>
@@ -202,17 +203,17 @@ class BorrowConfirminput extends Component {
                                     实际放款金额：{orderinfo.moneyreal}元
                                 </div>
                             ):""}
-                            
+
                         </div>
                     </div>
                     <div className="weui-dialog__ft">
-                        <a 
+                        <a
                             className="weui-dialog__btn weui-dialog__btn_default"
                             onClick={this.Jubao}
                             >
                             举报
                         </a>
-                        <a 
+                        <a
                             className="weui-dialog__btn weui-dialog__btn_primary"
                             onClick={this.SureOrder}
                             >
@@ -244,7 +245,7 @@ class GetBorrowStatusInfo extends Component{
         this.props.dispatch(set_addloanid(id));
         this.props.history.push("/bossaddloan");
     }
-    
+
     //用户同意接受
     borrowAggreelender=(id)=>{
         let payload = {
@@ -261,7 +262,7 @@ class GetBorrowStatusInfo extends Component{
             buttonsClickText : "确定",
             buttonsClick : ()=>{this.props.dispatch(confirmorder_request(payload))}
         }}))
-        
+
     }
 
     //商家接单
@@ -292,6 +293,13 @@ class GetBorrowStatusInfo extends Component{
         this.props.dispatch(lender_set_endorder_status(status));
         this.props.dispatch(lender_set_ui_endorder(true));
     }
+    goPay =(orderinfo)=>{
+      //moneyreal
+      this.props.dispatch(payorder_request({
+        query:{_id:orderinfo._id},
+        data:{realprice:0.01}
+      }));
+    }
 
     render(){
         const {orderInfo} = this.props;
@@ -306,18 +314,18 @@ class GetBorrowStatusInfo extends Component{
         console.log(orderInfo);
 
         return (
-           
+
                 <div className="getBorrowStatusInfo btn">
                     {
                         //放款人
                         usertype=="userlender"?(
-                            
+
                             <div className="cont">
                                 <span className="info color_warning">{orderstatusArray[showorderstatus][0]}</span>
                                 {
                                     //抢单
                                     orderInfo.orderstatus==0?(
-                                        <span 
+                                        <span
                                             className="btn Primary"
                                             onClick={()=>{this.lenderGetOrder(orderInfo._id)}}
                                             >放贷抢单</span>
@@ -331,13 +339,13 @@ class GetBorrowStatusInfo extends Component{
                                                 <a href={`tel:${orderInfo.creator.phonenumber}`}>联系借款人</a>
                                             </div>
                                             <div className="btnli">
-                                                <div 
+                                                <div
                                                     className="btn Primary"
                                                     onClick={()=>{this.show_LenderConfirminput(true)}}
                                                     >
                                                     完成放款
                                                 </div>
-                                                <div 
+                                                <div
                                                     className="btn Default"
                                                     onClick={()=>{this.show_LenderConfirminput(false)}}
                                                     >
@@ -357,7 +365,9 @@ class GetBorrowStatusInfo extends Component{
                                                         订单收费
                                                     </CellBody>
                                                     <CellFooter>
-                                                        <button 
+                                                        <button onClick={()=>{
+                                                          this.goPay(orderInfo);
+                                                        }}
                                                             className="btn Primary"
                                                             >去支付</button>
                                                     </CellFooter>
@@ -370,7 +380,7 @@ class GetBorrowStatusInfo extends Component{
                                         </div>
                                     ):""
                                 }
-                                
+
                             </div>
                         ):""
                     }
@@ -382,7 +392,7 @@ class GetBorrowStatusInfo extends Component{
                                 {
                                     //商家已接单，等待用户确认
                                     orderInfo.orderstatus==1?(
-                                        <span 
+                                        <span
                                             className="btn Primary"
                                             onClick={()=>{this.borrowAggreelender(orderInfo._id)}}
                                             >
@@ -393,7 +403,7 @@ class GetBorrowStatusInfo extends Component{
                                 {
                                     //商家已接单，等待用户确认
                                     orderInfo.orderstatus==3?(
-                                        <span 
+                                        <span
                                             className="btn Primary"
                                             onClick={()=>{this.borrowAggreelender(orderInfo._id)}}
                                             >
@@ -410,7 +420,7 @@ class GetBorrowStatusInfo extends Component{
                                                         收益
                                                     </CellBody>
                                                     <CellFooter>
-                                                        <button 
+                                                        <button
                                                             className="btn Primary"
                                                             >去提现</button>
                                                     </CellFooter>
@@ -423,7 +433,7 @@ class GetBorrowStatusInfo extends Component{
                                         </div>
                                     ):""
                                 }
-                                <BorrowConfirminput 
+                                <BorrowConfirminput
                                     orderinfo={orderInfo}
                                     showBorrowConfirminput={orderInfo.orderstatus==3||orderInfo.orderstatus==-2}
                                     />
@@ -467,7 +477,7 @@ class Page extends Component {
                     <div>借 <span className="quota">{orderInfo.moneylimit}</span> 元</div>
                     <div>借款期限: {orderInfo.moneyperiod}天</div>
                 </div>
-                <div 
+                <div
                     className="userinfo"
                     onClick={()=>{this.gotoUserBorrowInfo()}}
                     >
@@ -511,6 +521,3 @@ const data = ({order:{orderInfo}}) => {
 };
 Page = connect(data)(Page);
 export default Page;
-
-
-
