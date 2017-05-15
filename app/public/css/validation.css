@@ -18,7 +18,7 @@
 	content: none;
 }
 .validationPage .list > div:before{
-	content: "";
+	content: none;
 	position: absolute;
 	height: 55px;
 	width: 1px;

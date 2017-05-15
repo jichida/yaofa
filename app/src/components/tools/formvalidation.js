@@ -131,7 +131,7 @@ let WeuiInputValidation = (props) => {
 		meta: { touched, error, warning },
 		Company,
 		InputTit,
-		HeadIcon
+		HeadIcon,
 	} = props;
 	let err1 = (touched && error);
 	let err2 = (touched && warning);
@@ -173,7 +173,7 @@ let WeuiSelectValidation = (props) => {
 		Option,
 		HeadIcon,
 		InputTit,
-		input
+		input,
 	} = props;
 	return (
 		<FormCell select selectPos="after">
@@ -206,7 +206,7 @@ let WeuiSwitchValidation = (props) => {
                 </Label>
             </CellHeader>
             <CellFooter>
-                <Switch {...input} />
+                <Switch {...input} checked={input.value||false} />
             </CellFooter>
         </FormCell>
 	);

@@ -39,12 +39,17 @@ const {
     Label
     } = WeUI;
 
+
 class PageForm extends Component {
     render() {
-        const { handleSubmit,subBorrowuserinfo } = this.props;
+        const {
+            handleSubmit,
+            subBorrowuserinfo,
+        } = this.props;
         const fromprovince = _.map(Province,(p,index)=>{
             return {value: p.name,label: p.name}
         });
+
         return (
             <Form
                 onSubmit={handleSubmit(subBorrowuserinfo)}
@@ -173,46 +178,38 @@ class PageForm extends Component {
     }
 }
 
-// hasgudingzichan:{ type: Boolean, default: false },//是否有固定资产
-// hasdanwei:{ type: Boolean, default: false },//是否有工作单位
-// hasgongjijin:{ type: Boolean, default: false },//是否有公积金
-// hasshebao:{ type: Boolean, default: false },//是否有社保
-// hassanhaotongyi:{ type: Boolean, default: false },//三号是否统一
-// hasjinrihuankuan:{ type: Boolean, default: false },//有无今日还款
-// hasyuqijilu:{ type: Boolean, default: false },//有无逾期记录
-// hasshenfenzhengyuanjian:{ type: Boolean, default: false },//身份证原件
-
-PageForm = reduxForm({
-    form: 'selectingFormValues',
-    initialValues:{
-        hukou : "江苏",
-        realtimeforphoneyear: 0.5,
-        hasgudingzichan : false,
-        hasdanwei : false,
-        hasgongjijin : false,
-        hasshebao : false,
-        hassanhaotongyi : false,
-        hasjinrihuankuan : false,
-        hasyuqijilu : false,
-        hasshenfenzhengyuanjian : false,
-    }
-})(PageForm);
 
 const selector = formValueSelector('selectingFormValues');
 
-PageForm = connect(state => {
-    // can select values individually
-    //const moneyusefor = selector(state, 'moneyusefor');
-    return {
-        //moneyusefor
-    };
-})(PageForm);
 
 class Page extends Component {
+
     subBorrowuserinfo=(value)=>{
         this.props.dispatch(fillrealnameprofile_request({data:value}));
     }
+
 	render() {
+
+        PageForm = reduxForm({
+            form: 'selectingFormValues',
+            initialValues:{
+                hukou : this.props.userlogin.hukou||"江苏",
+                limithuabei: this.props.userlogin.limithuabei||"",
+                limitjiebei: this.props.userlogin.limitjiebei||"",
+                jiedaibaofuzai: this.props.userlogin.jiedaibaofuzai||"",
+                jiedaobaoyihuan: this.props.userlogin.jiedaobaoyihuan||"",
+                realtimeforphoneyear: this.props.userlogin.realtimeforphoneyear||"",
+                hasgudingzichan : this.props.userlogin.hasgudingzichan||false,
+                hasdanwei : this.props.userlogin.hasdanwei||false,
+                hasgongjijin : this.props.userlogin.hasgongjijin||false,
+                hasshebao : this.props.userlogin.hasshebao||false,
+                hassanhaotongyi : this.props.userlogin.hassanhaotongyi||false,
+                hasjinrihuankuan : this.props.userlogin.hasjinrihuankuan||false,
+                hasyuqijilu : this.props.userlogin.hasyuqijilu||false,
+                hasshenfenzhengyuanjian : this.props.userlogin.hasshenfenzhengyuanjian||false,
+            }
+        })(PageForm);
+
         return (
     		<div className="borrowuserinfoPage addborrowuserinfoPage AppPage">
     			<DocumentTitle title="完善借款资料" />

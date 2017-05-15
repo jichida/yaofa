@@ -11,7 +11,8 @@ import {
     common_err,
     set_weui,
     findpwd_result,
-    acceptorder_result
+    acceptorder_result,
+    fillrealnameprofile_result
 } from '../actions';
 import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
@@ -32,6 +33,18 @@ export function* wsrecvsagaflow() {
         yield put(set_weui({ toast }));
         yield put(push('/login'));
     });
+
+    //修改用户借款资料 fillrealnameprofile_result
+    yield takeEvery(`${fillrealnameprofile_result}`, function*(action) {
+        let toast = {
+            show : true,
+            text : "修改成功",
+            type : "success"
+        }
+        yield put(set_weui({ toast }));
+        yield put(goBack());
+    });
+
     //放款抢单 acceptorder_result
     yield takeEvery(`${acceptorder_result}`, function*(action) {
         let toast = {

@@ -33,6 +33,7 @@
     "redux": "^3.6.0",
     "redux-act": "^1.2.0",
     "redux-form": "^6.6.3",
+    "redux-form-website-template": "0.0.41",
     "redux-saga": "^0.14.8",
     "redux-thunk": "^2.2.0",
     "request": "^2.81.0",

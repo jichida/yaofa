@@ -8,7 +8,8 @@ import {
     user_type,
     sendauth_result,
     logout_result,
-    confirmorder_result
+    confirmorder_result,
+    fillrealnameprofile_result
 } from '../actions/index.js';
 
 const initial = {
@@ -57,6 +58,10 @@ const userlogin = createReducer({
     [register_result]:(state, result)=>{
         //console.log(result);
         return { ...state }
+    },
+    //修改用户资料回调
+    [fillrealnameprofile_result]:(state, result) => {
+        return { ...state, ...result };
     },
     //借款人确认商家回调
     [confirmorder_result]:(state, payload) => {
