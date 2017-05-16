@@ -67,14 +67,15 @@ import {
     withdrawcashapplyaddone_request,
     withdrawcashapplyaddone_result,
     md_withdrawcashapplyaddone_result,
-    md_withdrawcashapplyauth_result
+    md_withdrawcashapplyauth_result,
 
-
+    queryuserstatus_request,
+    queryuserstatus_result
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
-
+  'queryuserstatus_result':queryuserstatus_result,
   'payorder_result':payorder_result,
   'getpaysign_result':getpaysign_result,
 
@@ -118,6 +119,7 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+    'queryuserstatus':queryuserstatus_request,
     'payorder':payorder_request,
     'getpaysign':getpaysign_request,
 

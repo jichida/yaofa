@@ -24,6 +24,8 @@ export const userauthenticationhtml_request  = createAction('userauthenticationh
 export const userauthenticationhtml_result = createAction('userauthenticationhtml_result');
 export const fillrealnameprofile_request = createAction('fillrealnameprofile_request');
 export const fillrealnameprofile_result = createAction('fillrealnameprofile_result');
+export const queryuserstatus_request = createAction('queryuserstatus_request');
+export const queryuserstatus_result = createAction('queryuserstatus_result');
 
 
 //选择用户类型
