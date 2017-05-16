@@ -1,6 +1,6 @@
 import { createReducer } from 'redux-act';
 import {
-
+  getsystemconfig_result
 } from '../actions/index.js';
 
 
@@ -18,7 +18,9 @@ const initial = {
 };
 
 const app = createReducer({
-   
+   [getsystemconfig_result]:(state, payload) => {
+       return { ...state,...payload}
+   },
 }, initial.app);
 
 export default app;

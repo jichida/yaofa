@@ -2,12 +2,19 @@ import {put,select,call,race,take} from 'redux-saga/effects';
 import config from '../env/config.js';
 import {delay} from 'redux-saga';
 import {
+  getsystemconfig_request,
   getmyorders_request,
   queryuserstatus_request,
   queryuserstatus_result,
   login_result
 } from '../actions';
 
+export function* refreshsystemconfig(){
+  while (true) {
+      yield put(getsystemconfig_request({}));
+      yield call(delay, config.refreshsysconfiginterval);
+  }
+}
 export function* refreshmyorderflow(){
   while (true) {
         yield call(delay, config.refreshmyorderinterval);

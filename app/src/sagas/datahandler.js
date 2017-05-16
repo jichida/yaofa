@@ -70,11 +70,14 @@ import {
     md_withdrawcashapplyauth_result,
 
     queryuserstatus_request,
-    queryuserstatus_result
+    queryuserstatus_result,
+    getsystemconfig_result,
+    getsystemconfig_request,
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'getsystemconfig_result':getsystemconfig_result,
   'queryuserstatus_result':queryuserstatus_result,
   'payorder_result':payorder_result,
   'getpaysign_result':getpaysign_result,
@@ -104,6 +107,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+    'getsystemconfig':getsystemconfig_request,
     'fillrealnameprofile':fillrealnameprofile_request,
     'loginwithusername':loginwithusername_request,
     'loginwithtoken':loginwithtoken_request,
