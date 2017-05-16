@@ -39,10 +39,15 @@ const userlogin = createReducer({
 
     //登录回调
     [login_result]: (state, userinfo) => {
-        console.log("login_result login_result ::"+JSON.stringify(userinfo));
+        // console.log("login_result login_result ::"+JSON.stringify(userinfo));
         let usertype = localStorage.getItem("usertype");
-        localStorage.setItem(`${usertype}_user_token`, userinfo.token);
-        return { ...state, ...userinfo};
+        if(!!usertype){
+            localStorage.setItem(`${usertype}_user_token`, userinfo.token);
+            return { ...state, ...userinfo};
+        }else{
+            return { ...state }
+        }
+        
     },
     [logout_result]:(state, result) => {
         

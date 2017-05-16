@@ -28,17 +28,77 @@ class Page extends Component {
         //this.props.history.goBack();
     };
 
+    pagePush=(name)=>{
+        this.props.history.push(name);
+    }
+
 	render() {
+        const { usertype } = this.props;
         return (
     		<div className="settingsPage AppPage">
     			<DocumentTitle title="放款详情" />
                 <Cells>
-                    <Cell href="javascript:;" access>
+                    {!!usertype?(
+                        <div>
+                            {usertype=="userlender"?(
+                                <Cell
+                                    onClick={()=>{this.pagePush("/abouthtml/chargingrules")}}
+                                    access>
+                                    <CellHeader>
+                                        <img src="img/19.png" alt="" style={{display: `block`, width: `30px`, marginRight: `5px`}}/>
+                                    </CellHeader>
+                                    <CellBody>
+                                        收费规则
+                                    </CellBody>
+                                    <CellFooter />
+                                </Cell>
+                            ):""}
+                            {usertype=="useragency"?(
+                                <Cell 
+                                    onClick={()=>{this.pagePush("/abouthtml/profitrule")}}
+                                    access>
+                                    <CellHeader>
+                                        <img src="img/19.png" alt="" style={{display: `block`, width: `30px`, marginRight: `5px`}}/>
+                                    </CellHeader>
+                                    <CellBody>
+                                        收益规则
+                                    </CellBody>
+                                    <CellFooter />
+                                </Cell>
+                            ):""}
+                        </div>
+                    ):""}
+
+                    <Cell 
+                        onClick={()=>{this.pagePush("/abouthtml/aboutus")}}
+                        access>
                         <CellHeader>
                             <img src="img/19.png" alt="" style={{display: `block`, width: `30px`, marginRight: `5px`}}/>
                         </CellHeader>
                         <CellBody>
-                            帮助与反馈
+                            关于我们
+                        </CellBody>
+                        <CellFooter />
+                    </Cell>
+                    <Cell 
+                        onClick={()=>{this.pagePush("/abouthtml/servicerule")}}
+                        access>
+                        <CellHeader>
+                            <img src="img/19.png" alt="" style={{display: `block`, width: `30px`, marginRight: `5px`}}/>
+                        </CellHeader>
+                        <CellBody>
+                            服务协议
+                        </CellBody>
+                        <CellFooter />
+                    </Cell>
+                    <Cell 
+                        onClick={()=>{this.pagePush("/abouthtml/helpcenter")}}
+                        access>
+                        <CellHeader>
+                            <img src="img/19.png" alt="" style={{display: `block`, width: `30px`, marginRight: `5px`}}/>
+                        </CellHeader>
+                        <CellBody>
+                            帮助中心
                         </CellBody>
                         <CellFooter />
                     </Cell>
@@ -47,13 +107,16 @@ class Page extends Component {
                 <div className="submitBtn">
                     <botton 
                         onClick = {()=>{this.onClickLogout()}}
-                        className="btn Primary">退出登录</botton>
+                        className="btn Primary">
+                        退出登录
+                    </botton>
                 </div>
     		</div>
     	)
     }
 }
 const data =  ({userlogin}) =>{
-    return {...userlogin};
+    let usertype = localStorage.getItem("usertype");
+    return {...userlogin, usertype};
 };
 export default connect(data)(Page);

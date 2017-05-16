@@ -21,6 +21,8 @@ import ResetPassword from "./components/resetpassword";
 import UserType from "./components/usertype";
 //设置
 import Settings from "./components/settings";
+//关于我们
+import Abouthtml from "./components/abouthtml";
 
 /*
     借款人端
@@ -117,6 +119,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/bossindex" component={requireAuthentication(BossIndex)}/>
             <CustomRoute exact path="/settings" component={requireAuthentication(Settings)}/>
             <CustomRoute exact path="/resetpassword" component={requireAuthentication(ResetPassword)}/>
+            <CustomRoute exact path="/abouthtml/:type" component={Abouthtml}/>
 
             <CustomRoute exact path="/agencyindex" component={requireAuthentication(AgencyIndex)}/>
             <CustomRoute exact path="/agencyusercenter" component={requireAuthentication(AgencyUserCenter)}/>

@@ -11,7 +11,7 @@ const {
 class Page extends Component {
 
     clickItem =(name)=>{
-        this.props.history.replace(name);
+        this.props.history.push(name);
     }
 
 	render() {

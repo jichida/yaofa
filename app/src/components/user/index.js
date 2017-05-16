@@ -133,7 +133,7 @@ class Page extends Component {
         const { myorderlist } = this.props;
         return (
             <div className="indexPage AppPage">
-                <DocumentTitle title="耀发钱庄" />
+                <DocumentTitle title="耀发钱庄-借款端" />
         		<SwiperBanner data={this.headBanner()} />
                 <div className="pageTitle">
                     <span>我的最新借款</span>

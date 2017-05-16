@@ -72,12 +72,12 @@ export class Page extends Component {
 
                 </div>
                 <div className="buttoncon">
-                    <button 
+                    <span 
                         className="btn Primary" onClick={()=>{this.submitProfitform()}}
                         style={{width:"100%"}}
                     >
                         完成
-                    </button>
+                    </span>
                 </div>
             </div>
         );

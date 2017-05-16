@@ -399,17 +399,19 @@ class GetBorrowStatusInfo extends Component{
                                         </span>
                                     ):""
                                 }
-                                {
-                                    //商家已接单，等待用户确认
-                                    orderInfo.orderstatus==3?(
-                                        <span
-                                            className="btn Primary"
-                                            onClick={()=>{this.borrowAggreelender(orderInfo._id)}}
-                                            >
-                                            确认无误
-                                        </span>
-                                    ):""
-                                }
+                                <BorrowConfirminput
+                                    orderinfo={orderInfo}
+                                    showBorrowConfirminput={orderInfo.orderstatus==3||orderInfo.orderstatus==-2}
+                                    />
+                            </div>
+                        ):""
+                    }
+                    {
+                        //中介
+                        usertype=="useragency"?(
+                            <div className="cont">
+                                <div className="info">{orderstatusArray[orderInfo.orderstatus][2]}</div>
+
                                 {
                                     orderInfo.orderstatus>=3&&orderInfo.moneyreal>0&&orderInfo.paystatus=="已支付"?(
                                         <div className="payorget">
@@ -432,18 +434,6 @@ class GetBorrowStatusInfo extends Component{
                                         </div>
                                     ):""
                                 }
-                                <BorrowConfirminput
-                                    orderinfo={orderInfo}
-                                    showBorrowConfirminput={orderInfo.orderstatus==3||orderInfo.orderstatus==-2}
-                                    />
-                            </div>
-                        ):""
-                    }
-                    {
-                        //中介
-                        usertype=="useragency"?(
-                            <div>
-                                {orderstatusArray[orderInfo.orderstatus][2]}
                             </div>
                         ):""
                     }
@@ -502,6 +492,9 @@ class Page extends Component {
                                             <div>放款额度: <span className="blue">{orderInfo.moneylender} 元</span></div>
                                             <div>服务费: <span className="green">{orderInfo.feeservice} 元</span></div>
                                             <div>押金比: <span className="green">{orderInfo.depositratio} %</span></div>
+                                            {orderInfo.hasOwnProperty("moneyreal")?(
+                                                <div>实际放款: <span className="green">{orderInfo.moneyreal} 元</span></div>
+                                            ):""}
                                         </div>
                                 </MediaBox>
                             </PanelBody>

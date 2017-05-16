@@ -84,10 +84,10 @@ export class Page extends Component {
 
                 </div>
                 <div className="buttoncon">
-                    <button
+                    <span
                         className="btn Primary"
                         style={{width:"100%"}}
-                        onClick={()=>{this.onClickNext()}}>下一步</button>
+                        onClick={()=>{this.onClickNext()}}>下一步</span>
                 </div>
             </div>
         );

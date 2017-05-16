@@ -47,6 +47,7 @@ class Page extends Component {
         const { borrowlist } = this.props;
         return (
             <div className="indexPage AppPage">
+                <DocumentTitle title="耀发钱庄-借款端" />
         		<SwiperBanner data={this.headBanner()} />
                 <div className="pageTitle bossindexfiller">
                     <span>我的邀请列表</span>
