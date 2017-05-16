@@ -35,6 +35,11 @@ export const WithdrawcashFilter = props => (
          <ReferenceInput label="用户" source="creator" reference="useragency" addLabel={false}>
             <SelectInput optionText="username" />
         </ReferenceInput>
+        <SelectInput  label="状态"  source="status" choices={[
+               { id: '未验证', name: '未验证' },
+               { id: '已验证', name: '已验证' },
+               { id: '已支付', name: '已支付' },
+           ]}/>
     </Filter>
 );
 
