@@ -42,7 +42,7 @@ class Page extends Component {
                         <div>
                             {usertype=="userlender"?(
                                 <Cell
-                                    onClick={()=>{this.pagePush("/abouthtml/chargingrules")}}
+                                    onClick={()=>{this.pagePush("/abouthtml/feeminu")}}
                                     access>
                                     <CellHeader>
                                         <img src="img/19.png" alt="" style={{display: `block`, width: `30px`, marginRight: `5px`}}/>
@@ -55,7 +55,7 @@ class Page extends Component {
                             ):""}
                             {usertype=="useragency"?(
                                 <Cell 
-                                    onClick={()=>{this.pagePush("/abouthtml/profitrule")}}
+                                    onClick={()=>{this.pagePush("/abouthtml/feepuls")}}
                                     access>
                                     <CellHeader>
                                         <img src="img/19.png" alt="" style={{display: `block`, width: `30px`, marginRight: `5px`}}/>

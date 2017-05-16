@@ -15,11 +15,11 @@ const initial = {
       title:'服务协议',
       desc:'服务协议'
     },
-    'chargingrules':{
+    'feeminu':{
       title:'收费规则',
       desc:'收费规则'
     },
-    'profitrule':{
+    'feepuls':{
       title:'收益规则',
       desc:'收益规则'
     }
