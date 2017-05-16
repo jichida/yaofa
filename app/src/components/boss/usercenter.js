@@ -39,7 +39,7 @@ class Page extends Component {
                 <div className="list">
                     <Cells>
                         <Cell 
-                            onClick={()=>{this.pushUrl("/settings")}}
+                            onClick={()=>{this.pushUrl("/bossloanlist")}}
                             access>
                             <CellHeader>
                                 <img src="img/8.png" alt="" />

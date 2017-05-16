@@ -11,6 +11,11 @@
     font-weight: 200;
     border:none;
 }
+button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
 input, textarea{
     -webkit-user-select:text;
     -moz-user-select:text;
@@ -24,6 +29,7 @@ input, textarea{
     justify-content: center;
     align-items: center;
     height: 44px;
+    text-align: center;
     border-radius: 6px;
 }
 .btn.Primary{
@@ -47,6 +53,7 @@ input, textarea{
     border: none;
     color: #FFF;
     font-size: 16px;
+    text-align: center;
 }
 .btn.login:active{
     background: #3479e1;

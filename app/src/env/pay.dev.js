@@ -4,6 +4,7 @@ import {
 } from '../util/util.js';
 
 export const payorder = (paysign,orderinfo,callbackfn)=>{
+  alert(JSON.stringify(paysign));
   let postdata = {
       "out_trade_no":orderinfo._id
   };

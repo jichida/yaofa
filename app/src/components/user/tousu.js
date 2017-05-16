@@ -6,7 +6,7 @@ import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import '../../../public/css/borrowinfo.css';
+import '../../../public/css/tousu.css';
 import { connect } from 'react-redux';
 import moment from "moment";
 import { withRouter } from 'react-router-dom';
@@ -51,7 +51,7 @@ class Page extends Component {
     }
 
     componentWillUnmount(){
-        window.clearInterval(this.getlistinterval);
+        this.props.dispatch(set_tousucontent(""))
     }
 
     componentWillMount() {
@@ -65,12 +65,33 @@ class Page extends Component {
     }
     //设置投诉详情
     setTousuContent=(e)=>{
-        console.log(e.target.value)
-        //this.props.dispatch(set_tousucontent())
+        this.props.dispatch(set_tousucontent(e.target.value));
     }
     //提交投诉
     submitContent=()=>{
 
+        if(this.props.tousucontent!=''){
+            setTimeout(()=>{
+                let payload = {
+                    query:{_id:this.props.orderid},
+                    data:{
+                        orderstatus : -1,
+                        errorreason : this.props.tousucontent
+                    }
+                };
+                this.props.dispatch(confirmorder_request(payload));
+                setTimeout(()=>{
+                    this.props.history.goBack();
+                },1000)
+            },100)
+        }else{
+            let toast = {
+                show : true,
+                text : "内容不能为空",
+                type : "warning"
+            }
+            this.props.dispatch(set_weui({ toast }));
+        }
     }
 	render() {
         const { orderInfo } = this.props;
@@ -94,10 +115,10 @@ class Page extends Component {
     }
 }
 
-const data = ({order:{orderInfo}}) => {
+const data = ({order:{orderInfo,tousucontent}}) => {
     //console.log(orderInfo);
     //usertype: userborrow  useragency  userlender
-    return {orderInfo};
+    return {orderInfo,tousucontent};
 };
 Page = connect(data)(Page);
 export default Page;

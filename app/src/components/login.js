@@ -68,12 +68,13 @@ export class LoginPage extends Component {
                     忘记密码?
                 </span>
 				<div className="submitBtn">
-                    <button
+                    <span
                         className="btn login"
                         disabled={pristine || submitting}
+                        onClick={handleSubmit(onClickLogin)}
                         >
                         登录
-                    </button>
+                    </span>
                     <span
                         className="btn register"
                         onClick={()=>{this.pagePush("/register")}}

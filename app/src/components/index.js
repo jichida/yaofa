@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 export class Page extends Component {
 
     componentWillMount() {
+
         let usertype = localStorage.getItem('usertype');
         let loginsuccess = this.props.loginsuccess;
         if(loginsuccess){

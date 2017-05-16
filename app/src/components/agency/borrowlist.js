@@ -10,6 +10,7 @@ import '../../../public/css/borrowlist.css';
 import { connect } from 'react-redux';
 import moment from "moment";
 import _ from "lodash";
+import Footer from './footer';
 import { 
     getmyorders_request,
     set_myorderlistStatus,
@@ -120,6 +121,7 @@ class Page extends Component {
                         
                     </TabBody>
                 </Tab>
+                <Footer action={1}/>
             </div>
         )
     }

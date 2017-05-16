@@ -7,7 +7,7 @@ import {
     md_withdrawcashapplyauth_result,
     
     withdrawcashapplyaddone_result,
-    
+    confirmorder_result,
 
     insertorder_result,
     showpopmessage,
@@ -89,6 +89,18 @@ export function* wsrecvsagaflow() {
         yield put(set_weui({ toast }));
         yield put(sendauth_result(result));
     });
+
+    //更新订单状态 confirmorder_request
+    yield takeEvery(`${confirmorder_result}`, function*(action) {
+        let {payload:result} = action;
+        let toast = {
+            show : true,
+            text : "提交成功",
+            type : "success"
+        }
+        yield put(set_weui({ toast }));
+    });
+
     //错误反馈
     yield takeEvery(`${common_err}`, function*(action) {
         let {payload:result} = action;
@@ -115,4 +127,6 @@ export function* wsrecvsagaflow() {
         yield put(insertorder_result(result));
         yield put(goBack());
     });
+
+
 }

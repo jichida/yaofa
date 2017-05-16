@@ -52,9 +52,9 @@ class Page extends Component {
     getList =(status)=>{
         let query = {};
         if(status=="已完成"){
-            query.statusforlender = "订单完成";
+            query.statusforlender = "已完成";
         }else{
-            query.statusforlender = { $ne: "订单完成" };
+            query.statusforlender = { $ne: "已完成" };
         }
         this.props.dispatch(getmyorders_request({query}));
     }

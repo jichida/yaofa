@@ -7,12 +7,12 @@
 import { createReducer } from 'redux-act';
 import _ from 'lodash';
 import {
-	getmyorders_result,
     set_borrowinfo,
     confirmorder_result,
     logout_result,
     borrow_ui_sureorder,
     fillrealnameprofile_result,
+    userauthentication_request
 } from '../actions/index.js';
 
 const initial = {
@@ -55,6 +55,12 @@ const userborrow = createReducer({
     [logout_result]:(state, result) => {
         return { ...state,...initial.userborrow}
     },
+    //...
+    [userauthentication_request]:(state, result) => {
+        console.log(result);
+        return {...state}
+    }
+    //...
 }, initial.userborrow);
 
 export default userborrow;

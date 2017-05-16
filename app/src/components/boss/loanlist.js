@@ -10,6 +10,7 @@ import '../../../public/css/borrowlist.css';
 import { connect } from 'react-redux';
 import moment from "moment";
 import _ from "lodash";
+import Footer from './footer';
 import { 
     getmyorders_request,
     set_myorderlistStatus,
@@ -67,7 +68,10 @@ class Page extends Component {
         return (
             <div className="borrowlistPage AppPage">
                 <DocumentTitle title="我的借款" />
-                <Tab>
+                <Tab
+                    className="list"
+                    style={{flexGrow:"1",overflow:"scroll"}}
+                    >
                     <NavBar>
                         <NavBarItem 
                             active={myorderlistStatus=="借款中"}
@@ -113,6 +117,7 @@ class Page extends Component {
                         
                     </TabBody>
                 </Tab>
+                <Footer action={1}/>
             </div>
         )
     }

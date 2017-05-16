@@ -11,7 +11,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {
-    insertorder_request
+    insertorder_request,
+    set_weui
 } from '../../actions';
 import {
     required,
@@ -70,7 +71,14 @@ class AddborrowForm extends Component {
                     <Field
                         name="moneyusefor"
                         id="moneyusefor"
-                        Option={[{value: "临时周转",label: '临时周转'},{value: "买房",label: '买房'},{value: "买车",label: '买车'}]}
+                        Option={[
+                            {value: "临时周转",label: '临时周转'},
+                            {value: "买房",label: '买房'},
+                            {value: "买车",label: '买车'},
+                            {value: "还贷",label: '还贷'},
+                            {value: "还信用卡",label: '还信用卡'},
+                            {value: "购物",label: '购物'}
+                        ]}
                         component={ WeuiSelectValidation }
                         HeadIcon="img/15.png"
                         InputTit="借款用途"
@@ -88,27 +96,57 @@ class AddborrowForm extends Component {
 AddborrowForm = reduxForm({
     form: 'selectingFormValues',
     initialValues:{
-        moneyusefor : ""
+        moneyusefor : "临时周转",
+
     }
 })(AddborrowForm);
 
 const selector = formValueSelector('selectingFormValues');
-
-AddborrowForm = connect(state => {
-    // can select values individually
-    const moneyusefor = selector(state, 'moneyusefor');
-    return {
-        moneyusefor
-    };
-})(AddborrowForm);
 
 AddborrowForm = withRouter(AddborrowForm);
 
 class Page extends Component {
 
     addborrowSubmit =(value)=>{
-        console.log(value);
-        this.props.dispatch(insertorder_request(value));
+        if(this.props.userlogin.approvalstatus=="已审核"){
+            this.props.dispatch(insertorder_request(value));
+        }else{
+            let userlogin = this.props.userlogin;
+             if(
+                userlogin.truename!=''&&
+                userlogin.truename&&
+                userlogin.idcard!=''&&
+                userlogin.idcard&&
+                userlogin.phonenumber!=''&&
+                userlogin.phonenumber&&
+                userlogin.taobaoaccount!=''&&
+                userlogin.taobaoaccount&&
+                userlogin.urlphoneid1!=''&&
+                userlogin.urlphoneid1&&
+                userlogin.urlphoneid2!=''&&
+                userlogin.urlphoneid2&&
+                userlogin.urlphoneid3!=''&&
+                userlogin.urlphoneid3
+            ){
+                this.props.dispatch(set_weui({confirm:{
+                    show : true,
+                    title : "认证审核中...",
+                    text : "认证资料已经递交",
+                    buttonsCloseText : "关闭",
+                    buttonsClickText : "完善借款资料",
+                    buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
+                }}))
+            }else{
+                this.props.dispatch(set_weui({confirm:{
+                    show : true,
+                    title : "认证审核未完善",
+                    text : "只有通过认证才能进行借贷",
+                    buttonsCloseText : "暂不",
+                    buttonsClickText : "去认证",
+                    buttonsClick : ()=>{this.props.history.push("/validation")}
+                }}))
+            }
+        }
     }
 
 	render() {
@@ -120,5 +158,9 @@ class Page extends Component {
     	)
     }
 }
-Page = connect()(Page);
+
+const data = ({userlogin}) => {
+    return {userlogin};
+};
+Page = connect(data)(Page);
 export default Page;

@@ -39,7 +39,7 @@ const order = createReducer({
     },
     //设置投诉内容
     [set_tousucontent]:(state, payload) => {
-        return { ...state, myorderlistStatus: payload };
+        return { ...state, tousucontent: payload };
     },
     //获取我的放款订单列表
     [getmyorders_result]: (state, payload) => {

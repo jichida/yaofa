@@ -41,6 +41,16 @@ class Page extends Component {
 
     componentWillMount() {
 
+        this.props.dispatch(getmyorders_request({
+            query:{
+
+            },
+            options:{
+                page: 1,
+                limit: 100,
+            }
+        }));
+
         //console.log("userlog:::"+JSON.stringify(this.props.userlogin));
         let userlogin = this.props.userlogin;
         // "resultid": false,
@@ -54,63 +64,58 @@ class Page extends Component {
         // jiedaibaofuzai:Number,//借贷宝负债
         // jiedaobaoyihuan:Number,//借贷宝已还
         // realtimeforphoneyear:Number,//手机号实名时间（年）
-        if(
-            userlogin.resultid&&
-            userlogin.resultphone&&
-            userlogin.resultzhima&&
-            userlogin.resulttaobao&&
-            userlogin.resultrealname
-        ){
-            if(
-                userlogin.hasOwnProperty("hukou")&&
-                userlogin.hasOwnProperty("limithuabei")&&
-                userlogin.hasOwnProperty("limitjiebei")&&
-                userlogin.hasOwnProperty("jiedaibaofuzai")&&
-                userlogin.hasOwnProperty("jiedaobaoyihuan")&&
-                userlogin.hasOwnProperty("realtimeforphoneyear")
-            ){
-                return false;
-            }else{
-                if(userlogin.approvalstatus=="未递交"){
-                    this.props.dispatch(set_weui({confirm:{
-                        show : true,
-                        title : "完善借款资料",
-                        text : "完善资料后,商家更放心把钱借给你",
-                        buttonsCloseText : "暂不",
-                        buttonsClickText : "去完善",
-                        buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
-                    }}))
-                }
-                if(userlogin.approvalstatus=="待审核"){
-                    this.props.dispatch(set_weui({alert:{
-                        show : true,
-                        title : "待审核",
-                        text : "我们已经接收到您提交的资料,会以最快的速度给你审核",
-                    }}))
-                }
-                return false;
-            }
 
+        // truename:String,  //真实用户名
+        // idcard:String,//身份证号
+        // phonenumber:String,//手机号
+        // phonepassword:String,//手机密码
+        // taobaoaccount:String,//淘宝账号
+        // taobaopassword:String,//淘宝密码
+        // urlphoneid1:String,//身份证照片正面
+        // urlphoneid2:String,//身份证照片反面
+        // urlphoneid3:String,//身份证照片手持
+
+        if(userlogin.approvalstatus=="已审核"){
+            return false;
         }else{
-            this.props.dispatch(set_weui({confirm:{
-                show : true,
-                title : "认证通知",
-                text : "您还没有通过人认证",
-                buttonsCloseText : "暂不",
-                buttonsClickText : "去认证",
-                buttonsClick : ()=>{this.props.history.push("/validation")}
-            }}))
+            console.log(userlogin);
+            if(
+                userlogin.truename!=''&&
+                userlogin.truename&&
+                userlogin.idcard!=''&&
+                userlogin.idcard&&
+                userlogin.phonenumber!=''&&
+                userlogin.phonenumber&&
+                userlogin.taobaoaccount!=''&&
+                userlogin.taobaoaccount&&
+                userlogin.urlphoneid1!=''&&
+                userlogin.urlphoneid1&&
+                userlogin.urlphoneid2!=''&&
+                userlogin.urlphoneid2&&
+                userlogin.urlphoneid3!=''&&
+                userlogin.urlphoneid3
+            ){
+                this.props.dispatch(set_weui({confirm:{
+                    show : true,
+                    title : "认证审核中...",
+                    text : "认证资料已经递交",
+                    buttonsCloseText : "关闭",
+                    buttonsClickText : "完善借款资料",
+                    buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
+                }}))
+            }else{
+                this.props.dispatch(set_weui({confirm:{
+                    show : true,
+                    title : "认证审核未完善",
+                    text : "只有通过认证才能进行借贷",
+                    buttonsCloseText : "暂不",
+                    buttonsClickText : "去认证",
+                    buttonsClick : ()=>{this.props.history.push("/validation")}
+                }}))
+            }
         }
 
-        this.props.dispatch(getmyorders_request({
-            query:{
-
-            },
-            options:{
-                page: 1,
-                limit: 100,
-            }
-        }));
+        
 
 
     }
@@ -185,7 +190,7 @@ class Page extends Component {
     }
 }
 
-const data = ({userborrow:{myorderlist}, userlogin}) => {
+const data = ({order:{myorderlist}, userlogin}) => {
     myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
     return {myorderlist,userlogin};
 };
