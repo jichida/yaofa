@@ -55,12 +55,12 @@ class Page extends Component {
                 )}
                 <div className="form">
                     <Cells>
-                        <Cell><CellBody>户籍</CellBody><CellFooter>{borrowinfo.hukou}</CellFooter></Cell>
-                        <Cell><CellBody>花呗额度</CellBody><CellFooter>{borrowinfo.limithuabei}元</CellFooter></Cell>
-                        <Cell><CellBody>借呗额度</CellBody><CellFooter>{borrowinfo.limitjiebei}元</CellFooter></Cell>
-                        <Cell><CellBody>借贷宝负债</CellBody><CellFooter>{borrowinfo.jiedaibaofuzai}元</CellFooter></Cell>
-                        <Cell><CellBody>借贷宝已还款</CellBody><CellFooter>{borrowinfo.jiedaobaoyihuan}元</CellFooter></Cell>
-                        <Cell><CellBody>手机号实名时间</CellBody><CellFooter>{borrowinfo.realtimeforphoneyear}年</CellFooter></Cell>
+                        <Cell><CellBody>户籍</CellBody><CellFooter>{borrowinfo.hukou?`${borrowinfo.hukou}`:"未填写"}</CellFooter></Cell>
+                        <Cell><CellBody>花呗额度</CellBody><CellFooter>{borrowinfo.limithuabei?`${borrowinfo.limithuabei}元`:"未填写"}</CellFooter></Cell>
+                        <Cell><CellBody>借呗额度</CellBody><CellFooter>{borrowinfo.limitjiebei?`${borrowinfo.limitjiebei}元`:"未填写"}</CellFooter></Cell>
+                        <Cell><CellBody>借贷宝负债</CellBody><CellFooter>{borrowinfo.jiedaibaofuzai?`${borrowinfo.jiedaibaofuzai}元`:"未填写"}</CellFooter></Cell>
+                        <Cell><CellBody>借贷宝已还款</CellBody><CellFooter>{borrowinfo.jiedaobaoyihuan?`${borrowinfo.jiedaobaoyihuan}元`:"未填写"}</CellFooter></Cell>
+                        <Cell><CellBody>手机号实名时间</CellBody><CellFooter>{borrowinfo.realtimeforphoneyear?`${borrowinfo.realtimeforphoneyear}年`:"未填写"}</CellFooter></Cell>
                     </Cells>
                     <Cells>
                         <Cell><CellBody>是否有固定资产</CellBody><CellFooter>{borrowinfo.hasgudingzichan?greenhave:"无"}</CellFooter></Cell>

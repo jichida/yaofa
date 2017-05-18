@@ -193,20 +193,20 @@ class Page extends Component {
         PageForm = reduxForm({
             form: 'selectingFormValues',
             initialValues:{
-                hukou : this.props.userlogin.hukou||"江苏",
-                limithuabei: this.props.userlogin.limithuabei||"",
-                limitjiebei: this.props.userlogin.limitjiebei||"",
-                jiedaibaofuzai: this.props.userlogin.jiedaibaofuzai||"",
-                jiedaobaoyihuan: this.props.userlogin.jiedaobaoyihuan||"",
-                realtimeforphoneyear: this.props.userlogin.realtimeforphoneyear||"",
-                hasgudingzichan : this.props.userlogin.hasgudingzichan||false,
-                hasdanwei : this.props.userlogin.hasdanwei||false,
-                hasgongjijin : this.props.userlogin.hasgongjijin||false,
-                hasshebao : this.props.userlogin.hasshebao||false,
-                hassanhaotongyi : this.props.userlogin.hassanhaotongyi||false,
-                hasjinrihuankuan : this.props.userlogin.hasjinrihuankuan||false,
-                hasyuqijilu : this.props.userlogin.hasyuqijilu||false,
-                hasshenfenzhengyuanjian : this.props.userlogin.hasshenfenzhengyuanjian||false,
+                hukou : this.props.hukou||"江苏",
+                limithuabei: this.props.limithuabei||"",
+                limitjiebei: this.props.limitjiebei||"",
+                jiedaibaofuzai: this.props.jiedaibaofuzai||"",
+                jiedaobaoyihuan: this.props.jiedaobaoyihuan||"",
+                realtimeforphoneyear: this.props.realtimeforphoneyear||"",
+                hasgudingzichan : this.props.hasgudingzichan||false,
+                hasdanwei : this.props.hasdanwei||false,
+                hasgongjijin : this.props.hasgongjijin||false,
+                hasshebao : this.props.hasshebao||false,
+                hassanhaotongyi : this.props.hassanhaotongyi||false,
+                hasjinrihuankuan : this.props.hasjinrihuankuan||false,
+                hasyuqijilu : this.props.hasyuqijilu||false,
+                hasshenfenzhengyuanjian : this.props.hasshenfenzhengyuanjian||false,
             }
         })(PageForm);
 
@@ -222,9 +222,38 @@ class Page extends Component {
     }
 }
 
-const data = ({userlogin}) => {
-    console.log(userlogin);
-    return {userlogin};
+const data = ({userlogin:{
+    hukou,
+    limithuabei,
+    limitjiebei,
+    jiedaibaofuzai,
+    jiedaobaoyihuan,
+    realtimeforphoneyear,
+    hasgudingzichan,
+    hasdanwei,
+    hasgongjijin,
+    hasshebao,
+    hassanhaotongyi,
+    hasjinrihuankuan,
+    hasyuqijilu,
+    hasshenfenzhengyuanjian
+}}) => {
+    return {
+        hukou,
+        limithuabei,
+        limitjiebei,
+        jiedaibaofuzai,
+        jiedaobaoyihuan,
+        realtimeforphoneyear,
+        hasgudingzichan,
+        hasdanwei,
+        hasgongjijin,
+        hasshebao,
+        hassanhaotongyi,
+        hasjinrihuankuan,
+        hasyuqijilu,
+        hasshenfenzhengyuanjian
+    };
 };
 Page = connect(data)(Page);
 export default Page;

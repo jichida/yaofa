@@ -27,6 +27,7 @@ input, textarea{
 .submitBtn{
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
 .btn{
     display: flex;
