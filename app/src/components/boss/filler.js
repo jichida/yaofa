@@ -118,21 +118,20 @@ class FillerForm extends Component {
                         className="btnContent"
                         style={{borderTop:"1px solid #EEE"}}
                         >
-                        <span 
+                        <button 
                             className="btn Primary"
                             disabled={pristine || submitting}
-                            onClick={handleSubmit(setFiller)}
                             >
-                            确定
-                        </span>
-                        <span 
+                            <span>确定</span>
+                        </button>
+                        <button 
                             type="reset"
                             className="btn Default"
                             onClick={reset}
                             disabled={pristine || submitting}
                             >
-                            清空
-                        </span>
+                            <span>清空</span>
+                        </button>
                     </div>
                 </FormUI>
             </Form>

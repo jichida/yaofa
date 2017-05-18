@@ -45,7 +45,6 @@ export function* wsrecvsagaflow() {
         yield put(profit_set_profitid(action.payload.newitem._id));
         yield put(replace('/tixian3'));
     });
-
     //提现申请成功提交 withdrawcashapplyauth_request
     yield takeEvery(`${md_withdrawcashapplyauth_result}`, function*(action) {
         let toast = {
@@ -56,7 +55,6 @@ export function* wsrecvsagaflow() {
         yield put(set_weui({ toast }));
         yield put(goBack());
     });
-
     //修改用户借款资料 fillrealnameprofile_result
     yield takeEvery(`${fillrealnameprofile_result}`, function*(action) {
         let toast = {
@@ -67,7 +65,6 @@ export function* wsrecvsagaflow() {
         yield put(set_weui({ toast }));
         yield put(goBack());
     });
-
     //放款抢单 acceptorder_result
     yield takeEvery(`${acceptorder_result}`, function*(action) {
         let toast = {

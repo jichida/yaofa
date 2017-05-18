@@ -90,6 +90,7 @@ class Page extends Component {
                         {myorderlist.length>0?(
                             <Cells>
                                 {_.map(myorderlist,(order,index)=>{
+                                    console.log(order);
                                     return (
                                          <Cell
                                             access
@@ -104,7 +105,11 @@ class Page extends Component {
                                                 </div>
                                             </CellHeader>
                                             <CellBody>
-                                                {order.statusforlender}
+                                                <span>{order.statusforlender}</span>
+                                                {order.statusforlender=="放款成功"&&order.moneyreal>0?(
+                                                    <span className="color_error">去支付</span>
+                                                ):""}
+                                                
                                             </CellBody>
                                             <CellFooter/>
                                         </Cell>

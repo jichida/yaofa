@@ -77,7 +77,7 @@ class Page extends Component {
                     <botton 
                         className="btn Primary"
                         onClick={()=>{this.pushUrl("/addborrowuserinfo")}}
-                        >去修改</botton>
+                        ><span>去修改</span></botton>
                 </div>
                 ):""}
     		</div>

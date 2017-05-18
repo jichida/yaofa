@@ -133,7 +133,7 @@ export class RegisterPage extends Component {
                         className="btn register"
                         onClick={()=>{this.pageReplace("/login")}}
                         >
-                        登录
+                        <span>登录</span>
                     </span>
 				</div>
 			</Form>

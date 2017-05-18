@@ -171,7 +171,7 @@ class PageForm extends Component {
                     </FormUI>
                 </div>
                 <div className="submitBtn">
-                    <button className="btn Primary">确定</button>
+                    <button className="btn Primary"><span>确定</span></button>
                 </div>
             </Form>
         )
@@ -223,6 +223,7 @@ class Page extends Component {
 }
 
 const data = ({userlogin}) => {
+    console.log(userlogin);
     return {userlogin};
 };
 Page = connect(data)(Page);

@@ -368,7 +368,7 @@ class GetBorrowStatusInfo extends Component{
                                                           this.goPay(orderInfo);
                                                         }}
                                                             className="btn Primary"
-                                                            >去支付</button>
+                                                            ><span>去支付</span></button>
                                                     </CellFooter>
                                                 </Cell>
                                             </Cells>
@@ -423,7 +423,7 @@ class GetBorrowStatusInfo extends Component{
                                                     <CellFooter>
                                                         <button
                                                             className="btn Primary"
-                                                            >去提现</button>
+                                                            ><span>去提现</span></button>
                                                     </CellFooter>
                                                 </Cell>
                                             </Cells>

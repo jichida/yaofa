@@ -50,15 +50,12 @@ class Page extends Component {
                                 {data.status?(
                                     <Icon value="success-no-circle" />
                                 ):(
-                                    <span className="statustxt">待认证</span>
+                                    <span className="statustxt">去认证</span>
                                 )}
 
                             </div>
                         )
                     })}
-                </div>
-                <div className="btn Primary">
-                    去认证
                 </div>
             </div>
     	)

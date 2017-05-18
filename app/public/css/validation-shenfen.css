@@ -1,3 +1,7 @@
 .validationShenfenPage .btn{
 	margin: 30px;
 }
+.validationShenfenPage .list{
+	display: flex;
+	flex-direction: column;
+}

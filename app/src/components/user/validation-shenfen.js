@@ -9,7 +9,9 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/validation-shenfen.css';
 import _ from 'lodash';
-import {userauthentication_request} from '../../actions';
+import {
+    userauthentication_request,
+    set_weui} from '../../actions';
 
 const {
     Icon,
@@ -32,7 +34,11 @@ import {
 class ShenfenvalidationForm extends Component {
 
 	render() {
-        const {handleSubmit,validationSubmit} = this.props;
+        const {
+            handleSubmit,
+            validationSubmit,
+            submitting
+        } = this.props;
         return (
             <Form
                 onSubmit={handleSubmit(validationSubmit)}
@@ -58,8 +64,10 @@ class ShenfenvalidationForm extends Component {
                         InputTit="身份证号"
                     />
                 </FormUI>
-                <button className="btn Primary">
-                    确认 ｜ 下一步
+                <button 
+                    disabled={submitting}
+                    className="btn Primary">
+                    <span>确认 ｜ 下一步</span>
                 </button>
             </Form>
       	);
@@ -71,20 +79,19 @@ ShenfenvalidationForm = reduxForm({
 })(ShenfenvalidationForm);
 
 class Page extends Component {
-
     testSubmit = (value)=>{
-        console.log(value);
+        //console.log(value);
         this.props.dispatch(userauthentication_request({
             type:'id',
             data:value
         }));
+        //loading
     }
-
 	render() {
         return (
     		<div className="validationShenfenPage AppPage">
         		<DocumentTitle title="身份信息" />
-                <ShenfenvalidationForm validationSubmit={this.testSubmit}/>
+                <ShenfenvalidationForm validationSubmit={this.testSubmit} />
         	</div>
     	)
     }

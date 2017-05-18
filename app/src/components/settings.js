@@ -105,11 +105,11 @@ class Page extends Component {
                 </Cells>
 
                 <div className="submitBtn">
-                    <botton 
+                    <button 
                         onClick = {()=>{this.onClickLogout()}}
                         className="btn Primary">
-                        退出登录
-                    </botton>
+                        <span>退出登录</span>
+                    </button>
                 </div>
     		</div>
     	)

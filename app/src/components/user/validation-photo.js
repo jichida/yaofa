@@ -76,33 +76,27 @@ class PageForm extends Component {
      }
 }
 
-PageForm = reduxForm({
-    form: 'PageForm',
-    initialValues:{
-        
-    }
-})(PageForm);
-
 class Page extends Component {
     submitfn=(value)=>{
-        value.urlphoneid1 = value.urlphoneid1=="img/11.png"?"":value.urlphoneid1;
-        value.urlphoneid2 = value.urlphoneid2=="img/13.png"?"":value.urlphoneid2;
-        value.urlphoneid3 = value.urlphoneid3=="img/45.png"?"":value.urlphoneid3;
+        value.urlphoneid1 = value.urlphoneid1==="img/11.png"?null:value.urlphoneid1;
+        value.urlphoneid2 = value.urlphoneid2==="img/13.png"?null:value.urlphoneid2;
+        value.urlphoneid3 = value.urlphoneid3==="img/45.png"?null:value.urlphoneid3;
         let payload = {
             data:{...value}
         };
         this.props.dispatch(fillrealnameprofile_request(payload));
     }
     render() {
-        const { userlogin } = this.props;
+        const { urlphoneid1,urlphoneid2,urlphoneid3 } = this.props;
         PageForm = reduxForm({
             form: 'selectingFormValues',
             initialValues:{
-                urlphoneid1 : userlogin.urlphoneid1==''?"img/11.png":userlogin.userphoto1,
-                urlphoneid2: userlogin.urlphoneid2==''?"img/12.png":userlogin.userphoto2,
-                urlphoneid3: userlogin.urlphoneid3==''?"img/45.png":userlogin.userphoto3,
+                urlphoneid1: urlphoneid1 || "img/11.png",
+                urlphoneid2: urlphoneid2 || "img/12.png",
+                urlphoneid3: urlphoneid3 || "img/45.png",
             }
         })(PageForm);
+
         return (
             <div className="validationPhotoPage AppPage">
                 <DocumentTitle title="身份信息" />
@@ -115,8 +109,8 @@ class Page extends Component {
         )
     }
 }
-const data = ({userlogin}) => {
-    return {userlogin};
+const data = ({userlogin:{urlphoneid1,urlphoneid2,urlphoneid3}}) => {
+    return {urlphoneid1,urlphoneid2,urlphoneid3};
 };
 Page = connect(data)(Page);
 export default Page;

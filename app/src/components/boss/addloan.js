@@ -80,10 +80,9 @@ class PageForm extends Component{
                     />
                 </FormUI>
                 <div className="submitBtn">
-                    <span 
+                    <button 
                         className="btn Primary"
-                        onClick={handleSubmit(addloanSubmit)}
-                        >确定</span>
+                        ><span>确定</span></button>
                 </div>
             </Form>
         )

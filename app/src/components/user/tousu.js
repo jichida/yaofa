@@ -107,7 +107,7 @@ class Page extends Component {
                         <button 
                             className="btn Primary"
                             onClick={()=>{this.submitContent()}}
-                        >确定</button>
+                        ><span>确定</span></button>
                     </div>
                 </div>
     		</div>

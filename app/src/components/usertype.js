@@ -78,7 +78,7 @@ class Page extends Component {
                     className="btn Primary"
                     onClick={()=>{this.subform()}}
                     >
-                    确定</div>
+                    <span>确定</span></div>
     		</div>
     	)
     }

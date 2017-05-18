@@ -42,7 +42,9 @@ const userlogin = createReducer({
         // console.log("login_result login_result ::"+JSON.stringify(userinfo));
         let usertype = localStorage.getItem("usertype");
         if(!!usertype){
-            localStorage.setItem(`${usertype}_user_token`, userinfo.token);
+            if(!!userinfo.token){
+                localStorage.setItem(`${usertype}_user_token`, userinfo.token);
+            }
             return { ...state, ...userinfo};
         }else{
             return { ...state }

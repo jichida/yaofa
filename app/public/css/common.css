@@ -24,6 +24,10 @@ input, textarea{
     outline: none;
     resize: none;
 }
+.submitBtn{
+    display: flex;
+    flex-direction: column;
+}
 .btn{
     display: flex;
     justify-content: center;
@@ -31,6 +35,12 @@ input, textarea{
     height: 44px;
     text-align: center;
     border-radius: 6px;
+}
+.btn>span{
+    display: block;
+    text-align: center;
+    flex-grow: 1;
+    font-size: 16px;
 }
 .btn.Primary{
     background: #3479e1;
