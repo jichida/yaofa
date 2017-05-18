@@ -60,7 +60,12 @@ const UserBorrowlistEdit = (props) => {
               <ImageField source="urlphoneid2" label="身份证照片反面" addLabel={true}/>
               <ImageField source="urlphoneid3" label="身份证照片手持" addLabel={true}/>
               <TextInput label="认证结果(拒绝理由)" source="resultrealname_obj" />
-              <BooleanInput label="实名认证结果" source="resultrealname"  elStyle={{ float: 'left' }}/>
+              <SelectInput  label="照片认证"  source="resultrealname" choices={[
+                  { id: -1, name: '认证失败' },
+                  { id: 0 , name: '未递交资料' },
+                  { id: 1, name: '认证中' },
+                  { id: 2, name: '认证成功' },
+              ]} />
               </FormTab>
               <FormTab label="resources.userborrower.tabs.realinfo">
               <TextField label="真实姓名" source="truename" />
@@ -71,15 +76,40 @@ const UserBorrowlistEdit = (props) => {
               <TextField label="淘宝密码"  source="taobaopassword" />
               </FormTab>
               <FormTab label="resources.userborrower.tabs.authresult">
-               <BooleanField label="身份认证结果" source="resultid"  elStyle={{ float: 'left' }}/>
+              <SelectInput  label="身份认证结果"  source="resultid" choices={[
+                    { id: -1, name: '认证失败' },
+                    { id: 0 , name: '未递交资料' },
+                    { id: 1, name: '认证中' },
+                    { id: 2, name: '认证成功' },
+                ]} />
                <TextField label="结果"  source="resultid_obj" />
-               <BooleanField label="运营商认证结果" source="resultphone"  elStyle={{ float: 'left' }}/>
+               <SelectInput  label="运营商认证结果"  source="resultphone" choices={[
+                     { id: -1, name: '认证失败' },
+                     { id: 0 , name: '未递交资料' },
+                     { id: 1, name: '认证中' },
+                     { id: 2, name: '认证成功' },
+                 ]} />
                <TextField label="结果"  source="resultphone_obj" />
-               <BooleanField label="芝麻分认证结果" source="resultzhima"   elStyle={{ float: 'left' }}/>
+               <SelectInput  label="芝麻分认证结果"  source="resultzhima" choices={[
+                     { id: -1, name: '认证失败' },
+                     { id: 0 , name: '未递交资料' },
+                     { id: 1, name: '认证中' },
+                     { id: 2, name: '认证成功' },
+                 ]} />
                <TextField label="结果"  source="resultzhima_obj" />
-               <BooleanField label="淘宝认证结果" source="resulttaobao"  elStyle={{ float: 'left' }}/>
+               <SelectInput  label="淘宝认证结果"  source="resulttaobao" choices={[
+                     { id: -1, name: '认证失败' },
+                     { id: 0 , name: '未递交资料' },
+                     { id: 1, name: '认证中' },
+                     { id: 2, name: '认证成功' },
+                 ]} />
                <TextField label="结果"  source="resulttaobao_obj" />
-               <BooleanField label="实名认证结果" source="resultrealname"  elStyle={{ float: 'left' }}/>
+               <SelectInput  label="实名认证结果"  source="resultrealname" choices={[
+                     { id: -1, name: '认证失败' },
+                     { id: 0 , name: '未递交资料' },
+                     { id: 1, name: '认证中' },
+                     { id: 2, name: '认证成功' },
+                 ]} />
                <TextField label="结果"  source="resultrealname_obj" />
               </FormTab>
               <FormTab label="resources.userborrower.tabs.personalasset">

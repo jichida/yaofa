@@ -44,11 +44,13 @@ let UserBorrowerSchema = new Schema({
     resultzhima_obj:String,//芝麻分错误原因
     resulttaobao_obj:String,//淘宝错误原因
     resultrealname_obj:String,//实名认证错误原因
-    resultid:{ type: Boolean, default: false },//身份认证
-    resultphone:{ type: Boolean, default: false },//运营商认证
-    resultzhima:{ type: Boolean, default: false },//芝麻分
-    resulttaobao:{ type: Boolean, default: false },//淘宝
-    resultrealname:{ type: Boolean, default: false },//实名认证
+
+    resultid:{ type:  Schema.Types.Number, default: 0 },//身份认证,-1:失败，0,未递交，1：递交中，2：成功
+    resultphone:{ type:  Schema.Types.Number, default: 0 },//运营商认证，-1:失败，0,未递交，1：递交中，2：成功
+    resultzhima:{ type:  Schema.Types.Number, default: 0 },//芝麻分，-1:失败，0,未递交，1：递交中，2：成功
+    resulttaobao:{ type:  Schema.Types.Number, default: 0 },//淘宝，-1:失败，0,未递交，1：递交中，2：成功
+    resultrealname:{ type:  Schema.Types.Number, default: 0 },//实名认证，-1:失败，0,未递交，1：递交中，2：成功
+    submit_at: { type: Date, default:new Date()},
 
     hukou:String,
     limithuabei:Number,//花呗额度
@@ -144,11 +146,13 @@ let OrderSchema = new Schema({
     feeservice:Number,//服务费
     depositratio:Number,//押金比
     moneyreal:Number,//实付价
-    orderstatus:{ type: Number, default:0},//0:借款中,1:（待确认／已接单）,2:（放款中／已确认）,3:放款成功！／4:订单完成
+    orderstatus:{ type: Number, default:0},//0:借款中,1:（待确认／已接单）,2:（放款中／已确认）,3:放款成功！(待支付)／4:订单完成/-1:异常订单，-2：放款失败
     statusforborrower:String,//借款中/待确认/放款中/放款成功/订单完成
     statusforlender:String,//借款中／已接单/已确认/放款成功/订单完成
-    paystatus:{ type: String, default:'未支付'},
+    paystatus:{ type: String, default:'未支付'},//已支付、未支付
     created_at: { type: Date, default:new Date()},
+    errorreason:String,//异常信息
+    matched_at:Date,
     pay_at:Date,
 });
 OrderSchema.plugin(mongoosePaginate);
