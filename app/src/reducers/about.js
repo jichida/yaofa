@@ -14,16 +14,24 @@ const initial = {
     'servicerule':{
       title:'服务协议',
       desc:'服务协议'
+    },
+    'feeminu':{
+      title:'收费规则',
+      desc:'收费规则'
+    },
+    'feepuls':{
+      title:'收益规则',
+      desc:'收益规则'
     }
   },
 };
 
 const about = createReducer({
-  [getabouthtml_result]: (state, {aboutdoc}) => {
-    return { ...state,
+    [getabouthtml_result]: (state, {aboutdoc}) => {
+        return { ...state,
             [aboutdoc.keyname]:{
-              title:aboutdoc.title,
-              desc:aboutdoc.desc,
+                title:aboutdoc.title,
+                desc:aboutdoc.desc,
             }
         };
   },

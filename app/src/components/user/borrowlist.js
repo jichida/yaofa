@@ -52,7 +52,7 @@ class Page extends Component {
     getList =(status)=>{
         let query = {};
         if(status=="已完成"){
-            query.statusforlender = status;
+            query.statusforlender = "已完成";
         }else{
             query.statusforlender = { $ne: "已完成" };
         }
@@ -115,9 +115,17 @@ class Page extends Component {
     }
 }
 
-const data = ({userborrow:{myorderlist, myorderlistStatus}}) => {
-    myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
+const data = ({order:{myorderlistStatus,myorderlist}}) => {
+    myorderlist = _.sortBy(myorderlist, [function(o){ 
+        if(o.orderstatus<0){
+            o.orderstatus = -(o.orderstatus)+4
+        }
+        return -o.orderstatus;
+    }]);
     return {myorderlist, myorderlistStatus};
 };
 Page = connect(data)(Page);
 export default Page;
+
+
+

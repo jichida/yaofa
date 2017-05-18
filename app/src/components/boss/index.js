@@ -16,7 +16,8 @@ import {
     set_lender_borrowlist,
     set_lender_borrowlist_filler,
     queryintrestedorder_request,
-    set_orderinfo
+    set_orderinfo,
+    set_weui
 } from '../../actions';
 
 const { 
@@ -85,6 +86,7 @@ class Page extends Component {
                     {borrowlist.length>0?(
                         <Cells>
                             {
+
                                 _.map(borrowlist, (borrow,index)=>{
                                     return (
                                         <Cell 
@@ -93,9 +95,9 @@ class Page extends Component {
                                             onClick={()=>{this.gotoBorrowInfo(borrow);}}
                                             >
                                             <CellHeader>
-                                                <img src="img/6.png" alt="" />
+                                                <img src={borrow.creator.profile.avatar} alt="" />
                                                 <div className="userinfo">
-                                                    <span className="name">borrow.created.profile.nickname</span>
+                                                    <span className="name">{borrow.creator.profile.nickname}</span>
                                                     <span className="time">借款期限: {borrow.moneyperiod}</span>
                                                     <span className="time">发布时间: {moment(borrow.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
                                                     
@@ -123,6 +125,8 @@ class Page extends Component {
 }
 
 const data = ({userlender:{borrowlist,borrowlistfiller}}) => {
+    console.log(borrowlist);
+    borrowlist = _.sortBy(borrowlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
     return {borrowlist,borrowlistfiller};
 };
 Page = connect(data)(Page);

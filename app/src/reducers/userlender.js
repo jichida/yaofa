@@ -2,12 +2,17 @@
  * Created by wangxiaoqing on 2017/3/20.
  */
 import { createReducer } from 'redux-act';
+import _ from 'lodash';
 import {
     set_lender_borrowlist_filler,
     queryintrestedorder_result,
     set_addloanid,
-    set_loanlist,
-    acceptorder_result
+    acceptorder_result,
+    logout_result,
+    getmyorders_result,
+    lender_set_endorder_moneyreal,
+    lender_set_ui_endorder,
+    lender_set_endorder_status,
 } from '../actions/index.js';
 
 const initial = {
@@ -15,7 +20,10 @@ const initial = {
         borrowlist : [],
         borrowlistfiller : {},
         addloanid : '',
-        loanlist : []
+        myorderlist: {},
+        ui_endorder : false,
+        endorder_moneyreal: 0,
+        endorder_status : true,
     },
 };
 
@@ -29,14 +37,27 @@ const userlender = createReducer({
     [set_addloanid]: (state, id) => {
         return { ...state, addloanid: id };
     },
-    [set_loanlist]:(state, id) => {
-        return { ...state, addloanid: id };
+    //获取我的放款订单列表
+    // [getmyorders_result]: (state, payload) => {
+    //     let newmyorderlist = {};
+    //     _.map(payload.list.docs, (order,index)=>{
+    //         newmyorderlist[order._id]=order;
+    //     })
+    //     return { ...state, myorderlist:newmyorderlist };
+    // },
+    //退出登录
+    [logout_result]:(state, result) => {
+        return { ...state,...initial.userlender}
     },
-    //放款回调
-    [acceptorder_result]:(state, payload) => {
-        console.log("acceptorder_result>>>:::"+JSON.stringify(payload));
-        return { ...state };
+    //
+    [lender_set_ui_endorder]:(state, ui_endorder) => {
+        return { ...state, ui_endorder}
     },
+    //
+    [lender_set_endorder_status]:(state, endorder_status) => {
+        return { ...state, endorder_status}
+    },
+    
 }, initial.userlender);
 
 export default userlender;

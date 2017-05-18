@@ -40,13 +40,14 @@ class Page extends Component {
 
     clickitem =(borrowinfo)=>{
         this.props.dispatch(set_borrowinfo(borrowinfo));
-        this.props.history.push("/bossborrowuserinfo");
+        this.props.history.push("/borrowuserinfo");
     }
 
 	render() {
         const { borrowlist } = this.props;
         return (
             <div className="indexPage AppPage">
+                <DocumentTitle title="耀发钱庄-借款端" />
         		<SwiperBanner data={this.headBanner()} />
                 <div className="pageTitle bossindexfiller">
                     <span>我的邀请列表</span>

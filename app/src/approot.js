@@ -1,4 +1,4 @@
-/**
+    /**
  * Created by wangxiaoqing on 2017/3/27.
  */
 import React from 'react';
@@ -13,12 +13,16 @@ import Index from "./components/index";
 import Login from "./components/login";
 //注册
 import Register from "./components/register";
+//邀请码注册借款人
+import Registerborrow from "./components/registerborrow";
 //忘记密码
 import ResetPassword from "./components/resetpassword";
 //选择用户类型
 import UserType from "./components/usertype";
 //设置
 import Settings from "./components/settings";
+//关于我们
+import Abouthtml from "./components/abouthtml";
 
 /*
     借款人端
@@ -51,7 +55,8 @@ import ValidationTaobao from "./components/user/validation-taobao";
 import BorrowUserInfo from "./components/user/borrowuserinfo";
 //完善借款资料
 import AddBorrowUserInfo from "./components/user/addborrowuserinfo";
-
+//完善借款资料
+import Tousu from "./components/user/tousu";
 
 /*放款端*/
 //首页
@@ -74,8 +79,20 @@ import AgencyIndex from "./components/agency/index";
 import AgencyUserCenter from "./components/agency/usercenter";
 //借款列表
 import AgencyBorrowList from "./components/agency/borrowlist";
+//我的邀请码
+import AgencyQRcode from "./components/agency/agencyqrcode";
+//我的钱包
+import Agencyprofit from "./components/agency/profit";
+//提现第一步
+import Tixian from "./components/agency/tixian";
+//提现第二步
+import Tixian2 from "./components/agency/tixian2";
+//提现第二步
+import Tixian3 from "./components/agency/tixian3";
 
 import {requireAuthentication} from './components/requireauthentication';
+
+
 
 //认证，集成第三方页面，运营商认证和淘宝认证
 import Validationhtml from './components/user/validationhtml';
@@ -97,32 +114,44 @@ const CoApp = (props) => {
             <CustomRoute exact path="/usertype" component={UserType}/>
             <CustomRoute exact path="/login" component={Login}/>
             <CustomRoute exact path="/register" component={Register}/>
-            <CustomRoute exact path="/userindex" component={UserIndex}/>
-            <CustomRoute exact path="/bossindex" component={BossIndex}/>
-            <CustomRoute exact path="/settings" component={Settings}/>
+            <CustomRoute exact path="/registerborrow/:code" component={Registerborrow}/>
+            <CustomRoute exact path="/userindex" component={requireAuthentication(UserIndex)}/>
+            <CustomRoute exact path="/bossindex" component={requireAuthentication(BossIndex)}/>
+            <CustomRoute exact path="/settings" component={requireAuthentication(Settings)}/>
+            <CustomRoute exact path="/resetpassword" component={requireAuthentication(ResetPassword)}/>
+            <CustomRoute exact path="/abouthtml/:type" component={Abouthtml}/>
+
+            <CustomRoute exact path="/agencyindex" component={requireAuthentication(AgencyIndex)}/>
+            <CustomRoute exact path="/agencyusercenter" component={requireAuthentication(AgencyUserCenter)}/>
+            <CustomRoute exact path="/agencyborrowlist" component={requireAuthentication(AgencyBorrowList)}/>
+
+            <CustomRoute exact path="/bossaddloan" component={requireAuthentication(BossAddLoan)}/>
+            <CustomRoute exact path="/bossfiller" component={requireAuthentication(BossFiller)}/>
+            <CustomRoute exact path="/bossusercenter" component={requireAuthentication(BossUserCenter)}/>
+            <CustomRoute exact path="/bossloanlist" component={requireAuthentication(BossLoanList)}/>
+            <CustomRoute exact path="/loaninfo" component={requireAuthentication(Loaninfo)}/>
+
+            <CustomRoute exact path="/addborrow" component={requireAuthentication(AddBorrow)}/>
+            <CustomRoute exact path="/addBorrowUserInfo" component={requireAuthentication(AddBorrowUserInfo)}/>
+            <CustomRoute exact path="/usercenter" component={requireAuthentication(UserCenter)}/>
+            <CustomRoute exact path="/borrowlist" component={requireAuthentication(BorrowList)}/>
+            <CustomRoute exact path="/borrowinfo" component={requireAuthentication(BorrowInfo)}/>
+            <CustomRoute exact path="/validation" component={requireAuthentication(Validation)}/>
+            <CustomRoute exact path="/agencyqrcode" component={requireAuthentication(AgencyQRcode)}/>
+            <CustomRoute exact path="/borrowuserinfo" component={requireAuthentication(BorrowUserInfo)}/>
+            <CustomRoute exact path="/addborrowuserinfo" component={requireAuthentication(AddBorrowUserInfo)}/>
+            <CustomRoute exact path="/validationshenfen" component={requireAuthentication(ValidationShenfen)}/>
+            <CustomRoute exact path="/validationphone" component={requireAuthentication(ValidationPhone)}/>
+            <CustomRoute exact path="/validationtaobao" component={requireAuthentication(ValidationTaobao)}/>
+            <CustomRoute exact path="/validationzhima" component={requireAuthentication(ValidationZhima)}/>
+            <CustomRoute exact path="/validationphoto" component={requireAuthentication(ValidationPhoto)}/>
+            <CustomRoute exact path="/agencyprofit" component={requireAuthentication(Agencyprofit)}/>
+            <CustomRoute exact path="/tixian" component={requireAuthentication(Tixian)}/>
+            <CustomRoute exact path="/tixian2" component={requireAuthentication(Tixian2)}/>
+            <CustomRoute exact path="/tixian3" component={requireAuthentication(Tixian3)}/>
+            <CustomRoute exact path="/tousu" component={requireAuthentication(Tousu)}/>
 
 
-            <CustomRoute exact path="/agencyindex" component={AgencyIndex}/>
-            <CustomRoute exact path="/agencyusercenter" component={AgencyUserCenter}/>
-            <CustomRoute exact path="/agencyborrowlist" component={AgencyBorrowList}/>
-
-            <CustomRoute exact path="/bossaddloan" component={BossAddLoan}/>
-            <CustomRoute exact path="/bossfiller" component={BossFiller}/>
-            <CustomRoute exact path="/bossusercenter" component={BossUserCenter}/>
-            <CustomRoute exact path="/bossloanlist" component={BossLoanList}/>
-
-            <CustomRoute exact path="/addborrow" component={AddBorrow}/>
-            <CustomRoute exact path="/addBorrowUserInfo" component={AddBorrowUserInfo}/>
-            <CustomRoute exact path="/usercenter" component={UserCenter}/>
-            <CustomRoute exact path="/borrowlist" component={BorrowList}/>
-            <CustomRoute exact path="/borrowinfo" component={BorrowInfo}/>
-            <CustomRoute exact path="/validation" component={Validation}/>
-            <CustomRoute exact path="/borrowuserinfo" component={BorrowUserInfo}/>
-            <CustomRoute exact path="/addborrowuserinfo" component={AddBorrowUserInfo}/>
-            <CustomRoute exact path="/validationshenfen" component={ValidationShenfen}/>
-            <CustomRoute exact path="/validationphone" component={ValidationPhone}/>
-            <CustomRoute exact path="/validationtaobao" component={ValidationTaobao}/>
-            <CustomRoute exact path="/validationzhima" component={ValidationZhima}/>
 
             <CustomRoute exact path="/validationhtml/:type" component={requireAuthentication(Validationhtml)}/>
             <CustomRoute exact path="/notifysuc" component={NotifySuc}/>

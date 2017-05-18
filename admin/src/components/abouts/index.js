@@ -50,6 +50,8 @@ const AboutlistCreate = (props) => {
                 { id: 'helpcenter', name: '帮助中心' },
                 { id: 'aboutus', name: '关于我们' },
                 { id: 'servicerule', name: '服务协议' },
+                { id: 'feepuls', name: '中介提成说明' },
+                { id: 'feeminu', name: '扣费说明' },
             ]} />
               <TextInput label="标题"  source="title" />
               <RichTextInput label="详细信息" source="desc" addLabel={false}/>
@@ -67,6 +69,8 @@ const AboutlistEdit = (props) => {
                 { id: 'helpcenter', name: '帮助中心' },
                 { id: 'aboutus', name: '关于我们' },
                 { id: 'servicerule', name: '服务协议' },
+                { id: 'feepuls', name: '中介提成说明' },
+                { id: 'feeminu', name: '扣费说明' },
             ]} />
               <TextInput label="标题"  source="title" />
               <RichTextInput label="详细信息" source="desc" addLabel={false}/>

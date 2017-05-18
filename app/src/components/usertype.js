@@ -20,12 +20,20 @@ const {
 
 class Page extends Component {
 
+    
+    componentWillMount() {
+        let loginsuccess = this.props.loginsuccess;
+        if(loginsuccess){
+            this.props.history.replace("/login");
+        }
+    }
+
     selusertype = (type)=>{
         this.props.dispatch(user_type(type));
     };
 
     subform = ()=>{
-        this.props.history.replace("/login");
+        this.props.history.push("/login");
     };
 
 	render() {
@@ -70,14 +78,14 @@ class Page extends Component {
                     className="btn Primary"
                     onClick={()=>{this.subform()}}
                     >
-                    确定</div>
+                    <span>确定</span></div>
     		</div>
     	)
     }
 }
 
-const data = ({userlogin:{usertype}}) => {
-    return {usertype};
+const data = ({userlogin:{usertype,loginsuccess}}) => {
+    return {usertype,loginsuccess};
 };
 
 Page = connect(data)(Page);

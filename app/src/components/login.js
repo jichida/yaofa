@@ -3,10 +3,11 @@ import DocumentTitle from "react-document-title";
 import '../../public/css/login.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Fields, Field, reduxForm, Form } from 'redux-form';
+import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {
   loginwithtoken_request,
-  loginwithweixinopenid_request
+  loginwithweixinopenid_request,
+  loginwithusername_request
 } from '../actions';
 import { required, InputValidation, phone, length4 } from "./tools/formvalidation"
 
@@ -14,42 +15,23 @@ export class LoginPage extends Component {
 
     componentWillMount() {
         let usertype = localStorage.getItem('usertype');
+        let openid = "";
         let token = localStorage.getItem(`${usertype}_user_token`);
         if(token){
             this.props.dispatch(loginwithtoken_request({token}));
-        }else{
-            this.props.dispatch(loginwithweixinopenid_request({weixinopenid:'1111111114'}));
         }
-        
     }
 
     pagePush=(name)=>{
         this.props.history.push(name);
     }
 
-    login1=()=>{
-        this.props.dispatch(
-            loginwithweixinopenid_request({weixinopenid:'1111111111'}));
-    }
-    login2=()=>{
-        this.props.dispatch(
-            loginwithweixinopenid_request({weixinopenid:'1111111112'}));
-    }
-
-    //发送验证码
-    sendcode=(value)=>{
-        console.log(value);
-        //let payload = {phonenumber:'15961125167'};
-        //dispatch(sendauth_request(payload));
-    }
-
 	render() {
-        const { handleSubmit,onClickLogin } = this.props;
+        const { handleSubmit,onClickLogin,username,pristine,submitting } = this.props;
         return (
 			<Form 
                 className="loginForm formStyle1"
                 onSubmit={handleSubmit(onClickLogin)}
-                style={{display:"none"}}
                 >
 
                 <div className="li" >
@@ -78,26 +60,6 @@ export class LoginPage extends Component {
                         validate={[ required ]}
                     />
                 </div>
-                <div className="li">
-                    <span className="icon">
-                        <img src="img/31.png" />
-                    </span>
-                    <Field
-                        name="code"
-                        id="code"
-                        placeholder="请输入验证码"
-                        type="text"
-                        maxlength="4"
-                        component={ InputValidation }
-                        validate={[ required,length4 ]}
-                    />
-                    <span 
-                        className="btn Primary getYanzhen"
-                        onClick={this.sendcode}
-                        >
-                        获取验证码
-                    </span>
-                </div>
 
                 <span 
                     className="getPassword"
@@ -106,11 +68,13 @@ export class LoginPage extends Component {
                     忘记密码?
                 </span>
 				<div className="submitBtn">
-                    <button
+                    <span
                         className="btn login"
+                        disabled={pristine || submitting}
+                        onClick={handleSubmit(onClickLogin)}
                         >
                         登录
-                    </button>
+                    </span>
                     <span
                         className="btn register"
                         onClick={()=>{this.pagePush("/register")}}
@@ -118,24 +82,16 @@ export class LoginPage extends Component {
                         注册
                     </span>
 				</div>
-
-                <div
-                    onClick={this.login1} 
-                    >中介登录</div>
-                <div
-                    onClick={this.login2} 
-                    >借款人登录</div>
 			</Form>
     	)
     }
 }
 
 LoginPage = reduxForm({
-    form: 'simple'
+    form: 'LoginPageForm'
 })(LoginPage);
 
 LoginPage = withRouter(LoginPage);
-
 
 export class Page extends Component {
     componentWillMount() {
@@ -151,10 +107,8 @@ export class Page extends Component {
             authcode: value.authcode,
             password: value.password,
         };
-        if(usertype === 'userborrow'){
-            payload.invitecode = '';
-        }
-
+        console.log(value);
+        this.props.dispatch(loginwithusername_request(payload));
     }
     render() {
         return (

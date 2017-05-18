@@ -41,6 +41,7 @@ export default {
       },
       tabs:{
         basicinfo:'基本信息',
+        canaccept:'允许接单设置',
         realinfo:'实名资料',
       }
     },

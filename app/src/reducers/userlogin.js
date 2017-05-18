@@ -7,7 +7,9 @@ import {
     register_result,
     user_type,
     sendauth_result,
-    logout_result
+    logout_result,
+    confirmorder_result,
+    fillrealnameprofile_result
 } from '../actions/index.js';
 
 const initial = {
@@ -24,6 +26,11 @@ const initial = {
         usertype: '',//用户类型 借款 userborrow 中介 useragency 放款 userlender
 
         //register
+        canaccept : true,
+
+        urlphoneid1:'',//身份证照片正面
+        urlphoneid2:'',//身份证照片反面
+        urlphoneid3:'',//身份证照片手持
         
     },
 };
@@ -32,12 +39,20 @@ const userlogin = createReducer({
 
     //登录回调
     [login_result]: (state, userinfo) => {
-        console.log("login_result login_result ::"+JSON.stringify(userinfo));
+        // console.log("login_result login_result ::"+JSON.stringify(userinfo));
         let usertype = localStorage.getItem("usertype");
-        localStorage.setItem(`${usertype}_user_token`, userinfo.token);
-        return { ...state, ...userinfo};
+        if(!!usertype){
+            if(!!userinfo.token){
+                localStorage.setItem(`${usertype}_user_token`, userinfo.token);
+            }
+            return { ...state, ...userinfo};
+        }else{
+            return { ...state }
+        }
+        
     },
     [logout_result]:(state, result) => {
+        
         return { ...state,...initial.userlogin}
     },
     //设置用户类型
@@ -54,6 +69,15 @@ const userlogin = createReducer({
     [register_result]:(state, result)=>{
         //console.log(result);
         return { ...state }
+    },
+    //修改用户资料回调
+    [fillrealnameprofile_result]:(state, result) => {
+        return { ...state, ...result };
+    },
+    //借款人确认商家回调
+    [confirmorder_result]:(state, payload) => {
+        let canaccept = false;
+        return { ...state,  canaccept};
     },
 }, initial.userlogin);
 

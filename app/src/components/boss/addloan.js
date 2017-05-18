@@ -80,7 +80,9 @@ class PageForm extends Component{
                     />
                 </FormUI>
                 <div className="submitBtn">
-                    <button className="btn Primary">确定</button>
+                    <button 
+                        className="btn Primary"
+                        ><span>确定</span></button>
                 </div>
             </Form>
         )

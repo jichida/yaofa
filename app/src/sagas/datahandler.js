@@ -42,18 +42,49 @@ import {
     getmyborrowusers_result,
 
     loginwithtoken_request,
+    loginwithusername_request,
+
     logout_request,
     logout_result,
     common_err,
 
+    fillrealnameprofile_result,
+    fillrealnameprofile_request,
+
     md_insertorder_result,
 
     userauthenticationhtml_request,
-    userauthenticationhtml_result
+    userauthenticationhtml_result,
+
+    payorder_request,
+    payorder_result,
+    getpaysign_request,
+    getpaysign_result,
+
+    withdrawcashapplyauth_request,
+    withdrawcashapplyauth_result,
+
+    withdrawcashapplyaddone_request,
+    withdrawcashapplyaddone_result,
+    md_withdrawcashapplyaddone_result,
+    md_withdrawcashapplyauth_result,
+
+    queryuserstatus_request,
+    queryuserstatus_result,
+    getsystemconfig_result,
+    getsystemconfig_request,
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+  'getsystemconfig_result':getsystemconfig_result,
+  'queryuserstatus_result':queryuserstatus_result,
+  'payorder_result':payorder_result,
+  'getpaysign_result':getpaysign_result,
+
+  'withdrawcashapplyauth_result':md_withdrawcashapplyauth_result,
+  'withdrawcashapplyaddone_result':md_withdrawcashapplyaddone_result,
+
   'userauthenticationhtml_result':userauthenticationhtml_result,
   'logout_result':logout_result,
   'getmyborrowusers_result':getmyborrowusers_result,
@@ -70,11 +101,15 @@ exports.recvmessagetoresultpair = {
   'confirmorder_result':confirmorder_result,
   'queryintrestedorder_result':queryintrestedorder_result,
   'userauthentication_result':userauthentication_result,
-  'getrechargerecords_result':getrechargerecords_result
+  'getrechargerecords_result':getrechargerecords_result,
+  'fillrealnameprofile_result':fillrealnameprofile_result
 };
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+    'getsystemconfig':getsystemconfig_request,
+    'fillrealnameprofile':fillrealnameprofile_request,
+    'loginwithusername':loginwithusername_request,
     'loginwithtoken':loginwithtoken_request,
     'logout':logout_request,
     'login':login_request,
@@ -88,6 +123,13 @@ exports.sendmessagefnsz = {
 
 //验证发送接口
 exports.sendmessageauthfnsz = {
+    'queryuserstatus':queryuserstatus_request,
+    'payorder':payorder_request,
+    'getpaysign':getpaysign_request,
+
+    'withdrawcashapplyauth':withdrawcashapplyauth_request,
+    'withdrawcashapplyaddone':withdrawcashapplyaddone_request,
+
     'fillprofile':fillprofile_request,
     'insertorder':insertorder_request,
     'acceptorder':acceptorder_request,

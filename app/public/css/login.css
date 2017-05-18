@@ -44,10 +44,14 @@
 	display: flex;
 	flex-direction: column;
 }
-.loginPage .submitBtn button{
+.loginPage .submitBtn .btn{
 	color: #FFF;
 	margin-bottom: 10px;
 	font-size: 16px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
 }
 .loginPage .submitBtn span.btn.register{
 	color: #3479e1;

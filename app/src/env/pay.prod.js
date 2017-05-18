@@ -1,35 +1,25 @@
-//import {updateorder_request,ui_setorderdetail} from '../../actions';
-import {getpaysign} from '../actions/sagacallback';
-import * as xview from './xview/Common';
+import config from './config';
 
-export const onclickpay = ({orderinfo,payway,dispatch},callbackfn)=> {
-
-   let orderdoc = {
-      out_trade_no: orderinfo._id,
-      subject: orderinfo.ordertitle || '商品名称',//$('#subject').val(),//'WL144626511265842',//$('#subject').val(),
-      body: orderinfo.body|| '商品详情',//$('#body').val(),//'WL144626511265842',//
-      total_fee: orderinfo.realprice,//$('#fee').val(),//'9.00',
-    };
-    if(payway === 'weixin'){
-        orderdoc.total_fee = orderdoc.total_fee*100;
-    }
-    dispatch(getpaysign({
-        paytype:payway,
-        paypage:'orderdetailpage',
-        orderdoc:orderdoc,
-    })).then((paysign)=>{
-       if(payway === 'weixin'){
-         xview.wxpayUrl(paysign,(result)=>{
-          callbackfn(result);
-        });
-       }
-       else if(payway === 'alipay'){
-          xview.alipayUrl(paysign,(result)=>{
-            callbackfn(result);
-         });
-       }
-    }).catch((err)=>{
-         alert(JSON.stringify(err));
-         console.log('err:' + JSON.stringify(err));
-    });
+export const payorder = (paysign,orderinfo,callbackfn)=>{
+  // let postdata = {
+  //     "out_trade_no":orderinfo._id
+  // };
+  // requestpost('/pay/alipaytest',postdata,(err,result)=>{
+  //       console.log("testpost err:" + JSON.stringify(err));
+  //       console.log("testpost result:" + JSON.stringify(result));
+  //       callbackfn(result);
+  // });
+  	//console.log(paysign);
+  	window.wx.chooseWXPay({
+	    timestamp: paysign.timestamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+	    nonceStr: paysign.noncestr, // 支付签名随机串，不长于 32 位
+	    package: paysign.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+	    signType: 'MD5', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+	    paySign: paysign.sign, // 支付签名
+	    success: function (res) {
+	        // 支付成功后的回调函数
+	        console.log("支付成功");
+	        console.log(res);
+	    }
+	});
 }

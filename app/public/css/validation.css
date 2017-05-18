@@ -1,5 +1,5 @@
 .validationPage {
-	background: #eff3f6;
+	background: #FFF;
 }
 .validationPage .list{
 	margin-top: 15px;
@@ -18,7 +18,7 @@
 	content: none;
 }
 .validationPage .list > div:before{
-	content: "";
+	content: none;
 	position: absolute;
 	height: 55px;
 	width: 1px;

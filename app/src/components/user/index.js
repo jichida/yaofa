@@ -14,7 +14,8 @@ import SwiperBanner from '../tools/swiperbanner';
 import moment from "moment";
 import { 
     getmyorders_request,
-    set_orderinfo
+    set_orderinfo,
+    set_weui,
     }  from "../../actions";
 const { 
     Tab,
@@ -39,15 +40,84 @@ class Page extends Component {
     }
 
     componentWillMount() {
+
         this.props.dispatch(getmyorders_request({
             query:{
 
             },
             options:{
                 page: 1,
-                limit: 2,
+                limit: 100,
             }
         }));
+
+        //console.log("userlog:::"+JSON.stringify(this.props.userlogin));
+        let userlogin = this.props.userlogin;
+        // "resultid": false,
+        // "resultphone": false,
+        // "resultzhima": false,
+        // "resulttaobao": false,
+        // "resultrealname": true,
+        // hukou:String,
+        // limithuabei:Number,//花呗额度
+        // limitjiebei:Number,//借呗额度
+        // jiedaibaofuzai:Number,//借贷宝负债
+        // jiedaobaoyihuan:Number,//借贷宝已还
+        // realtimeforphoneyear:Number,//手机号实名时间（年）
+
+        // truename:String,  //真实用户名
+        // idcard:String,//身份证号
+        // phonenumber:String,//手机号
+        // phonepassword:String,//手机密码
+        // taobaoaccount:String,//淘宝账号
+        // taobaopassword:String,//淘宝密码
+        // urlphoneid1:String,//身份证照片正面
+        // urlphoneid2:String,//身份证照片反面
+        // urlphoneid3:String,//身份证照片手持
+
+        if(userlogin.approvalstatus=="已审核"){
+            return false;
+        }else{
+            console.log(userlogin);
+            if(
+                userlogin.truename!=''&&
+                userlogin.truename&&
+                userlogin.idcard!=''&&
+                userlogin.idcard&&
+                userlogin.phonenumber!=''&&
+                userlogin.phonenumber&&
+                userlogin.taobaoaccount!=''&&
+                userlogin.taobaoaccount&&
+                userlogin.urlphoneid1!=''&&
+                userlogin.urlphoneid1&&
+                userlogin.urlphoneid2!=''&&
+                userlogin.urlphoneid2&&
+                userlogin.urlphoneid3!=''&&
+                userlogin.urlphoneid3
+            ){
+                this.props.dispatch(set_weui({confirm:{
+                    show : true,
+                    title : "认证审核中...",
+                    text : "认证资料已经递交",
+                    buttonsCloseText : "关闭",
+                    buttonsClickText : "完善借款资料",
+                    buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
+                }}))
+            }else{
+                this.props.dispatch(set_weui({confirm:{
+                    show : true,
+                    title : "认证审核未完善",
+                    text : "只有通过认证才能进行借贷",
+                    buttonsCloseText : "暂不",
+                    buttonsClickText : "去认证",
+                    buttonsClick : ()=>{this.props.history.push("/validation")}
+                }}))
+            }
+        }
+
+        
+
+
     }
 
     pushUrl = (name)=>{
@@ -63,7 +133,7 @@ class Page extends Component {
         const { myorderlist } = this.props;
         return (
             <div className="indexPage AppPage">
-                <DocumentTitle title="耀发钱庄" />
+                <DocumentTitle title="耀发钱庄-借款端" />
         		<SwiperBanner data={this.headBanner()} />
                 <div className="pageTitle">
                     <span>我的最新借款</span>
@@ -120,9 +190,9 @@ class Page extends Component {
     }
 }
 
-const data = ({userborrow:{myorderlist}}) => {
+const data = ({order:{myorderlist}, userlogin}) => {
     myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
-    return {myorderlist};
+    return {myorderlist,userlogin};
 };
 Page = connect(data)(Page);
 export default Page;

@@ -48,6 +48,10 @@ const UserLenderlistEdit = (props) => {
               ]} />
               <TextField label="weixinopenid" source="weixinopenid" />
               </FormTab>
+              <FormTab label="resources.userlender.tabs.canaccept">
+                <TextInput label="是否允许接单理由" source="canacceptreason" />
+                <BooleanInput label="是否允许接单" source="canaccept"  elStyle={{ float: 'left' }}/>
+              </FormTab>
               <FormTab label="resources.userlender.tabs.realinfo">
               <TextField label="真实姓名" source="truename" />
               <TextField label="手机号"  source="phonenumber" />

@@ -27,7 +27,6 @@ let UserBorrowerSchema = new Schema({
         sex:'男'
     },
     useragencyfrom:{ type: Schema.Types.ObjectId, ref: 'UserAgency' },//中介
-    balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     //认证相关
     truename:String,  //真实用户名
     idcard:String,//身份证号
@@ -72,7 +71,6 @@ let UserBorrowerSchema = new Schema({
     approvalrejectseason:{type:String,default:''},
     approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
 
-
 });
 UserBorrowerSchema.plugin(mongoosePaginate);
 let UserBorrower  = mongoose.model('UserBorrower',  UserBorrowerSchema);
@@ -96,7 +94,8 @@ let UserLenderSchema = new Schema({
     weixinopenid:String,
     approvalrejectseason:{type:String,default:''},
     approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
-
+    canaccept:{ type: Boolean, default: false },//是否允许接单
+    canacceptreason:{type:String,default:''},//是否允许接单理由
 });
 UserLenderSchema.plugin(mongoosePaginate);
 let UserLender  = mongoose.model('UserLender',  UserLenderSchema);
@@ -109,7 +108,7 @@ let UserAgencySchema = new Schema({
     created_at: { type: Date, default:new Date()},
     updated_at: Date,
     profile:{ type: Schema.Types.Mixed,default:{
-        nickname:`借款人${chance.string({length: 4,pool: '0123456789'})}`,
+        nickname:`中介${chance.string({length: 4,pool: '0123456789'})}`,
         avatar:'img/myprofile/1.png'},
         sex:'男'
     },
@@ -146,6 +145,7 @@ let OrderSchema = new Schema({
     feeservice:Number,//服务费
     depositratio:Number,//押金比
     moneyreal:Number,//实付价
+    realprice:Number,//实际支付给平台的价格
     orderstatus:{ type: Number, default:0},//0:借款中,1:（待确认／已接单）,2:（放款中／已确认）,3:放款成功！(待支付)／4:订单完成/-1:异常订单，-2：放款失败
     statusforborrower:String,//借款中/待确认/放款中/放款成功/订单完成
     statusforlender:String,//借款中／已接单/已确认/放款成功/订单完成

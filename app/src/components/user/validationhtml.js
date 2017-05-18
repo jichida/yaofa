@@ -37,9 +37,10 @@ export class Page extends React.Component {
       success = true;
     }
     console.log(`------------>${JSON.stringify(html)}`);
-    return ( <div>
-              {success && <iframe height='600px' width='800px' src={html.url} />}
-            </div>
+    return ( 
+        <div className="validationPage AppPage">
+            {success && <iframe height='100%' width='100%' src={html.url} />}
+        </div>
      );
   }
 }

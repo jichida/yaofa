@@ -9,7 +9,9 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/validation-shenfen.css';
 import _ from 'lodash';
-import {userauthentication_request} from '../../actions';
+import {
+    userauthentication_request,
+    set_weui} from '../../actions';
 
 const {
     Icon,
@@ -32,36 +34,41 @@ import {
 class ShenfenvalidationForm extends Component {
 
 	render() {
-        const {handleSubmit,validationSubmit} = this.props;
+        const {
+            handleSubmit,
+            validationSubmit,
+            submitting
+        } = this.props;
         return (
-          <Form
-              onSubmit={handleSubmit(validationSubmit)}
-              >
-                <FormUI>
-                <Field
-                    name="truename"
-                    id="truename"
-                    placeholder="请输入身份证中的名称"
-                    type="text"
-                    component={ WeuiInputValidation }
-                    validate={[ required ]}
-                    HeadIcon="img/32.png"
-                    InputTit="身份证姓名"
-                />
-                <Field
-                    name="cardno"
-                    id="cardno"
-                    placeholder="请输入身份证号"
-                    type="number"
-                    component={ WeuiInputValidation }
-                    validate={[ required ]}
-                    HeadIcon="img/32.png"
-                    InputTit="身份证号"
-                />
+            <Form
+                onSubmit={handleSubmit(validationSubmit)}
+                className="list"
+                >
+                <FormUI className="formStyle1">
+                    <Field
+                        name="truename"
+                        id="truename"
+                        placeholder="请输入身份证中的名称"
+                        type="text"
+                        component={ WeuiInputValidation }
+                        validate={[ required ]}
+                        InputTit="真实姓名"
+                    />
+                    <Field
+                        name="cardno"
+                        id="cardno"
+                        placeholder="请输入身份证号"
+                        type="number"
+                        component={ WeuiInputValidation }
+                        validate={[ required ]}
+                        InputTit="身份证号"
+                    />
                 </FormUI>
-                <div className="btn Primary">
-                    确认 ｜ 下一步
-                </div>
+                <button 
+                    disabled={submitting}
+                    className="btn Primary">
+                    <span>确认 ｜ 下一步</span>
+                </button>
             </Form>
       	);
     }
@@ -72,32 +79,20 @@ ShenfenvalidationForm = reduxForm({
 })(ShenfenvalidationForm);
 
 class Page extends Component {
-
-    validationSubmit =(values)=>{
-        console.log(`---------->${JSON.stringify(values)}`);
+    testSubmit = (value)=>{
+        //console.log(value);
+        this.props.dispatch(userauthentication_request({
+            type:'id',
+            data:value
+        }));
+        //loading
     }
-
-    testSubmit = ()=>{
-      let payload = {
-        truename:'真实姓名',
-        cardno:'身份证号码'
-      };
-
-      this.props.dispatch(userauthentication_request({
-        type:'id',
-        data:payload
-      }));
-    }
-
 	render() {
         return (
-    		<div className="addborrowPage AppPage">
-          <div className="btn Primary" onClick={this.testSubmit}>
-              测试
-          </div>
-    			<DocumentTitle title="身份信息" />
-                <ShenfenvalidationForm validationSubmit={this.validationSubmit}/>
-    		</div>
+    		<div className="validationShenfenPage AppPage">
+        		<DocumentTitle title="身份信息" />
+                <ShenfenvalidationForm validationSubmit={this.testSubmit} />
+        	</div>
     	)
     }
 }

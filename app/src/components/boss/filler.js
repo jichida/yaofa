@@ -122,7 +122,7 @@ class FillerForm extends Component {
                             className="btn Primary"
                             disabled={pristine || submitting}
                             >
-                            确定
+                            <span>确定</span>
                         </button>
                         <button 
                             type="reset"
@@ -130,7 +130,7 @@ class FillerForm extends Component {
                             onClick={reset}
                             disabled={pristine || submitting}
                             >
-                            清空
+                            <span>清空</span>
                         </button>
                     </div>
                 </FormUI>

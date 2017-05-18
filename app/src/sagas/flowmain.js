@@ -16,19 +16,23 @@ import { push,replace,goBack,go  } from 'react-router-redux';//https://github.co
 
 let getusertype = ()=>{
     let usertype = localStorage.getItem('usertype');
-    if(usertype === null){
-        usertype = 'userborrow';//'userborrow'|'userlender'|'useragency'
-    }
+    // if(usertype === null){
+    //     usertype = 'userborrow';//'userborrow'|'userlender'|'useragency'
+    // }
     return usertype;
 }
 
 let sendmsgwhenreconnect =(socket)=>{
     //连接上以后直接发送-----》
-    let token = localStorage.getItem(`${getusertype()}_user_token`);
-    if (token !== null) {
-        socket.emit(getusertype(),{cmd:'loginwithtoken',data:{token:token}});
+    let usertype = getusertype();
+    if(!!usertype){
+      let token = localStorage.getItem(`${usertype}_user_token`);
+      if (token !== null) {
+          socket.emit(usertype,{cmd:'loginwithtoken',data:{token:token}});
+      }
+      socket.emit(usertype,{cmd:'getsystemconfig',data:{}});
     }
-    socket.emit(getusertype(),{cmd:'getsystemconfig',data:{}});
+
 }
 
 function connect() {
@@ -68,7 +72,10 @@ function* write(socket,fun,cmd) {
     while (true) {
         let { payload } = yield take(fun);
         console.log(`${cmd}:` + JSON.stringify(payload));
-        socket.emit(getusertype(),{cmd:cmd,data:payload});
+        let usertype = getusertype();
+        if(!!usertype){
+          socket.emit(usertype,{cmd:cmd,data:payload});
+        }
     }
 }
 
@@ -87,8 +94,7 @@ function* handleIOWithAuth(socket) {
 
         let action = yield take(`${logout_result}`);
         yield put(action);
-        //console.log("logout_result");
-        //localStorage.removeItem(`${getusertype()}_user_token`);
+        localStorage.removeItem(`${getusertype()}_user_token`);
         localStorage.removeItem('usertype');
         for (let task of tasksz) {
             yield cancel(task);

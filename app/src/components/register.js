@@ -32,14 +32,17 @@ export class RegisterPage extends Component {
         this.props.history.replace(name);
     }
 
-    login1=()=>{
-        this.props.dispatch(
-            loginwithweixinopenid_request({weixinopenid:'1111111111'}));
-    }
-
 	render() {
         const usertype = localStorage.getItem('usertype');
-        const { handleSubmit,onClickRegister,sendCode,hasAggree,username } = this.props;
+        const { 
+            handleSubmit,
+            onClickRegister,
+            sendCode,
+            hasAggree,
+            username,
+            pristine,
+            submitting
+            } = this.props;
         return (
             <Form 
                 className="registerForm"
@@ -120,32 +123,19 @@ export class RegisterPage extends Component {
                 </div>
 
 				<div className="submitBtn">
-                    {hasAggree?(
-                        <button 
-                            className="btn login"
-                            >
-                            注册
-                        </button>
-                    ):(
-                        <button 
-                            className="btn login"
-                            disabled
-                            >
-                            注册
-                        </button>
-                    )}
+                    <button 
+                        className="btn login"
+                        disabled={(pristine || submitting)&&hasAggree}
+                        >
+                        注册
+                    </button>
                     <span 
                         className="btn register"
                         onClick={()=>{this.pageReplace("/login")}}
                         >
-                        登录
+                        <span>登录</span>
                     </span>
 				</div>
-
-                <div
-                    onClick={this.login1} 
-                    >中介登录</div>
-
 			</Form>
     	)
     }

@@ -7,6 +7,8 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/loaninfo.css';
+import { connect } from 'react-redux';
+import moment from "moment";
 const { 
     Panel,
     PanelHeader,
@@ -23,10 +25,11 @@ const {
     CellBody,
     CellFooter
     } = WeUI;
-
+    
 class Page extends Component {
-
 	render() {
+        const { orderInfo } = this.props;
+        console.log(orderInfo);
         return (
     		<div className="loaninfoPage AppPage">
     			<DocumentTitle title="放款详情" />
@@ -92,4 +95,12 @@ class Page extends Component {
     }
 }
 
+const data = ({order:{orderInfo}}) => {
+    //console.log(orderInfo);
+    //usertype: userborrow  useragency  userlender
+    return {orderInfo};
+};
+Page = connect(data)(Page);
 export default Page;
+
+
