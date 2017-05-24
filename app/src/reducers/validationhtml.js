@@ -3,7 +3,7 @@
  */
 import { createReducer } from 'redux-act';
 import {
-    userauthenticationhtml_result
+    userauthenticationhtml_result,
 } from '../actions/index.js';
 
 const initial = {

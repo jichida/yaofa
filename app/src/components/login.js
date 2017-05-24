@@ -10,9 +10,7 @@ import {
   loginwithusername_request
 } from '../actions';
 import { required, InputValidation, phone, length4 } from "./tools/formvalidation"
-
 export class LoginPage extends Component {
-
     componentWillMount() {
         let usertype = localStorage.getItem('usertype');
         let openid = "";
@@ -21,11 +19,9 @@ export class LoginPage extends Component {
             this.props.dispatch(loginwithtoken_request({token}));
         }
     }
-
     pagePush=(name)=>{
         this.props.history.push(name);
     }
-
 	render() {
         const { handleSubmit,onClickLogin,username,pristine,submitting } = this.props;
         return (
@@ -33,7 +29,6 @@ export class LoginPage extends Component {
                 className="loginForm formStyle1"
                 onSubmit={handleSubmit(onClickLogin)}
                 >
-
                 <div className="li" >
                     <span className="icon">
                         <img src="img/16.png" />
@@ -60,7 +55,6 @@ export class LoginPage extends Component {
                         validate={[ required ]}
                     />
                 </div>
-
                 <span 
                     className="getPassword"
                     onClick={()=>{this.pagePush("/resetpassword")}}

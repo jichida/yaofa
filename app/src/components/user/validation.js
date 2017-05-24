@@ -9,13 +9,30 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/validation.css';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-
+import {
+    set_weui
+    } from '../../actions';
 
 const {
     Icon,
     } = WeUI;
 
 class Page extends Component {
+
+    //点击去认证
+    clickitem =(url, v)=>{
+        if(v==2){
+            this.props.dispatch(set_weui({
+                toast: {
+                    show : true,
+                    text : "该认证已完成",
+                    type : "success"
+                },
+            }))
+        }else{
+            this.props.history.push(url);
+        }
+    }
 
 	render() {
         
@@ -36,23 +53,23 @@ class Page extends Component {
     			<DocumentTitle title="认证中心" />
                 <div className="list">
                     {_.map(list,(data, index)=>{
-                        let style = data.status?"true":"false";
+                        let style = data.status==2?"true":"false";
                         return (
                             <div
                                 key={index}
                                 className={style}
-                                onClick={()=>{this.props.history.push(data.url)}}
+                                onClick={()=>{this.clickitem(data.url, data.status)}}
                                 >
                                 <span className="circular"></span>
                                 <span className="name">{data.name}</span>
                                 {data.status==2?(
                                     <Icon value="success-no-circle" />
                                 ):""}
-                                {data.status==1?(
-                                    <span className="statustxt color_warning">审核中...</span>
-                                ):""}
-                                {data.status==0?(
+                                {data.status==0||data.status==1&&data.name!="照片认证"?(
                                     <span className="statustxt">去认证</span>
+                                ):""}
+                                {data.name=="照片认证"&&data.status==1?(
+                                    <span className="statustxt color_warning">审核中...</span>
                                 ):""}
                                 {data.status==-1?(
                                     <span className="statustxt">认证失败,重新认证</span>

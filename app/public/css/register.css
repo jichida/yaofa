@@ -72,3 +72,8 @@
 	padding-left: 10px;
 	flex-grow: 1;
 }
+
+.registerPage div.li.yanzhenli{
+	display: flex;
+
+}

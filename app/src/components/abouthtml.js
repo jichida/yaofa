@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../public/css/abouthtml.css';
+import renderHTML from 'react-render-html';
 const { 
     Cells,
     Cell,
@@ -32,7 +33,7 @@ class Page extends Component {
             <div className="aboutPage AppPage">
                 <DocumentTitle title={data.title} />
                 <div className="list">
-                    {data.desc}
+                    {renderHTML(data.desc)}
                 </div>
             </div>
         )

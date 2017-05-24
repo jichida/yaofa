@@ -9,9 +9,11 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/validation-shenfen.css';
 import _ from 'lodash';
+import { withRouter } from 'react-router-dom';
 import {
     userauthentication_request,
-    set_weui} from '../../actions';
+    set_weui
+    } from '../../actions';
 
 const {
     Icon,
@@ -67,7 +69,7 @@ class ShenfenvalidationForm extends Component {
                 <button 
                     disabled={submitting}
                     className="btn Primary">
-                    <span>确认 ｜ 下一步</span>
+                    <span>确认</span>
                 </button>
             </Form>
       	);
@@ -85,8 +87,39 @@ class Page extends Component {
             type:'id',
             data:value
         }));
-        //loading
+        this.props.dispatch(set_weui({
+            toast: {
+                show : true,
+                text : "递交成功",
+                type : "success"
+            },
+        }))
+        this.props.history.goBack();
     }
+
+    // componentWillReceiveProps(nextProps) {
+    //     // if (nextProps.userlogin.resultid===2 && this.props.userlogin.resultid===0) {
+            // this.props.dispatch(set_weui({
+            //     toast: {
+            //         show : true,
+            //         text : "身份认证已完成",
+            //         type : "success"
+            //     },
+            // }))
+    //     //     this.props.history.goBack();
+    //     // }
+    //     if (this.props.userlogin.resultid!=-1 && nextProps.userlogin.resultid===-1) {
+    //         this.props.dispatch(set_weui({
+    //             toast: {
+    //                 show : true,
+    //                 text : "认证失败,重新认证",
+    //                 type : "warning"
+    //             },
+    //         }))
+    //     }
+
+    // }
+
 	render() {
         return (
     		<div className="validationShenfenPage AppPage">
@@ -96,5 +129,9 @@ class Page extends Component {
     	)
     }
 }
-Page = connect()(Page);
+
+const data = ({userlogin}) => {
+    return {userlogin};
+};
+Page = connect(data)(Page);
 export default Page;

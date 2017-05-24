@@ -6,35 +6,32 @@ import './imageupload.css';
 import config from '../../env/config.js';
 
 const renderImageupload= (props) => {
-  let {input} = props;
-    console.log("input value:" + input.value);
-  // if( Object.prototype.toString.call( input.value ) !== 'string' ) {
-  //     input.value = '';
-  // }
+
+    let {input,loading} = props;
     let usertype = localStorage.getItem("usertype");
     let usertoken = localStorage.getItem(`${usertype}_user_token`);
     let getBase64 = (img, callback)=> {
-      const reader = new FileReader();
-      reader.addEventListener('load', () => callback(reader.result));
-      reader.readAsDataURL(img);
+        const reader = new FileReader();
+        reader.addEventListener('load', () => callback(reader.result));
+        reader.readAsDataURL(img);
     }
 
     let beforeUpload =(file)=> {
-      //const isImage = file.type === 'image/jpeg';
-      // if (!isJPG) {
-      //   message.error('You can only upload JPG file!');
-      // }
-      const isLt2M = file.size / 1024 / 1024 < 2;
-      if (!isLt2M) {
-        message.error('Image must smaller than 2MB!');
-      }
-      return isLt2M;
+        //const isImage = file.type === 'image/jpeg';
+        // if (!isJPG) {
+        //   message.error('You can only upload JPG file!');
+        // }
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        if (!isLt2M) {
+            message.error('Image must smaller than 2MB!');
+        }
+        return isLt2M;
     }
 
     let handleChange = (info) => {
-        console.log("handleChange info:" + JSON.stringify(info));
+        loading(true);
         if (info.file.status !== 'uploading') {
-          console.log(info.file, info.fileList);
+            loading(false);
         }
         if (info.file.status === 'done') {
           message.success(`${info.file.name} file uploaded successfully`);

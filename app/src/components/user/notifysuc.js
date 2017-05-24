@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import 'react-weui/lib/react-weui.min.css';
+import DocumentTitle from "react-document-title";
+import WeUI from 'react-weui';
+import 'weui';
+import 'react-weui/lib/react-weui.min.css';
+const {
+    Msg, Footer, FooterLinks, FooterLink, FooterText, Page:PageUI
+    } = WeUI;
 
 let Page =(props)=>{
-    let onClickReturn = ()=> {
-        props.history.goBack();
-    };
 
-     return (
-        <div 
-            style={{
-                flexGrow:"1",
-                overflow:"scroll"
-            }}
-            >
-            <b>回调成功啦</b>
-            <p style={{textAlign: 'center'}}>
-                <botton className="btn Primary" onClick={onClickReturn}>返回</botton>
-             </p>
-        </div>);
+    let okclick = ()=>{
+        window.parent.props.history.push("http://www.baidu.com");
+    }
+
+    return (
+        <div className="msg_success" style={{width:"100%"}}>
+            <Msg
+                type="success"
+                title="认证成功"
+                buttons={[{
+                    type: 'primary',
+                    label: '确定',
+                    onClick: okclick
+                }]}
+            />
+        </div>
+    )    
 }
 
 

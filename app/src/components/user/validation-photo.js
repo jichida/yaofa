@@ -6,7 +6,7 @@ import DocumentTitle from "react-document-title";
 import '../../../public/css/validation-photo.css';
 import { connect } from 'react-redux';
 import config from '../../env/config.js';
-import { fillrealnameprofile_request } from "../../actions";
+import { fillrealnameprofile_request,set_weui } from "../../actions";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
@@ -28,8 +28,16 @@ const {
     } = WeUI;
 
 class PageForm extends Component {
+
+    showLoading =(status)=>{
+        this.props.dispatch(set_weui({
+            loading : {
+                show : status
+            },
+        }));
+    }
      
-     render(){
+    render(){
         const { handleSubmit,submitfn } = this.props;
 
 
@@ -42,6 +50,7 @@ class PageForm extends Component {
                     <Field 
                         name="urlphoneid1" 
                         component={renderImageupload} 
+                        loading = {this.showLoading.bind(this)}
                     />
                     <div>
                         <span className="tit">请上传身份证正面</span>
@@ -51,7 +60,8 @@ class PageForm extends Component {
                 <div className="li">
                     <Field 
                         name="urlphoneid2" 
-                        component={renderImageupload} 
+                        component={renderImageupload}
+                        loading = {this.showLoading.bind(this)}
                     />
                     <div>
                         <span className="tit">请上传身份证反面</span>
@@ -62,6 +72,7 @@ class PageForm extends Component {
                     <Field 
                         name="urlphoneid3" 
                         component={renderImageupload} 
+                        loading = {this.showLoading.bind(this)}
                     />
                     <div>
                         <span className="tit">手持身份证照片</span>
@@ -81,10 +92,12 @@ class Page extends Component {
         value.urlphoneid1 = value.urlphoneid1==="img/11.png"?null:value.urlphoneid1;
         value.urlphoneid2 = value.urlphoneid2==="img/13.png"?null:value.urlphoneid2;
         value.urlphoneid3 = value.urlphoneid3==="img/45.png"?null:value.urlphoneid3;
+        value.resultrealname = 1;
         let payload = {
             data:{...value}
         };
         this.props.dispatch(fillrealnameprofile_request(payload));
+        this.props.history.goBack();
     }
     render() {
         const { urlphoneid1,urlphoneid2,urlphoneid3 } = this.props;

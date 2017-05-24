@@ -27,7 +27,7 @@ export function* wsrecvsagaflow() {
     yield takeEvery(`${md_login_result}`, function*(action) {
         let {payload:result} = action;
         yield put(login_result(result));
-        yield put(push('/'));
+        yield put(replace('/'));
     });
     //重置密码
     yield takeEvery(`${findpwd_result}`, function*(action) {
@@ -37,7 +37,7 @@ export function* wsrecvsagaflow() {
             type : "success"
         }
         yield put(set_weui({ toast }));
-        yield put(push('/login'));
+        yield put(replace('/login'));
     });
     //生车提现订单
     yield takeEvery(`${md_withdrawcashapplyaddone_result}`, function*(action) {
