@@ -8,7 +8,10 @@ import {
 
 const initial = {
     validationhtml: {
-        html:''
+        html:{
+        	code:-1,
+            errorCode:"-1"
+        }
     },
 };
 

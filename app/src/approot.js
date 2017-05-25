@@ -118,19 +118,16 @@ const CoApp = (props) => {
             <CustomRoute exact path="/userindex" component={requireAuthentication(UserIndex)}/>
             <CustomRoute exact path="/bossindex" component={requireAuthentication(BossIndex)}/>
             <CustomRoute exact path="/settings" component={requireAuthentication(Settings)}/>
-            <CustomRoute exact path="/resetpassword" component={requireAuthentication(ResetPassword)}/>
+            <CustomRoute exact path="/resetpassword" component={ResetPassword}/>
             <CustomRoute exact path="/abouthtml/:type" component={Abouthtml}/>
-
             <CustomRoute exact path="/agencyindex" component={requireAuthentication(AgencyIndex)}/>
             <CustomRoute exact path="/agencyusercenter" component={requireAuthentication(AgencyUserCenter)}/>
             <CustomRoute exact path="/agencyborrowlist" component={requireAuthentication(AgencyBorrowList)}/>
-
             <CustomRoute exact path="/bossaddloan" component={requireAuthentication(BossAddLoan)}/>
             <CustomRoute exact path="/bossfiller" component={requireAuthentication(BossFiller)}/>
             <CustomRoute exact path="/bossusercenter" component={requireAuthentication(BossUserCenter)}/>
             <CustomRoute exact path="/bossloanlist" component={requireAuthentication(BossLoanList)}/>
             <CustomRoute exact path="/loaninfo" component={requireAuthentication(Loaninfo)}/>
-
             <CustomRoute exact path="/addborrow" component={requireAuthentication(AddBorrow)}/>
             <CustomRoute exact path="/addBorrowUserInfo" component={requireAuthentication(AddBorrowUserInfo)}/>
             <CustomRoute exact path="/usercenter" component={requireAuthentication(UserCenter)}/>
@@ -150,13 +147,9 @@ const CoApp = (props) => {
             <CustomRoute exact path="/tixian2" component={requireAuthentication(Tixian2)}/>
             <CustomRoute exact path="/tixian3" component={requireAuthentication(Tixian3)}/>
             <CustomRoute exact path="/tousu" component={requireAuthentication(Tousu)}/>
-
-
-
             <CustomRoute exact path="/validationhtml/:type" component={requireAuthentication(Validationhtml)}/>
             <CustomRoute exact path="/notifysuc" component={NotifySuc}/>
             <CustomRoute exact path="/notifyfailed" component={NotifyFailed}/>
-
         </Switch>
     );
 }

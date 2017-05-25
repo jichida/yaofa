@@ -97,7 +97,7 @@ class Page extends Component {
             data:{...value}
         };
         this.props.dispatch(fillrealnameprofile_request(payload));
-        this.props.history.goBack();
+        // this.props.history.goBack();
     }
     render() {
         const { urlphoneid1,urlphoneid2,urlphoneid3 } = this.props;
