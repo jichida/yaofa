@@ -38,7 +38,7 @@ class Page extends Component {
                     title="资料递交成功"
                     description="系统正在审核中..."
                 />
-                <input type="text" value="tp" name="type" />
+                <input type="text" value={this.props.type} name="type" />
             </div>
         ) 
     }
