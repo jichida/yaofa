@@ -14,7 +14,9 @@ const {
 
 class Page extends Component {
 
-    render(){
+    componentWillMount(){
+        console.log("usertype+++++++++=========>>>>>");
+        console.log(JSON.strify(this.props));
         let tp = this.props.type;
         let value = {};
         if(tp === 'phone'){
@@ -24,14 +26,17 @@ class Page extends Component {
             value.resulttaobao= 1;
         }
         this.props.dispatch(fillrealnameprofile_request({data:value}));
+    }
+
+    render(){
         return (
             <div className="msg_success" style={{width:"100%"}}>
-                
                 <Msg
                     type="success"
                     title="资料递交成功"
                     description="系统正在审核中..."
                 />
+                <input type="text" value="tp" name="type" />
             </div>
         ) 
     }
