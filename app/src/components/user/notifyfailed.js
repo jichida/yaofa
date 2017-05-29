@@ -23,7 +23,7 @@ class Page extends Component {
                     description="请联系客服帮您解决问题"
                 />
             </div>
-        ) 
+        )
     }
 }
 

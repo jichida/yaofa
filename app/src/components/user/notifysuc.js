@@ -14,20 +14,21 @@ const {
 
 class Page extends Component {
 
-    componentWillMount(){
-        let tp = this.props.type;
-        let value = {};
-        if(tp === 'phone'){
-            value.resultphone= 1;
-        }
-        if(tp === 'taobao'){
-            value.resulttaobao= 1;
-        }
-        this.props.dispatch(fillrealnameprofile_request({data:value}));
-    }
     render(){
+
         return (
             <div className="msg_success" style={{width:"100%"}}>
+                {
+                    let tp = this.props.type;
+                    let value = {};
+                    if(tp === 'phone'){
+                        value.resultphone= 1;
+                    }
+                    if(tp === 'taobao'){
+                        value.resulttaobao= 1;
+                    }
+                    this.props.dispatch(fillrealnameprofile_request({data:value}));
+                }
                 <Msg
                     type="success"
                     title="资料递交成功"

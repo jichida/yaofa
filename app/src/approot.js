@@ -150,6 +150,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/validationhtml/:type" component={requireAuthentication(Validationhtml)}/>
             <CustomRoute exact path="/notifysuc/:type" component={NotifySuc}/>
             <CustomRoute exact path="/notifyfailed/:type" component={NotifyFailed}/>
+            <CustomRoute exact path="/texts" component={Texts}/>
         </Switch>
     );
 }
