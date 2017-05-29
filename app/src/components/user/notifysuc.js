@@ -26,9 +26,11 @@ class Page extends Component {
             value.resulttaobao= 1;
         }
         console.log(JSON.stringify(this.props));
+        console.log(tp);
+        console.log(id);
         this.props.dispatch(settypeuserauthentication_request({
-            data: {resultphone : 1},
-            query: {_id : id}
+            data: value,
+            query: {_id:id}
         }))
     };
 
