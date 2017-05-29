@@ -6,7 +6,7 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import {
-    fillrealnameprofile_request,
+    settypeuserauthentication_request,
 } from '../../actions';
 const {
     Msg, Footer, FooterLinks, FooterLink, FooterText, Page:PageUI
@@ -14,21 +14,23 @@ const {
 
 class Page extends Component {
 
-    componentWillReceiveProps(nextProps) {
-        console.log(this.props.loginsuccess);
-        if(nextProps.loginsuccess&&!this.props.loginsuccess){
-
-            let tp = this.props.type;
-            let value = {};
-            if(tp === 'phone'){
-                value.resultphone= 1;
-            }
-            if(tp === 'taobao'){
-                value.resulttaobao= 1;
-            }
-            this.props.dispatch(fillrealnameprofile_request({data:value}));
+    
+    componentWillMount() {
+        let tp = this.props.type;
+        let id = this.props.userid;
+        let value = {};
+        if(tp === 'phone'){
+            value.resultphone= 1;
         }
-    }
+        if(tp === 'taobao'){
+            value.resulttaobao= 1;
+        }
+        console.log(JSON.stringify(this.props));
+        this.props.dispatch(settypeuserauthentication_request({
+            data: {resultphone : 1},
+            query: {_id : id}
+        }))
+    };
 
     render(){
         return (
@@ -38,15 +40,15 @@ class Page extends Component {
                     title="资料递交成功"
                     description="系统正在审核中..."
                 />
-                <input type="text" value={this.props.type} name="type" />
             </div>
         ) 
     }
 }
 
-const data = ({userlogin:{resulttaobao,resultid,resultphone,resultzhima,resultrealname,loginsuccess}},props) => {
+const data = ({},props) => {
     let type = props.match.params.type;
-    return {resulttaobao,resultid,resultphone,resultzhima,resultrealname, type, loginsuccess};
+    let userid = props.match.params.userid;
+    return {type, userid};
 };
 Page = connect(data)(Page);
 export default Page;

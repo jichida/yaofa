@@ -73,6 +73,9 @@ import {
     queryuserstatus_result,
     getsystemconfig_result,
     getsystemconfig_request,
+
+    settypeuserauthentication_request
+
 } from '../actions';
 
 //接收的对应关系
@@ -107,6 +110,7 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+    'settypeuserauthentication':settypeuserauthentication_request,
     'getsystemconfig':getsystemconfig_request,
     'fillrealnameprofile':fillrealnameprofile_request,
     'loginwithusername':loginwithusername_request,

@@ -99,6 +99,8 @@ import Validationhtml from './components/user/validationhtml';
 import NotifySuc from './components/user/notifysuc';
 import NotifyFailed from './components/user/notifyfailed';
 
+import Tests from "./components/tests";
+
 import {
     HashRouter as Router,
     Route,Redirect,
@@ -148,8 +150,9 @@ const CoApp = (props) => {
             <CustomRoute exact path="/tixian3" component={requireAuthentication(Tixian3)}/>
             <CustomRoute exact path="/tousu" component={requireAuthentication(Tousu)}/>
             <CustomRoute exact path="/validationhtml/:type" component={requireAuthentication(Validationhtml)}/>
-            <CustomRoute exact path="/notifysuc/:type" component={NotifySuc}/>
-            <CustomRoute exact path="/notifyfailed/:type" component={NotifyFailed}/>
+            <CustomRoute exact path="/notifysuc/:type/:userid" component={NotifySuc}/>
+            <CustomRoute exact path="/notifyfailed/:type/:userid" component={NotifyFailed}/>
+            <CustomRoute exact path="/tests" component={Tests}/>
         </Switch>
     );
 }
