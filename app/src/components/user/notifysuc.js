@@ -5,6 +5,8 @@ import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
+import $ from "jquery";
+import config from '../../env/config.js';
 import {
     settypeuserauthentication_request,
 } from '../../actions';
@@ -30,10 +32,16 @@ class Page extends Component {
         console.log(id);
         console.log(settypeuserauthentication_request);
         console.log(this.props.dispatch);
-        this.props.dispatch(settypeuserauthentication_request({
-            data: value,
-            query: {_id:id}
-        }))
+
+        let posturl = config.serverurl + "/vborrow/" + id + "/" + tp;
+        //http://localhost:43002/vborrow/591439c0e203430e983aab21/phone
+        $.post(posturl,{},function(data,status){
+            alert("数据: \n" + data + "\n状态: " + status);
+        })
+        // this.props.dispatch(settypeuserauthentication_request({
+        //     data: value,
+        //     query: {_id:id}
+        // }))
     };
 
     render(){
