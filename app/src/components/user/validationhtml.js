@@ -14,29 +14,29 @@ export class Page extends React.Component {
         let type = this.props.match.params.type;
         //resulttaobao,resultid,resultphone,resultzhima,resultrealname
         //淘宝认证成功后返回
-        if (nextProps.resulttaobao==1 && type==="taobao") {
-            let toast = {
-                show : true,
-                text : "认证成功",
-                type : "success"
-            }
-            this.props.dispatch(set_weui({ toast }));
-            window.setTimeout(()=> {
-                this.props.history.replace("/validation");
-            }, 1000);
-        }
-        //运营商认证成功后返回
-        if (nextProps.resultphone==1 && type==="phone") {
-            let toast = {
-                show : true,
-                text : "认证成功",
-                type : "success"
-            }
-            this.props.dispatch(set_weui({ toast }));
-            window.setTimeout(()=> {
-                this.props.history.replace("/validation");
-            }, 1000);
-        }
+        // if (nextProps.resulttaobao==1 && type==="taobao") {
+        //     let toast = {
+        //         show : true,
+        //         text : "认证成功",
+        //         type : "success"
+        //     }
+        //     this.props.dispatch(set_weui({ toast }));
+        //     window.setTimeout(()=> {
+        //         this.props.history.replace("/validation");
+        //     }, 1000);
+        // }
+        // //运营商认证成功后返回
+        // if (nextProps.resultphone==1 && type==="phone") {
+        //     let toast = {
+        //         show : true,
+        //         text : "认证成功",
+        //         type : "success"
+        //     }
+        //     this.props.dispatch(set_weui({ toast }));
+        //     window.setTimeout(()=> {
+        //         this.props.history.replace("/validation");
+        //     }, 1000);
+        // }
     };
     componentWillMount () {//taobao,phone
         this.props.dispatch(userauthenticationhtml_request({
@@ -67,7 +67,7 @@ export class Page extends React.Component {
         }
         if(type === 'phone' && html.code === 0 ){
             success = true;
-        }
+        }   
         return ( 
             <div className="validationPage AppPage">
                 {success && <iframe id="myiframe" height='100%' width='100%' src={html.url} />}
