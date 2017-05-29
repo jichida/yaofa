@@ -35,9 +35,16 @@ class Page extends Component {
 
         let posturl = config.serverurl + "/vborrow/" + id + "/" + tp;
         //http://localhost:43002/vborrow/591439c0e203430e983aab21/phone
-        $.post(posturl,{},function(data,status){
-            alert("数据: \n" + data + "\n状态: " + status);
-        })
+        // $.get(posturl,{},function(data,status){
+        //     alert("数据: \n" + data + "\n状态: " + status);
+        // })
+        $.ajax({
+            type: "GET",
+            url: posturl,
+            success: function(msg){
+                alert( "Data Saved: " + msg );
+            }
+        });
         // this.props.dispatch(settypeuserauthentication_request({
         //     data: value,
         //     query: {_id:id}
