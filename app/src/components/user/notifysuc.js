@@ -28,6 +28,7 @@ class Page extends Component {
         console.log(JSON.stringify(this.props));
         console.log(tp);
         console.log(id);
+        console.log(settypeuserauthentication_request);
         this.props.dispatch(settypeuserauthentication_request({
             data: value,
             query: {_id:id}
