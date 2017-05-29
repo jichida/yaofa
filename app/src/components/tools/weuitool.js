@@ -56,9 +56,6 @@ export class Page extends Component {
                 this.props.dispatch(set_weui({ toast }));
             }, 1500);
         }
-
-
-
     };
     //confirm close
     confirmClose = (confirm,dispatch)=>{

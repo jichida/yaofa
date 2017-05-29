@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import {
     set_weui
     } from '../../actions';
-
+    
 const {
     Icon,
     } = WeUI;

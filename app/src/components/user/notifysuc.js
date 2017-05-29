@@ -11,20 +11,15 @@ const {
 
 let Page =(props)=>{
 
-    let okclick = ()=>{
-        window.parent.props.history.push("http://www.baidu.com");
-    }
+    // let okclick = ()=>{
+    //     window.parent.props.history.push("http://www.baidu.com");
+    // }
 
     return (
         <div className="msg_success" style={{width:"100%"}}>
             <Msg
                 type="success"
                 title="认证成功"
-                buttons={[{
-                    type: 'primary',
-                    label: '确定',
-                    onClick: okclick
-                }]}
             />
         </div>
     )    

@@ -38,7 +38,8 @@ const initial = {
 const userlogin = createReducer({
 
     //登录回调
-    [login_result]: (state, userinfo) => {
+    [login_result]: (state, payload) => {
+        const {resultphone_detail,resulttaobao_detail,...userinfo} = payload;
         // console.log("login_result login_result ::"+JSON.stringify(userinfo));
         let usertype = localStorage.getItem("usertype");
         if(!!usertype){

@@ -100,13 +100,10 @@ AddborrowForm = reduxForm({
 
     }
 })(AddborrowForm);
-
 const selector = formValueSelector('selectingFormValues');
-
 AddborrowForm = withRouter(AddborrowForm);
 
 class Page extends Component {
-
     addborrowSubmit =(value)=>{
         if(this.props.userlogin.approvalstatus=="已审核"){
             this.props.dispatch(insertorder_request(value));
@@ -148,7 +145,6 @@ class Page extends Component {
             }
         }
     }
-
 	render() {
         return (
     		<div className="addborrowPage AppPage">
@@ -158,7 +154,6 @@ class Page extends Component {
     	)
     }
 }
-
 const data = ({userlogin}) => {
     return {userlogin};
 };

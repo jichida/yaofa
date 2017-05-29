@@ -10,6 +10,10 @@ import '../../../public/css/borrowinfo.css';
 import { connect } from 'react-redux';
 import moment from "moment";
 import { withRouter } from 'react-router-dom';
+import Borrowinfohead from "./borrowinfo_head";
+import BorrowinfoLenderinfo from "./borrowinfo_lenderinfo";
+
+
 import {
     set_borrowinfo,
     set_addloanid,
@@ -19,7 +23,6 @@ import {
     lender_set_ui_endorder,
     lender_set_endorder_status,
     lender_set_moneyreal,
-
     borrow_ui_sureorder,
     payorder_request
     }  from "../../actions";
@@ -459,55 +462,17 @@ class Page extends Component {
     }
 	render() {
         const { orderInfo } = this.props;
-        console.log(this.props);
         return (
     		<div className="borrowinfoPage AppPage">
-    			<DocumentTitle title="借款详情" />
-                <div className="headcontent">
-                    <div>借 <span className="quota">{orderInfo.moneylimit}</span> 元</div>
-                    <div>借款期限: {orderInfo.moneyperiod}天</div>
-                </div>
-                <div
-                    className="userinfo"
-                    onClick={()=>{this.gotoUserBorrowInfo()}}
-                    >
-                    <img src="img/6.png" />
-                    <div>
-                        <span><span>借款人:</span>{orderInfo.creator.profile.nickname}</span>
-                        <span><span>借款原因:</span>{orderInfo.moneyusefor}</span>
-                        <span><span>发布时间:</span>{moment(orderInfo.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
-                    </div>
-                </div>
-                {orderInfo.hasOwnProperty("userlender")?(
-                    <div className="loaninfoPage">
-                        <Panel>
-                            <PanelHeader>
-                                放款信息
-                            </PanelHeader>
-                            <PanelBody>
-                                <MediaBox type="text">
-                                        <div className="info">
-                                            <div>放贷人:{orderInfo.userlender.profile.nickname}</div>
-                                            <div>放款时间: {moment(orderInfo.userlender.matched_at).format("YYYY-MM-DD H:mm:ss")}</div>
-                                            <div>放款额度: <span className="blue">{orderInfo.moneylender} 元</span></div>
-                                            <div>服务费: <span className="green">{orderInfo.feeservice} 元</span></div>
-                                            <div>押金比: <span className="green">{orderInfo.depositratio} %</span></div>
-                                            {orderInfo.hasOwnProperty("moneyreal")?(
-                                                <div>实际放款: <span className="green">{orderInfo.moneyreal} 元</span></div>
-                                            ):""}
-                                        </div>
-                                </MediaBox>
-                            </PanelBody>
-                        </Panel>
-                    </div>
-                ):""}
+    			<Borrowinfohead orderinfo={orderInfo} />
+                <BorrowinfoLenderinfo orderinfo={orderInfo} />
                 <GetBorrowStatusInfo orderInfo={orderInfo}/>
     		</div>
     	)
     }
 }
-let usertypes = localStorage.getItem('usertype');
 
+let usertypes = localStorage.getItem('usertype');
 const data = ({order:{orderInfo,myorderlist}}) => {
     let neworderInfo = orderInfo;
     let myneworderInfo = myorderlist[orderInfo._id];
@@ -518,3 +483,7 @@ const data = ({order:{orderInfo,myorderlist}}) => {
 };
 Page = connect(data)(Page);
 export default Page;
+
+
+
+
