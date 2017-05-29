@@ -14,18 +14,20 @@ const {
 
 class Page extends Component {
 
-    componentWillMount(){
-        console.log("usertype+++++++++=========>>>>>");
-        console.log(JSON.strify(this.props));
-        let tp = this.props.type;
-        let value = {};
-        if(tp === 'phone'){
-            value.resultphone= 1;
+    componentWillReceiveProps(nextProps) {
+        console.log(this.props.loginsuccess);
+        if(nextProps.loginsuccess&&!this.props.loginsuccess){
+
+            let tp = this.props.type;
+            let value = {};
+            if(tp === 'phone'){
+                value.resultphone= 1;
+            }
+            if(tp === 'taobao'){
+                value.resulttaobao= 1;
+            }
+            this.props.dispatch(fillrealnameprofile_request({data:value}));
         }
-        if(tp === 'taobao'){
-            value.resulttaobao= 1;
-        }
-        this.props.dispatch(fillrealnameprofile_request({data:value}));
     }
 
     render(){
@@ -42,9 +44,9 @@ class Page extends Component {
     }
 }
 
-const data = ({userlogin:{resulttaobao,resultid,resultphone,resultzhima,resultrealname}},props) => {
+const data = ({userlogin:{resulttaobao,resultid,resultphone,resultzhima,resultrealname,loginsuccess}},props) => {
     let type = props.match.params.type;
-    return {resulttaobao,resultid,resultphone,resultzhima,resultrealname, type};
+    return {resulttaobao,resultid,resultphone,resultzhima,resultrealname, type, loginsuccess};
 };
 Page = connect(data)(Page);
 export default Page;
