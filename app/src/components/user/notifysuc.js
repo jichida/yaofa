@@ -38,8 +38,8 @@ class Page extends Component {
     }
 }
 
-const data = ({userlogin:{resulttaobao,resultid,resultphone,resultzhima,resultrealname}}) => {
-    let type = this.props.match.params.type;
+const data = ({userlogin:{resulttaobao,resultid,resultphone,resultzhima,resultrealname}},props) => {
+    let type = props.match.params.type;
     return {resulttaobao,resultid,resultphone,resultzhima,resultrealname, type};
 };
 Page = connect(data)(Page);
