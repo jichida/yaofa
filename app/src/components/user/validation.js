@@ -65,15 +65,17 @@ class Page extends Component {
                                 {data.status==2?(
                                     <Icon value="success-no-circle" />
                                 ):""}
-                                {data.status==0||data.status==1&&data.name!="照片认证"?(
+                                {data.status==0&&data.name!="照片认证"?(
                                     <span className="statustxt">去认证</span>
                                 ):""}
-                                {data.name=="照片认证"&&data.status==1?(
+                                {data.status==1?(
                                     <span className="statustxt color_warning">审核中...</span>
                                 ):""}
                                 {data.status==-1?(
                                     <span className="statustxt">认证失败,重新认证</span>
                                 ):""}
+
+                                <span onClick={()=>{this.props.history.push("/validationhtml/phone")}}>ddsfwefwefwef</span>
                             </div>
                         )
                     })}
