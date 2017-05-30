@@ -57,6 +57,8 @@ import BorrowUserInfo from "./components/user/borrowuserinfo";
 import AddBorrowUserInfo from "./components/user/addborrowuserinfo";
 //完善借款资料
 import Tousu from "./components/user/tousu";
+//用户认证信息
+import Uservalidationinfo from "./components/user/uservalidationinfo";
 
 /*放款端*/
 //首页
@@ -152,6 +154,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/validationhtml/:type" component={requireAuthentication(Validationhtml)}/>
             <CustomRoute exact path="/notifysuc/:type/:userid" component={NotifySuc}/>
             <CustomRoute exact path="/notifyfailed/:type/:userid" component={NotifyFailed}/>
+            <CustomRoute exact path="/uservalidationinfo" component={requireAuthentication(Uservalidationinfo)}/>
             <CustomRoute exact path="/tests" component={Tests}/>
         </Switch>
     );

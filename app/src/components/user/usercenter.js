@@ -81,6 +81,18 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter/>
                         </Cell>
+                        <Cell
+                            access
+                            onClick={()=>{this.pushUrl("/uservalidationinfo")}}
+                            >
+                            <CellHeader>
+                                <img src="img/35.png" alt="" />
+                            </CellHeader>
+                            <CellBody>
+                                认证信息
+                            </CellBody>
+                            <CellFooter/>
+                        </Cell>
                     </Cells>
                     <Cells>
                         <Cell

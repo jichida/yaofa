@@ -39,14 +39,12 @@ const userlogin = createReducer({
 
     //登录回调
     [login_result]: (state, payload) => {
-        const {resultphone_detail,resulttaobao_detail,...userinfo} = payload;
-        // console.log("login_result login_result ::"+JSON.stringify(userinfo));
         let usertype = localStorage.getItem("usertype");
         if(!!usertype){
-            if(!!userinfo.token){
-                localStorage.setItem(`${usertype}_user_token`, userinfo.token);
+            if(!!payload.token){
+                localStorage.setItem(`${usertype}_user_token`, payload.token);
             }
-            return { ...state, ...userinfo};
+            return { ...state, ...payload};
         }else{
             return { ...state }
         }
