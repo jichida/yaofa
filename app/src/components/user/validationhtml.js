@@ -9,55 +9,54 @@ import {
 
 export class Page extends React.Component {
 
-
     componentWillReceiveProps(nextProps) {
         let type = this.props.match.params.type;
-        //resulttaobao,resultid,resultphone,resultzhima,resultrealname
         //淘宝认证成功后返回
-        if (nextProps.resulttaobao==1 && type==="taobao") {
-            let toast = {
-                show : true,
-                text : "认证成功",
-                type : "success"
-            }
-            this.props.dispatch(set_weui({ toast }));
+        if (
+                nextProps.resulttaobao==1 && type==="taobao" &&
+                (this.props.resulttaobao===0||this.props.resulttaobao===-1)
+            ) {
             window.setTimeout(()=> {
                 this.props.history.replace("/validation");
             }, 1000);
         }
         // //运营商认证成功后返回
-        if (nextProps.resultphone==1 && type==="phone") {
-            let toast = {
-                show : true,
-                text : "认证成功",
-                type : "success"
-            }
-            this.props.dispatch(set_weui({ toast }));
+        if(
+                nextProps.resultphone==1 && type==="phone" &&
+                (this.props.resultphone===0||this.props.resultphone===-1)
+            ){
             window.setTimeout(()=> {
                 this.props.history.replace("/validation");
             }, 1000);
         }
     };
+
     componentWillMount () {//taobao,phone
+        let type = this.props.match.params.type;
+        if(type==="taobao" && this.props.resulttaobao==2){
+            this.props.history.goBack();
+        }
+        if(type==="phone" && this.props.resultphone==2){
+            this.props.history.goBack();
+        }
         this.props.dispatch(userauthenticationhtml_request({
-            type:this.props.match.params.type,
+            type: type,
             data:{}
         }));
     }
+
+
     componentWillUnmount () {//taobao,phone
         this.props.dispatch(userauthenticationhtml_result({html:{
             code:-1,
             errorCode:"-1"
         }}));
     }
+
     onClickBack =()=>{
         this.props.history.goBack();
     }
-    // setmyiframe=()=>{
-    //     // document.frames[0].location.href = this.props.html.url;
-    //     document.getElementById("myiframe").src = "/notifysuc/phone";
-    //     //this.props.history.goBack();
-    // }
+    
     render() {
         const {html} = this.props;
         let success = false;
@@ -74,11 +73,18 @@ export class Page extends React.Component {
             </div>
         );
     }
+
 }
+
 const data = ({validationhtml,userlogin:{resulttaobao,resultid,resultphone,resultzhima,resultrealname}}) => {
     return { ...validationhtml,resulttaobao,resultid,resultphone,resultzhima,resultrealname };
 }
+
 export default connect(data)(Page);
+
+
+
+
 
 
 

@@ -84,13 +84,13 @@ class Page extends Component {
     testSubmit = (value)=>{
         //console.log(value);
         this.props.dispatch(userauthentication_request({
-            type:'id',
-            data:value
+            type: 'id',
+            data: value
         }));
         this.props.dispatch(set_weui({
             toast: {
                 show : true,
-                text : "递交成功",
+                text : "信息递交成功",
                 type : "success"
             },
         }))

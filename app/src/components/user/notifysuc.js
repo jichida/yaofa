@@ -27,28 +27,14 @@ class Page extends Component {
         if(tp === 'taobao'){
             value.resulttaobao= 1;
         }
-        console.log(JSON.stringify(this.props));
-        console.log(tp);
-        console.log(id);
-        console.log(settypeuserauthentication_request);
-        console.log(this.props.dispatch);
-
         let posturl = config.serverurl + "/vborrow/" + id + "/" + tp;
-        //http://localhost:43002/vborrow/591439c0e203430e983aab21/phone
-        // $.get(posturl,{},function(data,status){
-        //     alert("数据: \n" + data + "\n状态: " + status);
-        // })
         $.ajax({
             type: "GET",
             url: posturl,
             success: function(msg){
-                alert( "Data Saved: " + msg );
+                console.log(msg);
             }
         });
-        // this.props.dispatch(settypeuserauthentication_request({
-        //     data: value,
-        //     query: {_id:id}
-        // }))
     };
 
     render(){
@@ -57,7 +43,7 @@ class Page extends Component {
                 <Msg
                     type="success"
                     title="资料递交成功"
-                    description="系统正在审核中..."
+                    description="系统正在审核中,需要2～3分钟..."
                 />
             </div>
         ) 
