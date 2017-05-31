@@ -53,6 +53,7 @@
 	height: auto;
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 0;
 }
 .getBorrowStatusInfo.btn .cont{
 	text-align: center;
@@ -168,9 +169,20 @@
 	color: #999;
 	padding: 0 20px;
 }
-
 .payorget .btn{
 	padding:0 15px;
 }
+.borrowinfoPage .list{
+	overflow: scroll;
+	flex-grow: 1;
+}
+.borrowinfoPage.AppPage{
+	overflow-y: scroll
+}
+
+
+
+
+
 
 

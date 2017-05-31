@@ -1,6 +1,12 @@
 .borrowlistPage {
 	background: #EEE;
 }
+.borrowlistPage .borrowlist{
+	display: flex;
+	flex-grow: 1;
+	overflow: hidden;
+	flex-direction: column;
+}
 .borrowlistPage .weui-navbar__item.weui-bar__item_on{
 	background: none;
 	position: relative;

@@ -301,7 +301,7 @@ class GetBorrowStatusInfo extends Component{
       //moneyreal
       this.props.dispatch(payorder_request({
         query:{_id:orderinfo._id},
-        data:{realprice:0.01}
+        data:{realprice:orderinfo.realprice}
       }));
     }
 

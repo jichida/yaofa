@@ -44,7 +44,24 @@
 	left: 0;
 	top: 7px;
 }
-
 .uservalidationinfoPage .weui-cell__bd{
 	align-items: flex-start;
 }
+.uservalidationinfoPage .nodata{
+	text-align: center;
+}
+.uservalidationinfoPage .nodata span:first-child{
+	padding: 40px 0 20px 0	;
+	color: #999;
+	display: flex;
+	justify-content: center;
+}
+.uservalidationinfoPage .nodata span.btn{
+	margin: 20px;
+}
+
+
+
+
+
+

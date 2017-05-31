@@ -44,12 +44,8 @@ const {
 
 
 class IdInfo extends Component {
-    pushUrl = (name)=>{
-        this.props.history.push(name);
-    }
     render(){
-        const { data } = this.props;
-
+        const { data,history } = this.props;
         if(data){
             let datainfo = JSON.parse(data);
             let info = datainfo.data;
@@ -107,59 +103,35 @@ class IdInfo extends Component {
                 </div>
             )
         }
-        
     }
 }
 IdInfo = withRouter(IdInfo);
 
 class PhoneInfo extends Component {
-
-    constructor(props) {  
+    constructor(props) {
         super(props);  
         this.state = {
             datainfo : ""
         };
     }
-
     componentWillMount () {
         this.getlist();
     }
-
     getlist =()=>{
-        console.log(this.props.data);
         if(this.props.data){
             $.ajax({
-                type: "GET",//请求方式为get
-                dataType: "json", //返回数据格式为json
-                // url: this.props.data,
-                url : "http://shuizhihe.com28.cn/uploader/phone_592c3a2b7ee6dc05bd972b3f.txt",
-                success: function(msg){
-                    console.log(msg);
+                type: "GET",
+                dataType: "json", 
+                url : this.props.data,
+                success: (status, msg)=>{
                     this.setState({datainfo : msg})
                 }
             });
-
-            // requestUrlGet(
-            //     "http://shuizhihe.com28.cn/uploader/phone_592c3a2b7ee6dc05bd972b3f.txt",
-            //     {},(status, msg)=>{
-            //     if(status){
-            //         console.log(msg)
-            //     }else{
-            //         let toast = {
-            //             show : true,
-            //             text : msg,
-            //             type : "warning"
-            //         }
-            //         this.props.dispatch(set_weui({toast}));
-            //     }
-            // })
         }
     }
-    
     render(){
-        const { data } = this.props;
+        const { data,history } = this.props;
         if(data){
-            console.log(this.state.datainfo);
             return (
                 <div className="pageInfo">
                     <Cells>
@@ -214,7 +186,6 @@ class PhoneInfo extends Component {
                 </div>
             )
         }
-        
     }
 }
 PhoneInfo = withRouter(PhoneInfo);
@@ -248,7 +219,7 @@ class TaobaoInfo extends Component {
     }
     
     render(){
-        const { data } = this.props;
+        const { data,history } = this.props;
         if(data){
             console.log(this.state.datainfo);
             return (

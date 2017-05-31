@@ -68,10 +68,7 @@ class Page extends Component {
         return (
             <div className="borrowlistPage AppPage">
                 <DocumentTitle title="我的借款" />
-                <Tab
-                    className="list"
-                    style={{flexGrow:"1",overflow:"scroll"}}
-                    >
+                <Tab className="borrowlist">
                     <NavBar>
                         <NavBarItem 
                             active={myorderlistStatus=="借款中"}
@@ -86,7 +83,9 @@ class Page extends Component {
                             已完成
                         </NavBarItem>
                     </NavBar>
-                    <TabBody>
+                    <TabBody
+                        className="list"
+                        >
                         {myorderlist.length>0?(
                             <Cells>
                                 {_.map(myorderlist,(order,index)=>{
