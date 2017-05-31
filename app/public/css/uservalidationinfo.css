@@ -1,0 +1,50 @@
+.uservalidationinfoPage {
+	background: #FFF;
+}
+.uservalidationinfoPage .topicinfo{
+	background: #f49d05;
+	display: flex;
+	padding:15px;
+	color: #FFF;
+	position: relative;
+}
+.uservalidationinfoPage .topicinfo span{
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	display: inline-block;
+}
+.uservalidationinfoPage .topicinfo span:after{
+	height: 1px;
+	width: 16px;
+	background: #CCC;
+	content: "";
+	-moz-transform:rotate(45deg);
+	-webkit-transform:rotate(45deg);
+	-o-transform:rotate(45deg);
+	-ms-transform:rotate(45deg);
+	transform:rotate(45deg);
+	position: absolute;
+	left: 0;
+	top: 7px;
+}
+.uservalidationinfoPage .topicinfo span:before{
+	height: 1px;
+	width: 16px;
+	background: #CCC;
+	content: "";
+	-moz-transform:rotate(-45deg);
+	-webkit-transform:rotate(-45deg);
+	-o-transform:rotate(-45deg);
+	-ms-transform:rotate(-45deg);
+	transform:rotate(-45deg);
+	position: absolute;
+	left: 0;
+	top: 7px;
+}
+
+.uservalidationinfoPage .weui-cell__bd{
+	align-items: flex-start;
+}
