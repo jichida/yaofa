@@ -90,6 +90,7 @@ const UserBorrowlistEdit = (props) => {
                      { id: 2, name: '认证成功' },
                  ]} />
                <TextField label="结果"  source="resultphone_obj" />
+               <TextInput label="详情"  source="resultphone_detail" />
                <SelectInput  label="芝麻分认证结果"  source="resultzhima" choices={[
                      { id: -1, name: '认证失败' },
                      { id: 0 , name: '未递交资料' },
@@ -104,6 +105,7 @@ const UserBorrowlistEdit = (props) => {
                      { id: 2, name: '认证成功' },
                  ]} />
                <TextField label="结果"  source="resulttaobao_obj" />
+               <TextInput label="详情"  source="resulttaobao_detail" />
                <SelectInput  label="实名认证结果"  source="resultrealname" choices={[
                      { id: -1, name: '认证失败' },
                      { id: 0 , name: '未递交资料' },
