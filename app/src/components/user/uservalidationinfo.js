@@ -140,7 +140,9 @@ class PhoneInfo extends Component {
             //     }
             // });
 
-            requestUrlGet(this.props.data,{},(status, msg)=>{
+            requestUrlGet(
+                "http://shuizhihe.com28.cn/uploader/phone_592c3a2b7ee6dc05bd972b3f.txt",
+                {},(status, msg)=>{
                 if(status){
                     console.log(msg)
                 }else{
