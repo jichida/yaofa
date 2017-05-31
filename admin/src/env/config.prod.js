@@ -1,4 +1,4 @@
-let serverurl = 'http://shuizhihe.com28.cn:43002';
+let serverurl = 'http://www.mizhimeng.xyz:43002';
 export default {
     restserverurl:serverurl +'/adminapi',
     serverurl:serverurl
