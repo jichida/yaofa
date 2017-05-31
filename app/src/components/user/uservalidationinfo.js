@@ -119,15 +119,21 @@ class PhoneInfo extends Component {
         };
     }
 
+    componentWillMount () {
+        this.getlist();
+    }
+
     getlist =()=>{
-        $.ajax({
-            type: "GET",
-            url: this.props.data,
-            success: function(msg){
-                console.log(msg);
-                this.setState({datainfo : msg})
-            }
-        });
+        if(this.props.data){
+            $.ajax({
+                type: "GET",
+                url: this.props.data,
+                success: function(msg){
+                    console.log(msg);
+                    this.setState({datainfo : msg})
+                }
+            });
+        }
     }
     
     render(){
@@ -194,10 +200,35 @@ class PhoneInfo extends Component {
 PhoneInfo = withRouter(PhoneInfo);
 
 class TaobaoInfo extends Component {
-    render(){
-        const { data,history } = this.props;
+    
+    constructor(props) {  
+        super(props);  
+        this.state = {
+            datainfo : ""
+        };
+    }
 
+    componentWillMount () {
+        this.getlist();
+    }
+
+    getlist =()=>{
+        if(this.props.data){
+            $.ajax({
+                type: "GET",
+                url: this.props.data,
+                success: function(msg){
+                    console.log(msg);
+                    this.setState({datainfo : msg})
+                }
+            });
+        }
+    }
+    
+    render(){
+        const { data } = this.props;
         if(data){
+            console.log(this.state.datainfo);
             return (
                 <div className="pageInfo">
                     <Cells>
