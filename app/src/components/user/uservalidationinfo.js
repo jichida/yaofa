@@ -13,10 +13,12 @@ import moment from "moment";
 import _ from "lodash";
 import $ from "jquery";
 import { withRouter } from 'react-router-dom';
+import { requestUrlGet } from '../../util/util';
 import { 
     getmyorders_request,
     set_myorderlistStatus,
-    set_orderinfo
+    set_orderinfo,
+    set_weui
     }  from "../../actions";
 
 const { 
@@ -124,16 +126,32 @@ class PhoneInfo extends Component {
     }
 
     getlist =()=>{
+        console.log(this.props.data);
         if(this.props.data){
-            $.ajax({
-                type: "GET",//请求方式为get
-                dataType: "json", //返回数据格式为json
-                url: this.props.data,
-                success: function(msg){
-                    console.log(msg);
-                    this.setState({datainfo : msg})
+            // $.ajax({
+            //     type: "GET",//请求方式为get
+            //     dataType: "json", //返回数据格式为json
+            //     dataType : 'jsonp',
+            //         jsonp:"jsoncallback",
+            //     url: this.props.data,
+            //     success: function(msg){
+            //         console.log(msg);
+            //         this.setState({datainfo : msg})
+            //     }
+            // });
+
+            requestUrlGet(this.props.data,{},(status, msg)=>{
+                if(status){
+                    console.log(msg)
+                }else{
+                    let toast = {
+                        show : true,
+                        text : msg,
+                        type : "warning"
+                    }
+                    this.props.dispatch(set_weui({toast}));
                 }
-            });
+            })
         }
     }
     
