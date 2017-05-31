@@ -126,7 +126,8 @@ class PhoneInfo extends Component {
     getlist =()=>{
         if(this.props.data){
             $.ajax({
-                type: "GET",
+                type: "GET",//请求方式为get
+                dataType: "json", //返回数据格式为json
                 url: this.props.data,
                 success: function(msg){
                     console.log(msg);
@@ -215,6 +216,8 @@ class TaobaoInfo extends Component {
     getlist =()=>{
         if(this.props.data){
             $.ajax({
+                type: "GET",//请求方式为get
+                dataType: "json", //返回数据格式为json
                 type: "GET",
                 url: this.props.data,
                 success: function(msg){
