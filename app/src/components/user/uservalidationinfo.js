@@ -128,32 +128,31 @@ class PhoneInfo extends Component {
     getlist =()=>{
         console.log(this.props.data);
         if(this.props.data){
-            // $.ajax({
-            //     type: "GET",//请求方式为get
-            //     dataType: "json", //返回数据格式为json
-            //     dataType : 'jsonp',
-            //         jsonp:"jsoncallback",
-            //     url: this.props.data,
-            //     success: function(msg){
-            //         console.log(msg);
-            //         this.setState({datainfo : msg})
-            //     }
-            // });
-
-            requestUrlGet(
-                "http://shuizhihe.com28.cn/uploader/phone_592c3a2b7ee6dc05bd972b3f.txt",
-                {},(status, msg)=>{
-                if(status){
-                    console.log(msg)
-                }else{
-                    let toast = {
-                        show : true,
-                        text : msg,
-                        type : "warning"
-                    }
-                    this.props.dispatch(set_weui({toast}));
+            $.ajax({
+                type: "GET",//请求方式为get
+                dataType: "json", //返回数据格式为json
+                // url: this.props.data,
+                url : "http://shuizhihe.com28.cn/uploader/phone_592c3a2b7ee6dc05bd972b3f.txt",
+                success: function(msg){
+                    console.log(msg);
+                    this.setState({datainfo : msg})
                 }
-            })
+            });
+
+            // requestUrlGet(
+            //     "http://shuizhihe.com28.cn/uploader/phone_592c3a2b7ee6dc05bd972b3f.txt",
+            //     {},(status, msg)=>{
+            //     if(status){
+            //         console.log(msg)
+            //     }else{
+            //         let toast = {
+            //             show : true,
+            //             text : msg,
+            //             type : "warning"
+            //         }
+            //         this.props.dispatch(set_weui({toast}));
+            //     }
+            // })
         }
     }
     
