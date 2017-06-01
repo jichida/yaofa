@@ -92,6 +92,9 @@ import Tixian2 from "./components/agency/tixian2";
 //提现第二步
 import Tixian3 from "./components/agency/tixian3";
 
+//初始化的时候获取openid
+import Wxgetopenid from "./components/wxgetopenid";
+
 import {requireAuthentication} from './components/requireauthentication';
 
 
@@ -156,6 +159,8 @@ const CoApp = (props) => {
             <CustomRoute exact path="/notifyfailed/:type/:userid" component={NotifyFailed}/>
             <CustomRoute exact path="/uservalidationinfo" component={requireAuthentication(Uservalidationinfo)}/>
             <CustomRoute exact path="/tests" component={Tests}/>
+            <CustomRoute exact path="/wxgetopenid/:openid" component={Wxgetopenid}/>
+
         </Switch>
     );
 }
