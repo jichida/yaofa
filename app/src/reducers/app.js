@@ -26,23 +26,52 @@ const initial = {
 
 const app = createReducer({
     [getsystemconfig_result]:(state, payload) => {
-        console.log("state.weixintoken):::"+JSON.stringify(state.weixintoken)); 
+        console.log("state.weixintoken:::"+JSON.stringify(state.weixintoken)); 
         const {weixintoken:oldweixintoken} = state;
         const statecode = (new Date()).getTime();
-        const posturl = "https://open.weixin.qq.com/connect/qrconnect?appid=wx8ec8ba53700c0c89&redirect_uri=wx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_login&state="+statecode+"#wechat_redirect"
+        //const posturl = "https://open.weixin.qq.com/connect/qrconnect?appid=wx8ec8ba53700c0c89&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_login&state="+statecode+"#wechat_redirect"
+        const posturl = "https://open.weixin.qq.com/connect/qrconnect?appid=wx8ec8ba53700c0c89&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect";
         
-        $.ajax({
-            type: "GET",
-            url: posturl,
-            success: function(msg){
-                console.log("posturl success");
-                console.log(msg);
-            },
-            error : function(msg){
-                console.log("posturl error");
-                console.log(msg);
-            },
-        });
+
+
+
+        // $.ajax({
+        //     type: "GET",
+        //     url: posturl,
+        //     success: function(msg){
+        //         console.log("posturl success");
+        //         console.log(msg);
+        //     },
+        //     error : function(msg){
+        //         console.log("posturl error");
+        //         console.log(msg);
+        //     },
+        // });
+
+
+
+
+        //获取用户的openid
+//         function getBaseInfo(){
+//             //1.获取到code
+//             let appid="wx8ec8ba53700c0c89";//这里的appid是假的演示用
+//             let redirect_uri="http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid";//这里的地址需要http://
+//             let url="https://open.weixin.qq.com/connect/oauth2/authorize?appid="+appid+"&redirect_uri="+redirect_uri+"&response_type=code&scope=snsapi_base&state=123#wechat_redirect";
+//             header('location:'+$url);
+//         }
+
+//         function getUserOpenId(){
+    //    //2.获取到网页授权的access_token
+    //    $appid="qq1813284q1q6q8888";//这里的appid是假的演示用
+    //    $appsecret="61qqqq36745987167q73bq1q2552qq75";//这里的appsecret是假的演示用
+    //    $code=$_GET['code'];
+    //    $url="https://api.weixin.qq.com/sns/oauth2/access_token?appid=".$appid."&secret=".$appsecret."&code=".$code."&grant_type=authorization_code ";
+    //    //3.拉取用户的openid
+    //    $res = $this->http_curl($url,'get');
+
+// 　var_dump($res);//打印即可看到用户的openid
+
+//}
 
         const {weixintoken} = payload;
 
