@@ -2,7 +2,7 @@ import { createReducer } from 'redux-act';
 import {
   getsystemconfig_result
 } from '../actions/index.js';
-
+import $ from "jquery";
 
 const initial = {
     app: {
@@ -25,11 +25,28 @@ const initial = {
 };
 
 const app = createReducer({
-   [getsystemconfig_result]:(state, payload) => {
-      console.log("state.weixintoken):::"+JSON.stringify(state.weixintoken)); 
-       const {weixintoken:oldweixintoken} = state;
-       const {weixintoken} = payload;
-       if((oldweixintoken.signature === '' || oldweixintoken.access_token === '' )
+    [getsystemconfig_result]:(state, payload) => {
+        console.log("state.weixintoken):::"+JSON.stringify(state.weixintoken)); 
+        const {weixintoken:oldweixintoken} = state;
+        const statecode = (new Date()).getTime();
+        const posturl = "https://open.weixin.qq.com/connect/qrconnect?appid=wx8ec8ba53700c0c89&redirect_uri=wx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_login&state="+statecode+"#wechat_redirect"
+        
+        $.ajax({
+            type: "GET",
+            url: posturl,
+            success: function(msg){
+                console.log("posturl success");
+                console.log(msg);
+            },
+            error : function(msg){
+                console.log("posturl error");
+                console.log(msg);
+            },
+        });
+
+        const {weixintoken} = payload;
+
+        if((oldweixintoken.signature === '' || oldweixintoken.access_token === '' )
         && weixintoken.signature !== '' && weixintoken.access_token !== '' ){
           window.wx.config({
               debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -39,6 +56,7 @@ const app = createReducer({
               signature: weixintoken.signature,// 必填，签名，见附录1
               jsApiList: [
                 "chooseWXPay",
+                "getBrandWCPayRequest",
               ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
           });
           window.wx.ready(function() {
