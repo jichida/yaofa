@@ -38,31 +38,52 @@ const app = createReducer({
         //const posturl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+config.appid+"&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect";
         
 
-        let options = {
-            method: 'GET',
-            url: "https://open.weixin.qq.com/connect/oauth2/authorize",
-            qs: {
+        // let options = {
+        //     method: 'GET',
+        //     url: "https://open.weixin.qq.com/connect/oauth2/authorize",
+        //     qs: {
+        //         appid: config.appid,
+        //         redirect_uri: config.redirect_uri,
+        //         response_type: 'code',
+        //         scope: 'snsapi_base'
+        //     },
+        //     headers: {
+        //         'content-type': 'application/json',
+        //         accept: 'application/json'
+        //     }
+        // };
+
+        // request(options, function (error, response, body) {
+        //     if (error) throw new Error(error);
+        //     console.log(`/weixin/getopenid get result===>${body}`);
+        //     // let resultobj = body;
+        //     // if(typeof resultobj === 'string'){
+        //     //     resultobj= JSON.parse(body);
+        //     // }
+        //  });
+
+
+
+        $.ajax({
+            type : "GET",
+            url: 'https://open.weixin.qq.com/connect/oauth2/authorize',
+            dataType: 'json',
+            data: {
                 appid: config.appid,
                 redirect_uri: config.redirect_uri,
                 response_type: 'code',
                 scope: 'snsapi_base'
             },
-            headers: {
-                'content-type': 'application/json',
-                accept: 'application/json'
+            success: function (d) {
+                console.log('11111111111111111111111');
+                console.log(d);
+            },
+            error: function(e){
+                console.log('22222222222222222222222');
+                console.log(e);
             }
-        };
+        })
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-
-            console.log(`/weixin/getopenid get result===>${body}`);
-            // let resultobj = body;
-            // if(typeof resultobj === 'string'){
-            //     resultobj= JSON.parse(body);
-            // }
-
-         });
 
 
 
