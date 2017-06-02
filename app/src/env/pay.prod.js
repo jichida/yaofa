@@ -13,14 +13,14 @@ export const payorder = (paysign,orderinfo,callbackfn)=>{
 	    "timestamp": "2017053117",
 	    "sign": "343055FB470D98FD139DAC7CD5BB744B"
 	}
-	  // let postdata = {
-	  //     "out_trade_no":orderinfo._id
-	  // };
-	  // requestpost('/pay/alipaytest',postdata,(err,result)=>{
-	  //       console.log("testpost err:" + JSON.stringify(err));
-	  //       console.log("testpost result:" + JSON.stringify(result));
-	  //       callbackfn(result);
-	  // });
+	// let postdata = {
+	//     "out_trade_no":orderinfo._id
+	// };
+	// requestpost('/pay/alipaytest',postdata,(err,result)=>{
+	//       console.log("testpost err:" + JSON.stringify(err));
+	//       console.log("testpost result:" + JSON.stringify(result));
+	//       callbackfn(result);
+	// });
   	//console.log(paysign);
   	//getBrandWCPayRequest
   	window.wx.getBrandWCPayRequest({
