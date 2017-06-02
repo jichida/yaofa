@@ -112,7 +112,6 @@ const app = createReducer({
               signature: weixintoken.signature,// 必填，签名，见附录1
               jsApiList: [
                 "chooseWXPay",
-                "getBrandWCPayRequest",
               ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
           });
           window.wx.ready(function() {
