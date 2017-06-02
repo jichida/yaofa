@@ -299,6 +299,20 @@ class GetBorrowStatusInfo extends Component{
     }
     goPay =(orderinfo)=>{
       //moneyreal
+      //realprice 
+      //percentborrowpre
+      //percentborrowreal
+      //与借款的10% ＋ 实际借款的10%
+      //parseFloat((percentborrowpre/100).toFixed(2));
+      const { percentborrowreal,percentborrowpre } = this.props;
+      
+      orderinfo.realprice = orderinfo.moneyreal * parseFloat((percentborrowreal/100).toFixed(2));
+      let realpricepre = orderinfo.moneylender * parseFloat((percentborrowpre/100).toFixed(2));
+
+      if(orderinfo.moneyreal<orderinfo.moneylender){
+        orderinfo.realprice = (orderinfo.realprice + realpricepre)*0.5;
+      }
+      orderinfo.realprice = parseFloat((orderinfo.realprice).toFixed(2));
       this.props.dispatch(payorder_request({
         query:{_id:orderinfo._id},
         data:{realprice:orderinfo.realprice}
@@ -449,8 +463,8 @@ class GetBorrowStatusInfo extends Component{
         )
     }
 }
-const dataGetBorrowStatusInfo = ({userlogin:{canaccept}}) => {
-    return {canaccept};
+const dataGetBorrowStatusInfo = ({userlogin:{canaccept},app:{percentborrowreal,percentborrowpre}}) => {
+    return {canaccept,percentborrowreal,percentborrowpre};
 };
 GetBorrowStatusInfo = connect(dataGetBorrowStatusInfo)(GetBorrowStatusInfo);
 GetBorrowStatusInfo = withRouter(GetBorrowStatusInfo);
@@ -477,13 +491,13 @@ class Page extends Component {
 }
 
 let usertypes = localStorage.getItem('usertype');
-const data = ({order:{orderInfo,myorderlist}}) => {
+const data = ({order:{orderInfo,myorderlist}, app:{percentborrowreal,percentborrowpre}}) => {
     let neworderInfo = orderInfo;
     let myneworderInfo = myorderlist[orderInfo._id];
     if(myneworderInfo){
         neworderInfo = myneworderInfo;
     }
-    return {orderInfo:neworderInfo};
+    return {orderInfo:neworderInfo, percentborrowreal, percentborrowpre };
 };
 Page = connect(data)(Page);
 export default Page;
