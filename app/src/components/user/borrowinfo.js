@@ -377,7 +377,9 @@ class GetBorrowStatusInfo extends Component{
                                             </Cells>
                                             <CellsTitle>
                                                 支付后才能继续接单,点击查看
-                                                <span className="blue">收费标准说明</span>
+                                                <span className="blue"
+                                                    onClick={()=>{this.pushUrl("/abouthtml/feeminu")}}
+                                                >收费标准说明</span>
                                             </CellsTitle>
                                         </div>
                                     ):""
@@ -432,7 +434,9 @@ class GetBorrowStatusInfo extends Component{
                                             </Cells>
                                             <CellsTitle>
                                                 点击查看
-                                                <span className="blue">受益规则</span>
+                                                <span className="blue"
+                                                    onClick={()=>{this.pushUrl("/abouthtml/feepuls")}}
+                                                >受益规则</span>
                                             </CellsTitle>
                                         </div>
                                     ):""

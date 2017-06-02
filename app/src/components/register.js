@@ -127,7 +127,7 @@ export class RegisterPage extends Component {
                         className="btn login"
                         disabled={(pristine || submitting)&&hasAggree}
                         >
-                        注册
+                        <span>注册</span>
                     </button>
                     <span 
                         className="btn register"

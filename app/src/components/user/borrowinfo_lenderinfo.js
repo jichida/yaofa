@@ -9,7 +9,12 @@ import moment from "moment";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
+import { withRouter } from 'react-router-dom';
 const {
+    Cells,
+    Cell,
+    CellBody,
+    CellFooter,
     Panel,
     PanelHeader,
     PanelBody,
@@ -17,8 +22,12 @@ const {
     } = WeUI;
 
 class Page extends Component {
+    pushUrl = (name)=>{
+        this.props.history.push(name);
+    }
 	render() {
         const { orderinfo } = this.props;
+        const usertype = localStorage.getItem('usertype');
         return (
     		<div className="borrowinfoLenderinfo">
                 {orderinfo.hasOwnProperty("userlender")?(
@@ -42,10 +51,24 @@ class Page extends Component {
                                 </MediaBox>
                             </PanelBody>
                         </Panel>
+                        {usertype=="userborrow"?(
+                            <Cells>
+                                <Cell
+                                    access
+                                    onClick={()=>{this.pushUrl("/borrowshowloaninfo");}}
+                                    >
+                                    <CellBody>
+                                        查看放款人信息
+                                    </CellBody>
+                                    <CellFooter/>
+                                </Cell>
+                            </Cells>
+                        ):null}
                     </div>
                 ):""}
     		</div>
     	)
     }
 }
+Page = withRouter(Page);
 export default Page;

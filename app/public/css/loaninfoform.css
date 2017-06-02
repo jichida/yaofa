@@ -1,0 +1,31 @@
+.loaninfoPage .list > div.li >div.weui-cell{
+	display: flex;
+	flex-grow: 1;
+	justify-content: center;
+	flex-direction: row;
+}
+.showloaninfoPage img{
+	max-width: 100%
+}
+.showloaninfoPage .weui-cell__ft.img{
+	width: 40%;
+}
+.loaninfoPage .list{
+	margin-bottom: 0;
+	justify-content: flex-start;
+}
+
+.loaninfoPage .list > div.li{
+	margin-bottom: 0;
+	padding-bottom: 0;
+	padding: 10px 0;
+}
+.loaninfoPage .list > .btn{
+	margin-top: 20px;
+}
+.showloaninfoPage .list{
+	justify-content: flex-start;
+}
+.showloaninfoPage .list > .btn{
+	margin-top: 30px;
+}

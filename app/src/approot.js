@@ -29,8 +29,6 @@ import Abouthtml from "./components/abouthtml";
 */
 //发布借款
 import AddBorrow from "./components/user/addborrow";
-//放款详情
-import Loaninfo from "./components/user/loaninfo";
 //用户中心
 import UserCenter from "./components/user/usercenter";
 //借款列表
@@ -71,6 +69,10 @@ import BossUserCenter from "./components/boss/usercenter";
 import BossAddLoan from "./components/boss/addloan";
 //我的放款列表  //未完成
 import BossLoanList from "./components/boss/loanlist";
+//放款详情
+import Loaninfo from "./components/boss/loaninfo";
+import ShowLoaninfo from "./components/boss/showloaninfo";
+import BorrowShowLoaninfo from "./components/boss/borrowshowloaninfo";
 //放款详情  //未完成
 //import BossLoanList from "./components/boss/loanlist";
 
@@ -97,7 +99,7 @@ import Wxgetopenid from "./components/wxgetopenid";
 
 import {requireAuthentication} from './components/requireauthentication';
 
-
+//import Loaninfo from './components/requireauthentication';
 
 //认证，集成第三方页面，运营商认证和淘宝认证
 import Validationhtml from './components/user/validationhtml';
@@ -160,7 +162,8 @@ const CoApp = (props) => {
             <CustomRoute exact path="/uservalidationinfo" component={requireAuthentication(Uservalidationinfo)}/>
             <CustomRoute exact path="/tests" component={Tests}/>
             <CustomRoute exact path="/wxgetopenid/:openid" component={Wxgetopenid}/>
-
+            <CustomRoute exact path="/showloaninfo" component={requireAuthentication(ShowLoaninfo)}/>
+            <CustomRoute exact path="/borrowshowloaninfo" component={requireAuthentication(BorrowShowLoaninfo)}/>
         </Switch>
     );
 }

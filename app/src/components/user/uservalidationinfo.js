@@ -14,6 +14,7 @@ import _ from "lodash";
 import $ from "jquery";
 import { withRouter } from 'react-router-dom';
 import { requestUrlGet } from '../../util/util';
+import config from '../../env/config';
 import { 
     getmyorders_request,
     set_myorderlistStatus,
@@ -119,10 +120,13 @@ class PhoneInfo extends Component {
     }
     getlist =()=>{
         if(this.props.data){
+            console.log(this.props.data);
+            console.log(config.serverurl);
             $.ajax({
                 type: "GET",
                 dataType: "json", 
-                url : this.props.data,
+                //url : config.serverurl + this.props.data,
+                url : "http://wx.mrtejia.cn" + this.props.data,
                 success: (status, msg)=>{
                     this.setState({datainfo : msg})
                 }
@@ -202,16 +206,16 @@ class TaobaoInfo extends Component {
     componentWillMount () {
         this.getlist();
     }
-
     getlist =()=>{
         if(this.props.data){
+            console.log(this.props.data);
+            console.log(config.serverurl);
             $.ajax({
-                type: "GET",//请求方式为get
-                dataType: "json", //返回数据格式为json
                 type: "GET",
-                url: this.props.data,
-                success: function(msg){
-                    console.log(msg);
+                dataType: "json", 
+                //url : config.serverurl + this.props.data,
+                url : "http://wx.mrtejia.cn" + this.props.data,
+                success: (status, msg)=>{
                     this.setState({datainfo : msg})
                 }
             });

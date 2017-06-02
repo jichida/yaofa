@@ -49,6 +49,17 @@ class Page extends Component {
                             </CellBody>
                             <CellFooter/>
                         </Cell>
+                        <Cell 
+                            onClick={()=>{this.pushUrl("/showloaninfo")}}
+                            access>
+                            <CellHeader>
+                                <img src="img/52.png" alt="" />
+                            </CellHeader>
+                            <CellBody>
+                                基本信息
+                            </CellBody>
+                            <CellFooter/>
+                        </Cell>
                     </Cells>
                     <Cells>
                         <Cell
