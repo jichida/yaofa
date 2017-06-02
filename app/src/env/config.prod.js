@@ -1,5 +1,5 @@
 let config = {
-  serverurl:'http://wx.mrtejia.cn:43002',
+  serverurl:'http://wx.mrtejia.cn',
   requesttimeout:5000,
   appversion : 1.0,
   refreshmyorderinterval:5000,//5秒
