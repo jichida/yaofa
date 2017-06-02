@@ -16,14 +16,19 @@ export const payorder = (paysign,orderinfo,callbackfn)=>{
   // });
   let onBridgeReady =()=>{
       console.log("onBridgeReady::::"+JSON.stringfiy(paysign));
+      alert(paysign.appId);
+      alert(paysign.timeStamp);
+      alert(paysign.nonceStr);
+      alert(paysign.package);
+      alert(paysign.paySign);
      window.WeixinJSBridge.invoke(
          'getBrandWCPayRequest', {
-            "appId": paysign.appId,     //公众号名称，由商户传入     
-            "timeStamp": paysign.timeStamp,         //时间戳，自1970年以来的秒数     
-            "nonceStr": paysign.nonceStr, //随机串     
+            "appId": paysign.appId,
+            "timeStamp": paysign.timeStamp,   
+            "nonceStr": paysign.nonceStr,  
             "package": paysign.package,     
-            "signType": "MD5",         //微信签名方式：     
-            "paySign": paysign.paySign //微信签名 
+            "signType": "MD5",
+            "paySign": paysign.paySign
          },
          function(res){     
              if(res.err_msg === "get_brand_wcpay_request:ok" ) {}     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。 
