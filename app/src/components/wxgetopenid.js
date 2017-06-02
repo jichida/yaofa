@@ -5,6 +5,7 @@ class Page extends Component {
     componentWillMount() {
         console.log("this.props.match.params.openid");
         console.log(this.props.match.params.openid);
+        localStorage.setItem("openid","xxxxxx");
     }
 
 	render() {
@@ -13,4 +14,5 @@ class Page extends Component {
     	)
     }
 }
+
 export default Page;
