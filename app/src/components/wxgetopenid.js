@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Index from './index';
 
 class Page extends Component {
 
