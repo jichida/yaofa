@@ -121,13 +121,20 @@ const app = createReducer({
             // 对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
             // 定位
             // getLocation();
+              console.log(window.wx.config);
+              console.log(window.wx.getBrandWCPayRequest);
+              console.log("window.wx.ready");
           });
 
           window.wx.error(function(res) {
+              console.log("window.wx.error");
+              console.log(res)
           });
 
 
        }
+
+       console.log(window.wx);
        return { ...state,...payload}
    },
 }, initial.app);

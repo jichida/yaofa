@@ -57,7 +57,7 @@ class Page extends Component {
         this.props.history.push(name);
     }
     render() {
-        const {urlphoneid1,urlphoneid2,truename,phonenumber} = this.props;
+        const {orderInfo} = this.props;
         
         return (
             <div className="validationPhotoPage showloaninfoPage AppPage">
@@ -69,7 +69,7 @@ class Page extends Component {
                                 姓名
                             </CellBody>
                             <CellFooter>
-                                {truename}
+                                {orderInfo.userlender.truename}
                             </CellFooter>
                         </Cell>
                         <Cell>
@@ -77,38 +77,22 @@ class Page extends Component {
                                 电话
                             </CellBody>
                             <CellFooter>
-                                {phonenumber}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                身份证正面
-                            </CellBody>
-                            <CellFooter className="img">
-                                {!!urlphoneid1?(<img src={urlphoneid1} />):"暂无"}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                身份证反面
-                            </CellBody>
-                            <CellFooter className="img">
-                                {!!urlphoneid2?(<img src={urlphoneid2} />):"暂无"}
+                                <a href={`tel:${orderInfo.userlender.phonenumber}`}>{orderInfo.userlender.phonenumber}</a>
                             </CellFooter>
                         </Cell>
                     </Cells>
                 </div>
-                
-
-                
             </div>
         )
     }
 }
-const data = ({userlogin:{urlphoneid1,urlphoneid2,truename,phonenumber}}) => {
-
-
-    return {urlphoneid1,urlphoneid2,truename,phonenumber};
+const data = ({order:{orderInfo,myorderlist}, app:{percentborrowreal,percentborrowpre}}) => {
+    let neworderInfo = orderInfo;
+    let myneworderInfo = myorderlist[orderInfo._id];
+    if(myneworderInfo){
+        neworderInfo = myneworderInfo;
+    }
+    return {orderInfo:neworderInfo};
 };
 Page = connect(data)(Page);
 export default Page;

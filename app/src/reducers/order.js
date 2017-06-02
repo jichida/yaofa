@@ -6,7 +6,7 @@ import {
     acceptorder_result,
     set_myorderlistStatus,
     getmyorders_result,
-    set_tousucontent
+    set_tousucontent,
 } from '../actions/index.js';
 
 const initial = {
@@ -14,7 +14,7 @@ const initial = {
         orderInfo : {},
         myorderlistStatus : "借款中",
         tousucontent : "",
-        myorderlist: {},
+        myorderlist: {}
     },
 };
 

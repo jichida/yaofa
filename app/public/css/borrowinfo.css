@@ -73,6 +73,7 @@
 	flex-grow: 1;
 	align-self: stretch;
 	margin: 0 20px;
+	height: 36px;
 }
 .getBorrowStatusInfo.btn .cont .weui-cells{
 	margin-top: 0;
@@ -171,6 +172,7 @@
 }
 .payorget .btn{
 	padding:0 15px;
+
 }
 .borrowinfoPage .list{
 	overflow: scroll;
@@ -181,8 +183,9 @@
 .borrowinfoPage.AppPage{
 	overflow-y: scroll
 }
-
-
+.borrowinfoPage >div{
+	flex-shrink: 0;
+}
 
 
 

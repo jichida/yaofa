@@ -52,11 +52,6 @@ class Page extends Component {
 
     getList =(status)=>{
         let query = {};
-        if(status=="已完成"){
-            query.statusforlender = "订单完成";
-        }else{
-            query.statusforlender = { $ne: "订单完成" };
-        }
         this.props.dispatch(getmyorders_request({query,options:{
                 page: 1,
                 limit: 100,
@@ -64,7 +59,7 @@ class Page extends Component {
     }
 
     render() {
-        const { myorderlist, myorderlistStatus } = this.props;
+        const { fillerorderlist, myorderlistStatus } = this.props;
         return (
             <div className="borrowlistPage AppPage">
                 <DocumentTitle title="我的借款" />
@@ -86,9 +81,9 @@ class Page extends Component {
                     <TabBody
                         className="list"
                         >
-                        {myorderlist.length>0?(
+                        {fillerorderlist.length>0?(
                             <Cells>
-                                {_.map(myorderlist,(order,index)=>{
+                                {_.map(fillerorderlist,(order,index)=>{
                                     console.log(order);
                                     return (
                                          <Cell
@@ -105,7 +100,7 @@ class Page extends Component {
                                             </CellHeader>
                                             <CellBody>
                                                 <span>{order.statusforlender}</span>
-                                                {order.statusforlender=="放款成功"&&order.moneyreal>0?(
+                                                {order.paystatus=="未支付"&&order.moneyreal>0?(
                                                     <span className="color_error">去支付</span>
                                                 ):""}
                                                 
@@ -134,7 +129,18 @@ const data = ({order:{myorderlistStatus,myorderlist}}) => {
         }
         return -o.orderstatus;
      }]);
-    return {myorderlist, myorderlistStatus};
+
+    let fillerorderlist = {};
+    if(myorderlistStatus==="借款中"){
+        fillerorderlist = _.filter(myorderlist, function(o) { 
+            return o.statusforborrower!="订单完成" || (o.statusforborrower=="订单完成"&&o.paystatus=="未支付"); 
+        });
+    }
+    if(myorderlistStatus==="已完成"){
+        fillerorderlist = _.filter(myorderlist, function(o) { return o.statusforborrower=="订单完成"&&o.paystatus=="已支付"; });
+    }
+
+    return {fillerorderlist, myorderlistStatus};
 };
 Page = connect(data)(Page);
 export default Page;
