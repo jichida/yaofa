@@ -36,8 +36,6 @@ const app = createReducer({
         const statecode = (new Date()).getTime();
         //const posturl = "https://open.weixin.qq.com/connect/qrconnect?appid=wx8ec8ba53700c0c89&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_login&state="+statecode+"#wechat_redirect"
         //const posturl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid="+config.appid+"&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect";
-        
-
         // let options = {
         //     method: 'GET',
         //     url: "https://open.weixin.qq.com/connect/oauth2/authorize",
@@ -61,33 +59,25 @@ const app = createReducer({
         //     //     resultobj= JSON.parse(body);
         //     // }
         //  });
-
-
-
-        $.ajax({
-            type : "GET",
-            url: 'https://open.weixin.qq.com/connect/oauth2/authorize',
-            dataType: 'json',
-            data: {
-                appid: config.appid,
-                redirect_uri: config.redirect_uri,
-                response_type: 'code',
-                scope: 'snsapi_base'
-            },
-            success: function (d) {
-                console.log('11111111111111111111111');
-                console.log(d);
-            },
-            error: function(e){
-                console.log('22222222222222222222222');
-                console.log(e);
-            }
-        })
-
-
-
-
-
+        // $.ajax({
+        //     type : "GET",
+        //     url: 'https://open.weixin.qq.com/connect/oauth2/authorize',
+        //     dataType: 'json',
+        //     data: {
+        //         appid: config.appid,
+        //         redirect_uri: config.redirect_uri,
+        //         response_type: 'code',
+        //         scope: 'snsapi_base'
+        //     },
+        //     success: function (d) {
+        //         console.log('11111111111111111111111');
+        //         console.log(d);
+        //     },
+        //     error: function(e){
+        //         console.log('22222222222222222222222');
+        //         console.log(e);
+        //     }
+        // })
         //获取用户的openid
 //         function getBaseInfo(){
 //             //1.获取到code

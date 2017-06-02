@@ -36,7 +36,7 @@ export function* payflow() {
              total_fee: orderinfo.realprice*100,//$('#fee').val(),//'9.00',
            };
           yield put(getpaysign_request({
-              paytype:'weixin',
+              openid: localStorage.getItem("openid"),
               paypage:'orderdetailpage',
               orderdoc:orderdoc,
           }));
