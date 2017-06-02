@@ -10,7 +10,7 @@ class Page extends Component {
 
 	render() {
         return (
-    		<Index />
+    		<div>本页面是获取openid的页面</div>
     	)
     }
 }
