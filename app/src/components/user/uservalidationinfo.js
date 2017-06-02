@@ -112,7 +112,8 @@ class PhoneInfo extends Component {
     constructor(props) {
         super(props);  
         this.state = {
-            datainfo : ""
+            datainfo : {},
+            showinfo : false
         };
     }
     componentWillMount () {
@@ -125,50 +126,71 @@ class PhoneInfo extends Component {
             $.ajax({
                 type: "GET",
                 dataType: "json", 
-                //url : config.serverurl + this.props.data,
-                url : "http://wx.mrtejia.cn" + this.props.data,
+                url : config.serverurl + this.props.data,
+                //url : "http://wx.mrtejia.cn" + this.props.data,
                 success: (status, msg)=>{
-                    this.setState({datainfo : msg})
+                    console.log(msg.phoneInfo)
+                    this.setState({datainfo : msg});
+                    this.setState({showinfo : true})
                 }
             });
         }
     }
     render(){
         const { data,history } = this.props;
-        if(data){
+        
+// "phoneInfo": {
+//     "balance": 11.55,
+//     "basicMonthFee": 0,
+//     "inNetDate": "20160418",
+//     "pointValue": "1845",
+//     "realMoney": 14.97,
+//     "serviceLevel": "",
+//     "status": "在用"
+// },
+        if(this.state.showinfo){
+            const { phoneInfo,phone_no,status,userInfo } = this.state.datainfo;
             return (
                 <div className="pageInfo">
                     <Cells>
                         <Cell>
                             <CellBody>
+                                开户时间
+                            </CellBody>
+                            <CellFooter>
+                                {phoneInfo.inNetDate}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                号码
+                            </CellBody>
+                            <CellFooter>
+                                {phone_no}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                余额
+                            </CellBody>
+                            <CellFooter>
+                                {phoneInfo.balance}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                状态
+                            </CellBody>
+                            <CellFooter>
+                                {phoneInfo.status}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
                                 姓名
                             </CellBody>
                             <CellFooter>
-                                {data.name}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                身份证号
-                            </CellBody>
-                            <CellFooter>
-                                {data.cardno}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                性别
-                            </CellBody>
-                            <CellFooter>
-                                {data.sex==="M"?"男":"女"}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                出生日期
-                            </CellBody>
-                            <CellFooter>
-                                {data.birthday}
+                                {userInfo.name}
                             </CellFooter>
                         </Cell>
                         <Cell>
@@ -176,7 +198,7 @@ class PhoneInfo extends Component {
                                 地址
                             </CellBody>
                             <CellFooter>
-                                {data.address}
+                                {userInfo.addr}
                             </CellFooter>
                         </Cell>
                     </Cells>
@@ -194,12 +216,33 @@ class PhoneInfo extends Component {
 }
 PhoneInfo = withRouter(PhoneInfo);
 
+
+// "phoneInfo": {
+//     "balance": 11.55,
+//     "basicMonthFee": 0,
+//     "inNetDate": "20160418",
+//     "pointValue": "1845",
+//     "realMoney": 14.97,
+//     "serviceLevel": "",
+//     "status": "在用"
+// },
+// "phone_no": "18015282504",
+// "smsDetail": [],
+// "status": 1,
+// "token": "0581d9ca-478b-11e7-97a9-00163e0372c4",
+// "userInfo": {
+//     "addr": "江苏省泰兴市蒋华镇振华西路28号",
+//     "certNo": "321************819",
+//     "name": "焦文晖"
+// }
+
 class TaobaoInfo extends Component {
     
     constructor(props) {  
         super(props);  
         this.state = {
-            datainfo : ""
+            datainfo : "",
+            showinfo : false
         };
     }
 
@@ -212,61 +255,108 @@ class TaobaoInfo extends Component {
             console.log(config.serverurl);
             $.ajax({
                 type: "GET",
-                dataType: "json", 
-                //url : config.serverurl + this.props.data,
-                url : "http://wx.mrtejia.cn" + this.props.data,
+                dataType: "json",
+                url: config.serverurl + this.props.data,
                 success: (status, msg)=>{
-                    this.setState({datainfo : msg})
+                    console.log(msg);
+                    this.setState({datainfo : msg});
+                    this.setState({showinfo : true})
                 }
             });
         }
     }
-    
+    // "accountSafeInfo": {
+    //     "bindMobile": "180****2504",
+    //     "identityVerified": "已完成",
+    //     "loginEmail": "jwh****47655@163.com",
+    //     "loginPasswdVerify": "已设置",
+    //     "mobileVerified": "已绑定",
+    //     "pwdProtectedQuestion": "未设置",
+    //     "safeLevel": "中",
+    //     "username": "jiaowenhui"
+    // },
+
+    // "personalInfo": {
+    //     "aliPayRemainingAmount": "0.00",
+    //     "aliPaymFund": "8920.81",
+    //     "aliPaymFundProfit": "816.80",
+    //     "buyerCreditPoint": 0,
+    //     "creditLevel": "2000",
+    //     "growthValue": "37246",
+    //     "huabeiCanUseMoney": 7017,
+    //     "huabeiTotalAmount": 8700,
+    //     "taobaoFastRefundMoney": "2000",
+    //     "taobaoLevel": "3",
+    //     "tianMaoAccountName": "jiaowenhui",
+    //     "tianMaoLevel": 2,
+    //     "tianMaoPoints": 142,
+    //     "tianmaoExperience": "",
+    //     "tmProvilege": []
+    // },
     render(){
         const { data,history } = this.props;
-        if(data){
+        
+
+        if(this.state.showinfo){
             console.log(this.state.datainfo);
+            const { accountSafeInfo,personalInfo } = this.props.datainfo;
             return (
                 <div className="pageInfo">
                     <Cells>
                         <Cell>
                             <CellBody>
-                                姓名
+                                绑定的手机号
                             </CellBody>
                             <CellFooter>
-                                {data.name}
+                                {accountSafeInfo.bindMobile}
                             </CellFooter>
                         </Cell>
                         <Cell>
                             <CellBody>
-                                身份证号
+                                身份认证
                             </CellBody>
                             <CellFooter>
-                                {data.cardno}
+                                {accountSafeInfo.identityVerified}
                             </CellFooter>
                         </Cell>
                         <Cell>
                             <CellBody>
-                                性别
+                                邮箱
                             </CellBody>
                             <CellFooter>
-                                {data.sex==="M"?"男":"女"}
+                                {accountSafeInfo.loginEmail}
                             </CellFooter>
                         </Cell>
                         <Cell>
                             <CellBody>
-                                出生日期
+                                用户名
                             </CellBody>
                             <CellFooter>
-                                {data.birthday}
+                                {accountSafeInfo.username}
                             </CellFooter>
                         </Cell>
                         <Cell>
                             <CellBody>
-                                地址
+                                花呗剩余额度
                             </CellBody>
                             <CellFooter>
-                                {data.address}
+                                {personalInfo.huabeiCanUseMoney}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                花呗总额度
+                            </CellBody>
+                            <CellFooter>
+                                {personalInfo.huabeiTotalAmount}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                淘宝等级
+                            </CellBody>
+                            <CellFooter>
+                                {personalInfo.taobaoLevel}
                             </CellFooter>
                         </Cell>
                     </Cells>
