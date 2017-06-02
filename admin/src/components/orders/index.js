@@ -38,17 +38,17 @@ const OrderlistEdit = (props) => {
       return (<Edit title={<OrderlistTitle />} {...props}>
           <TabbedForm>
               <FormTab label="resources.order.tabs.orderinfo">
-                
+
               <TextField label="订单标题"  source="ordertitle" />
               <TextField label="订单详情"  source="orderdetail" />
               <TextField label="支付状态"  source="paystatus" />
               <DateField label="生成时间"  source="created_at" />
               <DateField label="支付时间"  source="pay_at" />
               <NumberField label="实付价" source="moneyreal"  style={{ textAlign: 'left' }}  />
-             
+
               </FormTab>
               <FormTab label="resources.order.tabs.borrower">
-                 
+
               <NumberField label="借款金额" source="moneylimit"  style={{ textAlign: 'left' }}/>
               <NumberField label="借款周期（天）" source="moneyperiod"  style={{ textAlign: 'left' }}/>
               <TextField label="借款用途"  source="moneyusefor" />
@@ -56,7 +56,7 @@ const OrderlistEdit = (props) => {
               <ReferenceField label="借款人" source="creator" reference="userborrower" >
                 <TextField source="username" />
               </ReferenceField>
-           
+
               </FormTab>
               <FormTab label="resources.order.tabs.lender">
               <NumberField label="放款额度" source="moneylender" style={{ textAlign: 'left' }}/>
@@ -88,6 +88,7 @@ const OrderlistList = (props) => (//
         <NumberField label="借款金额" source="moneylimit" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
         <NumberField label="放款金额" source="moneylender" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
         <NumberField label="实际金额" source="moneyreal" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
+        <NumberField label="平台费用" source="realprice" options={{ style: 'currency', currency: 'CNY' }} elStyle={{ fontWeight: 'bold' }}/>
         <TextField label="借款人状态"  source="statusforborrower" />
         <TextField label="支付状态"  source="paystatus" />
         <EditButton />
