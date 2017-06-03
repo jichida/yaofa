@@ -23,7 +23,8 @@ import {
 import {
     sendauth_request,
     register_request,
-    loginwithweixinopenid_request
+    loginwithweixinopenid_request,
+    set_weui
     } from '../actions';
 
 export class RegisterPage extends Component {
@@ -182,8 +183,22 @@ export class Page extends Component {
         if(usertype === 'userborrow'){
             payload.invitecode = value.invitecode;
         }
+        this.props.dispatch(set_weui({
+            loading : {
+                show : true
+            },
+        }));
         this.props.dispatch(register_request(payload));
     }
+
+    componentWillUnmount(){
+        this.props.dispatch(set_weui({
+            loading : {
+                show : false
+            },
+        }));
+    }
+
     render() {
         return (
             <div className="registerPage AppPage">

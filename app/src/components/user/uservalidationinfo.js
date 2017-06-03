@@ -121,16 +121,11 @@ class PhoneInfo extends Component {
     }
     getlist =()=>{
         if(this.props.data){
-            console.log(this.props.data);
-            console.log(config.serverurl);
             $.ajax({
                 type: "GET",
                 dataType: "json", 
                 url : config.serverurl + this.props.data,
-                //url : "http://wx.mrtejia.cn" + this.props.data,
-                success: (status, msg)=>{
-                    console.log(msg);
-                    console.log(status);
+                success: (msg, status)=>{
                     this.setState({datainfo : msg});
                     this.setState({showinfo : true})
                 }
@@ -252,15 +247,11 @@ class TaobaoInfo extends Component {
     }
     getlist =()=>{
         if(this.props.data){
-            console.log(this.props.data);
-            console.log(config.serverurl);
             $.ajax({
                 type: "GET",
                 dataType: "json",
                 url: config.serverurl + this.props.data,
-                success: (status, msg)=>{
-                    console.log(msg);
-                    console.log(status);
+                success: (msg, status)=>{
                     this.setState({datainfo : msg});
                     this.setState({showinfo : true})
                 }

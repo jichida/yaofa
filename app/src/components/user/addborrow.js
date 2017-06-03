@@ -105,25 +105,26 @@ AddborrowForm = withRouter(AddborrowForm);
 
 class Page extends Component {
     addborrowSubmit =(value)=>{
-        if(this.props.userlogin.approvalstatus=="已审核"){
+        let userlogin = this.props.userlogin;
+        if(userlogin.approvalstatus=="已审核" || (userlogin.idcard!=''&&userlogin.idcard)){
             this.props.dispatch(insertorder_request(value));
         }else{
-            let userlogin = this.props.userlogin;
+            
              if(
-                userlogin.truename!=''&&
-                userlogin.truename&&
+                // userlogin.truename!=''&&
+                // userlogin.truename&&
                 userlogin.idcard!=''&&
-                userlogin.idcard&&
-                userlogin.phonenumber!=''&&
-                userlogin.phonenumber&&
-                userlogin.taobaoaccount!=''&&
-                userlogin.taobaoaccount&&
-                userlogin.urlphoneid1!=''&&
-                userlogin.urlphoneid1&&
-                userlogin.urlphoneid2!=''&&
-                userlogin.urlphoneid2&&
-                userlogin.urlphoneid3!=''&&
-                userlogin.urlphoneid3
+                userlogin.idcard
+                // userlogin.phonenumber!=''&&
+                // userlogin.phonenumber&&
+                // userlogin.taobaoaccount!=''&&
+                // userlogin.taobaoaccount&&
+                // userlogin.urlphoneid1!=''&&
+                // userlogin.urlphoneid1&&
+                // userlogin.urlphoneid2!=''&&
+                // userlogin.urlphoneid2&&
+                // userlogin.urlphoneid3!=''&&
+                // userlogin.urlphoneid3
             ){
                 this.props.dispatch(set_weui({confirm:{
                     show : true,
@@ -136,8 +137,8 @@ class Page extends Component {
             }else{
                 this.props.dispatch(set_weui({confirm:{
                     show : true,
-                    title : "认证审核未完善",
-                    text : "只有通过认证才能进行借贷",
+                    title : "身份认证未完成",
+                    text : "只有通过身份认证后才能进行借贷",
                     buttonsCloseText : "暂不",
                     buttonsClickText : "去认证",
                     buttonsClick : ()=>{this.props.history.push("/validation")}

@@ -352,7 +352,7 @@ class GetBorrowStatusInfo extends Component{
                                     orderInfo.orderstatus==2?(
                                         <div className="btnlist">
                                             <div className="btn Primary phonelnk">
-                                                <a href={"tel:"+orderInfo.creator.phonenumber}>联系借款人</a>
+                                                <a href={"tel:"+orderInfo.creator.username}>联系借款人</a>
                                             </div>
                                             <div className="btnli">
                                                 <div
@@ -373,7 +373,7 @@ class GetBorrowStatusInfo extends Component{
                                     ):""
                                 }
                                 {
-                                    orderInfo.orderstatus>=3&&orderInfo.moneyreal>0?(
+                                    orderInfo.orderstatus>=3&&orderInfo.moneyreal>0&&orderInfo.paystatus!="已支付"?(
                                         <div className="payorget">
                                             <Cells>
                                                 <Cell>

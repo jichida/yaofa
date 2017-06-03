@@ -57,6 +57,8 @@ import AddBorrowUserInfo from "./components/user/addborrowuserinfo";
 import Tousu from "./components/user/tousu";
 //用户认证信息
 import Uservalidationinfo from "./components/user/uservalidationinfo";
+//
+import Loanshowborrowinfo from "./components/user/loanshowborrowinfo";
 
 /*放款端*/
 //首页
@@ -164,6 +166,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/wxgetopenid/:openid" component={Wxgetopenid}/>
             <CustomRoute exact path="/showloaninfo" component={requireAuthentication(ShowLoaninfo)}/>
             <CustomRoute exact path="/borrowshowloaninfo" component={requireAuthentication(BorrowShowLoaninfo)}/>
+            <CustomRoute exact path="/loanshowborrowinfo" component={requireAuthentication(Loanshowborrowinfo)}/>
         </Switch>
     );
 }

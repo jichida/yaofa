@@ -7,7 +7,8 @@ import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {
   loginwithtoken_request,
   loginwithweixinopenid_request,
-  loginwithusername_request
+  loginwithusername_request,
+  set_weui
 } from '../actions';
 import { required, InputValidation, phone, length4 } from "./tools/formvalidation"
 export class LoginPage extends Component {
@@ -93,6 +94,13 @@ export class Page extends Component {
             this.props.history.replace("/usertype");
         };
     };
+    componentWillUnmount(){
+        this.props.dispatch(set_weui({
+            loading : {
+                show : false
+            },
+        }));
+    }
     //点击登陆
     onClickLogin =(value)=>{
         let usertype = this.props.usertype;
@@ -101,7 +109,11 @@ export class Page extends Component {
             authcode: value.authcode,
             password: value.password,
         };
-        console.log(value);
+        this.props.dispatch(set_weui({
+            loading : {
+                show : true
+            },
+        }));
         this.props.dispatch(loginwithusername_request(payload));
     }
     render() {
