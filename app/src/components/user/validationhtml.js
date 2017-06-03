@@ -16,18 +16,14 @@ export class Page extends React.Component {
                 nextProps.resulttaobao==1 && type==="taobao" &&
                 (this.props.resulttaobao===0||this.props.resulttaobao===-1)
             ) {
-            window.setTimeout(()=> {
                 this.props.history.replace("/validation");
-            }, 1000);
         }
         // //运营商认证成功后返回
         if(
                 nextProps.resultphone==1 && type==="phone" &&
                 (this.props.resultphone===0||this.props.resultphone===-1)
             ){
-            window.setTimeout(()=> {
                 this.props.history.replace("/validation");
-            }, 1000);
         }
     };
 

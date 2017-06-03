@@ -129,7 +129,8 @@ class PhoneInfo extends Component {
                 url : config.serverurl + this.props.data,
                 //url : "http://wx.mrtejia.cn" + this.props.data,
                 success: (status, msg)=>{
-                    console.log(msg.phoneInfo)
+                    console.log(msg);
+                    console.log(status);
                     this.setState({datainfo : msg});
                     this.setState({showinfo : true})
                 }
@@ -259,6 +260,7 @@ class TaobaoInfo extends Component {
                 url: config.serverurl + this.props.data,
                 success: (status, msg)=>{
                     console.log(msg);
+                    console.log(status);
                     this.setState({datainfo : msg});
                     this.setState({showinfo : true})
                 }
