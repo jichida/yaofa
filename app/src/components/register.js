@@ -177,7 +177,7 @@ export class Page extends Component {
             username: value.username,
             authcode: value.authcode,
             password: value.password,
-            weixinopenid: "1111111112",//微信openid
+            weixinopenid: localStorage.getItem("openid"),//微信openid
         };
         if(usertype === 'userborrow'){
             payload.invitecode = value.invitecode;
