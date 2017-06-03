@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import '../../public/css/register.css';
 
-import { 
-    Fields, 
-    Field, 
-    reduxForm, 
+import {
+    Fields,
+    Field,
+    reduxForm,
     Form,
     formValueSelector
     } from 'redux-form';
-import { 
-    required, 
-    InputValidation, 
-    phone, 
-    length4, 
+import {
+    required,
+    InputValidation,
+    phone,
+    length4,
     passwordA,
     passwordB,
     } from "./tools/formvalidation"
@@ -34,7 +34,7 @@ export class RegisterPage extends Component {
 
 	render() {
         const usertype = localStorage.getItem('usertype');
-        const { 
+        const {
             handleSubmit,
             onClickRegister,
             sendCode,
@@ -44,7 +44,7 @@ export class RegisterPage extends Component {
             submitting
             } = this.props;
         return (
-            <Form 
+            <Form
                 className="registerForm"
                 onSubmit={handleSubmit(onClickRegister)}
                 >
@@ -69,7 +69,7 @@ export class RegisterPage extends Component {
                         component={ InputValidation }
                         validate={[ required,length4 ]}
                     />
-                    <span 
+                    <span
                         type="button"
                         className="btn Primary getYanzhen"
                         onClick={()=>{sendCode(username)}}
@@ -101,23 +101,23 @@ export class RegisterPage extends Component {
                 </div>
 
                 <div className="aggreeForm">
-                    <Field 
-                        name="hasAggree" 
-                        id="hasAggree" 
-                        component="input" 
+                    <Field
+                        name="hasAggree"
+                        id="hasAggree"
+                        component="input"
                         type="checkbox"
                         />
                     <label htmlFor="hasAggree">同意<a href="#">运营条款</a></label>
                 </div>
 
 				<div className="submitBtn">
-                    <button 
+                    <button
                         className="btn login"
                         disabled={(pristine || submitting)&&hasAggree}
                         >
                         <span>注册</span>
                     </button>
-                    <span 
+                    <span
                         className="btn register"
                         onClick={()=>{this.pageReplace("/login")}}
                         >
@@ -131,7 +131,7 @@ export class RegisterPage extends Component {
 RegisterPage = reduxForm({
     form: 'selectingFormValues'
 })(RegisterPage);
-const selector = formValueSelector('selectingFormValues') 
+const selector = formValueSelector('selectingFormValues')
 RegisterPage = connect(
     state => {
         const hasAggree = selector(state, 'hasAggree');
@@ -150,7 +150,7 @@ export class Page extends Component {
     }
     //发送验证码
     sendCode =(value)=>{
-        let payload = {phonenumber:value};
+        let payload = {phonenumber:value,reason:'register'};
         this.props.dispatch(sendauth_request(payload));
     }
     //点击注册
@@ -167,7 +167,7 @@ export class Page extends Component {
         return (
             <div className="registerPage AppPage">
                 <DocumentTitle title="注册" />
-                <RegisterPage 
+                <RegisterPage
                     onClickRegister={this.onClickRegister}
                     sendCode = {this.sendCode}
                 />
@@ -178,5 +178,3 @@ export class Page extends Component {
 
 Page = connect()(Page);
 export default Page;
-
-

@@ -8,7 +8,7 @@ let setusertype = (usertype)=>{
 
 let test_sendauth=(dispatch)=>{
     setusertype('userborrow');
-    let payload = {phonenumber:'15961125167'};
+    let payload = {phonenumber:'15961125167',reason:'register'};
     dispatch(sendauth_request(payload));
 }
 

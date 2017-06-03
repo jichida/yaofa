@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import '../../public/css/register.css';
 
-import { 
-    Fields, 
-    Field, 
-    reduxForm, 
+import {
+    Fields,
+    Field,
+    reduxForm,
     Form,
     formValueSelector
     } from 'redux-form';
-import { 
-    required, 
-    InputValidation, 
-    phone, 
-    length4, 
+import {
+    required,
+    InputValidation,
+    phone,
+    length4,
     passwordA,
     passwordB,
     } from "./tools/formvalidation"
@@ -32,7 +32,7 @@ export class ResetPasswordPage extends Component {
     }
 
     render() {
-        const { 
+        const {
             handleSubmit,
             onClickResetPassword,
             sendCode,
@@ -41,7 +41,7 @@ export class ResetPasswordPage extends Component {
             submitting
             } = this.props;
         return (
-            <Form 
+            <Form
                 className="registerForm"
                 onSubmit={handleSubmit(onClickResetPassword)}
                 >
@@ -65,7 +65,7 @@ export class ResetPasswordPage extends Component {
                         component={ InputValidation }
                         validate={[ required,length4 ]}
                     />
-                    <span 
+                    <span
                         type="button"
                         className="btn Primary getYanzhen"
                         onClick={()=>{sendCode(username)}}
@@ -97,7 +97,7 @@ export class ResetPasswordPage extends Component {
                 </div>
 
                 <div className="submitBtn">
-                    <button 
+                    <button
                         className="btn login"
                         disabled={pristine || submitting}
                         >
@@ -113,7 +113,7 @@ ResetPasswordPage = reduxForm({
     form: 'selectingFormValues'
 })(ResetPasswordPage);
 
-const selector = formValueSelector('selectingFormValues') 
+const selector = formValueSelector('selectingFormValues')
 ResetPasswordPage = connect(
     state => {
         const username = selector(state, 'username');
@@ -128,7 +128,7 @@ ResetPasswordPage = withRouter(ResetPasswordPage);
 export class Page extends Component {
     //发送验证码
     sendCode =(value)=>{
-        let payload = {phonenumber:value};
+        let payload = {phonenumber:value,reason:'findpwd'};
         this.props.dispatch(sendauth_request(payload));
     }
     //点击注册

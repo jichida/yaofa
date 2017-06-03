@@ -5,7 +5,7 @@ import {
     md_insertorder_result,
     md_withdrawcashapplyaddone_result,
     md_withdrawcashapplyauth_result,
-    
+
     withdrawcashapplyaddone_result,
     confirmorder_result,
 
@@ -80,7 +80,7 @@ export function* wsrecvsagaflow() {
         let {payload:result} = action;
         let toast = {
             show : true,
-            text : result.popmessage,
+            text : '发送验证码成功',
             type : "success"
         }
         yield put(set_weui({ toast }));

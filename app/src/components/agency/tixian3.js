@@ -11,30 +11,30 @@ import {
 
 export class Page extends Component {
 
-    constructor(props) {  
-        super(props);  
+    constructor(props) {
+        super(props);
         this.getYanZhenCodeInterval = null;
         this.state = {
             getYanZhenCodeText : "重新获取",
             getYanZhenCodeTime : 60,
         }
-    } 
+    }
 
     onClickReturn =()=>{
         this.props.history.goBack();
     }
-    
+
     componentWillMount() {
         this.getYanZhenCode();
     }
 
     getYanZhenCode=()=>{
-        this.props.dispatch(sendauth_request({phonenumber: this.props.username}));
+        this.props.dispatch(sendauth_request({phonenumber: this.props.username,reason:'withdraw'}));
     }
 
     //重新获取验证码
     getSendCode =()=>{
-        this.props.dispatch(sendauth_request({username: this.props.username}));
+        this.props.dispatch(sendauth_request({phonenumber: this.props.username,reason:'withdraw'}));
     }
 
     submitProfitform =()=>{
@@ -45,7 +45,7 @@ export class Page extends Component {
             authcode: this.props.profityanzhen
         };
         this.props.dispatch(withdrawcashapplyauth_request(payload));
-        
+
     }
 
     setYanzhen =(e)=>{
@@ -63,8 +63,8 @@ export class Page extends Component {
                     <div className="messageCodeInput">
                         <span className="txt">验证码</span>
                         <input placeholder='请输入验证码' onChange={(e)=>{this.setYanzhen(e)}} />
-                        <span 
-                            className="getcode" 
+                        <span
+                            className="getcode"
                             onClick={()=>{this.getSendCode()}}>
                             {this.state.getYanZhenCodeText}
                         </span>
@@ -72,7 +72,7 @@ export class Page extends Component {
 
                 </div>
                 <div className="buttoncon">
-                    <span 
+                    <span
                         className="btn Primary" onClick={()=>{this.submitProfitform()}}
                         style={{width:"100%"}}
                     >
@@ -85,5 +85,3 @@ export class Page extends Component {
 }
 const data =  ({userlogin,profit}) =>{ return {...userlogin, ...profit};};
 export default connect(data)(Page);
-
-
