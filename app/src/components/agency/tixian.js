@@ -4,28 +4,28 @@ import DocumentTitle from "react-document-title";
 import { connect } from 'react-redux';
 import {
     profit_set_tixianform,
-    set_weui
+    set_weui,
+    getmyorders_request
 } from '../../actions';
 
 export class Page extends Component {
 
     componentWillMount() {
         this.props.dispatch(profit_set_tixianform({cashmoney: 0}));
-    }
-
-    onClickReturn =()=>{
-        this.props.history.goBack();
+        this.props.dispatch(getmyorders_request({}));
     }
 
     setTixianprice =(e)=>{
         let val = e.target.value;
         if(val>this.props.balance){
             e.target.value = this.props.balance;
+            val = this.props.balance;
         }
         let payload = {
             cashmoney: parseFloat(val),//提现金额
         }
         this.props.dispatch(profit_set_tixianform(payload));
+        
     }
 
     onClickNext = (name)=> {

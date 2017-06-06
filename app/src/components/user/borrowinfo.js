@@ -12,7 +12,7 @@ import moment from "moment";
 import { withRouter } from 'react-router-dom';
 import Borrowinfohead from "./borrowinfo_head";
 import BorrowinfoLenderinfo from "./borrowinfo_lenderinfo";
-
+import _ from "lodash";
 
 import {
     set_borrowinfo,
@@ -26,6 +26,8 @@ import {
     borrow_ui_sureorder,
     payorder_request,
     insertcancelorderrecord_request,
+    gettodaycancelorderrecord_request,
+    fillrealnameprofile_request
     }  from "../../actions";
 const {
     Cells,
@@ -51,6 +53,7 @@ const orderstatusArray ={
     5 : ["订单异常","订单异常","订单异常"],//用户举报放款金额
     6 : ["放款失败","放款失败","放款失败"],//等待平台审核
 }
+
 //商家端操作弹窗
 class LenderConfirminput extends Component {
 
@@ -87,16 +90,20 @@ class LenderConfirminput extends Component {
             }
         }else{
             //商家操作放款失败
+            //插入一次失败订单表
+            const { dispatch,orderid } = this.props;
             payload = {
-                query:{_id:this.props.orderid},
+                query:{_id:orderid},
                 data:{
                     orderstatus : -2
                 }
             };
-            this.props.dispatch(insertcancelorderrecord_request({orderid:this.props.orderid}));
+            this.props.dispatch(insertcancelorderrecord_request({orderid:orderid}));
         }
         this.props.dispatch(confirmorder_request(payload));
+        this.props.dispatch(fillrealnameprofile_request({data:{canaccept: true}}));
     }
+
 
     inputOnchange=(e)=>{
         let val = e.target.value;
@@ -155,12 +162,38 @@ class LenderConfirminput extends Component {
 const data1 = ({
     userlender:{
         ui_endorder,
-        endorder_status
-        }}) => {
+        endorder_status,
+        bosscancelorder
+    },
+
+}) => {
+    //created_at creator order
+    //获取是否当前用户已经取消过几次订单
+    let new_bosscancelorder = [];
+    let nowtime = (new Date()).getTime();
+    let cancelnum = 0;
+    //按照时间排序
+    if(bosscancelorder.length>0){
+        new_bosscancelorder = _.sortBy(bosscancelorder, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
+        cancelnum = bosscancelorder.length;
+    }
+    //取消次数大于2的情况下
+    
+    if(bosscancelorder.length>=2){
+        new_bosscancelorder[0].order;
+    }
+
+
+
+
     return {ui_endorder,endorder_status};
 };
 LenderConfirminput = connect(data1)(LenderConfirminput);
 export {LenderConfirminput};
+
+
+
+
 
 //借款人端操作弹窗
 //borrow_ui_sureorder
@@ -287,7 +320,7 @@ class GetBorrowStatusInfo extends Component{
         }else{
             let toast = {
                 show : true,
-                text : "有订单未完成，还不能接单",
+                text : this.props.canacceptreason || "通过审核后才能接单",
                 type : "warning"
             }
             this.props.dispatch(set_weui({toast}));
@@ -467,8 +500,8 @@ class GetBorrowStatusInfo extends Component{
         )
     }
 }
-const dataGetBorrowStatusInfo = ({userlogin:{canaccept},app:{percentborrowreal,percentborrowpre}}) => {
-    return {canaccept,percentborrowreal,percentborrowpre};
+const dataGetBorrowStatusInfo = ({userlogin:{canaccept,canacceptreason},app:{percentborrowreal,percentborrowpre}}) => {
+    return {canaccept,canacceptreason,percentborrowreal,percentborrowpre};
 };
 GetBorrowStatusInfo = connect(dataGetBorrowStatusInfo)(GetBorrowStatusInfo);
 GetBorrowStatusInfo = withRouter(GetBorrowStatusInfo);
@@ -476,6 +509,13 @@ GetBorrowStatusInfo = withRouter(GetBorrowStatusInfo);
 class Page extends Component {
     pushUrl = (name)=>{
         this.props.history.push(name);
+    }
+    //usertypes
+    componentWillMount(){
+        if(this.props.usertypes==="userlender"){
+            //商家端获取商家放款失败的次数
+            this.props.dispatch(gettodaycancelorderrecord_request({}));
+        }
     }
     gotoUserBorrowInfo=(usertype)=>{
         //这里需要更具用户id获取用户借贷信息
@@ -494,14 +534,15 @@ class Page extends Component {
     }
 }
 
-let usertypes = localStorage.getItem('usertype');
+//dispatch(gettodaycancelorderrecord());
 const data = ({order:{orderInfo,myorderlist}, app:{percentborrowreal,percentborrowpre}}) => {
     let neworderInfo = orderInfo;
+    let usertypes = localStorage.getItem('usertype');
     let myneworderInfo = myorderlist[orderInfo._id];
     if(myneworderInfo){
         neworderInfo = myneworderInfo;
     }
-    return {orderInfo:neworderInfo, percentborrowreal, percentborrowpre };
+    return { orderInfo:neworderInfo, percentborrowreal, percentborrowpre, usertypes };
 };
 Page = connect(data)(Page);
 export default Page;

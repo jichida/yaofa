@@ -10,9 +10,11 @@ import '../../../public/css/borrowlist.css';
 import Footer from './footer';
 import _ from "lodash";
 import { connect } from 'react-redux';
+import moment from "moment";
 import {
     getrechargerecords_request,
-    profit_set_listtype
+    profit_set_listtype,
+    set_orderinfo
 } from '../../actions';
 
 const { 
@@ -36,7 +38,7 @@ class Page extends Component {
     } 
 
     componentWillMount() {
-        this.getlistinterval = window.setInterval(this.getList.bind(this.props.profit.set_listtype),5000);
+        this.getList(this.props.profit.set_listtype);
     }
 
     componentWillUnmount(){
@@ -62,12 +64,23 @@ class Page extends Component {
     }
 
     seltype =(type)=>{
+        window.clearInterval(this.getlistinterval);
         this.props.dispatch(profit_set_listtype(type));
+        let querytype = type===0?"order":"withdrawcash";
+        console.log(type);
+        console.log(querytype);
+        window.setTimeout(()=>{
+            this.getlistinterval = window.setInterval(this.getList(type),5000);
+        },10)
+    }
 
+    gotoBorrowInfo =(order)=>{
+        this.props.dispatch(set_orderinfo(order));
+        this.pushUrl("/borrowinfo");
     }
 
 	render() {
-        const { userlogin,profit } = this.props;
+        const { userlogin,profit,myorderlist,bonuslevel1 } = this.props;
         return (
             <div className="borrowlistPage profitPage AppPage">
                 <DocumentTitle title="借款人详情" />
@@ -101,18 +114,22 @@ class Page extends Component {
                             <Cells>
                                 {_.map(profit.profitlist, (p,index)=>{
                                     console.log(p)
+                                    const orderinfo = myorderlist[p.fromorder];
+                                    const shouyi = parseFloat((bonuslevel1*orderinfo.realprice).toFixed(2));
                                     return (
-                                         <Cell access key={index}>
+                                         <Cell access key={index}
+                                            onClick={()=>{this.gotoBorrowInfo(orderinfo);}}
+                                            >
                                             <CellHeader>
                                                 <img src="img/6.png" alt="" />
                                                 <div className="userinfo">
-                                                    <span className="name">爱喝水的宝宝</span>
-                                                    <span className="time">2017-09-09</span>
+                                                    <span className="name">{orderinfo.creator.profile.nickname}</span>
+                                                    <span className="time">{moment(orderinfo.pay_at).format("YYYY-MM-DD H:mm:ss")}</span>
                                                 </div>
                                             </CellHeader>
                                             <CellBody>
-                                                <div>借 <span className="blue">30,000</span> 元</div>
-                                                <div>已借到 <span className="blue">10,000</span> 元</div>
+                                                <div>借到 <span className="blue">{orderinfo.moneyreal}</span> 元</div>
+                                                <div>收益 <span className="blue">+ {shouyi}</span> 元</div>
                                             </CellBody>
                                             <CellFooter/>
                                         </Cell>
@@ -131,6 +148,8 @@ class Page extends Component {
     }
 }
 
-const data =  ({userlogin,profit}) =>{ return {userlogin,profit};};
+const data =  ({userlogin,profit,order:{myorderlist},app:{bonuslevel1}}) =>{ return {userlogin,profit,myorderlist,bonuslevel1}};
+
+
 export default connect(data)(Page);
 

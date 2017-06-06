@@ -39,7 +39,7 @@ class Page extends Component {
 
     componentWillMount() {
         this.getList(this.props.myorderlistStatus);
-        this.getlistinterval = window.setInterval(this.getList.bind(this.props.myorderlistStatus),10000);
+        //this.getlistinterval = window.setInterval(this.getList.bind(this.props.myorderlistStatus),10000);
     }
 
     componentWillUnmount(){
@@ -132,11 +132,21 @@ class Page extends Component {
 
 const data = ({order:{myorderlistStatus,myorderlist}}) => {
     myorderlist = _.sortBy(myorderlist, [function(o){ 
-        if(o.orderstatus<0){
-            o.orderstatus = -(o.orderstatus)+4
+        let a = o.orderstatus;
+        if(a<0){
+            a = -(a)+4
         }
-        return -o.orderstatus;
+        return -a;
     }]);
+    if(myorderlistStatus=="已完成"){
+        //query.statusforlender = "订单完成";
+        myorderlist = _.filter(myorderlist, function(o) { return o.statusforlender==="订单完成"; });
+    }else{
+        //query.statusforlender = { $ne: "订单完成" };
+        myorderlist = _.filter(myorderlist, function(o) { return o.statusforlender!="订单完成"; });
+    }
+    
+
     return {myorderlist, myorderlistStatus};
 };
 Page = connect(data)(Page);

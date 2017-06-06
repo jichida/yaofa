@@ -7,6 +7,7 @@ import {
     set_myorderlistStatus,
     getmyorders_result,
     set_tousucontent,
+    gettodaycancelorderrecord_result
 } from '../actions/index.js';
 
 const initial = {
@@ -14,7 +15,7 @@ const initial = {
         orderInfo : {},
         myorderlistStatus : "借款中",
         tousucontent : "",
-        myorderlist: {}
+        myorderlist: {},
     },
 };
 
@@ -49,6 +50,12 @@ const order = createReducer({
         })
         return { ...state, myorderlist:newmyorderlist };
     },
+    //获取商家取消订单的次数 result
+    [gettodaycancelorderrecord_result]: (state, payload) => {
+        let bosscancelorder = payload.result;
+        return { ...state, bosscancelorder };
+    },
+
 
 }, initial.order);
 

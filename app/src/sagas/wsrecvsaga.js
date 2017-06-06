@@ -101,6 +101,12 @@ export function* wsrecvsagaflow() {
     //错误反馈
     yield takeEvery(`${common_err}`, function*(action) {
         let {payload:result} = action;
+
+        let loading = {
+            show : false,
+        }
+        yield put(set_weui({ loading }));
+        
         let toast = {
             show : true,
             text : result.errmsg,

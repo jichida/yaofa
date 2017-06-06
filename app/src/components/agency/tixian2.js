@@ -13,6 +13,7 @@ import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 
+
 const { 
     Form:FormUI,
     FormCell,
@@ -26,7 +27,8 @@ import {
     InputBankValidation,
     validatebank,
     WeuiInputValidation
-    } from "../tools/formvalidation"
+    } from "../tools/formvalidation";
+import { _getBankInfoByCardNo } from "../tools/validationbank"
 import {
     Fields,
     Field,
@@ -82,16 +84,46 @@ export class Page extends Component {
         this.props.history.goBack();
     }
 
-    setTixianForm = (val)=>{
-        let payload = {bankaccount : val};
+    componentWillUnmount(){
+        this.props.dispatch(set_weui({
+            loading:{
+                show: false
+            }})
+        )
+    }
+
+
+    setTixianForm = (payload)=>{
         this.props.dispatch(profit_set_tixianform({payload}));
     }
 
-    //truename,bankaccount,bankname
     onClickNext = (value)=> {
         console.log(value);
-        //let profitform = this.props.profitform;
-        //this.props.dispatch(withdrawcashapplyaddone_request(profitform));
+        _getBankInfoByCardNo(value.bankaccount, (err, info)=>{
+            if(err){
+                this.props.dispatch(set_weui({
+                    toast:{
+                        show: true,
+                        text: '银行卡无法识别',
+                        type: 'warning'
+                    }})
+                )
+            }else{
+                let profitform = this.props.profitform;
+                this.props.dispatch(set_weui({
+                    loading:{
+                        show: true
+                    }})
+                )
+                profitform.truename = value.truename;
+                profitform.bankaccount = value.bankaccount;
+                profitform.bankname = info.bankName;
+                this.setTixianForm(profitform);
+                console.log(profitform);
+                this.props.dispatch(withdrawcashapplyaddone_request(profitform));
+            }
+        })
+        
     }
 
     render() {

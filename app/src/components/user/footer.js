@@ -43,7 +43,7 @@ class Page extends Component {
                     onClick={()=>{this.clickItem("/userindex")}}
                     className="item"
                     >
-                    <img src={icon1} />
+                    <span className="img"><img src={icon1} /></span>
                     <span>借款纪录</span>
                 </div>
                 <div
@@ -57,7 +57,7 @@ class Page extends Component {
                     onClick={()=>{this.clickItem("/usercenter")}}
                     className="item"
                     >
-                    <img src={icon2} />
+                    <span className="img"><img src={icon2} /></span>
                     <span>我的</span>
                 </div>
             </div>

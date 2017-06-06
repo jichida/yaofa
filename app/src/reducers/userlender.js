@@ -13,6 +13,7 @@ import {
     lender_set_endorder_moneyreal,
     lender_set_ui_endorder,
     lender_set_endorder_status,
+    gettodaycancelorderrecord_result
 } from '../actions/index.js';
 
 const initial = {
@@ -24,6 +25,7 @@ const initial = {
         ui_endorder : false,
         endorder_moneyreal: 0,
         endorder_status : true,
+        bosscancelorder : []
     },
 };
 
@@ -56,6 +58,11 @@ const userlender = createReducer({
     //
     [lender_set_endorder_status]:(state, endorder_status) => {
         return { ...state, endorder_status}
+    },
+    //获取商家取消订单的次数 result
+    [gettodaycancelorderrecord_result]: (state, payload) => {
+        let bosscancelorder = payload.result;
+        return { ...state, bosscancelorder };
     },
     
 }, initial.userlender);

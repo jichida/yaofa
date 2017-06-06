@@ -23,7 +23,7 @@ import {
 class Page extends Component {
 
     componentWillMount() {
-        this.props.dispatch(getabouthtml_request({keyname: this.props.match.params.type}));
+        this.props.dispatch(getabouthtml_request({keyname: this.props.keynames}));
     }
 
     render() {
@@ -39,8 +39,8 @@ class Page extends Component {
         )
     }
 }
-const data =  ({about}) =>{
-    return {about};
+const data =  ({about},props) =>{
+    return {about,keynames : props.match.params.type};
 };
 export default connect(data)(Page);
 
