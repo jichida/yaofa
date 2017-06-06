@@ -79,30 +79,18 @@ class Page extends Component {
             return false;
         }else{
             console.log(userlogin);
-            if(
-                userlogin.truename!=''&&
-                userlogin.truename&&
-                userlogin.idcard!=''&&
-                userlogin.idcard&&
-                userlogin.phonenumber!=''&&
-                userlogin.phonenumber&&
-                userlogin.taobaoaccount!=''&&
-                userlogin.taobaoaccount&&
-                userlogin.urlphoneid1!=''&&
-                userlogin.urlphoneid1&&
-                userlogin.urlphoneid2!=''&&
-                userlogin.urlphoneid2&&
-                userlogin.urlphoneid3!=''&&
-                userlogin.urlphoneid3
-            ){
-                this.props.dispatch(set_weui({confirm:{
-                    show : true,
-                    title : "认证审核中...",
-                    text : "认证资料已经递交",
-                    buttonsCloseText : "关闭",
-                    buttonsClickText : "完善借款资料",
-                    buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
-                }}))
+            //userlogin.resultzhima&&
+            //userlogin.resultphoto===2&&
+            if( userlogin.resultid===2 && userlogin.resultphone===2 && userlogin.resulttaobao==2 ){
+                // this.props.dispatch(set_weui({confirm:{
+                //     show : true,
+                //     title : "认证审核中...",
+                //     text : "认证资料已经递交",
+                //     buttonsCloseText : "关闭",
+                //     buttonsClickText : "完善借款资料",
+                //     buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
+                // }}))
+                return false;
             }else{
                 this.props.dispatch(set_weui({confirm:{
                     show : true,
