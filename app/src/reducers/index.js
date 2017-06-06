@@ -11,6 +11,7 @@ import order from './order';
 import userlender from './userlender';
 import validationhtml from './validationhtml';
 import profit from './profit';
+import weixin from './weixin';
 
 export default combineReducers(
   {
@@ -24,6 +25,7 @@ export default combineReducers(
     userlender,
     order,
     profit,
+    weixin,
     form: formReducer
   }
 );

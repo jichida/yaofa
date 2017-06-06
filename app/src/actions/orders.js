@@ -33,6 +33,14 @@ export const gettodaycancelorderrecord_request = createAction('gettodaycancelord
 export const gettodaycancelorderrecord_result = createAction('gettodaycancelorderrecord_result');
 
 
+export const getweixinpic_request = createAction('getweixinpic_request');
+export const getweixinpic_result = createAction('getweixinpic_result');
+
+
+
+
+
+
 //
 
 //set_tousucontent

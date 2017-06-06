@@ -27,7 +27,8 @@ import {
     payorder_request,
     insertcancelorderrecord_request,
     gettodaycancelorderrecord_request,
-    fillrealnameprofile_request
+    fillrealnameprofile_request,
+    getmyorders_request
     }  from "../../actions";
 const {
     Cells,
@@ -57,6 +58,10 @@ const orderstatusArray ={
 //商家端操作弹窗
 class LenderConfirminput extends Component {
 
+    componentWillMount(){
+        this.props.dispatch(lender_set_ui_endorder(false));
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -71,6 +76,7 @@ class LenderConfirminput extends Component {
     lenderEndOrder=()=>{
         let success = this.props.endorder_status;
         let payload = {};
+        let cancelnum = this.props.cancelnum;
         if(success){
             if(this.state.moneyreal>0){
                 payload = {
@@ -98,10 +104,21 @@ class LenderConfirminput extends Component {
                     orderstatus : -2
                 }
             };
+            //当前第二次放款失败
+            if(cancelnum==1){
+                //this.props.dispatch(fillrealnameprofile_request({data:{canaccept: false}}));
+                payload.data.realprice = 20;
+                this.props.dispatch(fillrealnameprofile_request({data:{canacceptreason: "达到2次的放款失败"}}));
+            }
+            //当前第一次放款失败
+            if(cancelnum==0){
+                this.props.dispatch(fillrealnameprofile_request({data:{canaccept: true}}));
+            }
             this.props.dispatch(insertcancelorderrecord_request({orderid:orderid}));
+            
         }
         this.props.dispatch(confirmorder_request(payload));
-        this.props.dispatch(fillrealnameprofile_request({data:{canaccept: true}}));
+        
     }
 
 
@@ -165,28 +182,47 @@ const data1 = ({
         endorder_status,
         bosscancelorder
     },
-
+    order:{
+        myorderlist
+    }
 }) => {
     //created_at creator order
     //获取是否当前用户已经取消过几次订单
     let new_bosscancelorder = [];
     let nowtime = (new Date()).getTime();
     let cancelnum = 0;
+    let first_cancel = {};
+    let second_cancel = {};
+    let first_pay = false;
+    let second_pay = false;
     //按照时间排序
     if(bosscancelorder.length>0){
         new_bosscancelorder = _.sortBy(bosscancelorder, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
-        cancelnum = bosscancelorder.length;
+        //cancelnum = bosscancelorder.length;
     }
-    //取消次数大于2的情况下
-    
-    if(bosscancelorder.length>=2){
-        new_bosscancelorder[0].order;
+    //最近的两条取消记录
+
+    if(new_bosscancelorder.length>1){ 
+        second_cancel = myorderlist[new_bosscancelorder[1].order];
+        second_pay = second_cancel.hasOwnProperty("pay_at")|| !!second_cancel.pay_at;
+        if(second_pay){
+            cancelnum = 1;
+        }else{
+            if(first_pay){
+
+            }else{
+                cancelnum = 1;
+            }
+        }
     }
 
+    // if(new_bosscancelorder.length>0){ 
+    //     first_cancel = myorderlist[new_bosscancelorder[0].order];
+    //     first_pay = first_cancel.hasOwnProperty("pay_at")|| !!first_cancel.pay_at;
+    //     if()
+    // }
 
-
-
-    return {ui_endorder,endorder_status};
+    return {ui_endorder,endorder_status,cancelnum};
 };
 LenderConfirminput = connect(data1)(LenderConfirminput);
 export {LenderConfirminput};
@@ -324,35 +360,44 @@ class GetBorrowStatusInfo extends Component{
                 type : "warning"
             }
             this.props.dispatch(set_weui({toast}));
+            if(this.props.canacceptreason==="达到2次的放款失败"){
+                this.props.dispatch(set_weui({confirm:{
+                    show : true,
+                    title : "开通接单功能",
+                    text : "您已经达到每天2次的限定，需要支付平台20元开通接单功能",
+                    buttonsCloseText : "取消",
+                    buttonsClickText : "去支付",
+                    buttonsClick : ()=>{this.goPay(this.props.first_cancel_order)}
+                }}))
+            }
         }
     }
 
     //完成放款
     show_LenderConfirminput=(status)=>{
-        
         this.props.dispatch(lender_set_endorder_status(status));
         this.props.dispatch(lender_set_ui_endorder(true));
     }
     goPay =(orderinfo)=>{
-      //moneyreal
-      //realprice 
-      //percentborrowpre
-      //percentborrowreal
-      //与借款的10% ＋ 实际借款的10%
-      //parseFloat((percentborrowpre/100).toFixed(2));
-      const { percentborrowreal,percentborrowpre } = this.props;
+        //moneyreal
+        //realprice 
+        //percentborrowpre
+        //percentborrowreal
+        //与借款的10% ＋ 实际借款的10%
+        //parseFloat((percentborrowpre/100).toFixed(2));
+        const { percentborrowreal,percentborrowpre } = this.props;
       
-      orderinfo.realprice = orderinfo.moneyreal * parseFloat((percentborrowreal/100).toFixed(2));
-      let realpricepre = orderinfo.moneylender * parseFloat((percentborrowpre/100).toFixed(2));
+        orderinfo.realprice = orderinfo.moneyreal * parseFloat((percentborrowreal/100).toFixed(2));
+        let realpricepre = orderinfo.moneylender * parseFloat((percentborrowpre/100).toFixed(2));
 
-      if(orderinfo.moneyreal<orderinfo.moneylender){
-        orderinfo.realprice = (orderinfo.realprice + realpricepre)*0.5;
-      }
-      orderinfo.realprice = parseFloat((orderinfo.realprice).toFixed(2));
-      this.props.dispatch(payorder_request({
-        query:{_id:orderinfo._id},
-        data:{realprice:orderinfo.realprice}
-      }));
+        if(orderinfo.moneyreal<orderinfo.moneylender){
+            orderinfo.realprice = (orderinfo.realprice + realpricepre)*0.5;
+        }
+        orderinfo.realprice = parseFloat((orderinfo.realprice).toFixed(2));
+        this.props.dispatch(payorder_request({
+            query:{_id:orderinfo._id},
+            data:{realprice:orderinfo.realprice}
+        }));
     }
 
     render(){
@@ -500,8 +545,25 @@ class GetBorrowStatusInfo extends Component{
         )
     }
 }
-const dataGetBorrowStatusInfo = ({userlogin:{canaccept,canacceptreason},app:{percentborrowreal,percentborrowpre}}) => {
-    return {canaccept,canacceptreason,percentborrowreal,percentborrowpre};
+const dataGetBorrowStatusInfo = ({
+    userlogin:{canaccept,canacceptreason},
+    app:{percentborrowreal,percentborrowpre},
+    userlender:{bosscancelorder},
+    order:{myorderlist}
+}) => {
+    let new_bosscancelorder = [];
+    let nowtime = (new Date()).getTime();
+    let first_cancel_order = {};
+    //按照时间排序
+    if(bosscancelorder.length>0){
+        new_bosscancelorder = _.sortBy(bosscancelorder, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
+    }
+    if(new_bosscancelorder.length>0){ 
+        first_cancel_order = myorderlist[new_bosscancelorder[0].order];
+        first_cancel_order.realprice = 20;
+    }
+
+    return {canaccept,canacceptreason,percentborrowreal,percentborrowpre,first_cancel_order};
 };
 GetBorrowStatusInfo = connect(dataGetBorrowStatusInfo)(GetBorrowStatusInfo);
 GetBorrowStatusInfo = withRouter(GetBorrowStatusInfo);
@@ -516,6 +578,13 @@ class Page extends Component {
             //商家端获取商家放款失败的次数
             this.props.dispatch(gettodaycancelorderrecord_request({}));
         }
+        this.props.dispatch(getmyorders_request({
+            query : {},
+            options:{
+                page: 1,
+                limit: 100,        
+            }
+        }));
     }
     gotoUserBorrowInfo=(usertype)=>{
         //这里需要更具用户id获取用户借贷信息

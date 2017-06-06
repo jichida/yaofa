@@ -81,10 +81,16 @@ import {
     gettodaycancelorderrecord_result,
     gettodaycancelorderrecord_request, 
 
+
+    getweixinpic_result,
+    getweixinpic_request,
+
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+
+  'getweixinpic_result' : getweixinpic_result,
 
   'insertcancelorderrecord_result' : insertcancelorderrecord_result,
   'gettodaycancelorderrecord_result' : gettodaycancelorderrecord_result,
@@ -120,8 +126,10 @@ exports.recvmessagetoresultpair = {
 //非验证发送接口
 exports.sendmessagefnsz = {
 
+    'getweixinpic' : getweixinpic_request,
+
     'gettodaycancelorderrecord' : gettodaycancelorderrecord_request,
-    'insertcancelorderrecord' : gettodaycancelorderrecord_request,
+    'insertcancelorderrecord' : insertcancelorderrecord_request,
 
     'settypeuserauthentication':settypeuserauthentication_request,
     'getsystemconfig':getsystemconfig_request,

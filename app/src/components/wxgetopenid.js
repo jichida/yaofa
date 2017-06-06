@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { set_weui } from '../actions';
+import { set_weui,getweixinpic_request } from '../actions';
 
 class Page extends Component {
 
     componentWillMount() {
-        console.log("this.props.match.params.openid");
-        console.log(this.props.match.params.openid);
-        localStorage.setItem("openid",this.props.match.params.openid);
-        if(this.props.match.params.openid){
+        let openid = this.props.match.params.openid;
+        localStorage.setItem("openid",openid);
+        if(openid){
+            //获取用户微信数据
+            this.props.dispatch(getweixinpic_request({openid: openid}));
             this.props.history.push("/");
         }else{
             this.props.dispatch(set_weui({

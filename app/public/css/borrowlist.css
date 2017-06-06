@@ -13,6 +13,9 @@
 	overflow: scroll;
 	flex-direction: column;
 }
+.borrowlistPage .borrowlist .list .weui-cells{
+	overflow: visible;
+}
 .borrowlistPage .weui-navbar__item.weui-bar__item_on{
 	background: none;
 	position: relative;
