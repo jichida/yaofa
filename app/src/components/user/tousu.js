@@ -59,7 +59,7 @@ class Page extends Component {
         if(!orderInfo.hasOwnProperty("_id")){
             this.props.history.goBack();
         }
-        if(orderInfo.orderstatus!=3){
+        if(orderInfo.orderstatus!=3&&orderInfo.orderstatus!=-2){
             this.props.history.goBack();
         }
     }

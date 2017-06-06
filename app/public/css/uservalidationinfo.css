@@ -59,7 +59,12 @@
 .uservalidationinfoPage .nodata span.btn{
 	margin: 20px;
 }
-
+.uservalidationinfoPage .weui-navbar__item{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	padding: 15px 8px;
+}
 
 
 

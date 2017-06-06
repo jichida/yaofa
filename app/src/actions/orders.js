@@ -23,4 +23,18 @@ export const getpaysign_result = createAction('getpaysign_result');
 export const set_myorderlistStatus = createAction('set_myorderlistStatus');
 export const set_orderinfo = createAction('set_orderinfo');
 export const set_tousucontent = createAction('set_tousucontent');
+
+
+
+export const insertcancelorderrecord_request = createAction('insertcancelorderrecord_request');
+export const insertcancelorderrecord_result = createAction('insertcancelorderrecord_result');
+
+export const gettodaycancelorderrecord_request = createAction('gettodaycancelorderrecord_request');
+export const gettodaycancelorderrecord_result = createAction('gettodaycancelorderrecord_result');
+
+
 //set_tousucontent
+// insertcancelorderrecord_request
+// insertcancelorderrecord_result
+// gettodaycancelorderrecord_result
+// gettodaycancelorderrecord_request

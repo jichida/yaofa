@@ -102,7 +102,7 @@ class PageForm extends Component {
                     </div>
                 </div>
                 <button className="btn Primary">
-                    确认
+                    <span>确认</span>
                 </button>
             </Form>  
         )

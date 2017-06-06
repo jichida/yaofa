@@ -89,7 +89,7 @@ class Page extends Component {
                                          <Cell
                                             access
                                             key={index}
-                                            onClick={()=>{this.gotoBorrowInfo(order);}}
+                                            onClick={()=>{this.gotoBorrowInfo(order)}}
                                             >
                                             <CellHeader>
                                                 <div className="userinfo">
@@ -124,10 +124,11 @@ class Page extends Component {
 
 const data = ({order:{myorderlistStatus,myorderlist}}) => {
     myorderlist = _.sortBy(myorderlist, [function(o){ 
-        if(o.orderstatus<0){
-            o.orderstatus = -(o.orderstatus)+4
+        let a = o.orderstatus;
+        if(a<0){
+            a = -(a)+4
         }
-        return -o.orderstatus;
+        return -a;
      }]);
 
     let fillerorderlist = {};

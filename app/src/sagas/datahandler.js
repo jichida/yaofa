@@ -74,12 +74,21 @@ import {
     getsystemconfig_result,
     getsystemconfig_request,
 
-    settypeuserauthentication_request
+    settypeuserauthentication_request,
+
+    insertcancelorderrecord_request,
+    insertcancelorderrecord_result,
+    gettodaycancelorderrecord_result,
+    gettodaycancelorderrecord_request, 
 
 } from '../actions';
 
 //接收的对应关系
 exports.recvmessagetoresultpair = {
+
+  'insertcancelorderrecord_result' : insertcancelorderrecord_result,
+  'gettodaycancelorderrecord_result' : gettodaycancelorderrecord_result,
+
   'getsystemconfig_result':getsystemconfig_result,
   'queryuserstatus_result':queryuserstatus_result,
   'payorder_result':payorder_result,
@@ -110,6 +119,10 @@ exports.recvmessagetoresultpair = {
 
 //非验证发送接口
 exports.sendmessagefnsz = {
+
+    'gettodaycancelorderrecord' : gettodaycancelorderrecord_request,
+    'insertcancelorderrecord' : gettodaycancelorderrecord_request,
+
     'settypeuserauthentication':settypeuserauthentication_request,
     'getsystemconfig':getsystemconfig_request,
     'fillrealnameprofile':fillrealnameprofile_request,

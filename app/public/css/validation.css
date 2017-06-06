@@ -1,23 +1,31 @@
 .validationPage {
-	background: #FFF;
+	background: #EEE;
 }
 .validationPage .list{
-	margin-top: 15px;
-	padding: 30px;
-	background: #FFF;
 	margin-bottom: 40px;
 }
-.validationPage .list > div{
+.validationPage .list .p1{
+	padding: 0 20px;
+	background: #FFF;
+	margin-bottom: 20px;
+}
+.validationPage .list .p1 > div{
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	height: 50px;
 	position: relative;
+	border-bottom: 1px solid #EEE;
 }
-.validationPage .list > div:first-child:before{
+
+
+
+
+
+.validationPage .list .p1  > div:first-child:before{
 	content: none;
 }
-.validationPage .list > div:before{
+.validationPage .list .p1  > div:before{
 	content: none;
 	position: absolute;
 	height: 55px;
@@ -27,10 +35,10 @@
 	left: 9px;
 	z-index: 1;
 }
-.validationPage .list > div .name{
+.validationPage .list .p1  > div .name{
 	flex-grow: 1;
 }
-.validationPage .list > div .circular{
+.validationPage .list .p1  > div .circular{
 	width: 18px;
 	background: #EEE;
 	height: 18px;
@@ -39,13 +47,17 @@
 	position: relative;
 	z-index: 2;
 }
-.validationPage .list > div.true .circular{
-	background: #3479e1;
+.validationPage .list .p1  > div.true .circular{
+	background: #09BB07;
 }
-.validationPage .list > div.true:before{
-	background: #3479e1;
+.validationPage .list .p1  > div.true .name{
+	color: #09BB07;
+	font-weight: 400;
 }
-.validationPage .list > div.false{
+.validationPage .list .p1 > div.true:before{
+	background: #09BB07;
+}
+.validationPage .list .p1 > div.false{
 	display: flex;
 	justify-content: space-between;
 }

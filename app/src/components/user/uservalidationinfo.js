@@ -292,7 +292,7 @@ class TaobaoInfo extends Component {
 
         if(this.state.showinfo){
             console.log(this.state.datainfo);
-            const { accountSafeInfo,personalInfo } = this.props.datainfo;
+            const { accountSafeInfo,personalInfo } = this.state.datainfo;
             return (
                 <div className="pageInfo">
                     <Cells>

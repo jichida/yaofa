@@ -47,21 +47,21 @@ class Page extends Component {
                     onClick={()=>{this.pushUrl("/bossindex")}}
                     className="item"
                     >
-                    <img src={icon1} />
+                    <span className="img"><img src={icon1} /></span>
                     <span>借款信息</span>
                 </div>
                 <div
                     onClick={()=>{this.pushUrl("/bossloanlist")}}
                     className="item"
                     >
-                    <img src={icon2} />
+                    <span className="img"><img src={icon2} /></span>
                     <span>我的放款</span>
                 </div>
                 <div
                     onClick={()=>{this.pushUrl("/bossusercenter")}}
                     className="item"
                     >
-                    <img src={icon3} />
+                    <span className="img"><img src={icon3} /></span>
                     <span>我的</span>
                 </div>
             </div>

@@ -71,15 +71,6 @@ class PhoneInfo extends Component {
     render(){
         const { data,history } = this.props;
         
-// "phoneInfo": {
-//     "balance": 11.55,
-//     "basicMonthFee": 0,
-//     "inNetDate": "20160418",
-//     "pointValue": "1845",
-//     "realMoney": 14.97,
-//     "serviceLevel": "",
-//     "status": "在用"
-// },
         if(this.state.showinfo){
             const { phoneInfo,phone_no,status,userInfo } = this.state.datainfo;
             return (
@@ -147,26 +138,6 @@ class PhoneInfo extends Component {
 }
 PhoneInfo = withRouter(PhoneInfo);
 
-
-// "phoneInfo": {
-//     "balance": 11.55,
-//     "basicMonthFee": 0,
-//     "inNetDate": "20160418",
-//     "pointValue": "1845",
-//     "realMoney": 14.97,
-//     "serviceLevel": "",
-//     "status": "在用"
-// },
-// "phone_no": "18015282504",
-// "smsDetail": [],
-// "status": 1,
-// "token": "0581d9ca-478b-11e7-97a9-00163e0372c4",
-// "userInfo": {
-//     "addr": "江苏省泰兴市蒋华镇振华西路28号",
-//     "certNo": "321************819",
-//     "name": "焦文晖"
-// }
-
 class TaobaoInfo extends Component {
     
     constructor(props) {  
@@ -223,8 +194,6 @@ class TaobaoInfo extends Component {
     // },
     render(){
         const { data,history } = this.props;
-        
-
         if(this.state.showinfo){
             console.log(this.state.datainfo);
             const { accountSafeInfo,personalInfo } = this.props.datainfo;
@@ -302,6 +271,100 @@ class TaobaoInfo extends Component {
 }
 TaobaoInfo = withRouter(TaobaoInfo);
 
+class BaseInfo extends Component{
+
+    render(){
+        const { data } = this.props;
+        const greenhave = (<span className="green">有</span>);
+        return (
+            <div className="baseinfo">
+                <Cells>
+                    <Cell><CellBody>户籍</CellBody><CellFooter>{data.hukou?`${data.hukou}`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>花呗额度</CellBody><CellFooter>{data.limithuabei?`${data.limithuabei}元`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>借呗额度</CellBody><CellFooter>{data.limitjiebei?`${data.limitjiebei}元`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>借贷宝负债</CellBody><CellFooter>{data.jiedaibaofuzai?`${data.jiedaibaofuzai}元`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>借贷宝已还款</CellBody><CellFooter>{data.jiedaobaoyihuan?`${data.jiedaobaoyihuan}元`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>手机号实名时间</CellBody><CellFooter>{data.realtimeforphoneyear?`${data.realtimeforphoneyear}年`:"未填写"}</CellFooter></Cell>
+                </Cells>
+                <Cells>
+                    <Cell><CellBody>是否有固定资产</CellBody><CellFooter>{data.hasgudingzichan?greenhave:"无"}</CellFooter></Cell>
+                    <Cell><CellBody>是否有工作单位</CellBody><CellFooter>{data.hasdanwei?greenhave:"无"}</CellFooter></Cell>
+                    <Cell><CellBody>是否有公积金</CellBody><CellFooter>{data.hasgongjijin?greenhave:"无"}</CellFooter></Cell>
+                    <Cell><CellBody>是否有社保</CellBody><CellFooter>{data.hasshebao?greenhave:"无"}</CellFooter></Cell>
+                    <Cell><CellBody>三号是否统一</CellBody><CellFooter>{data.hassanhaotongyi?greenhave:"无"}</CellFooter></Cell>
+                    <Cell><CellBody>有无今日还款</CellBody><CellFooter>{data.hasjinrihuankuan?greenhave:"无"}</CellFooter></Cell>
+                    <Cell><CellBody>有无身份证原件</CellBody><CellFooter>{data.hasshenfenzhengyuanjian?greenhave:"无"}</CellFooter></Cell>
+                </Cells>
+            </div>
+        )
+    }
+}
+BaseInfo = withRouter(BaseInfo);
+
+class IdInfo extends Component {
+    render(){
+        const { data,history } = this.props;
+        if(data){
+            let datainfo = JSON.parse(data);
+            let info = datainfo.data;
+            return (
+                <div className="pageInfo">
+                    <Cells>
+                        <Cell>
+                            <CellBody>
+                                姓名
+                            </CellBody>
+                            <CellFooter>
+                                {info.name}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                身份证号
+                            </CellBody>
+                            <CellFooter>
+                                {info.cardno}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                性别
+                            </CellBody>
+                            <CellFooter>
+                                {info.sex==="M"?"男":"女"}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                出生日期
+                            </CellBody>
+                            <CellFooter>
+                                {info.birthday}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                地址
+                            </CellBody>
+                            <CellFooter>
+                                {info.address}
+                            </CellFooter>
+                        </Cell>
+                    </Cells>
+                </div>
+            )
+        }else{
+            return (
+                <div className="nodata">
+                    <span>您还没有通过该项认证</span>
+                    <span className="btn Primary" onClick={()=>{history.push("/validation")}}>去认证</span>
+                </div>
+            )
+        }
+    }
+}
+IdInfo = withRouter(IdInfo);
+
 class Page extends Component {
 
     constructor(props) {  
@@ -326,7 +389,7 @@ class Page extends Component {
     }
 
     render() {
-        const { navlist,resultid_obj,resulttaobao_detail,resultphone_detail } = this.props;
+        const { navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo } = this.props;
         return (
             <div className="borrowlistPage uservalidationinfoPage AppPage">
                 <DocumentTitle title="借款人的认证信息" />
@@ -347,15 +410,17 @@ class Page extends Component {
                         }
                     </NavBar>
                     <TabBody>
+                        {this.state.status==="id"?(<IdInfo data={resultid_obj}/>):""}
                         {this.state.status==="taobao"?(<TaobaoInfo data={resulttaobao_detail}/>):""}
                         {this.state.status==="phone"?(<PhoneInfo data={resultphone_detail}/>):""}
+                        {this.state.status==="base"?(<BaseInfo data={borrow_baseinfo}/>):""}
                     </TabBody>
                 </Tab>
             </div>
         )
     }
 }
-const data = ({order}) => {
+const data = ({order:{resultid_obj,borrow_baseinfo},order}) => {
     let creator = order.orderInfo.creator;
     let navlist = [
         {
@@ -365,13 +430,21 @@ const data = ({order}) => {
         {
             name : "运营商信息",
             type : "phone"
+        },
+        {
+            name : "身份信息",
+            type : "shengfen"
+        },
+        {
+            name : "其他借款信息",
+            type : "base"
         }
     ];
 
     let resultphone_detail = creator.resultphone==2?creator.resultphone_detail:false;
     let resulttaobao_detail = creator.resulttaobao==2?creator.resulttaobao_detail:false;
     
-    return {navlist,resultphone_detail,resulttaobao_detail};
+    return {navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo};
 
 };
 Page = connect(data)(Page);

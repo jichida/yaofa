@@ -24,7 +24,8 @@ import {
     lender_set_endorder_status,
     lender_set_moneyreal,
     borrow_ui_sureorder,
-    payorder_request
+    payorder_request,
+    insertcancelorderrecord_request,
     }  from "../../actions";
 const {
     Cells,
@@ -42,9 +43,9 @@ const {
 
 const orderstatusArray ={
     //分别是商家的状态、借款人的状态、中介的状态
-    0 : ["借款中","借款中","借款中"],
+    0 : ["发布中...","发布中...","发布中..."],
     1 : ["等待借款人确认","待确认","已接单"],
-    2 : ["订单已确认，请尽联系用户进行放贷","借款确认订单，等待商家联系您...","订单已确认"],//商家需要填写放款金额   //放款失败
+    2 : ["用户已确认，请尽联系用户进行放贷","借款确认订单，等待商家联系您...","订单已确认"],//商家需要填写放款金额   //放款失败
     3 : ["成功放款","商家已完成放款","商家已完成放款"],//用户确认放款金额  //或选择放款失败
     4 : ["已完成","已完成","已完成"],
     5 : ["订单异常","订单异常","订单异常"],//用户举报放款金额
@@ -85,12 +86,14 @@ class LenderConfirminput extends Component {
                 this.props.dispatch(set_weui({toast}));
             }
         }else{
+            //商家操作放款失败
             payload = {
                 query:{_id:this.props.orderid},
                 data:{
                     orderstatus : -2
                 }
             };
+            this.props.dispatch(insertcancelorderrecord_request({orderid:this.props.orderid}));
         }
         this.props.dispatch(confirmorder_request(payload));
     }
@@ -126,7 +129,7 @@ class LenderConfirminput extends Component {
                         ):(
                             <div className="falseContent">
                                 <div className="tit" style={{fontSize:"20px"}}>放款失败</div>
-                                <div className="cont" >确定放款失败后，您将会有一段时间不能接单，平台将审核该订单，审核通过后将会释放您的放款权限。</div>
+                                <div className="cont" >请确保您所反馈的信息真实性,谢谢您的使用</div>
                             </div>
                         )}
                     </div>
@@ -188,7 +191,6 @@ class BorrowConfirminput extends Component {
         if(orderinfo.hasOwnProperty("_id")){
             showorderstatus = orderinfo.orderstatus>=0?orderinfo.orderstatus:((-orderinfo.orderstatus)+4);
         }
-
         return(
             <div
                 className="BorrowConfirminput"
@@ -294,6 +296,7 @@ class GetBorrowStatusInfo extends Component{
 
     //完成放款
     show_LenderConfirminput=(status)=>{
+        
         this.props.dispatch(lender_set_endorder_status(status));
         this.props.dispatch(lender_set_ui_endorder(true));
     }
@@ -356,7 +359,7 @@ class GetBorrowStatusInfo extends Component{
                                             </div>
                                             <div className="btnli">
                                                 <div
-                                                    className="btn Primary"
+                                                    className="btn Success"
                                                     onClick={()=>{this.show_LenderConfirminput(true)}}
                                                     >
                                                     完成放款
@@ -385,6 +388,7 @@ class GetBorrowStatusInfo extends Component{
                                                           this.goPay(orderInfo);
                                                         }}
                                                             className="btn Primary"
+                                                            style={{margin:0}}
                                                             ><span>去支付</span></button>
                                                     </CellFooter>
                                                 </Cell>

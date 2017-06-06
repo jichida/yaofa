@@ -16,6 +16,7 @@
     overflow: hidden;
     background: #FFF;
     padding-left: 15px;
+    flex-shrink: 0;
 }
 .registerPage .registerForm .li.yaoqing{
 	background: #f1f2f4;

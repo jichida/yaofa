@@ -43,22 +43,10 @@ class Page extends Component {
                         <span><span>借款原因:</span>{orderinfo.moneyusefor}</span>
                         <span><span>发布时间:</span>{moment(orderinfo.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
                     </div>
+                    {usertypes==="userlender"&&orderinfo.orderstatus>=2?(
+                        <div className='borrowxiangxiinfolnk' onClick={()=>{this.pushUrl("/loanshowborrowinfo");}}>详情</div>
+                    ):""}
                 </div>
-                {
-                    usertypes==="userlender"&&userlogin.canaccept?(
-                        <Cells>
-                            <Cell
-                                access
-                                onClick={()=>{this.pushUrl("/loanshowborrowinfo");}}
-                                >
-                                <CellBody>
-                                    借款人认证资料
-                                </CellBody>
-                                <CellFooter/>
-                            </Cell>
-                        </Cells>
-                    ):""
-                }
     		</div>
     	)
     }

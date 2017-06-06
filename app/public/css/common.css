@@ -48,6 +48,11 @@ input, textarea{
     color: #FFF;
     border: none;
 }
+.btn.Success{
+    background: #09BB07;
+    color: #FFF;
+    border: none;
+}
 .btn.Default{
     color: #666;
     border: 1px solid #DDD;
@@ -58,6 +63,9 @@ input, textarea{
 }
 .btn.Primary:active{
     background: #2a6bce;
+}
+.btn.Success:active{
+    background: #0ABC09;
 }
 .btn.login{
     background: #72aaff;
@@ -180,13 +188,17 @@ input, textarea{
     justify-content: center;
     position: relative;
 }
-.footer >div.item > img{
+.footer >div.item > span.img > img{
     width: 30px;
 }
 .footer >div.item > span{
     font-size: 12px;
     margin: 3px 0;
     line-height: 14px;
+}
+.footer >div.item > span.img{
+    margin: 0;
+    height: 30px;
 }
 
 .footer >div.item > span.addBorrowBtn{

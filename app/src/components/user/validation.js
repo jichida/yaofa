@@ -14,7 +14,12 @@ import {
     } from '../../actions';
     
 const {
-    Icon,
+    CellsTitle,
+    Cell,
+    Cells,
+    CellBody,
+    CellFooter,
+    Icon
     } = WeUI;
 
 class Page extends Component {
@@ -36,7 +41,7 @@ class Page extends Component {
 
 	render() {
         
-        const { userlogin } = this.props;
+        const { userlogin,history } = this.props;
 
         let list = [
             {name: "身份认证", status: userlogin.resultid||false, url:'/validationshenfen'},
@@ -46,12 +51,12 @@ class Page extends Component {
             {name: "照片认证", status: userlogin.resultrealname||false, url:'/validationphoto'}
         ]
 
-        
-
         return (
     		<div className="validationPage AppPage">
     			<DocumentTitle title="认证中心" />
                 <div className="list">
+                    <CellsTitle>基础认证(必须全通过才能借款)</CellsTitle>
+                    <div className="p1">
                     {_.map(list,(data, index)=>{
                         let style = data.status==2?"true":"false";
                         return (
@@ -77,6 +82,20 @@ class Page extends Component {
                             </div>
                         )
                     })}
+                    </div>
+                    <div className="p2">
+                        <CellsTitle>借款资料</CellsTitle>
+                        <Cells>
+                            <Cell access
+                                onClick={()=>{history.push("/addborrowuserinfo")}}
+                                >
+                                <CellBody>
+                                    完善借款资料,商家放款更快速
+                                </CellBody>
+                                <CellFooter />
+                            </Cell>
+                        </Cells>
+                    </div>
                 </div>
             </div>
     	)

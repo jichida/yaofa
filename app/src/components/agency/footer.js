@@ -41,21 +41,21 @@ class Page extends Component {
                     onClick={()=>{this.pushUrl("/agencyindex")}}
                     className="item"
                     >
-                    <img src={icon1} />
+                    <span className="img"><img src={icon1} /></span>
                     <span>邀请列表</span>
                 </div>
                 <div
                     onClick={()=>{this.pushUrl("/agencyborrowlist")}}
                     className="item"
                     >
-                    <img src={icon2} />
+                    <span className="img"><img src={icon2} /></span>
                     <span>借贷订单</span>
                 </div>
                 <div
                     onClick={()=>{this.pushUrl("/agencyusercenter")}}
                     className="item"
                     >
-                    <img src={icon3} />
+                    <span className="img"><img src={icon3} /></span>
                     <span>我的</span>
                 </div>
             </div>
