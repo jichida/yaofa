@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { set_weui,getweixinpic_request } from '../actions';
+import { connect } from 'react-redux';
 
 class Page extends Component {
 
@@ -27,5 +28,5 @@ class Page extends Component {
     }
 
 }
-
+Page = connect()(Page);
 export default Page;
