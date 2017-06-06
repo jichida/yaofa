@@ -10,6 +10,7 @@ let SystemConfigSchema = new Schema({
     percentborrowreal: Number,//实际借款金额比例
     timeexporder:Number,//超时时间（小时为单位）
     bonuslevel1:Number,//提成比例
+    cancelcountperday:{ type:  Schema.Types.Number, default: 2 },
 });
 SystemConfigSchema.plugin(mongoosePaginate);
 let SystemConfig  = mongoose.model('SystemConfig',  SystemConfigSchema);
@@ -38,13 +39,16 @@ let UserBorrowerSchema = new Schema({
     urlphoneid2:String,//身份证照片反面
     urlphoneid3:String,//身份证照片手持
 
+    resultphoto_obj:String,//照片认证错误原因
     resultid_obj:String,//身份认证错误原因
     resultphone_obj:String,//运营商认证错误原因
     resultzhima_obj:String,//芝麻分错误原因
     resulttaobao_obj:String,//淘宝错误原因
     resultrealname_obj:String,//实名认证错误原因
-
+    resultphone_detail:String,
+    resulttaobao_detail:String,
     resultid:{ type:  Schema.Types.Number, default: 0 },//身份认证,-1:失败，0,未递交，1：递交中，2：成功
+    resultphoto:{ type:  Schema.Types.Number, default: 0 },//照片认证,-1:失败，0,未递交，1：递交中，2：成功
     resultphone:{ type:  Schema.Types.Number, default: 0 },//运营商认证，-1:失败，0,未递交，1：递交中，2：成功
     resultzhima:{ type:  Schema.Types.Number, default: 0 },//芝麻分，-1:失败，0,未递交，1：递交中，2：成功
     resulttaobao:{ type:  Schema.Types.Number, default: 0 },//淘宝，-1:失败，0,未递交，1：递交中，2：成功
@@ -96,6 +100,7 @@ let UserLenderSchema = new Schema({
     approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
     canaccept:{ type: Boolean, default: false },//是否允许接单
     canacceptreason:{type:String,default:''},//是否允许接单理由
+    lastpayatwithfailed:Date,
 });
 UserLenderSchema.plugin(mongoosePaginate);
 let UserLender  = mongoose.model('UserLender',  UserLenderSchema);
@@ -151,6 +156,7 @@ let OrderSchema = new Schema({
     statusforlender:String,//借款中／已接单/已确认/放款成功/订单完成
     paystatus:{ type: String, default:'未支付'},//已支付、未支付
     created_at: { type: Date, default:new Date()},
+    useragree_at: { type: Date, default:new Date()},
     errorreason:String,//异常信息
     matched_at:Date,
     pay_at:Date,
@@ -183,10 +189,10 @@ let WithdrawcashapplySchema =  new Schema({
     bankname:String,//银行名称
     cashmoney:Number,//提现金额
     status:String,//未验证／已验证／已支付
-    created_at: Date,
+    created_at:  { type: Date, default:new Date()},
 });
 WithdrawcashapplySchema.plugin(mongoosePaginate);
-let Withdrawcashapply  = mongoose.model('Withdrawcashapply',  WithdrawcashapplySchema);
+let Withdrawcashapply  = mongoose.model('withdrawcashapply',  WithdrawcashapplySchema);
 
 
 let AboutSchema = new Schema({
@@ -196,6 +202,15 @@ let AboutSchema = new Schema({
   });
 AboutSchema.plugin(mongoosePaginate);
 let About  = mongoose.model('About',  AboutSchema);
+
+
+let CancelOrderRecordSchema = new Schema({
+    created_at: { type: Date, default:new Date()},
+    creator:{ type: Schema.Types.ObjectId, ref: 'UserBorrower' },
+    order:{ type: Schema.Types.ObjectId, ref: 'Order' },
+});
+CancelOrderRecordSchema.plugin(mongoosePaginate);
+let CancelOrderRecord  = mongoose.model('CancelOrderRecord',  CancelOrderRecordSchema);
 
 //用户余额表
 // let UserbalanceSchema= new Schema({
@@ -213,6 +228,7 @@ exports.OrderSchema= OrderSchema;
 exports.RechargerecordSchema= RechargerecordSchema;
 exports.WithdrawcashapplySchema= WithdrawcashapplySchema;
 exports.AboutSchema = AboutSchema;
+exports.CancelOrderRecordSchema = CancelOrderRecordSchema;
 
 
 
@@ -225,3 +241,4 @@ exports.OrderModel= Order;
 exports.RechargerecordModel= Rechargerecord;
 exports.WithdrawcashapplyModel= Withdrawcashapply;
 exports.AboutModel = About;
+exports.CancelOrderRecordModel = CancelOrderRecord;

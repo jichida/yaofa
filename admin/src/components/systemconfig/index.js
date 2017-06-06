@@ -40,7 +40,9 @@ const SystemconfigShow = (props) => (
                <TextField  label="预借款金额比例" source="percentborrowpre" />
                <TextField  label="实际借款金额比例" source="percentborrowreal" />
                <TextField  label="超时时间（小时为单位）" source="timeexporder" />
+               <TextField  label="每天取消次数" source="cancelcountperday" />
                <TextField  label="中介分成比例" source="bonuslevel1" />
+
            </SimpleShowLayout>
        </ShowPage>
 );
@@ -59,8 +61,8 @@ const SystemconfigCreateTitle = ({ record }) => {
                 <NumberInput  label="预借款金额比例" source="percentborrowpre" />
                 <NumberInput  label="实际借款金额比例" source="percentborrowreal" />
                 <NumberInput  label="超时时间（小时为单位）" source="timeexporder" />
+                <NumberInput  label="每天取消次数" source="cancelcountperday" />
                 <NumberInput  label="中介分成比例" source="bonuslevel1" />
-
            </SimpleForm>
        </Create>
 );
@@ -72,6 +74,7 @@ const SystemconfigCreateTitle = ({ record }) => {
                 <NumberInput  label="预借款金额比例" source="percentborrowpre" />
                 <NumberInput  label="实际借款金额比例" source="percentborrowreal" />
                 <NumberInput  label="超时时间（小时为单位）" source="timeexporder" />
+                <NumberInput  label="每天取消次数" source="cancelcountperday" />
                 <NumberInput  label="中介分成比例" source="bonuslevel1" />
         </SimpleForm>
     </EditPage>

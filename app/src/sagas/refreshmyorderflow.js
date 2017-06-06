@@ -22,7 +22,7 @@ export function* refreshmyorderflow(){
         if(loginsuccess){
           yield put(getmyorders_request({query:{}}));
           let usertype = localStorage.getItem('usertype');
-          if(usertype === 'userborrow'){
+          //if(usertype === 'userborrow'){
             yield put(queryuserstatus_request({}));
 
             const { response, timeout } = yield race({
@@ -36,7 +36,7 @@ export function* refreshmyorderflow(){
               let {payload:result} = response;
               yield put(login_result(result));
             }
-          }//usertype
+          ////usertype
         }//loginsuccess
     }//while
   }
