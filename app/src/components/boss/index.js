@@ -39,6 +39,8 @@ const {
     LoadMore
     } = WeUI;
 
+let bossindexgetlist = null;
+
 class Page extends Component {
 
     headBanner =()=>{
@@ -55,9 +57,13 @@ class Page extends Component {
 
     componentWillMount() {
         this.getList();
+        bossindexgetlist = window.setInterval(()=>{
+            this.getList();
+        },5000);
     }
 
     gotoBorrowInfo =(borrowinfo)=>{
+        console.log(borrowinfo);
         this.props.dispatch(set_orderinfo(borrowinfo));
         this.pushUrl("/borrowinfo");
     }
@@ -65,6 +71,10 @@ class Page extends Component {
     getList =()=>{
         let query = this.props.borrowlistfiller;
         this.props.dispatch(queryintrestedorder_request({query}))
+    }
+
+    componentWillUnmount(){
+        window.clearInterval(bossindexgetlist);
     }
 
 	render() {
