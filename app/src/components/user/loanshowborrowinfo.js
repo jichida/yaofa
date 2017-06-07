@@ -469,7 +469,7 @@ const data = ({order:{borrow_baseinfo},order}) => {
             type : "base"
         }
     ];
-    let resultid_obj = creator.resultid==2?creator.resultid_obj:false;
+    let resultid_obj = creator.resultid==2?JSON.parse(creator.resultid_obj):false;
     let resultphone_detail = creator.resultphone==2?creator.resultphone_detail:false;
     let resulttaobao_detail = creator.resulttaobao==2?creator.resulttaobao_detail:false;
     
