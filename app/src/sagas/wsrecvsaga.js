@@ -162,7 +162,7 @@ export function* wsrecvsagaflow() {
         
         let toast = {
             show : true,
-            text : result.errmsg,
+            text : result.errmsg +"::"+ result.type,
             type : "warning"
         }
         yield put(set_weui({ toast }));
