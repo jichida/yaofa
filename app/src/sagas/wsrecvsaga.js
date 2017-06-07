@@ -64,18 +64,19 @@ export function* wsrecvsagaflow() {
         let {payload:result} = action;
         //登录成功跟新用户头像和名称数据
         const redux_userinfo = yield select(getweixininfo);
-
-        if(
-            redux_userinfo.weixininfo.nickname != redux_userinfo.userinfo.nickname || 
-            redux_userinfo.weixininfo.headimgurl != redux_userinfo.userinfo.avatar
-            ){
-            yield put(fillprofile_request({
-                profile: {
-                    nickname: redux_userinfo.weixininfo.nickname,
-                    avatar: redux_userinfo.weixininfo.headimgurl,
-                    sex: redux_userinfo.weixininfo.sex==1?"男":"女"
-                }
-            }))
+        if(redux_userinfo.weixininfo.hasOwnProperty("nickname")){
+            if(
+                redux_userinfo.weixininfo.nickname != redux_userinfo.userinfo.nickname || 
+                redux_userinfo.weixininfo.headimgurl != redux_userinfo.userinfo.avatar
+                ){
+                yield put(fillprofile_request({
+                    profile: {
+                        nickname: redux_userinfo.weixininfo.nickname,
+                        avatar: redux_userinfo.weixininfo.headimgurl,
+                        sex: redux_userinfo.weixininfo.sex==1?"男":"女"
+                    }
+                }))
+            }
         }
 
         yield put(login_result(result));

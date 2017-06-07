@@ -9,7 +9,7 @@ class Page extends Component {
         localStorage.setItem("openid",openid);
         if(openid){
             //获取用户微信数据
-            this.props.dispatch(getweixinpic_request({openid: openid}));
+            
             this.props.history.push("/");
         }else{
             this.props.dispatch(set_weui({

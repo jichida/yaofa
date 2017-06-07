@@ -18,7 +18,7 @@ const initial = {
 const weixin = createReducer({
     [getweixinpic_result]: (state, payload) => {
         console.log("getweixinpic_result"+JSON.stringify(payload));
-        let info = payload;
+        let info = payload.hasOwnProperty("errcode")?{}:payload;
         return { ...state, info };
     },
 }, initial.weixin);
