@@ -24,8 +24,6 @@ export class Page extends Component {
             //更新用户头像和昵称数据
             this.props.dispatch(getweixinpic_request({openid: openid, access_token: access_token}));
 
-
-
         }else{
             window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8ec8ba53700c0c89&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";       
             console.log("index getopenid");
@@ -43,9 +41,16 @@ export class Page extends Component {
             else if(usertype==="userlender"){
                 this.props.history.replace("/bossindex");
             }
-
-            window.setTimeout(()=>{this.getuserinfo()}, 100)
-
+            window.setTimeout(()=>{
+                if(!!localStorage.getItem("nickname")){
+                    this.props.dispatch(fillprofile_request({
+                        profile: {
+                            nickname: localStorage.getItem("nickname"),
+                            avatar: localStorage.getItem("headimgurl"),
+                        }
+                    }))
+                }
+            },1000)
         }
         else{
             this.props.history.replace("/login");
@@ -53,38 +58,14 @@ export class Page extends Component {
     };
 
 
-    //获取用户头像数据
-    getuserinfo =()=>{
-        const {profile, weixin, dispatch} = this.props;
-        console.log("redux_userinfo ::: ");
-        console.log(profile);
-        console.log(weixin);
-        const weixininfo = weixin.info;
-
-        if(weixininfo.hasOwnProperty("nickname")){
-            if(
-                weixininfo.nickname != profile.nickname || 
-                weixininfo.headimgurl != profile.avatar
-                ){
-                dispatch(fillprofile_request({
-                    profile: {
-                        nickname: weixininfo.nickname,
-                        avatar: weixininfo.headimgurl,
-                        sex: weixininfo.sex==1?"男":"女"
-                    }
-                }))
-            }
-        }
-    }
-
     render(){
         return (
             <div></div>
         )
     }
 }
-const data = ({userlogin:{usertype,loginsuccess,profile},weixin}) => {
-    return {usertype,loginsuccess,weixin,profile};
+const data = ({userlogin:{usertype,loginsuccess}}) => {
+    return {usertype,loginsuccess};
 };
 Page = connect(data)(Page);
 Page = withRouter(Page);
