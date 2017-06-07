@@ -95,7 +95,11 @@
 	font-size: 12px;
 	color: #999;
 }
-
+.uservalidationinfoPage.AppPage .weui-tab .weui-tab__panel{
+	flex-grow: 1;
+    overflow: scroll;
+    width: 100%;
+}
 
 
 
