@@ -9,7 +9,7 @@ export function wsrecvhandler(socket,emit){
   _.map(recvmessagetoresultpair,(fnresult,keyname)=>{
     handlerlist[keyname] = (socket, emit)=> {
       return ((result)=> {
-        console.log(`getservermessage:${keyname}`);
+        //console.log(`getservermessage:${keyname}`);
         emit(fnresult(result));
       });
     }

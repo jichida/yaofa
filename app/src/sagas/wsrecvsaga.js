@@ -37,12 +37,7 @@ import {
 
 import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
-const getweixininfo = (state) => {
-    let weixininfo = state.weixin.info;
-    let userinfo = state.userlogin.profile;
-    console.log("saga::::" + weixininfo);
-    return {weixininfo,userinfo};
-};
+
 
 export function* wsrecvsagaflow() {
 
@@ -63,26 +58,6 @@ export function* wsrecvsagaflow() {
     //登录
     yield takeEvery(`${md_login_result}`, function*(action) {
         let {payload:result} = action;
-        //登录成功跟新用户头像和名称数据
-        const redux_userinfo = yield select(getweixininfo);
-        console.log("redux_userinfo ::: ");
-        console.log(redux_userinfo);
-        
-        if(redux_userinfo.weixininfo.hasOwnProperty("nickname")){
-            if(
-                redux_userinfo.weixininfo.nickname != redux_userinfo.userinfo.nickname || 
-                redux_userinfo.weixininfo.headimgurl != redux_userinfo.userinfo.avatar
-                ){
-                yield put(fillprofile_request({
-                    profile: {
-                        nickname: redux_userinfo.weixininfo.nickname,
-                        avatar: redux_userinfo.weixininfo.headimgurl,
-                        sex: redux_userinfo.weixininfo.sex==1?"男":"女"
-                    }
-                }))
-            }
-        }
-
         yield put(login_result(result));
         yield put(replace('/'));
     });
