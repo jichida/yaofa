@@ -472,6 +472,10 @@ const data = ({order:{borrow_baseinfo},order}) => {
     let resultid_obj = creator.resultid==2?JSON.parse(creator.resultid_obj):false;
     let resultphone_detail = creator.resultphone==2?creator.resultphone_detail:false;
     let resulttaobao_detail = creator.resulttaobao==2?creator.resulttaobao_detail:false;
+    console.log("~~~~~~~~~~~~~~~");
+    console.log(resultid_obj);
+    console.log(resultphone_detail);
+    console.log(resulttaobao_detail);
     
     return {navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo:creator};
 

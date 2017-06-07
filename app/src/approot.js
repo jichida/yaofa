@@ -163,7 +163,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/notifyfailed/:type/:userid" component={NotifyFailed}/>
             <CustomRoute exact path="/uservalidationinfo" component={requireAuthentication(Uservalidationinfo)}/>
             <CustomRoute exact path="/tests" component={Tests}/>
-            <CustomRoute exact path="/wxgetopenid/:openid" component={Wxgetopenid}/>
+            <CustomRoute exact path="/wxgetopenid/:openid/:access_token" component={Wxgetopenid}/>
             <CustomRoute exact path="/showloaninfo" component={requireAuthentication(ShowLoaninfo)}/>
             <CustomRoute exact path="/borrowshowloaninfo" component={requireAuthentication(BorrowShowLoaninfo)}/>
             <CustomRoute exact path="/loanshowborrowinfo" component={requireAuthentication(Loanshowborrowinfo)}/>
