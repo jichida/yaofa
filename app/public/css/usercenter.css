@@ -24,6 +24,7 @@
 .usercenterPage .headcontent .userinfo img{
 	width: 60px;
 	height: 60px;
+	border-radius: 60px;
 }
 .usercenterPage .weui-cell_access .weui-cell__hd{
 	display: flex;

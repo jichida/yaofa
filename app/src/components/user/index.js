@@ -166,6 +166,7 @@ class Page extends Component {
                             <span>当前您暂无借款记录</span>
                             <botton 
                                 className="btn Primary"
+                                onClick={()=>{this.pushUrl("/addborrow")}}
                                 >
                                 立刻发布借款信息
                             </botton>

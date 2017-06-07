@@ -44,7 +44,7 @@ class Page extends Component {
     }
 
 	render() {
-        const { borrowlist } = this.props;
+        const { borrowlist,history } = this.props;
         return (
             <div className="indexPage AppPage">
                 <DocumentTitle title="耀发钱庄-借款端" />
@@ -57,7 +57,7 @@ class Page extends Component {
                     <div className="nodata">
                         <img src="img/21.png" />
                         <span>当前您暂无邀请纪录</span>
-                        <botton className="btn Primary">立刻去邀请</botton>
+                        <botton className="btn Primary" onClick={()=>{history.push("/agencyqrcode")}}>立刻去邀请</botton>
                     </div>
                 ):(
                     <Cells>
