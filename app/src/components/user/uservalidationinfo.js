@@ -126,6 +126,8 @@ class PhoneInfo extends Component {
                 dataType: "json", 
                 url : config.serverurl + this.props.data,
                 success: (msg, status)=>{
+                    console.log("get PhoneInfo ");
+                    console.log(msg);
                     this.setState({datainfo : msg});
                     this.setState({showinfo : true})
                 }
@@ -145,6 +147,7 @@ class PhoneInfo extends Component {
 //     "status": "在用"
 // },
         if(this.state.showinfo){
+            console.log(this.state.datainfo);
             const { phoneInfo,phone_no,status,userInfo } = this.state.datainfo;
             return (
                 <div className="pageInfo">
@@ -258,38 +261,8 @@ class TaobaoInfo extends Component {
             });
         }
     }
-    // "accountSafeInfo": {
-    //     "bindMobile": "180****2504",
-    //     "identityVerified": "已完成",
-    //     "loginEmail": "jwh****47655@163.com",
-    //     "loginPasswdVerify": "已设置",
-    //     "mobileVerified": "已绑定",
-    //     "pwdProtectedQuestion": "未设置",
-    //     "safeLevel": "中",
-    //     "username": "jiaowenhui"
-    // },
-
-    // "personalInfo": {
-    //     "aliPayRemainingAmount": "0.00",
-    //     "aliPaymFund": "8920.81",
-    //     "aliPaymFundProfit": "816.80",
-    //     "buyerCreditPoint": 0,
-    //     "creditLevel": "2000",
-    //     "growthValue": "37246",
-    //     "huabeiCanUseMoney": 7017,
-    //     "huabeiTotalAmount": 8700,
-    //     "taobaoFastRefundMoney": "2000",
-    //     "taobaoLevel": "3",
-    //     "tianMaoAccountName": "jiaowenhui",
-    //     "tianMaoLevel": 2,
-    //     "tianMaoPoints": 142,
-    //     "tianmaoExperience": "",
-    //     "tmProvilege": []
-    // },
     render(){
         const { data,history } = this.props;
-        
-
         if(this.state.showinfo){
             console.log(this.state.datainfo);
             const { accountSafeInfo,personalInfo } = this.state.datainfo;
@@ -377,10 +350,6 @@ class Page extends Component {
             datainfo : null,
             topicshow : true
         };
-    }
-
-    pushUrl = (name)=>{
-        this.props.history.push(name);
     }
 
     SetStatus = (status)=>{
