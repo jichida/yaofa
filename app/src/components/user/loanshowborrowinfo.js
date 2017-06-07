@@ -33,6 +33,7 @@ const {
     CellBody,
     CellFooter,
     LoadMore,
+    CellsTitle
     } = WeUI;
 
 // {
@@ -72,59 +73,114 @@ class PhoneInfo extends Component {
         const { data,history } = this.props;
         
         if(this.state.showinfo){
-            const { phoneInfo,phone_no,status,userInfo } = this.state.datainfo;
+            const { phoneInfo,phone_no,status,userInfo,callRecordsInfo,deceitRisk,messageRecordsInfo,contactAreaInfo,phoneOffInfos } = this.state.datainfo;
             return (
                 <div className="pageInfo">
+                    <CellsTitle>运营商信息</CellsTitle>
                     <Cells>
-                        <Cell>
-                            <CellBody>
-                                开户时间
-                            </CellBody>
-                            <CellFooter>
-                                {phoneInfo.inNetDate}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                号码
-                            </CellBody>
-                            <CellFooter>
-                                {phone_no}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                余额
-                            </CellBody>
-                            <CellFooter>
-                                {phoneInfo.balance}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                状态
-                            </CellBody>
-                            <CellFooter>
-                                {phoneInfo.status}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                姓名
-                            </CellBody>
-                            <CellFooter>
-                                {userInfo.name}
-                            </CellFooter>
-                        </Cell>
-                        <Cell>
-                            <CellBody>
-                                地址
-                            </CellBody>
-                            <CellFooter>
-                                {userInfo.addr}
-                            </CellFooter>
-                        </Cell>
+                        <Cell><CellBody>运营商类型</CellBody><CellFooter>{phoneInfo.operator}</CellFooter></Cell>
+                        <Cell><CellBody>入网时间</CellBody><CellFooter>{phoneInfo.inNetDate}</CellFooter></Cell>
+                        <Cell><CellBody>认证实名</CellBody><CellFooter>{phoneInfo.realName}</CellFooter></Cell>
+                        <Cell><CellBody>认证身份证号</CellBody><CellFooter>{phoneInfo.certNo}</CellFooter></Cell>
+                        <Cell><CellBody>手机号</CellBody><CellFooter>{phoneInfo.phoneNo}</CellFooter></Cell>
+                        <Cell><CellBody>当前余额</CellBody><CellFooter>{phoneInfo.balance}</CellFooter></Cell>
+                        <Cell><CellBody>会员等级</CellBody><CellFooter>{phoneInfo.vipLevel}</CellFooter></Cell>
+                        <Cell><CellBody>积分值</CellBody><CellFooter>{phoneInfo.pointValue}</CellFooter></Cell>
+                        <Cell><CellBody>网龄</CellBody><CellFooter>{phoneInfo.netAge}</CellFooter></Cell>
+                        <Cell><CellBody>最早通话时间</CellBody><CellFooter>{phoneInfo.firstCallDate}</CellFooter></Cell>
+                        <Cell><CellBody>最近通话时间</CellBody><CellFooter>{phoneInfo.lastCallDate}</CellFooter></Cell>
+                        <Cell><CellBody>登记地址</CellBody><CellFooter>{phoneInfo.addr}</CellFooter></Cell>
                     </Cells>
+                    <CellsTitle>欺诈风险</CellsTitle>
+                    <Cells>
+                        <Cell><CellBody>运营商是否实名</CellBody><CellFooter>{deceitRisk.phoneIsAuth==="True"?"是":"否"}</CellFooter></Cell>
+                        <Cell><CellBody>是否出现长时间关机(5 天以上无短信记录,无通 话记录)</CellBody><CellFooter>{deceitRisk.longTimePowerOff==="True"?"是":"否"}</CellFooter></Cell>
+                        <Cell><CellBody>是否联系过紧急联系人</CellBody><CellFooter>{deceitRisk.emergency_contacted==="True"?"是":"否"}</CellFooter></Cell>
+                        <Cell><CellBody>申请人信息是否命中网 贷黑名单</CellBody><CellFooter>{deceitRisk.inBlacklist==="True"?"是":"否"}</CellFooter></Cell>
+                        <Cell><CellBody>是否出现法院相关号码 呼叫</CellBody><CellFooter>{deceitRisk.calledByCourtNo==="True"?"是":"否"}</CellFooter></Cell>
+                        <Cell><CellBody>运营商是否实名</CellBody><CellFooter>{deceitRisk.phoneIsAuth==="True"?"是":"否"}</CellFooter></Cell>
+                    </Cells>
+                    <CellsTitle>通话记录分析</CellsTitle>
+                    <div className="loanshowborrowinfotable">
+                        <table>
+                            <tr>
+                                <th>号码</th>
+                                <th>通话时长</th>
+                                <th>通话次数</th>
+                                <th>号码归属地</th>
+                                <th>被叫次数</th>
+                                <th>主叫次数</th>
+                                <th>号码标识</th>
+                            </tr>
+                            {
+                                _.map(callRecordsInfo, (info,index)=>{
+                                    return (
+                                        <tr key={index}>
+                                            <td>{info.phoneNo}</td>
+                                            <td>{info.connTime}</td>
+                                            <td>{info.connTimes}</td>
+                                            <td>{info.belongArea}</td>
+                                            <td>{info.calledTimes}</td>
+                                            <td>{info.callTimes}</td>
+                                            <td>{info.identifyInfo}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </table>
+                    </div>
+                    <CellsTitle>短信记录分析</CellsTitle>
+                    <div className="loanshowborrowinfotable">
+                        <table>
+                            <tr>
+                                <th>号码</th>
+                                <th>条数</th>
+                                <th>号码归属地</th>
+                                <th>号码标识</th>
+                            </tr>
+                            {
+                                _.map(messageRecordsInfo, (info,index)=>{
+                                    return (
+                                        <tr key={index}>
+                                            <td>{info.phoneNo}</td>
+                                            <td>{info.totalSmsNumber}</td>
+                                            <td>{info.belongArea}</td>
+                                            <td>{info.identifyInfo}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </table>
+                    </div>
+                    <CellsTitle>联系人位置分析</CellsTitle>
+                    <div className="loanshowborrowinfotable">
+                        <table>
+                            <tr>
+                                <th>地区</th>
+                                <th>号码数量</th>
+                                <th>主叫次数</th>
+                                <th>主叫时间</th>
+                                <th>被叫次数</th>
+                                <th>被叫时间</th>
+                                <th>占比</th>
+                            </tr>
+                            {
+                                _.map(contactAreaInfo, (info,index)=>{
+                                    return (
+                                        <tr key={index}>
+                                            <td>{info.area}</td>
+                                            <td>{info.totalNumber}</td>
+                                            <td>{info.callTimes}</td>
+                                            <td>{info.callTime}</td>
+                                            <td>{info.calledTimes}</td>
+                                            <td>{info.calledTime}</td>
+                                            <td>{info.percent}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </table>
+                    </div>
                 </div>
             )
         }else{
@@ -196,9 +252,10 @@ class TaobaoInfo extends Component {
         const { data,history } = this.props;
         if(this.state.showinfo){
             console.log(this.state.datainfo);
-            const { accountSafeInfo,personalInfo } = this.props.datainfo;
+            const { accountSafeInfo,personalInfo,addrs } = this.props.datainfo;
             return (
                 <div className="pageInfo">
+                    <CellsTitle>淘宝基础信息</CellsTitle>
                     <Cells>
                         <Cell>
                             <CellBody>
@@ -232,6 +289,9 @@ class TaobaoInfo extends Component {
                                 {accountSafeInfo.username}
                             </CellFooter>
                         </Cell>
+                    </Cells>
+                    <CellsTitle>淘宝信用数据</CellsTitle>
+                    <Cells>
                         <Cell>
                             <CellBody>
                                 花呗剩余额度
@@ -256,6 +316,37 @@ class TaobaoInfo extends Component {
                                 {personalInfo.taobaoLevel}
                             </CellFooter>
                         </Cell>
+                        <Cell>
+                            <CellBody>
+                                天猫等级
+                            </CellBody>
+                            <CellFooter>
+                                {personalInfo.tianMaoLevel}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                信用分
+                            </CellBody>
+                            <CellFooter>
+                                {personalInfo.creditLevel}
+                            </CellFooter>
+                        </Cell>
+                    </Cells>
+                    <CellsTitle>收获地址信息</CellsTitle>
+                    <Cells>
+                        {
+                            _.map(addrs, (adds, index)=>{
+                                return (
+                                    <Cell key={index}>
+                                        <CellBody>
+                                            {adds}
+                                        </CellBody>
+                                    </Cell>
+                                )
+                            })
+                        }
+                        
                     </Cells>
                 </div>
             )
