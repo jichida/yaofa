@@ -148,7 +148,7 @@ class PhoneInfo extends Component {
 // },
         if(this.state.showinfo){
             console.log(this.state.datainfo);
-            const { phoneInfo,phone_no,status,userInfo } = this.state.datainfo;
+            const { phoneInfo } = this.state.datainfo;
             return (
                 <div className="pageInfo">
                     <Cells>
@@ -165,7 +165,7 @@ class PhoneInfo extends Component {
                                 号码
                             </CellBody>
                             <CellFooter>
-                                {phone_no}
+                                {phoneInfo.phoneNo}
                             </CellFooter>
                         </Cell>
                         <Cell>
@@ -178,10 +178,10 @@ class PhoneInfo extends Component {
                         </Cell>
                         <Cell>
                             <CellBody>
-                                状态
+                                证件信息
                             </CellBody>
                             <CellFooter>
-                                {phoneInfo.status}
+                                {phoneInfo.certNo}
                             </CellFooter>
                         </Cell>
                         <Cell>
@@ -189,7 +189,7 @@ class PhoneInfo extends Component {
                                 姓名
                             </CellBody>
                             <CellFooter>
-                                {userInfo.name}
+                                {phoneInfo.realName}
                             </CellFooter>
                         </Cell>
                         <Cell>
@@ -197,7 +197,7 @@ class PhoneInfo extends Component {
                                 地址
                             </CellBody>
                             <CellFooter>
-                                {userInfo.addr}
+                                {phoneInfo.addr}
                             </CellFooter>
                         </Cell>
                     </Cells>
