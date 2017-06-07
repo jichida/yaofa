@@ -335,7 +335,7 @@ class IdInfo extends Component {
         const { data,history } = this.props;
         if(data){
             let datainfo = JSON.parse(data);
-            let info = datainfo.data;
+            let info = datainfo.data.data;
             return (
                 <div className="pageInfo">
                     <Cells>
@@ -476,7 +476,7 @@ const data = ({order:{borrow_baseinfo},order}) => {
     console.log(resultid_obj);
     console.log(resultphone_detail);
     console.log(resulttaobao_detail);
-    
+
     return {navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo:creator};
 
 };

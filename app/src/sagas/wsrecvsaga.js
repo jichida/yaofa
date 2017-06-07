@@ -40,6 +40,7 @@ import { push,replace,goBack,go  } from 'react-router-redux';//https://github.co
 const getweixininfo = (state) => {
     let weixininfo = state.weixin.info;
     let userinfo = state.userlogin.profile;
+    console.log("saga::::" + weixininfo);
     return {weixininfo,userinfo};
 };
 
@@ -64,6 +65,9 @@ export function* wsrecvsagaflow() {
         let {payload:result} = action;
         //登录成功跟新用户头像和名称数据
         const redux_userinfo = yield select(getweixininfo);
+        console.log("redux_userinfo ::: ");
+        console.log(redux_userinfo);
+        
         if(redux_userinfo.weixininfo.hasOwnProperty("nickname")){
             if(
                 redux_userinfo.weixininfo.nickname != redux_userinfo.userinfo.nickname || 

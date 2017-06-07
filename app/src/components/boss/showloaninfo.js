@@ -69,7 +69,7 @@ class Page extends Component {
                                 姓名
                             </CellBody>
                             <CellFooter>
-                                {truename}
+                                {!!truename?truename:"暂无"}
                             </CellFooter>
                         </Cell>
                         <Cell>
@@ -77,7 +77,7 @@ class Page extends Component {
                                 电话
                             </CellBody>
                             <CellFooter>
-                                {phonenumber}
+                                {!!phonenumber?phonenumber:"暂无"}
                             </CellFooter>
                         </Cell>
                         <Cell>
