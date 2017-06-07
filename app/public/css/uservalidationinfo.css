@@ -66,7 +66,28 @@
 	padding: 15px 8px;
 }
 
+.loanshowborrowinfoPageinfo .weui-cells__title{
+	background: #EEE;
+	margin:0;
+	padding-top: .77em;
+    padding-bottom: .3em;
 
-
-
-
+}
+.uservalidationinfoPage .weui-tab{
+	display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 1;
+}
+.uservalidationinfoPage .loanshowborrowinfotable{
+	display: flex;
+    overflow: scroll;
+    max-height: 400px;
+}
+.uservalidationinfoPage .loanshowborrowinfotable table{
+	width: 100%
+}
+.uservalidationinfoPage .loanshowborrowinfotable table tr td{
+	padding-left: 50px;
+	border-bottom: 1px solid #EEE;
+}

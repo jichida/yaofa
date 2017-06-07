@@ -75,7 +75,7 @@ class PhoneInfo extends Component {
         if(this.state.showinfo){
             const { phoneInfo,phone_no,status,userInfo,callRecordsInfo,deceitRisk,messageRecordsInfo,contactAreaInfo,phoneOffInfos } = this.state.datainfo;
             return (
-                <div className="pageInfo">
+                <div className="pageInfo loanshowborrowinfoPageinfo">
                     <CellsTitle>运营商信息</CellsTitle>
                     <Cells>
                         <Cell><CellBody>运营商类型</CellBody><CellFooter>{phoneInfo.operator}</CellFooter></Cell>
@@ -104,10 +104,8 @@ class PhoneInfo extends Component {
                     <div className="loanshowborrowinfotable">
                         <table>
                             <tr>
-                                <th>号码</th>
+                                <th>号码(地区)</th>
                                 <th>通话时长</th>
-                                <th>通话次数</th>
-                                <th>号码归属地</th>
                                 <th>被叫次数</th>
                                 <th>主叫次数</th>
                                 <th>号码标识</th>
@@ -116,64 +114,34 @@ class PhoneInfo extends Component {
                                 _.map(callRecordsInfo, (info,index)=>{
                                     return (
                                         <tr key={index}>
-                                            <td>{info.phoneNo}</td>
+                                            <td>{info.phoneNo}({info.belongArea})</td>
                                             <td>{info.connTime}</td>
-                                            <td>{info.connTimes}</td>
-                                            <td>{info.belongArea}</td>
                                             <td>{info.calledTimes}</td>
                                             <td>{info.callTimes}</td>
-                                            <td>{info.identifyInfo}</td>
+                                            <td>{info.identifyInfo===""?"暂无":info.identifyInfo}</td>
                                         </tr>
                                     )
                                 })
                             }
                         </table>
                     </div>
-                    <CellsTitle>短信记录分析</CellsTitle>
-                    <div className="loanshowborrowinfotable">
-                        <table>
-                            <tr>
-                                <th>号码</th>
-                                <th>条数</th>
-                                <th>号码归属地</th>
-                                <th>号码标识</th>
-                            </tr>
-                            {
-                                _.map(messageRecordsInfo, (info,index)=>{
-                                    return (
-                                        <tr key={index}>
-                                            <td>{info.phoneNo}</td>
-                                            <td>{info.totalSmsNumber}</td>
-                                            <td>{info.belongArea}</td>
-                                            <td>{info.identifyInfo}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </table>
-                    </div>
+                    
                     <CellsTitle>联系人位置分析</CellsTitle>
                     <div className="loanshowborrowinfotable">
                         <table>
                             <tr>
-                                <th>地区</th>
-                                <th>号码数量</th>
-                                <th>主叫次数</th>
-                                <th>主叫时间</th>
-                                <th>被叫次数</th>
-                                <th>被叫时间</th>
+                                <th>地区(号码数量)</th>
+                                <th>主叫次数/时间</th>
+                                <th>被叫次数/时间</th>
                                 <th>占比</th>
                             </tr>
                             {
                                 _.map(contactAreaInfo, (info,index)=>{
                                     return (
                                         <tr key={index}>
-                                            <td>{info.area}</td>
-                                            <td>{info.totalNumber}</td>
-                                            <td>{info.callTimes}</td>
-                                            <td>{info.callTime}</td>
-                                            <td>{info.calledTimes}</td>
-                                            <td>{info.calledTime}</td>
+                                            <td>{info.area}({info.totalNumber})</td>
+                                            <td>{info.callTimes}次/{info.callTime}分钟</td>
+                                            <td>{info.calledTimes}次/{info.calledTime}分钟</td>
                                             <td>{info.percent}</td>
                                         </tr>
                                     )
@@ -220,41 +188,13 @@ class TaobaoInfo extends Component {
             });
         }
     }
-    // "accountSafeInfo": {
-    //     "bindMobile": "180****2504",
-    //     "identityVerified": "已完成",
-    //     "loginEmail": "jwh****47655@163.com",
-    //     "loginPasswdVerify": "已设置",
-    //     "mobileVerified": "已绑定",
-    //     "pwdProtectedQuestion": "未设置",
-    //     "safeLevel": "中",
-    //     "username": "jiaowenhui"
-    // },
-
-    // "personalInfo": {
-    //     "aliPayRemainingAmount": "0.00",
-    //     "aliPaymFund": "8920.81",
-    //     "aliPaymFundProfit": "816.80",
-    //     "buyerCreditPoint": 0,
-    //     "creditLevel": "2000",
-    //     "growthValue": "37246",
-    //     "huabeiCanUseMoney": 7017,
-    //     "huabeiTotalAmount": 8700,
-    //     "taobaoFastRefundMoney": "2000",
-    //     "taobaoLevel": "3",
-    //     "tianMaoAccountName": "jiaowenhui",
-    //     "tianMaoLevel": 2,
-    //     "tianMaoPoints": 142,
-    //     "tianmaoExperience": "",
-    //     "tmProvilege": []
-    // },
     render(){
         const { data,history } = this.props;
         if(this.state.showinfo){
             console.log(this.state.datainfo);
-            const { accountSafeInfo,personalInfo,addrs } = this.props.datainfo;
+            const { accountSafeInfo,personalInfo,addrs } = this.state.datainfo;
             return (
-                <div className="pageInfo">
+                <div className="pageInfo loanshowborrowinfoPageinfo">
                     <CellsTitle>淘宝基础信息</CellsTitle>
                     <Cells>
                         <Cell>
