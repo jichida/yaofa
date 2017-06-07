@@ -106,19 +106,17 @@ class PhoneInfo extends Component {
                             <tr>
                                 <th>号码(地区)</th>
                                 <th>通话时长</th>
-                                <th>被叫次数</th>
-                                <th>主叫次数</th>
-                                <th>号码标识</th>
+                                <th>被叫次</th>
+                                <th>主叫次</th>
                             </tr>
                             {
                                 _.map(callRecordsInfo, (info,index)=>{
                                     return (
                                         <tr key={index}>
-                                            <td>{info.phoneNo}({info.belongArea})</td>
+                                            <td>{info.phoneNo}<br/>{info.belongArea}</td>
                                             <td>{info.connTime}</td>
                                             <td>{info.calledTimes}</td>
                                             <td>{info.callTimes}</td>
-                                            <td>{info.identifyInfo===""?"暂无":info.identifyInfo}</td>
                                         </tr>
                                     )
                                 })
@@ -130,9 +128,9 @@ class PhoneInfo extends Component {
                     <div className="loanshowborrowinfotable">
                         <table>
                             <tr>
-                                <th>地区(号码数量)</th>
-                                <th>主叫次数/时间</th>
-                                <th>被叫次数/时间</th>
+                                <th>地区(数量)</th>
+                                <th>主叫次/时间</th>
+                                <th>被叫次/时间</th>
                                 <th>占比</th>
                             </tr>
                             {
