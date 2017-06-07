@@ -107,8 +107,9 @@ class LenderConfirminput extends Component {
             //当前第二次放款失败
             if(cancelnum==1){
                 //this.props.dispatch(fillrealnameprofile_request({data:{canaccept: false}}));
-                payload.data.realprice = 20;
-                this.props.dispatch(fillrealnameprofile_request({data:{canacceptreason: "达到2次的放款失败"}}));
+                //payload.data.realprice = 20;
+                let txt = `达到${this.props.cancelcountperday}次的放款失败`
+                this.props.dispatch(fillrealnameprofile_request({data:{canacceptreason: txt}}));
             }
             //当前第一次放款失败
             if(cancelnum==0){
@@ -184,45 +185,36 @@ const data1 = ({
     },
     order:{
         myorderlist
+    },
+    app : {
+        cancelcountperday,
     }
 }) => {
     //created_at creator order
     //获取是否当前用户已经取消过几次订单
+
     let new_bosscancelorder = [];
     let nowtime = (new Date()).getTime();
     let cancelnum = 0;
-    let first_cancel = {};
-    let second_cancel = {};
-    let first_pay = false;
-    let second_pay = false;
+
+    let mycancelcountperday = cancelcountperday;
     //按照时间排序
     if(bosscancelorder.length>0){
         new_bosscancelorder = _.sortBy(bosscancelorder, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
         //cancelnum = bosscancelorder.length;
     }
-    //最近的两条取消记录
-
-    if(new_bosscancelorder.length>1){ 
-        second_cancel = myorderlist[new_bosscancelorder[1].order];
-        second_pay = second_cancel.hasOwnProperty("pay_at")|| !!second_cancel.pay_at;
-        if(second_pay){
-            cancelnum = 1;
-        }else{
-            if(first_pay){
-
-            }else{
+    let lengtharray = bosscancelorder.length > mycancelcountperday?mycancelcountperday: bosscancelorder.length ;
+    for(let i = 0;i < mycancelcountperday ;i++){
+        if(bosscancelorder[i].paystatus === '已支付'){
+            if(i === (mycancelcountperday-1)){
                 cancelnum = 1;
             }
+            break;
         }
     }
+    
 
-    // if(new_bosscancelorder.length>0){ 
-    //     first_cancel = myorderlist[new_bosscancelorder[0].order];
-    //     first_pay = first_cancel.hasOwnProperty("pay_at")|| !!first_cancel.pay_at;
-    //     if()
-    // }
-
-    return {ui_endorder,endorder_status,cancelnum};
+    return {ui_endorder,endorder_status,cancelnum,cancelcountperday};
 };
 LenderConfirminput = connect(data1)(LenderConfirminput);
 export {LenderConfirminput};
@@ -360,11 +352,12 @@ class GetBorrowStatusInfo extends Component{
                 type : "warning"
             }
             this.props.dispatch(set_weui({toast}));
-            if(this.props.canacceptreason==="达到2次的放款失败"){
+            let txt = `达到${this.props.cancelcountperday}次的放款失败`
+            if(this.props.canacceptreason===txt){
                 this.props.dispatch(set_weui({confirm:{
                     show : true,
                     title : "开通接单功能",
-                    text : "您已经达到每天2次的限定，需要支付平台20元开通接单功能",
+                    text : `您已经达到每天${this.props.cancelcountperday}次的限定，需要支付平台${this.props.cancelforpay}元开通接单功能`,
                     buttonsCloseText : "取消",
                     buttonsClickText : "去支付",
                     buttonsClick : ()=>{this.goPay(this.props.first_cancel_order)}
@@ -386,18 +379,26 @@ class GetBorrowStatusInfo extends Component{
         //与借款的10% ＋ 实际借款的10%
         //parseFloat((percentborrowpre/100).toFixed(2));
         const { percentborrowreal,percentborrowpre } = this.props;
-      
-        orderinfo.realprice = orderinfo.moneyreal * parseFloat((percentborrowreal/100).toFixed(2));
-        let realpricepre = orderinfo.moneylender * parseFloat((percentborrowpre/100).toFixed(2));
+        if(orderinfo.hasOwnProperty("order")){
+            this.props.dispatch(payorder_request({
+                query:{_id:orderinfo.order},
+                data:{realprice: this.props.cancelforpay}
+            }));
+        }else{
+            orderinfo.realprice = orderinfo.moneyreal * parseFloat((percentborrowreal/100).toFixed(2));
+            let realpricepre = orderinfo.moneylender * parseFloat((percentborrowpre/100).toFixed(2));
 
-        if(orderinfo.moneyreal<orderinfo.moneylender){
-            orderinfo.realprice = (orderinfo.realprice + realpricepre)*0.5;
+            if(orderinfo.moneyreal<orderinfo.moneylender){
+                orderinfo.realprice = (orderinfo.realprice + realpricepre)*0.5;
+            }
+            orderinfo.realprice = parseFloat((orderinfo.realprice).toFixed(2));
+            this.props.dispatch(payorder_request({
+                query:{_id:orderinfo._id},
+                data:{realprice:orderinfo.realprice}
+            }));
         }
-        orderinfo.realprice = parseFloat((orderinfo.realprice).toFixed(2));
-        this.props.dispatch(payorder_request({
-            query:{_id:orderinfo._id},
-            data:{realprice:orderinfo.realprice}
-        }));
+        //cancelforpay,cancelcountperday
+        
     }
 
     render(){
@@ -547,7 +548,7 @@ class GetBorrowStatusInfo extends Component{
 }
 const dataGetBorrowStatusInfo = ({
     userlogin:{canaccept,canacceptreason},
-    app:{percentborrowreal,percentborrowpre},
+    app:{percentborrowreal,percentborrowpre,cancelforpay,cancelcountperday},
     userlender:{bosscancelorder},
     order:{myorderlist}
 }) => {
@@ -559,11 +560,10 @@ const dataGetBorrowStatusInfo = ({
         new_bosscancelorder = _.sortBy(bosscancelorder, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
     }
     if(new_bosscancelorder.length>0){ 
-        first_cancel_order = myorderlist[new_bosscancelorder[0].order];
-        first_cancel_order.realprice = 20;
+        first_cancel_order = new_bosscancelorder[0];
     }
 
-    return {canaccept,canacceptreason,percentborrowreal,percentborrowpre,first_cancel_order};
+    return {canaccept,canacceptreason,percentborrowreal,percentborrowpre,first_cancel_order,cancelforpay,cancelcountperday};
 };
 GetBorrowStatusInfo = connect(dataGetBorrowStatusInfo)(GetBorrowStatusInfo);
 GetBorrowStatusInfo = withRouter(GetBorrowStatusInfo);
@@ -581,9 +581,10 @@ class Page extends Component {
         this.props.dispatch(getmyorders_request({
             query : {},
             options:{
+                sort: { created_at: -1 },
                 page: 1,
                 limit: 100,        
-            }
+            },
         }));
     }
     gotoUserBorrowInfo=(usertype)=>{

@@ -1,4 +1,4 @@
-import { put,takeEvery } from 'redux-saga/effects';
+import { put,takeEvery,select } from 'redux-saga/effects';
 import {
     md_login_result,
     md_loginsendauth_result,
@@ -18,14 +18,66 @@ import {
     findpwd_result,
     acceptorder_result,
     fillrealnameprofile_result,
-    profit_set_profitid
+    profit_set_profitid,
+
+    
+    fillprofile_request
+
 } from '../actions';
+
+
+// let weixininfo = this.props.weixin.info;
+// this.props.dispatch(fillprofile_request({
+//     profile: {
+//         nickname: weixininfo.nickname,
+//         avatar: weixininfo.headimgurl,
+//         sex: weixininfo.sex==1?"男":"女"
+//     }
+// }));
+
 import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
+const getweixininfo = (state) => {
+    let weixininfo = state.weixin.info;
+    let userinfo = state.userlogin.profile;
+    return {weixininfo,userinfo};
+};
+
 export function* wsrecvsagaflow() {
+
+    //获取用户微信数据
+    // yield takeEvery(`${md_getweixinpic_result}`, function*(action) {
+    //     yield put(fillprofile_request(
+    //         {
+    //             profile: {
+    //                 nickname: action.nickname,
+    //                 avatar: action.headimgurl,
+    //                 sex: action.sex==1?"男":"女"
+    //             }
+    //         }
+    //     ));
+    //     //yield put(replace('/'));
+    // }); 
+
     //登录
     yield takeEvery(`${md_login_result}`, function*(action) {
         let {payload:result} = action;
+        //登录成功跟新用户头像和名称数据
+        const redux_userinfo = yield select(getweixininfo);
+
+        if(
+            redux_userinfo.weixininfo.nickname != redux_userinfo.userinfo.nickname || 
+            redux_userinfo.weixininfo.headimgurl != redux_userinfo.userinfo.avatar
+            ){
+            yield put(fillprofile_request({
+                profile: {
+                    nickname: redux_userinfo.weixininfo.nickname,
+                    avatar: redux_userinfo.weixininfo.headimgurl,
+                    sex: redux_userinfo.weixininfo.sex==1?"男":"女"
+                }
+            }))
+        }
+
         yield put(login_result(result));
         yield put(replace('/'));
     });
