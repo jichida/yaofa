@@ -355,7 +355,7 @@ class GetBorrowStatusInfo extends Component{
                 type : "warning"
             }
             this.props.dispatch(set_weui({toast}));
-            let txt = `达到${this.props.cancelcountperday}次的放款失败`
+            let txt = `达到${this.props.cancelcountperday}次的放款失败`;
             if(this.props.canacceptreason==txt){
                 this.props.dispatch(set_weui({confirm:{
                     show : true,

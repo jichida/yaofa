@@ -37,7 +37,7 @@ class Page extends Component {
                     <div>借款期限: {orderinfo.moneyperiod}天</div>
                 </div>
                 <div className="userinfo">
-                    <img src="img/6.png" />
+                    <img src={orderinfo.creator.profile.avatar} />
                     <div>
                         <span><span>借款人:</span>{orderinfo.creator.profile.nickname}</span>
                         <span><span>借款原因:</span>{orderinfo.moneyusefor}</span>

@@ -334,8 +334,7 @@ class IdInfo extends Component {
     render(){
         const { data,history } = this.props;
         if(data){
-            let datainfo = JSON.parse(data);
-            let info = datainfo.data.data;
+            let info = data.data;
             return (
                 <div className="pageInfo">
                     <Cells>
@@ -439,7 +438,7 @@ class Page extends Component {
                         }
                     </NavBar>
                     <TabBody>
-                        {this.state.status==="id"?(<IdInfo data={resultid_obj}/>):""}
+                        {this.state.status==="shengfen"?(<IdInfo data={resultid_obj}/>):""}
                         {this.state.status==="taobao"?(<TaobaoInfo data={resulttaobao_detail}/>):""}
                         {this.state.status==="phone"?(<PhoneInfo data={resultphone_detail}/>):""}
                         {this.state.status==="base"?(<BaseInfo data={borrow_baseinfo}/>):""}
