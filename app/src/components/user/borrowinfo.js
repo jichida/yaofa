@@ -237,6 +237,11 @@ class BorrowConfirminput extends Component {
     }
     //确认信息无误
     SureOrder=()=>{
+        this.props.dispatch(set_weui({
+            loading : {
+                show : true
+            }
+        }))
         let payload = {
             query:{_id:this.props.orderinfo._id},
             data:{
@@ -333,6 +338,17 @@ class GetBorrowStatusInfo extends Component{
             buttonsClick : ()=>{this.props.dispatch(confirmorder_request(payload))}
         }}))
 
+    }
+
+    componentWillReceiveProps(nextProps){
+        const {orderInfo,dispatch} = this.props;
+        if(nextProps.orderInfo.orderstatus==4 && (orderInfo.orderstatus==3 || orderInfo.orderstatus==-2)){
+            dispatch(set_weui({
+                loading : {
+                    show : false
+                }
+            }))
+         }
     }
 
     //商家接单
@@ -499,6 +515,7 @@ class GetBorrowStatusInfo extends Component{
                                         <span
                                             className="btn Primary"
                                             onClick={()=>{this.borrowAggreelender(orderInfo._id)}}
+                                            style={{marginBottom:"20px"}}
                                             >
                                             接受借款
                                         </span>
@@ -577,6 +594,7 @@ class Page extends Component {
     }
     //usertypes
     componentWillMount(){
+        
         if(this.props.usertypes==="userlender"){
             //商家端获取商家放款失败的次数
             this.props.dispatch(gettodaycancelorderrecord_request({}));

@@ -213,30 +213,33 @@ input, textarea{
     bottom: 22px;
 }
 .footer >div.item > span.addBorrowBtn > span{
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     display: block;
     background: #3479e1;
-    border-radius: 60px;
+    border-radius: 50px;
     position: relative;
+    border:3px solid #EEE;
 }
 .footer >div.item > span.addBorrowBtn > span:before{
     content: "";
     position: absolute;
-    width: 40px;
+    width: 26px;
     height: 3px;
     background: #FFF;
-    left: 10px;
-    top: 28px;
+    left: 13px;
+    top: 24px;
+    border-radius: 4px;
 }
 .footer >div.item > span.addBorrowBtn > span:after{
     content: "";
     position: absolute;
     width: 3px;
-    height: 40px;
+    height: 26px;
     background: #FFF;
-    top: 10px;
-    left: 28px;
+    top: 13px;
+    left: 24px;
+    border-radius: 4px;
 }
 .footer >div.item > span.addBorrowBtn + span{
     margin-top: 34px;
