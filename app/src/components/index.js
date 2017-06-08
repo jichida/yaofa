@@ -42,12 +42,14 @@ export class Page extends Component {
                 this.props.history.replace("/bossindex");
             }
             window.setTimeout(()=>{
+                console.log("set profile");
+                console.log(!!localStorage.getItem("nickname"));
+                console.log(localStorage.getItem("nickname"));
+                console.log(localStorage.getItem("headimgurl"));
                 if(!!localStorage.getItem("nickname")){
                     this.props.dispatch(fillprofile_request({
-                        profile: {
                             nickname: localStorage.getItem("nickname"),
                             avatar: localStorage.getItem("headimgurl"),
-                        }
                     }))
                 }
             },1000)

@@ -130,7 +130,7 @@ export function* wsrecvsagaflow() {
             type : "success"
         }
         yield put(set_weui({ toast }));
-        yield put(push("/borrowinfo"));
+        yield put(replace("/borrowinfo"));
     });
     //发送验证码
     yield takeEvery(`${md_loginsendauth_result}`, function*(action) {

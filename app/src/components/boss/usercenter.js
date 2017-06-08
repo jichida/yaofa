@@ -25,8 +25,7 @@ class Page extends Component {
     }
 
 	render() {
-        const { profile } = this.props;
-        const { avatar, nickname } = profile;
+        const { avatar, nickname } = this.props;
         return (
     		<div className="usercenterPage AppPage">
     			<DocumentTitle title="个人中心" />

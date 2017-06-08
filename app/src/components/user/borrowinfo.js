@@ -204,12 +204,15 @@ const data1 = ({
         //cancelnum = bosscancelorder.length;
     }
     let lengtharray = bosscancelorder.length > mycancelcountperday?mycancelcountperday: bosscancelorder.length ;
-    for(let i = 0;i < mycancelcountperday ;i++){
-        if(bosscancelorder[i].paystatus === '已支付'){
-            if(i === (mycancelcountperday-1)){
-                cancelnum = 1;
+    for(let i = 0;i < lengtharray ;i++){
+
+        if(i === (mycancelcountperday-2)){
+            if(!!bosscancelorder[i]){
+                if(bosscancelorder[i].paystatus !== '已支付'){
+                    cancelnum = 1;
+                    break;
+                }
             }
-            break;
         }
     }
     
@@ -353,7 +356,7 @@ class GetBorrowStatusInfo extends Component{
             }
             this.props.dispatch(set_weui({toast}));
             let txt = `达到${this.props.cancelcountperday}次的放款失败`
-            if(this.props.canacceptreason===txt){
+            if(this.props.canacceptreason==txt){
                 this.props.dispatch(set_weui({confirm:{
                     show : true,
                     title : "开通接单功能",

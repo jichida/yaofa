@@ -39,8 +39,8 @@ class Page extends Component {
                 <div className="headcontent">
                     <img src="img/27.png" />
                     <div className="userinfo">
-                        <img src={profile.profile.avatar} />
-                        <span>{profile.profile.nickname}</span>
+                        <img src={profile.avatar} />
+                        <span>{profile.nickname}</span>
                     </div>
                 </div>
                 <div className="list">
