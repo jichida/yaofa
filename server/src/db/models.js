@@ -11,6 +11,7 @@ let SystemConfigSchema = new Schema({
     timeexporder:Number,//超时时间（小时为单位）
     bonuslevel1:Number,//提成比例
     cancelcountperday:{ type:  Schema.Types.Number, default: 2 },
+    cancelforpay:{ type:  Schema.Types.Number, default: 20 },
 });
 SystemConfigSchema.plugin(mongoosePaginate);
 let SystemConfig  = mongoose.model('SystemConfig',  SystemConfigSchema);
@@ -72,6 +73,7 @@ let UserBorrowerSchema = new Schema({
     hasshenfenzhengyuanjian:{ type: Boolean, default: false },//身份证原件
 
     weixinopenid:String,
+    weixinaccesstoken:String,
     approvalrejectseason:{type:String,default:''},
     approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
 
@@ -96,6 +98,7 @@ let UserLenderSchema = new Schema({
     urlphoneid1:String,//身份证照片正面
     urlphoneid2:String,//身份证照片反面
     weixinopenid:String,
+    weixinaccesstoken:String,
     approvalrejectseason:{type:String,default:''},
     approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
     canaccept:{ type: Boolean, default: false },//是否允许接单
@@ -120,6 +123,7 @@ let UserAgencySchema = new Schema({
     invitecode:String,
     balance:{ type: Schema.Types.Number,default: 0 },//用户余额
     weixinopenid:String,
+    weixinaccesstoken:String,
     approvalrejectseason:{type:String,default:''},
     approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
 
