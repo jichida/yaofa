@@ -41,6 +41,8 @@ let UserBorrowerSchema = new Schema({
     urlphoneid3:String,//身份证照片手持
 
     resultphoto_obj:String,//照片认证错误原因
+    resultphoto1_obj:String,//照片认证正面
+    resultphoto2_obj:String,//照片认证反面
     resultid_obj:String,//身份认证错误原因
     resultphone_obj:String,//运营商认证错误原因
     resultzhima_obj:String,//芝麻分错误原因
