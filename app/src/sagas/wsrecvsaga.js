@@ -17,10 +17,11 @@ import {
     set_weui,
     findpwd_result,
     acceptorder_result,
-    fillrealnameprofile_result,
-    profit_set_profitid,
 
-    
+    fillrealnameprofile_result,
+    fillrealnameprofile_request,
+
+    profit_set_profitid,
     fillprofile_request
 
 } from '../actions';
@@ -63,26 +64,17 @@ export function* wsrecvsagaflow() {
     //登录
     yield takeEvery(`${md_login_result}`, function*(action) {
         let {payload:result} = action;
-        //登录成功跟新用户头像和名称数据
-        // const redux_userinfo = yield select(getweixininfo);
-        // console.log("redux_userinfo ::: ");
-        // console.log(redux_userinfo);
-        
-        // if(redux_userinfo.weixininfo.hasOwnProperty("nickname")){
-        //     if(
-        //         redux_userinfo.weixininfo.nickname != redux_userinfo.userinfo.nickname || 
-        //         redux_userinfo.weixininfo.headimgurl != redux_userinfo.userinfo.avatar
-        //         ){
-        //         yield put(fillprofile_request({
-        //             profile: {
-        //                 nickname: redux_userinfo.weixininfo.nickname,
-        //                 avatar: redux_userinfo.weixininfo.headimgurl,
-        //                 sex: redux_userinfo.weixininfo.sex==1?"男":"女"
-        //             }
-        //         }))
-        //     }
-        // }
-
+        let loading = {
+            show : false,
+        }
+        yield put(set_weui({ loading }));
+        let payloads = {
+            data:{
+                'weixinopenid':localStorage.getItem("openid"),
+                'weixinaccesstoken':localStorage.getItem("access_token"),
+            }
+        };
+        yield put(fillrealnameprofile_request(payloads));
         yield put(login_result(result));
         yield put(replace('/'));
     });
@@ -114,12 +106,10 @@ export function* wsrecvsagaflow() {
     });
     //修改用户借款资料 fillrealnameprofile_result
     yield takeEvery(`${fillrealnameprofile_result}`, function*(action) {
-        let toast = {
-            show : true,
-            text : "提交成功",
-            type : "success"
+        let loading = {
+            show : false,
         }
-        yield put(set_weui({ toast }));
+        yield put(set_weui({ loading }));
         yield put(goBack());
     });
     //放款抢单 acceptorder_result

@@ -22,7 +22,8 @@ const initial = {
         profile: {},
         invitecode: '',
         balance: 0,
-        openid: '',
+        weixinopenid: '',
+        weixinaccesstoken: '',
         usertype: '',//用户类型 借款 userborrow 中介 useragency 放款 userlender
 
         //register
