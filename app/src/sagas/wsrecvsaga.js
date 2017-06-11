@@ -22,7 +22,9 @@ import {
     fillrealnameprofile_request,
 
     profit_set_profitid,
-    fillprofile_request
+    fillprofile_request,
+
+    userauthentication_result
 
 } from '../actions';
 
@@ -38,28 +40,12 @@ import {
 
 import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
-// const getweixininfo = (state) => {
-//     let weixininfo = state.weixin.info;
-//     let userinfo = state.userlogin.profile;
-//     console.log("saga::::" + weixininfo);
-//     return {weixininfo,userinfo};
-// };
+const getuserinfo = (state) => {
+    let info = state.userlogin;
+    return {info};
+};
 
 export function* wsrecvsagaflow() {
-
-    //获取用户微信数据
-    // yield takeEvery(`${md_getweixinpic_result}`, function*(action) {
-    //     yield put(fillprofile_request(
-    //         {
-    //             profile: {
-    //                 nickname: action.nickname,
-    //                 avatar: action.headimgurl,
-    //                 sex: action.sex==1?"男":"女"
-    //             }
-    //         }
-    //     ));
-    //     //yield put(replace('/'));
-    // }); 
 
     //登录
     yield takeEvery(`${md_login_result}`, function*(action) {
@@ -68,13 +54,27 @@ export function* wsrecvsagaflow() {
             show : false,
         }
         yield put(set_weui({ loading }));
-        let payloads = {
-            data:{
-                'weixinopenid':localStorage.getItem("openid"),
-                'weixinaccesstoken':localStorage.getItem("access_token"),
-            }
-        };
-        yield put(fillrealnameprofile_request(payloads));
+
+        const userlogin = yield select(getuserinfo);
+        const local_openid = localStorage.getItem("openid");
+        const local_accesstoken = localStorage.getItem("access_token");
+
+
+        console.log("get userlogin >>>>>>>");
+        console.log(userlogin);
+        console.log(local_openid);
+        console.log(local_accesstoken);
+
+        if(userlogin.info.weixinopenid!==local_openid || userlogin.info.weixinaccesstoken!==local_accesstoken){
+            let payloads = {
+                data:{
+                    'weixinopenid':local_openid,
+                    'weixinaccesstoken':local_accesstoken,
+                }
+            };
+            yield put(fillrealnameprofile_request(payloads));
+        }
+        
         yield put(login_result(result));
         yield put(replace('/'));
     });
@@ -176,6 +176,15 @@ export function* wsrecvsagaflow() {
         yield put(set_weui({ toast }));
         yield put(insertorder_result(result));
         yield put(goBack());
+    });
+
+
+    yield takeEvery(`${userauthentication_result}`, function*(action) {
+        const {payload:result} = action;
+        console.log(action);
+        //yield put(set_weui({ toast }));
+        //yield put(insertorder_result(result));
+        //yield put(goBack());
     });
 
 

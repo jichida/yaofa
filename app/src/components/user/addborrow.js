@@ -120,17 +120,25 @@ class Page extends Component {
         if(userlogin.approvalstatus=="已审核"){
             this.props.dispatch(insertorder_request(value));
         }else{
-            if( userlogin.resultid===2 && userlogin.resultphone===2 && userlogin.resulttaobao==2 && userlogin.hasOwnProperty("hukou")){
+            if( 
+                userlogin.resultid===2 && 
+                userlogin.resultphone===2 && 
+                userlogin.resulttaobao===2 && 
+                userlogin.hasOwnProperty("hukou") &&
+                userlogin.resultphoto===2
+            ){
                 this.props.dispatch(insertorder_request(value));
             }else{
-                this.props.dispatch(set_weui({confirm:{
-                    show : true,
-                    title : "认证审核未完善",
-                    text : "只有通过认证才能进行借贷",
-                    buttonsCloseText : "暂不",
-                    buttonsClickText : "去认证",
-                    buttonsClick : ()=>{this.props.history.push("/validation")}
-                }}))
+                this.props.dispatch(
+                    set_weui({confirm:{
+                        show : true,
+                        title : "认证审核未完善",
+                        text : "只有通过认证才能进行借贷",
+                        buttonsCloseText : "暂不",
+                        buttonsClickText : "去认证",
+                        buttonsClick : ()=>{this.props.history.push("/validation")}
+                    }})
+                )
             }
         }
     }

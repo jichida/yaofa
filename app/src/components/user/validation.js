@@ -48,14 +48,14 @@ class Page extends Component {
             {name: "运营商认证", status: userlogin.resultphone||false, url:'/validationhtml/phone'},
             //{name: "芝麻认证", status: userlogin.resultzhima||false, url:'/validationhtml/taobao'},
             {name: "淘宝认证", status: userlogin.resulttaobao||false, url:'/validationhtml/taobao'},
-            {name: "照片认证", status: userlogin.resultrealname||false, url:'/validationphoto'}
+            {name: "照片认证", status: userlogin.resultphoto||false, url:'/validationphoto'}
         ]
 
         return (
     		<div className="validationPage AppPage">
     			<DocumentTitle title="认证中心" />
                 <div className="list">
-                    <CellsTitle>基础认证(必须全通过才能借款)</CellsTitle>
+                    <CellsTitle>基础认证</CellsTitle>
                     <div className="p1">
                     {_.map(list,(data, index)=>{
                         let style = data.status==2?"true":"false";
