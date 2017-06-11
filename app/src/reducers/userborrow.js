@@ -12,7 +12,7 @@ import {
     logout_result,
     borrow_ui_sureorder,
     fillrealnameprofile_result,
-    userauthentication_request
+    userauthentication_result
 } from '../actions/index.js';
 
 const initial = {
@@ -56,7 +56,7 @@ const userborrow = createReducer({
         return { ...state,...initial.userborrow}
     },
     //...
-    [userauthentication_request]:(state, result) => {
+    [userauthentication_result]:(state, result) => {
         console.log(result);
         return {...state}
     }

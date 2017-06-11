@@ -6,7 +6,11 @@ import DocumentTitle from "react-document-title";
 import '../../../public/css/validation-photo.css';
 import { connect } from 'react-redux';
 import config from '../../env/config.js';
-import { fillrealnameprofile_request,set_weui } from "../../actions";
+import { 
+    fillrealnameprofile_request,
+    set_weui,
+    userauthentication_request
+    } from "../../actions";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
@@ -88,6 +92,21 @@ class PageForm extends Component {
 }
 
 class Page extends Component {
+
+    componentWillMount(){
+        const { resultid,history,dispatch } = this.props;
+        if(resultid===2){}else{
+            dispatch(set_weui({
+                toast: {
+                    show : true,
+                    text : "必须先完成身份认证",
+                    type : "warning"
+                },
+            }));
+            history.goBack();
+        }
+    }
+
     submitfn=(value)=>{
         value.urlphoneid1 = value.urlphoneid1==="img/11.png"?null:value.urlphoneid1;
         value.urlphoneid2 = value.urlphoneid2==="img/13.png"?null:value.urlphoneid2;
@@ -97,7 +116,15 @@ class Page extends Component {
             data:{...value}
         };
         this.props.dispatch(fillrealnameprofile_request(payload));
-        // this.props.history.goBack();
+        let payload_photo = {
+            type:"photo",
+            data:{
+                idcardurl1:value.urlphoneid1,
+                idcardurl2:value.urlphoneid2
+            }
+        };
+        this.props.dispatch(userauthentication_request(payload_photo));
+        //userauthentication ：type:photo,data:{idcardurl1:‘正面',idcardurl2:'反面‘}
     }
     render() {
         const { urlphoneid1,urlphoneid2,urlphoneid3 } = this.props;
@@ -122,7 +149,7 @@ class Page extends Component {
         )
     }
 }
-const data = ({userlogin:{urlphoneid1,urlphoneid2,urlphoneid3}}) => {
+const data = ({userlogin:{urlphoneid1,urlphoneid2,urlphoneid3,resultid}}) => {
     return {urlphoneid1,urlphoneid2,urlphoneid3};
 };
 Page = connect(data)(Page);

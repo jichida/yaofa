@@ -92,7 +92,9 @@ class Page extends Component {
                                 <CellBody>
                                     完善借款资料,商家放款更快速
                                 </CellBody>
-                                <CellFooter />
+                                <CellFooter>
+                                    {userlogin.hasOwnProperty("hukou")?(<Icon value="success-no-circle" />):""}
+                                </CellFooter>
                             </Cell>
                         </Cells>
                     </div>

@@ -81,7 +81,7 @@ class Page extends Component {
             console.log(userlogin);
             //userlogin.resultzhima&&
             //userlogin.resultphoto===2&&
-            if( userlogin.resultid===2 && userlogin.resultphone===2 && userlogin.resulttaobao==2 ){
+            if( userlogin.resultid===2 && userlogin.resultphone===2 && userlogin.resulttaobao==2 && userlogin.hasOwnProperty("hukou") ){
                 // this.props.dispatch(set_weui({confirm:{
                 //     show : true,
                 //     title : "认证审核中...",
@@ -94,10 +94,10 @@ class Page extends Component {
             }else{
                 this.props.dispatch(set_weui({confirm:{
                     show : true,
-                    title : "认证审核未完善",
-                    text : "只有通过认证才能进行借贷",
+                    title : "贷款信息未完善",
+                    text : "通过认证并且完善借款信息后才能进行借贷",
                     buttonsCloseText : "暂不",
-                    buttonsClickText : "去认证",
+                    buttonsClickText : "去完善",
                     buttonsClick : ()=>{this.props.history.push("/validation")}
                 }}))
             }

@@ -104,24 +104,23 @@ const selector = formValueSelector('selectingFormValues');
 AddborrowForm = withRouter(AddborrowForm);
 
 class Page extends Component {
+    componentWillMount(){
+        //询问用户是否需要跟新借款资料
+        this.props.dispatch(set_weui({confirm:{
+            show : true,
+            title : "借款需要您的最新资料",
+            text : "是否有资料需要跟新",
+            buttonsCloseText : "不需要",
+            buttonsClickText : "去更新",
+            buttonsClick : ()=>{this.props.history.push("/addborrowuserinfo")}
+        }}))
+    }
     addborrowSubmit =(value)=>{
         let userlogin = this.props.userlogin;
-
         if(userlogin.approvalstatus=="已审核"){
             this.props.dispatch(insertorder_request(value));
         }else{
-            console.log(userlogin);
-            //userlogin.resultzhima&&
-            //userlogin.resultphoto===2&&
-            if( userlogin.resultid===2 && userlogin.resultphone===2 && userlogin.resulttaobao==2 ){
-                // this.props.dispatch(set_weui({confirm:{
-                //     show : true,
-                //     title : "认证审核中...",
-                //     text : "认证资料已经递交",
-                //     buttonsCloseText : "关闭",
-                //     buttonsClickText : "完善借款资料",
-                //     buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
-                // }}))
+            if( userlogin.resultid===2 && userlogin.resultphone===2 && userlogin.resulttaobao==2 && userlogin.hasOwnProperty("hukou")){
                 this.props.dispatch(insertorder_request(value));
             }else{
                 this.props.dispatch(set_weui({confirm:{
@@ -134,47 +133,6 @@ class Page extends Component {
                 }}))
             }
         }
-
-
-        // if(userlogin.approvalstatus=="已审核" || (userlogin.idcard!=''&&userlogin.idcard)){
-        //     this.props.dispatch(insertorder_request(value));
-        // }else{
-            
-        //     if(
-        //         // userlogin.truename!=''&&
-        //         // userlogin.truename&&
-        //         userlogin.idcard!=''&&
-        //         userlogin.idcard
-        //         // userlogin.phonenumber!=''&&
-        //         // userlogin.phonenumber&&
-        //         // userlogin.taobaoaccount!=''&&
-        //         // userlogin.taobaoaccount&&
-        //         // userlogin.urlphoneid1!=''&&
-        //         // userlogin.urlphoneid1&&
-        //         // userlogin.urlphoneid2!=''&&
-        //         // userlogin.urlphoneid2&&
-        //         // userlogin.urlphoneid3!=''&&
-        //         // userlogin.urlphoneid3
-        //     ){
-        //         this.props.dispatch(set_weui({confirm:{
-        //             show : true,
-        //             title : "认证审核中...",
-        //             text : "认证资料已经递交",
-        //             buttonsCloseText : "关闭",
-        //             buttonsClickText : "完善借款资料",
-        //             buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
-        //         }}))
-        //     }else{
-        //         this.props.dispatch(set_weui({confirm:{
-        //             show : true,
-        //             title : "身份认证未完成",
-        //             text : "只有通过身份认证后才能进行借贷",
-        //             buttonsCloseText : "暂不",
-        //             buttonsClickText : "去认证",
-        //             buttonsClick : ()=>{this.props.history.push("/validation")}
-        //         }}))
-        //     }
-        // }
     }
 	render() {
         return (
@@ -190,3 +148,9 @@ const data = ({userlogin}) => {
 };
 Page = connect(data)(Page);
 export default Page;
+
+
+
+
+
+

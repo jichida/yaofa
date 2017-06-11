@@ -190,7 +190,10 @@ class TaobaoInfo extends Component {
         const { data,history } = this.props;
         if(this.state.showinfo){
             console.log(this.state.datainfo);
-            const { accountSafeInfo,personalInfo,addrs } = this.state.datainfo;
+            const { accountSafeInfo,personalInfo,addrs,orderList } = this.state.datainfo;
+            const newOrderList = _.slice(orderList, 0, 20);
+            console.log("newOrderList");
+            console.log(newOrderList);
             return (
                 <div className="pageInfo loanshowborrowinfoPageinfo">
                     <CellsTitle>淘宝基础信息</CellsTitle>
@@ -270,6 +273,24 @@ class TaobaoInfo extends Component {
                                 {personalInfo.creditLevel}
                             </CellFooter>
                         </Cell>
+                    </Cells>
+                    <CellsTitle>最近20条订单信息</CellsTitle>
+                    <Cells>
+                        {
+                            _.map(newOrderList, (order, index)=>{
+                                return (
+                                    <Cell key={index}>
+                                        <CellBody>
+                                            {order.businessDate},
+                                            {order.orderProducts[0].productName},
+                                            {order.orderTotalPrice},
+                                            {order.orderStatus}
+                                        </CellBody>
+                                    </Cell>
+                                )
+                            })
+                        }
+                        
                     </Cells>
                     <CellsTitle>收获地址信息</CellsTitle>
                     <Cells>
@@ -471,10 +492,10 @@ const data = ({order:{borrow_baseinfo},order}) => {
     let resultid_obj = creator.resultid==2?JSON.parse(creator.resultid_obj):false;
     let resultphone_detail = creator.resultphone==2?creator.resultphone_detail:false;
     let resulttaobao_detail = creator.resulttaobao==2?creator.resulttaobao_detail:false;
-    console.log("~~~~~~~~~~~~~~~");
-    console.log(resultid_obj);
-    console.log(resultphone_detail);
-    console.log(resulttaobao_detail);
+    // console.log("~~~~~~~~~~~~~~~");
+    // console.log(resultid_obj);
+    // console.log(resultphone_detail);
+    // console.log(resulttaobao_detail);
 
     return {navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo:creator};
 

@@ -63,7 +63,7 @@ function* read(socket) {
     const channel = yield call(subscribe, socket);
     while (true) {
         let action = yield take(channel);
-        console.log(`read action:${action}`);
+        //console.log(`read action:${action}`);
         yield put(action);
     }
 }
@@ -71,7 +71,7 @@ function* read(socket) {
 function* write(socket,fun,cmd) {
     while (true) {
         let { payload } = yield take(fun);
-        console.log(`${cmd}:` + JSON.stringify(payload));
+        //console.log(`${cmd}:` + JSON.stringify(payload));
         let usertype = getusertype();
         if(!!usertype){
           socket.emit(usertype,{cmd:cmd,data:payload});
@@ -81,9 +81,9 @@ function* write(socket,fun,cmd) {
 
 function* handleIOWithAuth(socket) {
     while (true) {
-        console.log("未登录!");
+        //console.log("未登录!");
         yield take(`${login_result}`);
-        console.log("登录成功!");
+        //console.log("登录成功!");
         let fnsz = data.sendmessageauthfnsz;
 
         let tasksz =[];

@@ -177,6 +177,7 @@ input, textarea{
 }
 .footer.userfooter{
     overflow: visible;
+    border-top: 1px solid #EEE;
 }
 .footer >div.item{
     flex-grow: 1;

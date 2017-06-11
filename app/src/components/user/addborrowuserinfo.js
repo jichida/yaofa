@@ -14,6 +14,7 @@ import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import { Province } from "../province";
 import {
     fillrealnameprofile_request,
+    set_weui,
 } from '../../actions';
 import {
     required,
@@ -54,7 +55,7 @@ class PageForm extends Component {
             <Form
                 onSubmit={handleSubmit(subBorrowuserinfo)}
                 >
-                <div className="list formStyle1">
+                <div className="list formStyle1" style={{background:"none"}}>
                     <FormUI>
                         <Field
                             name="hukou"
@@ -185,8 +186,14 @@ const selector = formValueSelector('selectingFormValues');
 class Page extends Component {
 
     subBorrowuserinfo=(value)=>{
+        const loading = {
+            show : true,
+        }
+        this.props.dispatch(set_weui({loading}));
         this.props.dispatch(fillrealnameprofile_request({data:value}));
+        this.props.history.goBack();
     }
+
 
 	render() {
 

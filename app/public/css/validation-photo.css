@@ -5,7 +5,7 @@
 	padding: 15px;
 	background: #FFF;
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	flex-direction: column;
 	overflow: scroll;
 	flex-grow: 1;

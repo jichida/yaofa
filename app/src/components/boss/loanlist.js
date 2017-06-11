@@ -84,7 +84,7 @@ class Page extends Component {
                         {fillerorderlist.length>0?(
                             <Cells>
                                 {_.map(fillerorderlist,(order,index)=>{
-                                    console.log(order);
+                                    
                                     return (
                                          <Cell
                                             access

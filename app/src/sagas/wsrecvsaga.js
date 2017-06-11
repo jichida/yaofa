@@ -110,7 +110,7 @@ export function* wsrecvsagaflow() {
             show : false,
         }
         yield put(set_weui({ loading }));
-        yield put(goBack());
+        //yield put(goBack());
     });
     //放款抢单 acceptorder_result
     yield takeEvery(`${acceptorder_result}`, function*(action) {
