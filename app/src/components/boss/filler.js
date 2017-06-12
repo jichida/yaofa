@@ -166,7 +166,7 @@ class Page extends Component {
     }
 
     setFiller=(data)=>{
-        console.log(data);
+        //console.log(data);
     }
 
 	render() {

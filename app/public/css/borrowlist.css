@@ -14,7 +14,10 @@
 	flex-direction: column;
 }
 .borrowlistPage .borrowlist .list .weui-cells{
-	overflow: visible;
+	overflow: scroll;
+}
+.borrowlistPage .borrowlist .list .weui-cells:after{
+	content: none;
 }
 .borrowlistPage .weui-navbar__item.weui-bar__item_on{
 	background: none;

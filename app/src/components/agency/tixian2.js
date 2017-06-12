@@ -98,7 +98,7 @@ export class Page extends Component {
     }
 
     onClickNext = (value)=> {
-        console.log(value);
+        //console.log(value);
         _getBankInfoByCardNo(value.bankaccount, (err, info)=>{
             if(err){
                 this.props.dispatch(set_weui({
@@ -119,7 +119,7 @@ export class Page extends Component {
                 profitform.bankaccount = value.bankaccount;
                 profitform.bankname = info.bankName;
                 this.setTixianForm(profitform);
-                console.log(profitform);
+                //console.log(profitform);
                 this.props.dispatch(withdrawcashapplyaddone_request(profitform));
             }
         })

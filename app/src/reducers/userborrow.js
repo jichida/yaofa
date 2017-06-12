@@ -37,18 +37,18 @@ const userborrow = createReducer({
     //     return { ...state, myorderlist:newmyorderlist };
     // },
     //确认放款回调
-    [confirmorder_result]:(state, result) => {
-        // console.log(result);
-        return { ...state};
-    },
+    // [confirmorder_result]:(state, result) => {
+    //     console.log(result);
+    //     return { ...state};
+    // },
     //控制弹框是否显示
     [borrow_ui_sureorder]:(state, sureorder) => {
         return { ...state, sureorder };
     },
     //修改用户资料回调
     [fillrealnameprofile_result]:(state, result) => {
-        console.log("userborrow fillrealnameprofile_result");
-        console.log(result);
+        //console.log("userborrow fillrealnameprofile_result");
+        //console.log(result);
         let borrowinfo = { ...state.borrowinfo, ...result};
         return { ...state, borrowinfo };
     },

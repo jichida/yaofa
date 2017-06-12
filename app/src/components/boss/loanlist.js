@@ -123,13 +123,15 @@ class Page extends Component {
 }
 
 const data = ({order:{myorderlistStatus,myorderlist}}) => {
-    myorderlist = _.sortBy(myorderlist, [function(o){ 
-        let a = o.orderstatus;
-        if(a<0){
-            a = -(a)+4
-        }
-        return -a;
-     }]);
+    // myorderlist = _.sortBy(myorderlist, [function(o){ 
+    //     let a = o.orderstatus;
+    //     if(a<0){
+    //         a = -(a)+4
+    //     }
+    //     return -a;
+    //  }]);
+    
+    myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
 
     let fillerorderlist = {};
     if(myorderlistStatus==="借款中"){

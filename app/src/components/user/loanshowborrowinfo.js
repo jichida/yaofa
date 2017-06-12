@@ -189,11 +189,11 @@ class TaobaoInfo extends Component {
     render(){
         const { data,history } = this.props;
         if(this.state.showinfo){
-            console.log(this.state.datainfo);
+            //console.log(this.state.datainfo);
             const { accountSafeInfo,personalInfo,addrs,orderList } = this.state.datainfo;
             const newOrderList = _.slice(orderList, 0, 20);
-            console.log("newOrderList");
-            console.log(newOrderList);
+            //console.log("newOrderList");
+            //console.log(newOrderList);
             return (
                 <div className="pageInfo loanshowborrowinfoPageinfo">
                     <CellsTitle>淘宝基础信息</CellsTitle>

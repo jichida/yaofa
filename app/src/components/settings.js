@@ -22,7 +22,7 @@ import {
 class Page extends Component {
 
     onClickLogout = ()=>{
-        let usertype = '';
+        //let usertype = '';
         //localStorage.setItem(`${usertype}_user_token`, userinfo.token);
         this.props.dispatch(logout_request({}));
         //this.props.history.goBack();
@@ -36,11 +36,11 @@ class Page extends Component {
         const { usertype } = this.props;
         return (
     		<div className="settingsPage AppPage">
-    			<DocumentTitle title="放款详情" />
+    			<DocumentTitle title="设置" />
                 <Cells>
                     {!!usertype?(
                         <div>
-                            {usertype=="userlender"?(
+                            {usertype==="userlender"?(
                                 <Cell
                                     onClick={()=>{this.pagePush("/abouthtml/feeminu")}}
                                     access>
@@ -53,7 +53,7 @@ class Page extends Component {
                                     <CellFooter />
                                 </Cell>
                             ):""}
-                            {usertype=="useragency"?(
+                            {usertype==="useragency"?(
                                 <Cell 
                                     onClick={()=>{this.pagePush("/abouthtml/feepuls")}}
                                     access>
@@ -106,7 +106,7 @@ class Page extends Component {
 
                 <div className="submitBtn">
                     <button 
-                        onClick = {()=>{this.onClickLogout()}}
+                        onClick={()=>{this.onClickLogout()}}
                         className="btn Primary">
                         <span>退出登录</span>
                     </button>

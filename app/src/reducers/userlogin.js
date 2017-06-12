@@ -72,15 +72,15 @@ const userlogin = createReducer({
     },
     //修改用户资料回调
     [fillrealnameprofile_result]:(state, result) => {
-        console.log("userlogin fillrealnameprofile_result");
-        console.log(result);
+        //console.log("userlogin fillrealnameprofile_result");
+        //console.log(result);
         return { ...state, ...result };
     },
     //借款人确认商家回调
-    [confirmorder_result]:(state, payload) => {
-        let canaccept = false;
-        return { ...state,  canaccept};
-    },
+    // [confirmorder_result]:(state, payload) => {
+    //     let canaccept = false;
+    //     return { ...state,  canaccept};
+    // },
 }, initial.userlogin);
 
 export default userlogin;

@@ -118,9 +118,9 @@ class Page extends Component {
 const data = ({userlogin}) => {
     let title = "个人中心";
     let usertype = localStorage.getItem('usertype');
-    if(usertype=="userborrow"){ title = "借款人中心"; }
-    if(usertype=="useragency"){ title = "中介中心"; }
-    if(usertype=="userlender"){ title = "放宽人中心"; }
+    if(usertype==="userborrow"){ title = "借款人中心"; }
+    if(usertype==="useragency"){ title = "中介中心"; }
+    if(usertype==="userlender"){ title = "放宽人中心"; }
     let profile = userlogin.profile;
     return {userlogin,title,profile};
 };

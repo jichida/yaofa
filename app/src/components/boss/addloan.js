@@ -95,7 +95,7 @@ PageForm = reduxForm({
 class Page extends Component {
 
     addloanSubmit=(data)=>{
-        console.log(data);
+        //console.log(data);
         let payload = {
             query:{_id: this.props.addloanid},
             data : data
@@ -119,7 +119,7 @@ class Page extends Component {
 }
 
 const data = ({userlender:{addloanid}}) => {
-    console.log(addloanid);
+    //console.log(addloanid);
     //usertype: userborrow  useragency  userlender
     return {addloanid};
 };

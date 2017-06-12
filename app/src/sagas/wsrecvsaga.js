@@ -5,29 +5,19 @@ import {
     md_insertorder_result,
     md_withdrawcashapplyaddone_result,
     md_withdrawcashapplyauth_result,
-
     withdrawcashapplyaddone_result,
     confirmorder_result,
-
     insertorder_result,
-    showpopmessage,
     sendauth_result,
     login_result,
     common_err,
     set_weui,
     findpwd_result,
     acceptorder_result,
-
     fillrealnameprofile_result,
     fillrealnameprofile_request,
-
     profit_set_profitid,
-    fillprofile_request,
-
-    userauthentication_result
-
 } from '../actions';
-
 
 // let weixininfo = this.props.weixin.info;
 // this.props.dispatch(fillprofile_request({
@@ -38,7 +28,7 @@ import {
 //     }
 // }));
 
-import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { replace,goBack } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 const getuserinfo = (state) => {
     let info = state.userlogin;
@@ -60,10 +50,10 @@ export function* wsrecvsagaflow() {
         const local_accesstoken = localStorage.getItem("access_token");
 
 
-        console.log("get userlogin >>>>>>>");
-        console.log(userlogin);
-        console.log(local_openid);
-        console.log(local_accesstoken);
+        // console.log("get userlogin >>>>>>>");
+        // console.log(userlogin);
+        // console.log(local_openid);
+        // console.log(local_accesstoken);
 
         if(userlogin.info.weixinopenid!==local_openid || userlogin.info.weixinaccesstoken!==local_accesstoken){
             let payloads = {
@@ -167,7 +157,7 @@ export function* wsrecvsagaflow() {
     //发布借款信息
     yield takeEvery(`${md_insertorder_result}`, function*(action) {
         let {payload:result} = action;
-        console.log("insertorder_request:::>"+JSON.stringify(result));
+        //console.log("insertorder_request:::>"+JSON.stringify(result));
         let toast = {
             show : true,
             text : "发布成功",
@@ -179,13 +169,13 @@ export function* wsrecvsagaflow() {
     });
 
 
-    yield takeEvery(`${userauthentication_result}`, function*(action) {
-        const {payload:result} = action;
-        console.log(action);
-        //yield put(set_weui({ toast }));
-        //yield put(insertorder_result(result));
-        //yield put(goBack());
-    });
+    // yield takeEvery(`${userauthentication_result}`, function*(action) {
+    //     const {payload:result} = action;
+    //     //console.log(action);
+    //     //yield put(set_weui({ toast }));
+    //     //yield put(insertorder_result(result));
+    //     //yield put(goBack());
+    // });
 
 
 }

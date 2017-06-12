@@ -67,8 +67,8 @@ class Page extends Component {
         window.clearInterval(this.getlistinterval);
         this.props.dispatch(profit_set_listtype(type));
         let querytype = type===0?"order":"withdrawcash";
-        console.log(type);
-        console.log(querytype);
+        //console.log(type);
+        //console.log(querytype);
         window.setTimeout(()=>{
             this.getlistinterval = window.setInterval(this.getList(type),5000);
         },10)
@@ -113,7 +113,7 @@ class Page extends Component {
                         {profit.profitlist.length>0?(
                             <Cells>
                                 {_.map(profit.profitlist, (p,index)=>{
-                                    console.log(p)
+                                    //console.log(p)
                                     const orderinfo = myorderlist[p.fromorder];
                                     const shouyi = parseFloat((bonuslevel1*orderinfo.realprice).toFixed(2));
                                     return (

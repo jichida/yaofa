@@ -8,7 +8,6 @@ import { set_weui } from '../../actions/index.js';
 const {
     Toast,
     Dialog,
-    ActionSheet
 } = WeUI;
 
 const icon = {
@@ -16,12 +15,6 @@ const icon = {
     "warning" : "warn",
     "success" : "success-no-circle",
     "loading" : "loading"
-}
-
-const tosatDefault = {
-    show : false,
-    text : "",
-    type : ""
 }
 
 const confirmDefault = {
@@ -41,13 +34,10 @@ const alertDefault = {
     buttonsClick : ()=>{}
 }
 
-
-let toastTimeout = null;
-
 export class Page extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.toast.show && !this.props.toast.show) {
-            toastTimeout = window.setTimeout(()=> {
+            window.setTimeout(()=> {
                 let toast = {
                     show : false,
                     text : "",

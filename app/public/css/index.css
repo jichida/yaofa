@@ -1,5 +1,5 @@
 .indexPage {
-	background: #eff3f6;
+	background: #eee;
 }
 .indexPage .weui-navbar__item.weui-bar__item_on{
 	background: none;
@@ -131,8 +131,68 @@
 .formStyle1 .btnContent .btn{
 	width: 48%
 }
+.bossindexMark{
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
 
+}
+.bossindexMark >div{
+	background: #FFF;
+	border-radius: 6px;
+	width: 60%;
+	min-height: 100px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+	padding: 15px;
+}
+.bossindexMark >div>div{
+	display: flex;
+	flex-direction: column;
+	color: #999;
+	align-items: flex-start;
+	justify-content: flex-start;
+	flex-grow: 1;
+	align-self: stretch;
+}
+.bossindexMark >div>div span{
+	border-bottom: 1px solid #EEE;
+	flex-grow: 1;
+	align-self: stretch;
+	line-height: 30px;
+	position: relative;
+}
 
+.bossindexMark >div>div span:after{
+	content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #c8c8cd;
+    border-style: solid;
+    -webkit-transform: matrix(.71,.71,-.71,.71,0,0);
+    transform: matrix(.71,.71,-.71,.71,0,0);
+    position: relative;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: 8px;
+}
+.bossindexMark >div>div span:first-child:after{
+	content: none;
+}
 
 
 

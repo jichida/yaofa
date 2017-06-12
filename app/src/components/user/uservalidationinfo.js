@@ -126,8 +126,8 @@ class PhoneInfo extends Component {
                 dataType: "json", 
                 url : config.serverurl + this.props.data,
                 success: (msg, status)=>{
-                    console.log("get PhoneInfo ");
-                    console.log(msg);
+                    //console.log("get PhoneInfo ");
+                    //console.log(msg);
                     this.setState({datainfo : msg});
                     this.setState({showinfo : true})
                 }
@@ -147,7 +147,7 @@ class PhoneInfo extends Component {
 //     "status": "在用"
 // },
         if(this.state.showinfo){
-            console.log(this.state.datainfo);
+            //console.log(this.state.datainfo);
             const { phoneInfo } = this.state.datainfo;
             return (
                 <div className="pageInfo">
@@ -264,7 +264,7 @@ class TaobaoInfo extends Component {
     render(){
         const { data,history } = this.props;
         if(this.state.showinfo){
-            console.log(this.state.datainfo);
+            //console.log(this.state.datainfo);
             const { accountSafeInfo,personalInfo } = this.state.datainfo;
             return (
                 <div className="pageInfo">

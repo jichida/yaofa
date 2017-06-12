@@ -31,7 +31,7 @@ const initial = {
 
 const app = createReducer({
     [getsystemconfig_result]:(state, payload) => {
-        console.log("state.weixintoken:::"+JSON.stringify(state.weixintoken)); 
+        //console.log("state.weixintoken:::"+JSON.stringify(state.weixintoken)); 
         const {weixintoken:oldweixintoken} = state;
         const statecode = (new Date()).getTime();
         //const posturl = "https://open.weixin.qq.com/connect/qrconnect?appid=wx8ec8ba53700c0c89&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_login&state="+statecode+"#wechat_redirect"
@@ -123,20 +123,20 @@ const app = createReducer({
             // 对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
             // 定位
             // getLocation();
-            console.log(window.wx.config);
-            console.log(window.wx.getBrandWCPayRequest);
-            console.log("window.wx.ready");
+            // console.log(window.wx.config);
+            // console.log(window.wx.getBrandWCPayRequest);
+            // console.log("window.wx.ready");
           });
 
           window.wx.error(function(res) {
-              console.log("window.wx.error");
-              console.log(res)
+              //console.log("window.wx.error");
+              //console.log(res)
           });
 
 
        }
 
-       console.log(window.wx);
+       //console.log(window.wx);
        return { ...state,...payload}
    },
 }, initial.app);

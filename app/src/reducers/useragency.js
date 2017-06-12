@@ -23,7 +23,7 @@ const initial = {
 
 const useragency = createReducer({
     [getmyborrowusers_result]:(state, result) =>{
-    	console.log(result);
+    	//console.log(result);
     	return { ...state, borrowlist:result.list}
     },
     //获取我的放款订单列表

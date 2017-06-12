@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import '../../public/css/register.css';
 
 import {
-    Fields,
     Field,
     reduxForm,
     Form,
@@ -23,7 +22,6 @@ import {
 import {
     sendauth_request,
     register_request,
-    loginwithweixinopenid_request,
     set_weui
     } from '../actions';
 
@@ -205,7 +203,7 @@ export class Page extends Component {
                 <DocumentTitle title="注册" />
                 <RegisterPage
                     onClickRegister={this.onClickRegister}
-                    sendCode = {this.sendCode}
+                    sendCode={this.sendCode}
                 />
             </div>
         )

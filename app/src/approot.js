@@ -59,6 +59,7 @@ import Tousu from "./components/user/tousu";
 import Uservalidationinfo from "./components/user/uservalidationinfo";
 //
 import Loanshowborrowinfo from "./components/user/loanshowborrowinfo";
+import Loanshowborrowbaseinfo from "./components/user/loanshowborrowbaseinfo";
 
 /*放款端*/
 //首页
@@ -167,6 +168,9 @@ const CoApp = (props) => {
             <CustomRoute exact path="/showloaninfo" component={requireAuthentication(ShowLoaninfo)}/>
             <CustomRoute exact path="/borrowshowloaninfo" component={requireAuthentication(BorrowShowLoaninfo)}/>
             <CustomRoute exact path="/loanshowborrowinfo" component={requireAuthentication(Loanshowborrowinfo)}/>
+            <CustomRoute exact path="/loanshowborrowbaseinfo" component={requireAuthentication(Loanshowborrowbaseinfo)}/>
+
+            
         </Switch>
     );
 }

@@ -5,18 +5,8 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../public/css/usertype.css';
 import { connect } from 'react-redux';
-import {
-    user_type
-} from '../actions';
-
-const {
-    Icon,
-    Form,
-    FormCell,
-    CellHeader,
-    Checkbox,
-    CellBody
-    } = WeUI;
+import { user_type } from '../actions';
+const { Checkbox } = WeUI;
 
 class Page extends Component {
 

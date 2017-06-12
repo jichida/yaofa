@@ -17,7 +17,7 @@ const initial = {
 
 const weixin = createReducer({
     [getweixinpic_result]: (state, payload) => {
-        console.log("getweixinpic_result"+JSON.stringify(payload));
+        //console.log("getweixinpic_result"+JSON.stringify(payload));
         //let info = payload.hasOwnProperty("errcode")?{}:payload;
         if(!payload.hasOwnProperty("errcode")){
         	localStorage.setItem("nickname", payload.nickname);

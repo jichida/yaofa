@@ -78,7 +78,7 @@ class Page extends Component {
         if(userlogin.approvalstatus=="已审核"){
             return false;
         }else{
-            console.log(userlogin);
+            //console.log(userlogin);
             //userlogin.resultzhima&&
             //userlogin.resultphoto===2&&
             if( userlogin.resultid===2 && userlogin.resultphone===2 && userlogin.resulttaobao==2 && userlogin.hasOwnProperty("hukou") ){

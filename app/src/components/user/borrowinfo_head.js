@@ -46,6 +46,9 @@ class Page extends Component {
                     {usertypes==="userlender"&&orderinfo.orderstatus>=2?(
                         <div className='borrowxiangxiinfolnk' onClick={()=>{this.pushUrl("/loanshowborrowinfo");}}>详情</div>
                     ):""}
+                    {usertypes==="userlender"&&(orderinfo.orderstatus===0||orderinfo.orderstatus===1)?(
+                        <div className='borrowxiangxiinfolnk' onClick={()=>{this.pushUrl("/loanshowborrowbaseinfo");}}>详情</div>
+                    ):""}
                 </div>
     		</div>
     	)

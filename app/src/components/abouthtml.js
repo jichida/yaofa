@@ -3,22 +3,10 @@
 */
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
-import WeUI from 'react-weui';
 import { connect } from 'react-redux';
-import 'weui';
-import 'react-weui/lib/react-weui.min.css';
 import '../../public/css/abouthtml.css';
 import renderHTML from 'react-render-html';
-const { 
-    Cells,
-    Cell,
-    CellBody,
-    CellFooter,
-    CellHeader
-    } = WeUI;
-import {
-    getabouthtml_request
-    } from '../actions';
+import { getabouthtml_request } from '../actions';
 
 class Page extends Component {
 

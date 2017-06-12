@@ -29,7 +29,7 @@ const {
 class Page extends Component {
 	render() {
         const { orderInfo } = this.props;
-        console.log(orderInfo);
+        //console.log(orderInfo);
         return (
     		<div className="loaninfoPage AppPage">
     			<DocumentTitle title="放款详情" />

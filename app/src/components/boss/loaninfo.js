@@ -117,14 +117,25 @@ class Page extends Component {
         }
     }
     submitfn=(value)=>{
-        value.urlphoneid1 = value.urlphoneid1==="img/11.png"?null:value.urlphoneid1;
-        value.urlphoneid2 = value.urlphoneid2==="img/12.png"?null:value.urlphoneid2;
+        let imgurlphoneid1 = value.urlphoneid1==="img/11.png"?null:value.urlphoneid1;
+        let imgurlphoneid2 = value.urlphoneid2==="img/12.png"?null:value.urlphoneid2;
         value.resultrealname = 1;
-        let payload = {
-            data:{...value}
-        };
-        this.props.dispatch(fillrealnameprofile_request(payload));
-        this.props.history.goBack();
+
+        if(!!imgurlphoneid1 && !!imgurlphoneid2){
+            let payload = {
+                data:{...value}
+            };
+            this.props.dispatch(fillrealnameprofile_request(payload));
+            this.props.history.goBack();
+        }else{
+            let toast = {
+                show : true,
+                text : "身份照面必须上传",
+                type : "warning"
+            }
+            this.props.dispatch(set_weui({ toast }));
+        }
+        
     }
     render() {
         const { urlphoneid1,urlphoneid2,truename,phonenumber } = this.props;
@@ -140,7 +151,7 @@ class Page extends Component {
 
         return (
             <div className="validationPhotoPage loaninfoPage AppPage">
-                <DocumentTitle title="身份信息" />
+                <DocumentTitle title="完善身份信息" />
                 <div className="validationPhotoTitle">
                     完善身份信息
                 </div>

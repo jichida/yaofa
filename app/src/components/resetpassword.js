@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import '../../public/css/register.css';
 
 import {
-    Fields,
     Field,
     reduxForm,
     Form,
@@ -146,7 +145,7 @@ export class Page extends Component {
                 <DocumentTitle title="重置密码" />
                 <ResetPasswordPage
                     onClickResetPassword={this.onClickResetPassword}
-                    sendCode = {this.sendCode}
+                    sendCode={this.sendCode}
                 />
             </div>
         )

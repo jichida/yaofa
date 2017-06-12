@@ -31,8 +31,20 @@ const order = createReducer({
     },
     //借款人确认商家回调
     [confirmorder_result]:(state, payload) => {
-    	let orderInfo = { ...state.orderInfo, ...payload.updateditem }
-        return { ...state,  orderInfo};
+        console.log(payload);
+    	let orderInfo = { ...state.orderInfo, ...payload.updateditem };
+
+        if(!!orderInfo._id){
+            let neworderinfo = {};
+            let myorderlist = {}
+            neworderinfo[orderInfo._id] = orderInfo;
+            myorderlist = { ...state.myorderlist, neworderinfo };
+            return { ...state, orderInfo, myorderlist};
+        }else{
+            return { ...state, orderInfo};
+        }
+        
+        
     },
     //设置借款列表状态
     [set_myorderlistStatus]: (state, payload) => {
@@ -48,7 +60,8 @@ const order = createReducer({
         _.map(payload.list.docs, (order,index)=>{
             newmyorderlist[order._id]=order;
         })
-        return { ...state, myorderlist:newmyorderlist };
+        let myorderlist = { ...state.myorderlist, ...newmyorderlist }
+        return { ...state, myorderlist };
     },
     //获取商家取消订单的次数 result
     [gettodaycancelorderrecord_result]: (state, payload) => {

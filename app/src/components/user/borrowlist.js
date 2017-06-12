@@ -114,18 +114,18 @@ class Page extends Component {
 }
 
 const data = ({order:{myorderlistStatus,myorderlist}}) => {
-    myorderlist = _.sortBy(myorderlist, [function(o){ 
+    myorderlist=_.sortBy(myorderlist, [function(o){ 
         if(o.orderstatus<0){
-            o.orderstatus = -(o.orderstatus)+4
+            o.orderstatus=-(o.orderstatus)+4
         }
         return -o.orderstatus;
     }]);
-    let fillerorderlist = {};
+    let fillerorderlist={};
     if(myorderlistStatus==="借款中"){
-        fillerorderlist = _.filter(myorderlist, function(o) { return o.statusforborrower!="订单完成"; });
+        fillerorderlist=_.filter(myorderlist, function(o) { return o.statusforborrower!=="订单完成"; });
     }
     if(myorderlistStatus==="已完成"){
-        fillerorderlist = _.filter(myorderlist, function(o) { return o.statusforborrower=="订单完成"; });
+        fillerorderlist=_.filter(myorderlist, function(o) { return o.statusforborrower==="订单完成"; });
     }
 
     return {fillerorderlist, myorderlistStatus};

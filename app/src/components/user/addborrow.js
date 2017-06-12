@@ -9,32 +9,18 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/addborrow.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
+import { Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {
     insertorder_request,
     set_weui
 } from '../../actions';
 import {
     required,
-    InputValidation,
     WeuiInputValidation,
     WeuiSelectValidation
     } from "../tools/formvalidation"
 const {
-    FormCell,
-    Checkbox,
     Form:FormUI,
-    Select,
-    Panel,
-    PanelBody,
-    MediaBox,
-    Cells,
-    Cell,
-    CellHeader,
-    CellBody,
-    CellFooter,
-    Input,
-    Label
     } = WeUI;
 
 class AddborrowForm extends Component {

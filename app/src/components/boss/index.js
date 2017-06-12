@@ -55,7 +55,37 @@ class Page extends Component {
         this.props.history.push(name);
     }
 
+    constructor(props) {  
+        super(props);  
+        this.state = {showmark: false};  
+    } 
+
     componentWillMount() {
+        const {approvalstatus,dispatch,truename} = this.props;
+        if(approvalstatus==="已审核"){
+            // this.props.dispatch(set_weui({confirm:{
+            //     show : true,
+            //     title : "认证审核中...",
+            //     text : "认证资料已经递交",
+            //     buttonsCloseText : "关闭",
+            //     buttonsClickText : "完善借款资料",
+            //     buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
+            // }}))
+            //return false;
+        }else{
+            if(!!truename){
+                this.setState({showmark: true});
+            }else{
+                dispatch(set_weui({confirm:{
+                    show : true,
+                    title : "未获得接单权限",
+                    text : "商家需要通过资料审核后才能进行接单",
+                    buttonsCloseText : "暂不",
+                    buttonsClickText : "去完善资料",
+                    buttonsClick : ()=>{this.props.history.push("/loaninfo")}
+                }}))
+            }
+        }
         this.getList();
         bossindexgetlist = window.setInterval(()=>{
             this.getList();
@@ -63,7 +93,7 @@ class Page extends Component {
     }
 
     gotoBorrowInfo =(borrowinfo)=>{
-        console.log(borrowinfo);
+        //console.log(borrowinfo);
         this.props.dispatch(set_orderinfo(borrowinfo));
         this.pushUrl("/borrowinfo");
     }
@@ -77,11 +107,33 @@ class Page extends Component {
         window.clearInterval(bossindexgetlist);
     }
 
+
+    componentWillReceiveProps(nextProps){
+        //const {approvalstatus, canaccept} = nextProps;
+        const {approvalstatus} = this.props;
+        if(approvalstatus!=="已审核" && nextProps.approvalstatus==="已审核"){
+            this.setState({showmark: false});
+        }
+    }
+
 	render() {
         const {borrowlist,borrowlistfiller} = this.props;
         return (
             <div className="indexPage AppPage">
                 <DocumentTitle title="耀发钱庄－放款端" />
+                {this.state.showmark?(
+                    <div className="bossindexMark">
+                        <div >
+                            <span className="color_warning">商家信息审核中...</span>
+                            <div>
+                                <span className="tit">如有疑问请查看:</span>
+                                <span onClick={()=>{this.pushUrl("/abouthtml/helpcenter")}}>帮助文档</span>
+                                <span onClick={()=>{this.pushUrl("/abouthtml/aboutus")}}>联系我们</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                ):""}
         		<SwiperBanner data={this.headBanner()} />
                 <div className="pageTitle bossindexfiller">
                     <span>最新借款信息</span>
@@ -134,12 +186,17 @@ class Page extends Component {
     }
 }
 
-const data = ({userlender:{borrowlist,borrowlistfiller}}) => {
-    console.log(borrowlist);
+const data = ({userlender:{borrowlist,borrowlistfiller}, userlogin:{approvalstatus,canaccept,truename}}) => {
+    //console.log(borrowlist);
     borrowlist = _.sortBy(borrowlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
-    return {borrowlist,borrowlistfiller};
+    return { borrowlist, borrowlistfiller, approvalstatus,canaccept,truename };
 };
 Page = connect(data)(Page);
 export default Page;
+
+
+
+
+
 
 

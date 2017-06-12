@@ -11,7 +11,7 @@ import {
     login_result,
     logout_result
 } from '../actions';
-import { push,replace,goBack,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { push,replace,go  } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 
 let getusertype = ()=>{

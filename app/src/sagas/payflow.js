@@ -10,9 +10,8 @@ import {
   payorder_result,
   getpaysign_request,
   getpaysign_result,
-  confirmorder_result
 } from '../actions';
-import { push,replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
+import { replace } from 'react-router-redux';//https://github.com/reactjs/react-router-redux
 
 function takepay(paysign,orderinfo) {
     return new Promise(resolve => {
@@ -23,11 +22,11 @@ function takepay(paysign,orderinfo) {
 }
 
 export function* payflow() {
-    console.log(`payflow======>`);
+    //console.log(`payflow======>`);
 
     yield takeEvery(`${payorder_result}`, function*(action) {
           let {payload:result} = action;
-          console.log(`payorder_result:${JSON.stringify(result)}`);
+          //console.log(`payorder_result:${JSON.stringify(result)}`);
           const {orderinfo} = result;
           let orderdoc = {
              out_trade_no: orderinfo._id,
@@ -42,8 +41,8 @@ export function* payflow() {
           }));
           let { payload:paysign } = yield take(`${getpaysign_result}`);
           let payresult = yield call(takepay,paysign,orderinfo);
-          console.log(`payresult:${JSON.stringify(payresult)}`);
-          // confirmorder_result
+          //console.log(`payresult:${JSON.stringify(payresult)}`);
+          // console.log
           yield put(replace('/'));
     });
 

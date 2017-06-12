@@ -3,18 +3,17 @@ import DocumentTitle from "react-document-title";
 import '../../public/css/login.css';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
+import { Fields, Field, reduxForm, Form } from 'redux-form';
 import {
   loginwithtoken_request,
-  loginwithweixinopenid_request,
   loginwithusername_request,
   set_weui
 } from '../actions';
-import { required, InputValidation, phone, length4 } from "./tools/formvalidation"
+import { required, InputValidation, phone } from "./tools/formvalidation"
 export class LoginPage extends Component {
     componentWillMount() {
         let usertype = localStorage.getItem('usertype');
-        let openid = "";
+        //let openid = "";
         let token = localStorage.getItem(`${usertype}_user_token`);
         if(token){
             this.props.dispatch(loginwithtoken_request({token}));
@@ -24,7 +23,7 @@ export class LoginPage extends Component {
         this.props.history.push(name);
     }
 	render() {
-        const { handleSubmit,onClickLogin,username,pristine,submitting } = this.props;
+        const { handleSubmit,onClickLogin,pristine,submitting } = this.props;
         return (
 			<Form 
                 className="loginForm formStyle1"

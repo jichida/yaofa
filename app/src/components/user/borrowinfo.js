@@ -8,17 +8,16 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/borrowinfo.css';
 import { connect } from 'react-redux';
-import moment from "moment";
+//import moment from "moment";
 import { withRouter } from 'react-router-dom';
 import Borrowinfohead from "./borrowinfo_head";
 import BorrowinfoLenderinfo from "./borrowinfo_lenderinfo";
 import _ from "lodash";
 
 import {
-    set_borrowinfo,
+    
     set_addloanid,
     confirmorder_request,
-    set_orderinfo,
     set_weui,
     lender_set_ui_endorder,
     lender_set_endorder_status,
@@ -353,9 +352,9 @@ class GetBorrowStatusInfo extends Component{
 
     //商家接单
     lenderGetOrder=(id)=>{
-        let lenderstatus = this.props.canaccept;
+        const {canaccept,approvalstatus}  = this.props;
         //queryacceptstatus
-        if(lenderstatus){
+        if(canaccept && approvalstatus==="已审核"){
             this.props.dispatch(set_weui({confirm:{
                 show : true,
                 title : "放款抢单",
@@ -371,6 +370,7 @@ class GetBorrowStatusInfo extends Component{
                 type : "warning"
             }
             this.props.dispatch(set_weui({toast}));
+
             let txt = `达到${this.props.cancelcountperday}次的放款失败`;
             if(this.props.canacceptreason==txt){
                 this.props.dispatch(set_weui({confirm:{
@@ -566,10 +566,11 @@ class GetBorrowStatusInfo extends Component{
         )
     }
 }
+//approvalstatus已审核
 const dataGetBorrowStatusInfo = ({
     userlogin:{canaccept,canacceptreason},
     app:{percentborrowreal,percentborrowpre,cancelforpay,cancelcountperday},
-    userlender:{bosscancelorder},
+    userlender:{bosscancelorder,approvalstatus},
     order:{myorderlist}
 }) => {
     let new_bosscancelorder = [];
@@ -617,6 +618,7 @@ class Page extends Component {
         const { orderInfo } = this.props;
         return (
     		<div className="borrowinfoPage AppPage">
+                <DocumentTitle title="借款详情" />
     			<Borrowinfohead orderinfo={orderInfo} />
                 <BorrowinfoLenderinfo orderinfo={orderInfo} />
                 <GetBorrowStatusInfo orderInfo={orderInfo}/>

@@ -32,7 +32,7 @@ class Page extends Component {
             type: "GET",
             url: posturl,
             success: function(msg){
-                console.log(msg);
+                //console.log(msg);
             }
         });
     };

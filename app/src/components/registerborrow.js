@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';
 import '../../public/css/register.css';
 
 import {
-    Fields,
     Field,
     reduxForm,
     Form,
@@ -22,15 +21,14 @@ import {
 
 import {
     sendauth_request,
-    register_request,
-    loginwithweixinopenid_request
+    register_request
     } from '../actions';
 
 export class RegisterPage extends Component {
 
     componentWillMount() {
         //window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8ec8ba53700c0c89&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";       
-        console.log("register borrowuser getopenid");
+        //console.log("register borrowuser getopenid");
     }
 
     pageReplace=(name)=>{
@@ -38,7 +36,7 @@ export class RegisterPage extends Component {
     }
 
 	render() {
-        const usertype = localStorage.getItem('usertype');
+        //const usertype = localStorage.getItem('usertype');
         const {
             handleSubmit,
             onClickRegister,
@@ -174,7 +172,7 @@ export class Page extends Component {
                 <DocumentTitle title="注册" />
                 <RegisterPage
                     onClickRegister={this.onClickRegister}
-                    sendCode = {this.sendCode}
+                    sendCode={this.sendCode}
                 />
             </div>
         )
