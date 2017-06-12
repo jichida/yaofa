@@ -47,6 +47,8 @@ const userborrow = createReducer({
     },
     //修改用户资料回调
     [fillrealnameprofile_result]:(state, result) => {
+        console.log("userborrow fillrealnameprofile_result");
+        console.log(result);
         let borrowinfo = { ...state.borrowinfo, ...result};
         return { ...state, borrowinfo };
     },

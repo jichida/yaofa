@@ -72,6 +72,8 @@ const userlogin = createReducer({
     },
     //修改用户资料回调
     [fillrealnameprofile_result]:(state, result) => {
+        console.log("userlogin fillrealnameprofile_result");
+        console.log(result);
         return { ...state, ...result };
     },
     //借款人确认商家回调
