@@ -7,6 +7,12 @@ class Page extends Component {
     componentWillMount() {
         let openid = this.props.match.params.openid;
         let access_token = this.props.match.params.access_token;
+
+        console.log("wxgetopenid:::>>>");
+        console.log(access_token);
+        console.log(openid);
+
+
         localStorage.setItem("openid",openid);
         localStorage.setItem("access_token",access_token);
         if(openid){
