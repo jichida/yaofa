@@ -12,6 +12,7 @@ class Page extends Component {
         console.log(access_token);
         console.log(openid);
 
+        alert(window.location.href);
 
         localStorage.setItem("openid",openid);
         localStorage.setItem("access_token",access_token);

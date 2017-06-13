@@ -24,6 +24,7 @@ class Page extends Component {
     onClickLogout = ()=>{
         //let usertype = '';
         //localStorage.setItem(`${usertype}_user_token`, userinfo.token);
+        localStorage.setItem("openid","");
         this.props.dispatch(logout_request({}));
         //this.props.history.goBack();
     };
