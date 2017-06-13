@@ -62,6 +62,9 @@ export function* wsrecvsagaflow() {
                     'weixinaccesstoken':local_accesstoken,
                 }
             };
+            console.log("fillrealnameprofile_request::::::::>>>");
+            console.log(payloads);
+            
             yield put(fillrealnameprofile_request(payloads));
         }
         
