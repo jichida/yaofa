@@ -57,10 +57,21 @@ class Page extends Component {
 
     constructor(props) {  
         super(props);  
-        this.state = {showmark: false};  
+        this.state = {
+            showmark: false,
+            falsemark : false,
+        };  
     } 
 
     componentWillMount() {
+        this.pageStart();
+        this.getList();
+        bossindexgetlist = window.setInterval(()=>{
+            this.getList();
+        },5000);
+    }
+
+    pageStart =()=>{
         const {approvalstatus,dispatch,truename} = this.props;
         if(approvalstatus==="已审核"){
             // this.props.dispatch(set_weui({confirm:{
@@ -72,6 +83,8 @@ class Page extends Component {
             //     buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
             // }}))
             //return false;
+        }else if(approvalstatus==="已拒绝"){
+            this.setState({falsemark: true});
         }else{
             if(!!truename){
                 this.setState({showmark: true});
@@ -86,10 +99,7 @@ class Page extends Component {
                 }}))
             }
         }
-        this.getList();
-        bossindexgetlist = window.setInterval(()=>{
-            this.getList();
-        },5000);
+        
     }
 
     gotoBorrowInfo =(borrowinfo)=>{
@@ -114,10 +124,24 @@ class Page extends Component {
         if(approvalstatus!=="已审核" && nextProps.approvalstatus==="已审核"){
             this.setState({showmark: false});
         }
+        if(approvalstatus==="已拒绝" && nextProps.approvalstatus!=="已拒绝"){
+            this.setState({falsemark: false});
+        }
+        if(nextProps.approvalstatus!=="已拒绝" && nextProps.approvalstatus!=="已审核"){
+            this.pageStart();
+        }
+        if(
+            approvalstatus==="已审核" && nextProps.approvalstatus!=="已审核" || 
+            approvalstatus!=="已拒绝" && nextProps.approvalstatus==="已拒绝" 
+
+        ){
+            this.pageStart();
+        }
+
     }
 
 	render() {
-        const {borrowlist,borrowlistfiller} = this.props;
+        const {borrowlist,borrowlistfiller,approvalrejectseason} = this.props;
         return (
             <div className="indexPage AppPage">
                 <DocumentTitle title="耀发钱庄－放款端" />
@@ -125,6 +149,22 @@ class Page extends Component {
                     <div className="bossindexMark">
                         <div >
                             <span className="color_warning">商家信息审核中...</span>
+                            <div>
+                                <span className="tit">如有疑问请查看:</span>
+                                <span onClick={()=>{this.pushUrl("/abouthtml/helpcenter")}}>帮助文档</span>
+                                <span onClick={()=>{this.pushUrl("/abouthtml/aboutus")}}>联系我们</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                ):""}
+                {this.state.falsemark?(
+                    <div className="bossindexMark">
+                        <div >
+                            <span className="color_error">商家信息审核未通过...</span>
+                            {!!approvalrejectseason?(
+                                <span>理由: {approvalrejectseason}</span>
+                            ):""}
                             <div>
                                 <span className="tit">如有疑问请查看:</span>
                                 <span onClick={()=>{this.pushUrl("/abouthtml/helpcenter")}}>帮助文档</span>
@@ -186,10 +226,10 @@ class Page extends Component {
     }
 }
 
-const data = ({userlender:{borrowlist,borrowlistfiller}, userlogin:{approvalstatus,canaccept,truename}}) => {
+const data = ({userlender:{borrowlist,borrowlistfiller}, userlogin:{approvalstatus,canaccept,truename,approvalrejectseason}}) => {
     //console.log(borrowlist);
     borrowlist = _.sortBy(borrowlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
-    return { borrowlist, borrowlistfiller, approvalstatus,canaccept,truename };
+    return { borrowlist, borrowlistfiller, approvalstatus,canaccept,truename,approvalrejectseason };
 };
 Page = connect(data)(Page);
 export default Page;

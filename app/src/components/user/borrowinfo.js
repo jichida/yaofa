@@ -568,9 +568,9 @@ class GetBorrowStatusInfo extends Component{
 }
 //approvalstatus已审核
 const dataGetBorrowStatusInfo = ({
-    userlogin:{canaccept,canacceptreason},
+    userlogin:{canaccept,canacceptreason,approvalstatus},
     app:{percentborrowreal,percentborrowpre,cancelforpay,cancelcountperday},
-    userlender:{bosscancelorder,approvalstatus},
+    userlender:{bosscancelorder},
     order:{myorderlist}
 }) => {
     let new_bosscancelorder = [];
@@ -584,7 +584,7 @@ const dataGetBorrowStatusInfo = ({
         first_cancel_order = new_bosscancelorder[0];
     }
 
-    return {canaccept,canacceptreason,percentborrowreal,percentborrowpre,first_cancel_order,cancelforpay,cancelcountperday};
+    return {canaccept,canacceptreason,approvalstatus,percentborrowreal,percentborrowpre,first_cancel_order,cancelforpay,cancelcountperday};
 };
 GetBorrowStatusInfo = connect(dataGetBorrowStatusInfo)(GetBorrowStatusInfo);
 GetBorrowStatusInfo = withRouter(GetBorrowStatusInfo);

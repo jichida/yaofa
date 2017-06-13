@@ -38,7 +38,7 @@ const order = createReducer({
             let neworderinfo = {};
             let myorderlist = {}
             neworderinfo[orderInfo._id] = orderInfo;
-            myorderlist = { ...state.myorderlist, neworderinfo };
+            myorderlist = { ...state.myorderlist, ...neworderinfo };
             return { ...state, orderInfo, myorderlist};
         }else{
             return { ...state, orderInfo};

@@ -80,15 +80,11 @@ export class Page extends Component {
         return (
             <div className="weuiPage">
 
-                <Toast
-                    icon={icon[toast.type]}
-                    show={toast.show}
-                    >
-                    {toast.text}
-                </Toast>
+                
 
 
                 <Dialog
+                    style={{zIndex:"1002"}}
                     id="weuiAlert"
                     type="ios"
                     title={alert.title}
@@ -107,6 +103,7 @@ export class Page extends Component {
                 </Dialog>
 
                 <Dialog
+                    style={{zIndex:"1001"}}
                     id="weuiConfirm"
                     type="ios"
                     title={confirm.title}
@@ -131,10 +128,19 @@ export class Page extends Component {
 
 
                 <Toast
+                    style={{zIndex:"1004"}}
                     id="weuiLoading"
                     icon="loading"
                     show={loading.show}>
                     Loading...
+                </Toast>
+
+                <Toast
+                    style={{zIndex:"1003"}}
+                    icon={icon[toast.type]}
+                    show={toast.show}
+                    >
+                    {toast.text}
                 </Toast>
 
 

@@ -39,8 +39,12 @@ class Page extends Component {
                             <PanelBody>
                                 <MediaBox type="text">
                                         <div className="info">
-                                            <div>放贷人:{orderinfo.userlender.profile.nickname}</div>
-                                            <div>放款时间: {moment(orderinfo.userlender.matched_at).format("YYYY-MM-DD H:mm:ss")}</div>
+                                            {!!orderinfo.userlender?(
+                                                <div>放贷人:{orderinfo.userlender.profile.nickname}</div>
+                                            ):""}
+                                            {!!orderinfo.userlender?(
+                                                <div>放款时间: {moment(orderinfo.userlender.matched_at).format("YYYY-MM-DD H:mm:ss")}</div>
+                                            ):""}
                                             <div>放款额度: <span className="blue">{orderinfo.moneylender} 元</span></div>
                                             <div>服务费: <span className="green">{orderinfo.feeservice} 元</span></div>
                                             <div>押金比: <span className="green">{orderinfo.depositratio} %</span></div>

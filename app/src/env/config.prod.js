@@ -5,7 +5,8 @@ let config = {
   refreshmyorderinterval:5000,//5秒
   refreshsysconfiginterval:60000*5,//5分钟
   appid : "wx8ec8ba53700c0c89",
-  redirect_uri : "http://wx.mrtejia.cn/app/getopenid"
+  redirect_uri : "http://wx.mrtejia.cn/app/getopenid",
+  CustomerService : "0519-88888888",
 };
 
 export default config;

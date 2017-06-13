@@ -28,6 +28,7 @@ class Page extends Component {
 
 	render() {
         const { orderinfo, usertype, userlogin } = this.props;
+        console.log(orderinfo);
         const usertypes = localStorage.getItem('usertype');
         return (
     		<div className="borrowinfoHead">
