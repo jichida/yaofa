@@ -21,10 +21,14 @@ export function* refreshmyorderflow(){
         const loginsuccess = yield select((state) => state.userlogin.loginsuccess);
         if(loginsuccess){
           yield put(getmyorders_request({
-            query:{},
-            sort: { created_at: -1 },
-            page: 1,
-            limit: 100,  
+            query:{
+              orderstatus:{$nin:[-1,4]}
+            },
+            options:{
+              sort: { created_at: -1 },
+              page: 1,
+              limit: 100,
+            }
           }));
           let usertype = localStorage.getItem('usertype');
           //if(usertype === 'userborrow'){
