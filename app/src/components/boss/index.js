@@ -68,7 +68,7 @@ class Page extends Component {
         this.getList();
         bossindexgetlist = window.setInterval(()=>{
             this.getList();
-        },5000);
+        },50000);
     }
 
     pageStart =()=>{
