@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import config from '../env/config.js';
 
 import {
     fillprofile_request,
@@ -20,13 +21,14 @@ export class Page extends Component {
         //console.log(openid);
 
         //fillprofile_request
-        if(openid&&openid!=''){
+        if(openid&&openid!==''){
             //更新用户头像和昵称数据
             this.props.dispatch(getweixinpic_request({openid: openid, access_token: access_token}));
 
         }else{
-            window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8ec8ba53700c0c89&redirect_uri=http%3A%2F%2Fwx.mrtejia.cn%2fapp%2fgetopenid&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";       
-            console.log("index getopenid");
+            console.log(config.redirect_uri_renzheng);
+            window.location.href= config.redirect_uri_renzheng;
+            //console.log("index getopenid");
         }
 
         let usertype = localStorage.getItem('usertype');
@@ -42,10 +44,10 @@ export class Page extends Component {
                 this.props.history.replace("/bossindex");
             }
             window.setTimeout(()=>{
-                console.log("set profile");
-                console.log(!!localStorage.getItem("nickname"));
-                console.log(localStorage.getItem("nickname"));
-                console.log(localStorage.getItem("headimgurl"));
+                //console.log("set profile");
+                //console.log(!!localStorage.getItem("nickname"));
+                //console.log(localStorage.getItem("nickname"));
+                //console.log(localStorage.getItem("headimgurl"));
                 if(!!localStorage.getItem("nickname")){
                     this.props.dispatch(fillprofile_request({
                             nickname: localStorage.getItem("nickname"),

@@ -13,3 +13,12 @@
 .agencyqrcodePage .desc{
 	padding-top: 20px;
 }
+
+.agencyqrcodePage .list .code{
+	font-size: 16px;
+	background: #EEE;
+	padding: 10px 15px;
+	font-size: 22px;
+	margin-bottom: 20px;
+	border-radius: 6px;
+}

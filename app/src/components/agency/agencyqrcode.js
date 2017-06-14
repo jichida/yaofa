@@ -30,7 +30,9 @@ class Page extends Component {
         return (
     		<div className="agencyqrcodePage AppPage">
     			<DocumentTitle title="我的邀请码" />
+
                 <div className="list">
+                    <span className="code">{invitecode}</span>
                     <QRCode
                         value={`${config.serverurl}/app/#/registerborrow/${invitecode}`}
                         size={200}
