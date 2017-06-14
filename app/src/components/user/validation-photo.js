@@ -40,6 +40,29 @@ class PageForm extends Component {
             },
         }));
     }
+
+    //初始化
+    constructor(props) {  
+        super(props);  
+        this.state = {
+            showyangli : "showyangli",
+            yangliimg : ""
+        }; 
+
+    }
+
+    showYangli=(i)=>{
+        console.log(i);
+        const a = ["img/53.png","img/54.png","img/55.png"];
+        this.setState({
+            showyangli : "showyangli show",
+            yangliimg : a[i],
+        });
+    }
+
+    hideYangli=()=>{
+        this.setState({showyangli: "showyangli"});
+    }
      
     render(){
         const { handleSubmit,submitfn } = this.props;
@@ -57,8 +80,8 @@ class PageForm extends Component {
                         loading = {this.showLoading.bind(this)}
                     />
                     <div>
-                        <span className="tit">请上传身份证正面</span>
-                        <span className="lnk blue">查看样例</span>
+                        <span className="tit">请上传身份证正面{this.state.yangliimg}</span>
+                        <span className="lnk blue" onClick={this.showYangli.bind(this,0)}>查看样例</span>
                     </div>
                 </div>
                 <div className="li">
@@ -69,7 +92,7 @@ class PageForm extends Component {
                     />
                     <div>
                         <span className="tit">请上传身份证反面</span>
-                        <span className="lnk blue">查看样例</span>
+                        <span className="lnk blue" onClick={this.showYangli.bind(this,1)}>查看样例</span>
                     </div>
                 </div>
                 <div className="li">
@@ -80,12 +103,17 @@ class PageForm extends Component {
                     />
                     <div>
                         <span className="tit">手持身份证照片</span>
-                        <span className="lnk blue">查看样例</span>
+                        <span className="lnk blue" onClick={this.showYangli.bind(this,2)}>查看样例</span>
                     </div>
                 </div>
                 <button className="btn Primary">
                     <span>确认</span>
                 </button>
+                <div className={this.state.showyangli}
+                    onClick={this.hideYangli}
+                    >
+                    <img src={this.state.yangliimg} />
+                </div>
             </Form>  
         )
      }

@@ -45,7 +45,8 @@ export class Page extends React.Component {
     componentWillUnmount () {//taobao,phone
         this.props.dispatch(userauthenticationhtml_result({html:{
             code:-1,
-            errorCode:"-1"
+            errorCode:"-1",
+            url : ""
         }}));
     }
 
@@ -65,7 +66,7 @@ export class Page extends React.Component {
         }   
         return ( 
             <div className="validationPage AppPage">
-                {success && <iframe id="myiframe" height='100%' width='100%' src={html.url} />}
+                {success && <iframe id="myiframe" className={!!html.url?"hiden":""} height='100%' width='100%' src={html.url} />}
             </div>
         );
     }

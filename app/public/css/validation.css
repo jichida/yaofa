@@ -76,6 +76,7 @@
 .validationPage #myiframe{
 	flex-grow: 1;
 }
-
-
+.validationPage #myiframe.hide{
+	display: none;
+}
 

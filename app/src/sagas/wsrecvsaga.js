@@ -17,6 +17,7 @@ import {
     fillrealnameprofile_result,
     fillrealnameprofile_request,
     profit_set_profitid,
+    userauthentication_result
 } from '../actions';
 
 // let weixininfo = this.props.weixin.info;
@@ -149,7 +150,7 @@ export function* wsrecvsagaflow() {
         
         let toast = {
             show : true,
-            text : result.errmsg +"::"+ result.type,
+            text : result.errmsg +":"+ result.type,
             type : "warning"
         }
         yield put(set_weui({ toast }));
@@ -171,14 +172,12 @@ export function* wsrecvsagaflow() {
         yield put(goBack());
     });
 
-
-    // yield takeEvery(`${userauthentication_result}`, function*(action) {
-    //     const {payload:result} = action;
-    //     //console.log(action);
-    //     //yield put(set_weui({ toast }));
-    //     //yield put(insertorder_result(result));
-    //     //yield put(goBack());
-    // });
+    //身份证照片审核回调
+    yield takeEvery(`${userauthentication_result}`, function*(action) {
+        //const {payload:result} = action;
+        console.log(action);
+        yield put(goBack());
+    });
 
 
 }
