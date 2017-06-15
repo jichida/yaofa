@@ -64,15 +64,15 @@ class Page extends Component {
     } 
 
     componentWillMount() {
-        this.pageStart();
+        this.pageStart(this.props.approvalstatus);
         this.getList();
         bossindexgetlist = window.setInterval(()=>{
             this.getList();
         },5000);
     }
 
-    pageStart =()=>{
-        const {approvalstatus,dispatch,truename} = this.props;
+    pageStart =(approvalstatus)=>{
+        const {dispatch,truename} = this.props;
         if(approvalstatus==="已审核"){
             // this.props.dispatch(set_weui({confirm:{
             //     show : true,
@@ -109,7 +109,18 @@ class Page extends Component {
     }
 
     getList =()=>{
-        let query = this.props.borrowlistfiller;
+        let query = {};
+        let borrowlistfiller = this.props.borrowlistfiller;
+        // borrowlistfiller.jiedaibaofuzai && 
+        // borrowlistfiller.limithuabei &&
+        // borrowlistfiller.realtimeforphoneyear && 
+        // borrowlistfiller.limitjiebei &&
+        // query:{
+        //       orderstatus:{$nin:[-1,4]}
+        //     },
+        // if(!!borrowlistfiller.jiedaibaofuzai){
+        //     query.jiedaibaofuzai 
+        // }
         this.props.dispatch(queryintrestedorder_request({query}))
     }
 
@@ -119,25 +130,39 @@ class Page extends Component {
 
 
     componentWillReceiveProps(nextProps){
+
+        
         //const {approvalstatus, canaccept} = nextProps;
-        const {approvalstatus} = this.props;
+        const {approvalstatus,truename} = this.props;
+
+        if(!truename && !!nextProps.truename){
+            this.setState({showmark: true});
+        }
+
         if(approvalstatus!=="已审核" && nextProps.approvalstatus==="已审核"){
-            this.setState({showmark: false});
+            this.pageStart(nextProps.approvalstatus);
+            this.setState({showmark: false, falsemark: false});
         }
         if(approvalstatus==="已拒绝" && nextProps.approvalstatus!=="已拒绝"){
             this.setState({falsemark: false});
         }
-        if(nextProps.approvalstatus!=="已拒绝" && nextProps.approvalstatus!=="已审核"){
-            this.pageStart();
+        if(nextProps.approvalstatus!=="已拒绝" && nextProps.approvalstatus!=="已审核" && approvalstatus!=="未递交"){
+            this.pageStart(nextProps.approvalstatus);
         }
         if(
             approvalstatus==="已审核" && nextProps.approvalstatus!=="已审核" || 
             approvalstatus!=="已拒绝" && nextProps.approvalstatus==="已拒绝" 
 
         ){
-            this.pageStart();
+            this.pageStart(nextProps.approvalstatus);
         }
 
+
+
+    }
+
+    clearfiller=()=>{
+        this.props.dispatch(set_lender_borrowlist_filler({}));
     }
 
 	render() {
@@ -177,13 +202,35 @@ class Page extends Component {
         		<SwiperBanner data={this.headBanner()} />
                 <div className="pageTitle bossindexfiller">
                     <span>最新借款信息</span>
+                    <div>
                     <span 
                         onClick={()=>{this.pushUrl("/bossfiller")}}
                         className="filler sel">
                         筛选
                         <img src="img/7.png" />
                     </span>
+                    {
+                        !!borrowlistfiller.jiedaibaofuzai ||
+                        !!borrowlistfiller.limithuabei ||
+                        !!borrowlistfiller.realtimeforphoneyear || 
+                        !!borrowlistfiller.limitjiebei ?(
+                        <span className="clear" onClick={()=>{this.clearfiller()}}>清空</span>):""
+                    }
+                    </div>
                 </div>
+                {
+                        !!borrowlistfiller.jiedaibaofuzai ||
+                        !!borrowlistfiller.limithuabei ||
+                        !!borrowlistfiller.realtimeforphoneyear || 
+                        !!borrowlistfiller.limitjiebei ?(
+                    <div className="fillerbanner">
+                        {borrowlistfiller.jiedaibaofuzai && <span>借贷宝负债&lt;{borrowlistfiller.jiedaibaofuzai}元</span>}
+                        {borrowlistfiller.limithuabei && <span>花呗分值&lt;{borrowlistfiller.limithuabei}分</span>}
+                        {borrowlistfiller.realtimeforphoneyear && <span>手机号实名时间&lt;{borrowlistfiller.realtimeforphoneyear}年</span>}
+                        {borrowlistfiller.limitjiebei && <span>借呗额度&lt;{borrowlistfiller.limitjiebei}元</span>}
+                    </div>
+                    ):""
+                }
                 <div className="list">
                     {borrowlist.length>0?(
                         <Cells>

@@ -8,11 +8,11 @@ class Page extends Component {
         let openid = this.props.match.params.openid;
         let access_token = this.props.match.params.access_token;
 
-        console.log("wxgetopenid:::>>>");
-        console.log(access_token);
-        console.log(openid);
+        // console.log("wxgetopenid:::>>>");
+        // console.log(access_token);
+        // console.log(openid);
 
-        alert(window.location.href);
+        //alert(window.location.href);
 
         localStorage.setItem("openid",openid);
         localStorage.setItem("access_token",access_token);

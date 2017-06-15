@@ -36,6 +36,7 @@ const useragency = createReducer({
     // },
     //
     [logout_result]:(state, result) => {
+        
         return { ...state,...initial.useragency}
     },
 }, initial.useragency);

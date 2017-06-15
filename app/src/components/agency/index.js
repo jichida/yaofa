@@ -70,7 +70,7 @@ class Page extends Component {
                                         onClick={()=>{this.clickitem(userborrow)}}
                                         >
                                         <CellHeader>
-                                            <img src="img/6.png" alt="" />
+                                            <img src={userborrow.profile.avatar} alt="" />
                                             <div className="userinfo">
                                                 <span className="name">{userborrow.profile.nickname}</span>
                                             </div>

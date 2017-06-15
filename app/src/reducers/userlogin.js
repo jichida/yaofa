@@ -52,7 +52,14 @@ const userlogin = createReducer({
         
     },
     [logout_result]:(state, result) => {
-        
+        //alert("logout_result");
+        //useragency_user_token
+        //userborrow_user_token
+        //userlender_user_token
+        localStorage.setItem("usertype", "");
+        localStorage.setItem("useragency_user_token", "");
+        localStorage.setItem("userborrow_user_token", "");
+        localStorage.setItem("userlender_user_token", "");
         return { ...state,...initial.userlogin}
     },
     //设置用户类型

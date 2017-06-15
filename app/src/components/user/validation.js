@@ -34,6 +34,14 @@ class Page extends Component {
                     type : "success"
                 },
             }))
+        }else if(v==1){
+            this.props.dispatch(set_weui({
+                toast: {
+                    show : true,
+                    text : "审核中,请等待",
+                    type : "warning"
+                },
+            }))
         }else{
             this.props.history.push(url);
         }

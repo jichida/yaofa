@@ -39,20 +39,35 @@ export class Page extends React.Component {
             type: type,
             data:{}
         }));
+        this.setState({show : true})
+        this.props.dispatch(set_weui({
+            loading:{show:true}
+        }));
+        window.setTimeout(()=>{
+            this.props.dispatch(set_weui({
+                loading:{show:false}
+            }));
+        },2000)
     }
 
 
     componentWillUnmount () {//taobao,phone
         this.props.dispatch(userauthenticationhtml_result({html:{
             code:-1,
-            errorCode:"-1",
-            url : ""
+            errorCode:"-1"
         }}));
+        this.setState({show : false})
     }
 
     onClickBack =()=>{
         this.props.history.goBack();
     }
+
+
+    constructor(props) {  
+        super(props);  
+        this.state = {show: true};
+    } 
     
     render() {
         const {html} = this.props;
@@ -66,7 +81,9 @@ export class Page extends React.Component {
         }   
         return ( 
             <div className="validationPage AppPage">
-                {success && <iframe id="myiframe" className={!!html.url?"hiden":""} height='100%' width='100%' src={html.url} />}
+
+                {success && this.state.show &&<iframe id="myiframe" height='100%' width='100%' src={html.url} />}
+                
             </div>
         );
     }

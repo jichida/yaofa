@@ -288,6 +288,35 @@ let WeuiInputValidation = (props) => {
 	);
 }
 
+
+
+let WeuiInput = (props) => {
+
+	const {
+		onError,
+		input, 
+		placeholder, 
+		type,
+		Company,
+		InputTit,
+		HeadIcon,
+	} = props;
+	return (
+	    <FormCell>
+            <CellHeader>
+                <Label>
+                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+                	<span>{InputTit}</span>
+                </Label>
+            </CellHeader>
+            <CellBody>
+                <Input {...input} type={type} placeholder={placeholder}/>
+                <span>{Company}</span>
+            </CellBody>
+        </FormCell>
+	);
+}
+
 //weui select
 let WeuiSelectValidation = (props) => {
 	const {
@@ -336,6 +365,11 @@ let WeuiSwitchValidation = (props) => {
 const inputData = (state) => {
     return state;
 };
+
+
+
+WeuiInput = connect(inputData)(WeuiInput);
+export {WeuiInput};
 
 WeuiSwitchValidation = connect(inputData,inputDispatchToProps)(WeuiSwitchValidation);
 export {WeuiSwitchValidation};

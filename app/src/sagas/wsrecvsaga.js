@@ -130,6 +130,7 @@ export function* wsrecvsagaflow() {
 
     //更新订单状态 confirmorder_request
     yield takeEvery(`${confirmorder_result}`, function*(action) {
+        console.log("confirmorder_result:::"+JSON.stringify(action));
         let {payload:result} = action;
         let toast = {
             show : true,
@@ -175,8 +176,8 @@ export function* wsrecvsagaflow() {
     //身份证照片审核回调
     yield takeEvery(`${userauthentication_result}`, function*(action) {
         //const {payload:result} = action;
-        console.log(action);
-        yield put(goBack());
+        //console.log(action);
+        //yield put(goBack());
     });
 
 
