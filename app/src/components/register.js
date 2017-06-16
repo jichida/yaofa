@@ -149,10 +149,13 @@ export class RegisterPage extends Component {
 }
 
 RegisterPage = reduxForm({
-    form: 'selectingFormValues'
+    form: 'selectingFormValues',
+    initialValues:{
+        invitecode: localStorage.getItem("invitecode") || "",
+    }
 })(RegisterPage);
 
-const selector = formValueSelector('selectingFormValues')
+const selector = formValueSelector('selectingFormValues');
 RegisterPage = connect(
     state => {
         const hasAggree = selector(state, 'hasAggree');
