@@ -58,6 +58,7 @@ let UserBorrowerSchema = new Schema({
     resultrealname:{ type:  Schema.Types.Number, default: 0 },//实名认证，-1:失败，0,未递交，1：递交中，2：成功
     submit_at: { type: Date, default:new Date()},
 
+    zhimapoint:Number,//芝麻分
     hukou:String,
     limithuabei:Number,//花呗额度
     limitjiebei:Number,//借呗额度
@@ -103,7 +104,7 @@ let UserLenderSchema = new Schema({
     weixinaccesstoken:String,
     approvalrejectseason:{type:String,default:''},
     approvalstatus:{type:String,default:'未递交'},//未递交/待审核/审核中/已审核/已拒绝
-    canaccept:{ type: Boolean, default: false },//是否允许接单
+    canaccept:{ type: Boolean, default: true },//是否允许接单
     canacceptreason:{type:String,default:''},//是否允许接单理由
     lastpayatwithfailed:Date,
 });
