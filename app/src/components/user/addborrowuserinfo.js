@@ -122,6 +122,15 @@ class PageForm extends Component {
                     </FormUI>
                     <FormUI>
                         <Field
+                            name="zhimapoint"
+                            id="zhimapoint"
+                            placeholder="芝麻信用分"
+                            type="number"
+                            component={ WeuiInputValidation }
+                            InputTit="芝麻信用分"
+                            Company="分"
+                        />
+                        <Field
                             name="hasgudingzichan"
                             id="hasgudingzichan"
                             component={ WeuiSwitchValidation }
@@ -214,6 +223,7 @@ class Page extends Component {
                 hasjinrihuankuan : this.props.hasjinrihuankuan||false,
                 hasyuqijilu : this.props.hasyuqijilu||false,
                 hasshenfenzhengyuanjian : this.props.hasshenfenzhengyuanjian||false,
+                zhimapoint : this.props.zhimapoint||false,
             }
         })(PageForm);
 
@@ -243,7 +253,8 @@ const data = ({userlogin:{
     hassanhaotongyi,
     hasjinrihuankuan,
     hasyuqijilu,
-    hasshenfenzhengyuanjian
+    hasshenfenzhengyuanjian,
+    zhimapoint
 }}) => {
     return {
         hukou,
@@ -259,7 +270,8 @@ const data = ({userlogin:{
         hassanhaotongyi,
         hasjinrihuankuan,
         hasyuqijilu,
-        hasshenfenzhengyuanjian
+        hasshenfenzhengyuanjian,
+        zhimapoint
     };
 };
 Page = connect(data)(Page);

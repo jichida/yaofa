@@ -47,6 +47,7 @@ class BaseInfo extends Component{
                     <Cell><CellBody>手机号实名时间</CellBody><CellFooter>{data.realtimeforphoneyear?`${data.realtimeforphoneyear}年`:"未填写"}</CellFooter></Cell>
                 </Cells>
                 <Cells>
+                    <Cell><CellBody>芝麻信用分</CellBody><CellFooter>{data.zhimapoint?data.zhimapoint:"未填写"}</CellFooter></Cell>
                     <Cell><CellBody>是否有固定资产</CellBody><CellFooter>{data.hasgudingzichan?greenhave:"无"}</CellFooter></Cell>
                     <Cell><CellBody>是否有工作单位</CellBody><CellFooter>{data.hasdanwei?greenhave:"无"}</CellFooter></Cell>
                     <Cell><CellBody>是否有公积金</CellBody><CellFooter>{data.hasgongjijin?greenhave:"无"}</CellFooter></Cell>
