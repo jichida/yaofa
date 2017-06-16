@@ -121,7 +121,7 @@ const CoApp = (props) => {
     let CustomRoute = Route;
     return (
         <Switch>
-            <CustomRoute exact path="/" component={Index}/>
+            <CustomRoute exact path="/" component={requireAuthentication(Index)}/>
             <CustomRoute exact path="/test" component={Test}/>
             <CustomRoute exact path="/usertype" component={UserType}/>
             <CustomRoute exact path="/login" component={Login}/>

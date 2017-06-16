@@ -106,9 +106,13 @@ export class Page extends Component {
             console.log("------->" + JSON.stringify(this.props.location));
             //search:?next=/devicelist
             var fdStart = this.props.location.search.indexOf("?next=");
+            //alert(fdStart);
             if (fdStart === 0) {
                 const redirectRoute = this.props.location.search.substring(6);
                 this.props.history.replace(redirectRoute);
+            }
+            else {
+                //this.props.history.goBack();
             }
             return;
         }
