@@ -116,6 +116,9 @@ class FillerForm extends Component {
 // jiedaibaofuzai:Number,//借贷宝负债
 // jiedaobaoyihuan:Number,//借贷宝已还
 // realtimeforphoneyear:Number,//手机号实名时间（年）
+// query:{
+//               orderstatus:{$nin:[-1,4]}
+//             },
 
 FillerForm = withRouter(FillerForm);
 

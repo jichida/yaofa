@@ -44,6 +44,11 @@ class Page extends Component {
                     type="success"
                     title="资料递交成功"
                     description="系统正在审核中,需要2～3分钟..."
+                    buttons={[{
+                        type: 'primary',
+                        label: 'Ok',
+                        onClick: ()=>{this.props.history.push("/validation");}
+                    }]}
                 />
             </div>
         ) 

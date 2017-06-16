@@ -368,3 +368,33 @@ input, textarea{
 }
 
 
+.AppPage{
+    opacity: 1;
+    animation:pageshow 1s;
+    -webkit-animation:pageshow 1s;
+}
+@keyframes pageshow{
+    from {opacity : .2;}
+    to {opacity : 1;}
+}
+
+
+.outcarPage .mapcontent .outcarControl  .list{
+  max-height: 300px;
+  overflow: scroll;
+  margin-bottom: -100px;
+  display: none;
+  bottom: 0;
+}
+.outcarPage .mapcontent .outcarControl  .list.show{
+    display: block;
+    margin-bottom: 48px;
+    animation:listshow 1s;
+    -webkit-animation:listshow .5s;
+}
+@keyframes listshow{
+    from {margin-bottom : -100px;}
+    to {margin-bottom : 33px;}
+}
+
+

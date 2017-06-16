@@ -10,7 +10,8 @@ import '../../../public/css/validation.css';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
-    set_weui
+    set_weui,
+    userauthenticationhtml_request
     } from '../../actions';
     
 const {
@@ -25,7 +26,7 @@ const {
 class Page extends Component {
 
     //点击去认证
-    clickitem =(url, v)=>{
+    clickitem =(url, v, name)=>{
         if(v==2){
             this.props.dispatch(set_weui({
                 toast: {
@@ -43,7 +44,19 @@ class Page extends Component {
                 },
             }))
         }else{
-            this.props.history.push(url);
+            if(name==="运营商认证"||name==="淘宝认证"){
+                let loading = {
+                    show : true,
+                }
+                this.props.dispatch(set_weui({ loading }));
+                let type = name==="运营商认证"?"phone":"taobao";
+                this.props.dispatch(userauthenticationhtml_request({
+                    type: type,
+                    data:{}
+                }));
+            }else{
+                this.props.history.push(url);
+            }
         }
     }
 
@@ -71,7 +84,7 @@ class Page extends Component {
                             <div
                                 key={index}
                                 className={style}
-                                onClick={()=>{this.clickitem(data.url, data.status)}}
+                                onClick={()=>{this.clickitem(data.url, data.status, data.name)}}
                                 >
                                 <span className="circular"></span>
                                 <span className="name">{data.name}</span>

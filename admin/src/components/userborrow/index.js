@@ -60,7 +60,7 @@ const UserBorrowlistEdit = (props) => {
               <ImageField source="urlphoneid2" label="身份证照片反面" addLabel={true}/>
               <ImageField source="urlphoneid3" label="身份证照片手持" addLabel={true}/>
               <TextInput label="认证结果(拒绝理由)" source="resultrealname_obj" />
-              <SelectInput  label="照片认证"  source="resultrealname" choices={[
+              <SelectInput  label="照片认证"  source="resultphoto" choices={[
                   { id: -1, name: '认证失败' },
                   { id: 0 , name: '未递交资料' },
                   { id: 1, name: '认证中' },
@@ -106,13 +106,6 @@ const UserBorrowlistEdit = (props) => {
                  ]} />
                <TextField label="结果"  source="resulttaobao_obj" />
                <TextInput label="详情"  source="resulttaobao_detail" />
-               <SelectInput  label="实名认证结果"  source="resultrealname" choices={[
-                     { id: -1, name: '认证失败' },
-                     { id: 0 , name: '未递交资料' },
-                     { id: 1, name: '认证中' },
-                     { id: 2, name: '认证成功' },
-                 ]} />
-               <TextField label="结果"  source="resultrealname_obj" />
               </FormTab>
               <FormTab label="resources.userborrower.tabs.personalasset">
                   <TextField label="户口"  source="hukou" />

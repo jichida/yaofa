@@ -100,6 +100,21 @@ export class Page extends Component {
             },
         }));
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.loginsuccess && !this.props.loginsuccess) {
+            console.log("------->" + JSON.stringify(this.props.location));
+            //search:?next=/devicelist
+            var fdStart = this.props.location.search.indexOf("?next=");
+            if (fdStart === 0) {
+                const redirectRoute = this.props.location.search.substring(6);
+                this.props.history.replace(redirectRoute);
+            }
+            return;
+        }
+    }
+
+
     //点击登陆
     onClickLogin =(value)=>{
         let usertype = this.props.usertype;
@@ -125,7 +140,8 @@ export class Page extends Component {
     }
 }
 
-const data = ({userlogin:{usertype,loginsuccess}}) => {
+const data = ({userlogin:{loginsuccess}}) => {
+    let usertype = localStorage.getItem('usertype');
     return {usertype,loginsuccess};
 };
 

@@ -16,10 +16,11 @@ const initial = {
 };
 
 const validationhtml = createReducer({
-    [userauthenticationhtml_result]:(state, payload) =>{
-    	const {html} = payload;
-    	return { ...state,html}
-    },
+    // [userauthenticationhtml_result]:(state, payload) =>{
+    //     console.log(payload);
+    // 	// const {html} = payload;
+    // 	// return { ...state,html}
+    // },
 }, initial.validationhtml);
 
 export default validationhtml;

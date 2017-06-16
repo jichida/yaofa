@@ -74,7 +74,7 @@ export const phone = value => value && (value.match(/\D/g)||value.length !== 11|
 //不能有空格
 export const space = value => value && value.match(/\s/g) ? '不能有空格' : undefined
 //判断是否被选中
-export const ischecked = value => value? value:undefined
+export const ischecked = value => value? undefined: "您还没有同意该项"
 //二次密码验证
 let password = '';
 export const passwordA = value => {password = value; return undefined};
@@ -178,37 +178,81 @@ let InputBankValidation = (props) => {
 }
 
 //单选checkbox表单
-let WeuiCheckboxValidation = (props) => {
+// let WeuiCheckboxValidation = (props) => {
 
+// 	const {
+// 		onError,
+// 		input, 
+// 		placeholder, 
+// 		type, 
+// 		meta: { touched, error},
+// 		Company,
+// 		InputTit,
+// 		HeadIcon,
+// 	} = props;
+// 	let err = (touched && error);
+// 	let style = "";
+// 	style = err?"warning":"";
+// 	return (
+// 	    <FormCell className={style}>
+//             <CellHeader>
+//                 <Label>
+//                 	{HeadIcon?(<img src={HeadIcon} /> ):""}
+//                 	<span>{InputTit}</span>
+//                 </Label>
+//             </CellHeader>
+//             <CellBody>
+//                 <Input {...input} type={type} placeholder={placeholder}/>
+//                 <span>{Company}</span>
+//             </CellBody>
+//             { touched && error && <span className="warningtext" onClick={()=>{onError(error)}} >!</span> }
+//         </FormCell>
+// 	);
+// }
+
+
+
+let WeuiCheckboxValidation = (props) => {
 	const {
 		onError,
-		input, 
-		placeholder, 
-		type, 
-		meta: { touched, error},
-		Company,
-		InputTit,
-		HeadIcon,
+	    labelinfo,
+	    lnkurl,
+	    lnktxt,
+	    input,
+	    meta: { touched, error, warning },
+	    type
 	} = props;
-	let err = (touched && error);
+	let err1 = (touched && error);
+	let err2 = (touched && warning);
 	let style = "";
-	style = err?"warning":"";
+	style = err1||err2?"warning":"";
 	return (
-	    <FormCell className={style}>
-            <CellHeader>
-                <Label>
-                	{HeadIcon?(<img src={HeadIcon} /> ):""}
-                	<span>{InputTit}</span>
-                </Label>
-            </CellHeader>
-            <CellBody>
-                <Input {...input} type={type} placeholder={placeholder}/>
-                <span>{Company}</span>
-            </CellBody>
-            { touched && error && <span className="warningtext" onClick={()=>{onError(error)}} >!</span> }
-        </FormCell>
+		<FormCell className={style}>
+			<label className="weui-agree">
+				<input { ...input } className="weui-agree__checkbox" type={type} />
+				<span className="weui-agree__text">
+					&nbsp;&nbsp;{labelinfo}
+					{!!lnktxt?(<a href={lnkurl}>{lnktxt}</a>):""}
+				</span>
+			</label>
+			{	touched &&
+		    	((error &&
+		    		<span
+		    			className="warningtext"
+		    			onClick={()=>{onError(error)}}
+		    			>!</span>
+		    		)
+		    		|| (warning &&
+		    			<span
+			    			className="warningtext"
+			    			onClick={()=>{onError(warning)}}
+			    			>!</span>
+		    		))
+		    }
+		</FormCell>
 	);
 }
+
 
 
 
@@ -365,7 +409,6 @@ let WeuiSwitchValidation = (props) => {
 const inputData = (state) => {
     return state;
 };
-
 
 
 WeuiInput = connect(inputData)(WeuiInput);

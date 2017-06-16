@@ -78,3 +78,26 @@
 	display: flex;
 
 }
+.invitecoderegister.AppPage{
+	background: #FFF;
+}
+.invitecoderegister .list{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-grow: 1;
+	flex-direction: column;
+}
+.invitecoderegister .list img{
+	width: 100%;
+	-webkit-user-select:auto;
+    -moz-user-select:auto;
+    -ms-user-select:auto;
+    user-select:auto;
+}
+
+
+
+
+
+

@@ -10,21 +10,21 @@ import {
 export class Page extends React.Component {
 
     componentWillReceiveProps(nextProps) {
-        let type = this.props.match.params.type;
-        //淘宝认证成功后返回
-        if (
-                nextProps.resulttaobao==1 && type==="taobao" &&
-                (this.props.resulttaobao===0||this.props.resulttaobao===-1)
-            ) {
-                this.props.history.replace("/validation");
-        }
-        // //运营商认证成功后返回
-        if(
-                nextProps.resultphone==1 && type==="phone" &&
-                (this.props.resultphone===0||this.props.resultphone===-1)
-            ){
-                this.props.history.replace("/validation");
-        }
+        // let type = this.props.match.params.type;
+        // //淘宝认证成功后返回
+        // if (
+        //         nextProps.resulttaobao==1 && type==="taobao" &&
+        //         (this.props.resulttaobao===0||this.props.resulttaobao===-1)
+        //     ) {
+        //         this.props.history.replace("/validation");
+        // }
+        // // //运营商认证成功后返回
+        // if(
+        //         nextProps.resultphone==1 && type==="phone" &&
+        //         (this.props.resultphone===0||this.props.resultphone===-1)
+        //     ){
+        //         this.props.history.replace("/validation");
+        // }
     };
 
     componentWillMount () {//taobao,phone
@@ -79,10 +79,14 @@ export class Page extends React.Component {
         if(type === 'phone' && html.code === 0 ){
             success = true;
         }   
+
+        if(!!html.url){
+            window.location.href = html.url;
+        }
         return ( 
             <div className="validationPage AppPage">
 
-                {success && this.state.show &&<iframe id="myiframe" height='100%' width='100%' src={html.url} />}
+                loading...
                 
             </div>
         );

@@ -17,7 +17,8 @@ import {
     fillrealnameprofile_result,
     fillrealnameprofile_request,
     profit_set_profitid,
-    userauthentication_result
+    userauthentication_result,
+    userauthenticationhtml_result
 } from '../actions';
 
 // let weixininfo = this.props.weixin.info;
@@ -38,8 +39,22 @@ const getuserinfo = (state) => {
 
 export function* wsrecvsagaflow() {
 
+    //获取认证地址回调
+    yield takeEvery(`${userauthenticationhtml_result}`, function*(action) {
+        //console.log(action);
+        let loading = {
+            show : false,
+        }
+        yield put(set_weui({ loading }));
+        window.location.href = action.payload.html.url;
+
+    });
+
     //登录
     yield takeEvery(`${md_login_result}`, function*(action) {
+
+        console.log("is md_login_result");
+
         let {payload:result} = action;
         let loading = {
             show : false,
@@ -70,7 +85,7 @@ export function* wsrecvsagaflow() {
         }
         
         yield put(login_result(result));
-        yield put(replace('/'));
+        //yield put(replace('/'));
     });
     //重置密码
     yield takeEvery(`${findpwd_result}`, function*(action) {

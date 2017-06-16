@@ -17,6 +17,8 @@ import {
     length4,
     passwordA,
     passwordB,
+    ischecked,
+    WeuiCheckboxValidation
     } from "./tools/formvalidation"
 
 import {
@@ -99,26 +101,32 @@ export class RegisterPage extends Component {
                     />
                 </div>
 
+
                 {usertype==="userborrow"?(
-                    <div className="li" data="29958019">
+                    <div className="li">
                         <Field
                             name="invitecode"
                             id="invitecode"
                             placeholder="请输入邀请码"
                             type="text"
                             component={ InputValidation }
+                            validate={[ required ]}
                         />
                     </div>
                 ):''}
+
 
                 <div className="aggreeForm">
                     <Field
                         name="hasAggree"
                         id="hasAggree"
-                        component="input"
+                        component={ WeuiCheckboxValidation }
                         type="checkbox"
+                        labelinfo="我已经阅读并同意[红领金]"
+                        validate={[ ischecked ]}
+                        lnkurl="/"
+                        lnktxt="运营条款"
                         />
-                    <label htmlFor="hasAggree">同意<a href="#">运营条款</a></label>
                 </div>
 
 				<div className="submitBtn">
@@ -177,6 +185,7 @@ export class Page extends Component {
             authcode: value.authcode,
             password: value.password,
             weixinopenid: localStorage.getItem("openid"),//微信openid
+            invitecode : localStorage.getItem("invitecode"),//获取邀请码
         };
         if(usertype === 'userborrow'){
             payload.invitecode = value.invitecode;

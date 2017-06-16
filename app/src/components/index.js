@@ -26,7 +26,7 @@ export class Page extends Component {
             this.props.dispatch(getweixinpic_request({openid: openid, access_token: access_token}));
 
         }else{
-            console.log(config.redirect_uri_renzheng);
+            //console.log(config.redirect_uri_renzheng);
             window.location.href= config.redirect_uri_renzheng;
             //console.log("index getopenid");
         }
@@ -34,6 +34,7 @@ export class Page extends Component {
         let usertype = localStorage.getItem('usertype');
         let loginsuccess = this.props.loginsuccess;
         if(loginsuccess){
+
             if(usertype==="userborrow"){
                 this.props.history.replace("/userindex");
             }
@@ -55,10 +56,10 @@ export class Page extends Component {
                     }))
                 }
             },1000)
-        }
-        else{
+        }else{
             this.props.history.replace("/login");
         }
+
     };
 
 

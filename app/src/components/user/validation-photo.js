@@ -153,6 +153,7 @@ class Page extends Component {
         };
         this.props.dispatch(userauthentication_request(payload_photo));
         //userauthentication ：type:photo,data:{idcardurl1:‘正面',idcardurl2:'反面‘}
+        this.props.history.goBack();
     }
     render() {
         const { urlphoneid1,urlphoneid2,urlphoneid3 } = this.props;

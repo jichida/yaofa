@@ -23,7 +23,7 @@ class Page extends Component {
     };
 
     subform = ()=>{
-        this.props.history.push("/login");
+        this.props.history.replace("/");
     };
 
 	render() {

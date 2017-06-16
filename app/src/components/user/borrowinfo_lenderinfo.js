@@ -55,19 +55,6 @@ class Page extends Component {
                                 </MediaBox>
                             </PanelBody>
                         </Panel>
-                        {usertype=="userborrow"?(
-                            <Cells>
-                                <Cell
-                                    access
-                                    onClick={()=>{this.pushUrl("/borrowshowloaninfo");}}
-                                    >
-                                    <CellBody>
-                                        查看放款人信息
-                                    </CellBody>
-                                    <CellFooter/>
-                                </Cell>
-                            </Cells>
-                        ):null}
                     </div>
                 ):""}
     		</div>
