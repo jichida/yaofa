@@ -15,6 +15,7 @@ import {
     InputValidation,
     phone,
     length4,
+    length6,
     passwordA,
     passwordB,
     ischecked,
@@ -35,6 +36,7 @@ export class RegisterPage extends Component {
 
 	render() {
         const usertype = localStorage.getItem('usertype');
+        const invitecode = localStorage.getItem("invitecode");
         const {
             handleSubmit,
             onClickRegister,
@@ -101,8 +103,8 @@ export class RegisterPage extends Component {
                     />
                 </div>
 
-
-                {usertype==="userborrow"?(
+                <div className="litit">邀请码:</div>
+                {(usertype==="userborrow")?(
                     <div className="li">
                         <Field
                             name="invitecode"
@@ -110,11 +112,10 @@ export class RegisterPage extends Component {
                             placeholder="请输入邀请码"
                             type="text"
                             component={ InputValidation }
-                            validate={[ required ]}
+                            validate={[ required,length6 ]}
                         />
                     </div>
                 ):''}
-
 
                 <div className="aggreeForm">
                     <Field

@@ -35,6 +35,7 @@ import UserCenter from "./components/user/usercenter";
 import BorrowList from "./components/user/borrowlist";
 //借款详情
 import BorrowInfo from "./components/user/borrowinfo";
+import Orderdetail from "./components/user/orderdetail";
 //忘记密码
 import UserIndex from "./components/user/index";
 //认证中心
@@ -169,6 +170,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/borrowshowloaninfo" component={requireAuthentication(BorrowShowLoaninfo)}/>
             <CustomRoute exact path="/loanshowborrowinfo" component={requireAuthentication(Loanshowborrowinfo)}/>
             <CustomRoute exact path="/loanshowborrowbaseinfo" component={requireAuthentication(Loanshowborrowbaseinfo)}/>
+            <CustomRoute exact path="/orderdetail/:id" component={requireAuthentication(Orderdetail)}/>
 
             
         </Switch>

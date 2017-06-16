@@ -47,7 +47,7 @@ class Page extends Component {
                     buttons={[{
                         type: 'primary',
                         label: 'Ok',
-                        onClick: ()=>{this.props.history.push("/validation");}
+                        onClick: ()=>{this.props.history.replace("/validation");}
                     }]}
                 />
             </div>
