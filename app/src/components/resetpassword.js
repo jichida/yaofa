@@ -100,7 +100,7 @@ export class ResetPasswordPage extends Component {
                         className="btn login"
                         disabled={pristine || submitting}
                         >
-                        确定
+                        <span>确定</span>
                     </button>
                 </div>
             </Form>

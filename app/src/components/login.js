@@ -110,9 +110,8 @@ export class Page extends Component {
             if (fdStart === 0) {
                 const redirectRoute = this.props.location.search.substring(6);
                 this.props.history.replace(redirectRoute);
-            }
-            else {
-                //this.props.history.goBack();
+            }else {
+                this.props.history.replace("/");
             }
             return;
         }
