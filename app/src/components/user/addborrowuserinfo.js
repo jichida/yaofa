@@ -101,7 +101,7 @@ class PageForm extends Component {
                             type="number"
                             component={ WeuiInputValidation }
                             validate={[ required ]}
-                            InputTit="借呗额度"
+                            InputTit="借贷宝已还"
                             Company="元"
                         />
                         <Field

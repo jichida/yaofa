@@ -42,10 +42,10 @@ export function* wsrecvsagaflow() {
     //获取认证地址回调
     yield takeEvery(`${userauthenticationhtml_result}`, function*(action) {
         //console.log(action);
-        let loading = {
-            show : false,
-        }
-        yield put(set_weui({ loading }));
+        // let loading = {
+        //     show : false,
+        // }
+        // yield put(set_weui({ loading }));
         window.location.href = action.payload.html.url;
 
     });

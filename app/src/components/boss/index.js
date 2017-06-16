@@ -169,7 +169,7 @@ class Page extends Component {
         const {borrowlist,borrowlistfiller,approvalrejectseason} = this.props;
         return (
             <div className="indexPage AppPage">
-                <DocumentTitle title="耀发钱庄－放款端" />
+                <DocumentTitle title="红领金－放款端" />
                 {this.state.showmark?(
                     <div className="bossindexMark">
                         <div >
@@ -225,9 +225,9 @@ class Page extends Component {
                         !!borrowlistfiller.limitjiebei ?(
                     <div className="fillerbanner">
                         {borrowlistfiller.jiedaibaofuzai && <span>借贷宝负债&lt;{borrowlistfiller.jiedaibaofuzai}元</span>}
-                        {borrowlistfiller.limithuabei && <span>花呗分值&lt;{borrowlistfiller.limithuabei}分</span>}
-                        {borrowlistfiller.realtimeforphoneyear && <span>手机号实名时间&lt;{borrowlistfiller.realtimeforphoneyear}年</span>}
-                        {borrowlistfiller.limitjiebei && <span>借呗额度&lt;{borrowlistfiller.limitjiebei}元</span>}
+                        {borrowlistfiller.limithuabei && <span>花呗分值&gt;{borrowlistfiller.limithuabei}分</span>}
+                        {borrowlistfiller.realtimeforphoneyear && <span>手机号实名时间&gt;{borrowlistfiller.realtimeforphoneyear}年</span>}
+                        {borrowlistfiller.limitjiebei && <span>借呗额度&gt;{borrowlistfiller.limitjiebei}元</span>}
                     </div>
                     ):""
                 }
