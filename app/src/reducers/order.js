@@ -7,7 +7,8 @@ import {
     set_myorderlistStatus,
     getmyorders_result,
     set_tousucontent,
-    gettodaycancelorderrecord_result
+    gettodaycancelorderrecord_result,
+    logout_result
 } from '../actions/index.js';
 
 const initial = {
@@ -68,7 +69,10 @@ const order = createReducer({
         let bosscancelorder = payload.result;
         return { ...state, bosscancelorder };
     },
-
+    //退出登录
+    [logout_result]:(state, result) => {
+        return { ...state,...initial.order}
+    },
 
 }, initial.order);
 

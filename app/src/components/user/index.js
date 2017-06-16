@@ -114,7 +114,8 @@ class Page extends Component {
 
     gotoBorrowInfo =(order)=>{
         this.props.dispatch(set_orderinfo(order));
-        this.pushUrl("/borrowinfo");
+        //this.pushUrl("/borrowinfo");
+        this.pushUrl(`/orderdetail/${order._id}`);
     }
 
 	render() {
@@ -136,7 +137,7 @@ class Page extends Component {
                             {
                                 _.map(myorderlist, (order,index)=>{
 
-                                    return (
+                                    return order.orderstatus!==4 && order.orderstatus!==-1 && (
                                         <Cell
                                             access
                                             key={index}
@@ -181,6 +182,7 @@ class Page extends Component {
 
 const data = ({order:{myorderlist}, userlogin}) => {
     myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
+
     return {myorderlist,userlogin};
 };
 Page = connect(data)(Page);

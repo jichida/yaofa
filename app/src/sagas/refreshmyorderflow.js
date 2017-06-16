@@ -22,7 +22,7 @@ export function* refreshmyorderflow(){
         if(loginsuccess){
           yield put(getmyorders_request({
             query:{
-              orderstatus:{$nin:[-1,4]}
+              //orderstatus:{$nin:[-1,4]}
             },
             options:{
               sort: { created_at: -1 },

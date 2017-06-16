@@ -36,20 +36,22 @@ class Page extends Component {
                     <div>借 <span className="quota">{orderinfo.moneylimit}</span> 元</div>
                     <div>借款期限: {orderinfo.moneyperiod}天</div>
                 </div>
-                <div className="userinfo">
-                    <img src={orderinfo.creator.profile.avatar} />
-                    <div>
-                        <span><span>借款人:</span>{orderinfo.creator.profile.nickname}</span>
-                        <span><span>借款原因:</span>{orderinfo.moneyusefor}</span>
-                        <span><span>发布时间:</span>{moment(orderinfo.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
+                {orderinfo.hasOwnProperty("creator") &&
+                    <div className="userinfo">
+                        <img src={orderinfo.creator.profile.avatar} />
+                        <div>
+                            <span><span>借款人:</span>{orderinfo.creator.profile.nickname}</span>
+                            <span><span>借款原因:</span>{orderinfo.moneyusefor}</span>
+                            <span><span>发布时间:</span>{moment(orderinfo.created_at).format('YYYY-MM-DD H:mm:ss')}</span>
+                        </div>
+                        {usertypes==="userlender"&&orderinfo.orderstatus>=2?(
+                            <div className='borrowxiangxiinfolnk' onClick={()=>{this.pushUrl("/loanshowborrowinfo");}}>详情</div>
+                        ):""}
+                        {usertypes==="userlender"&&(orderinfo.orderstatus===0||orderinfo.orderstatus===1)?(
+                            <div className='borrowxiangxiinfolnk' onClick={()=>{this.pushUrl("/loanshowborrowbaseinfo");}}>详情</div>
+                        ):""}
                     </div>
-                    {usertypes==="userlender"&&orderinfo.orderstatus>=2?(
-                        <div className='borrowxiangxiinfolnk' onClick={()=>{this.pushUrl("/loanshowborrowinfo");}}>详情</div>
-                    ):""}
-                    {usertypes==="userlender"&&(orderinfo.orderstatus===0||orderinfo.orderstatus===1)?(
-                        <div className='borrowxiangxiinfolnk' onClick={()=>{this.pushUrl("/loanshowborrowbaseinfo");}}>详情</div>
-                    ):""}
-                </div>
+                }
     		</div>
     	)
     }

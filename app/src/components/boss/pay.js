@@ -59,7 +59,8 @@ class Page extends Component {
 
     gotoBorrowInfo =(borrowinfo)=>{
         this.props.dispatch(set_orderinfo(borrowinfo));
-        this.pushUrl("/borrowinfo");
+        //this.pushUrl("/borrowinfo");
+        this.pushUrl(`/orderdetail/${order._id}`);
     }
 
     getList =()=>{

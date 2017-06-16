@@ -616,12 +616,19 @@ class Page extends Component {
     }
 	render() {
         const { orderInfo } = this.props;
+        console.log(orderInfo);
+        console.log(!orderInfo);
+        if(!orderInfo.hasOwnProperty("_id")){
+            this.props.history.replace("/");
+        }
         return (
     		<div className="borrowinfoPage AppPage">
                 <DocumentTitle title="借款详情" />
-    			<Borrowinfohead orderinfo={orderInfo} />
-                <BorrowinfoLenderinfo orderinfo={orderInfo} />
-                <GetBorrowStatusInfo orderInfo={orderInfo}/>
+                {!!orderInfo && <div>
+                    <Borrowinfohead orderinfo={orderInfo} />
+                    <BorrowinfoLenderinfo orderinfo={orderInfo} />
+                    <GetBorrowStatusInfo orderInfo={orderInfo}/>
+                </div>}
     		</div>
     	)
     }
