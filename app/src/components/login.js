@@ -151,9 +151,15 @@ export class Page extends Component {
         this.props.dispatch(loginwithusername_request(payload));
     }
     render() {
+        const {usertype} = this.props;
+        const typename = {
+            userborrow : "借款端",
+            userlender : "商家端",
+            useragency : "中介端",
+        }
         return (
             <div className="loginPage AppPage">
-                <DocumentTitle title="登录红领金" />
+                <DocumentTitle title={`${typename[usertype]}登录`} />
                 <LoginPage onClickLogin={this.onClickLogin} />
             </div>
         )
