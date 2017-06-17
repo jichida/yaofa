@@ -163,13 +163,15 @@ export function* wsrecvsagaflow() {
             show : false,
         }
         yield put(set_weui({ loading }));
-        
-        let toast = {
-            show : true,
-            text : result.errmsg +":"+ result.type,
-            type : "warning"
+        console.log(result.type);
+        if(!!result.errmsg){
+            let toast = {
+                show : true,
+                text : result.errmsg,
+                type : "warning"
+            }
+            yield put(set_weui({ toast }));
         }
-        yield put(set_weui({ toast }));
         // if(result.type === 'login'){
         //     yield put(replace('/register'));
         // }
