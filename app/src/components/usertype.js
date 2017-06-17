@@ -14,7 +14,7 @@ class Page extends Component {
     componentWillMount() {
         let loginsuccess = this.props.loginsuccess;
         if(loginsuccess){
-            this.props.history.replace("/login");
+            this.props.history.replace("/");
         }
     }
 

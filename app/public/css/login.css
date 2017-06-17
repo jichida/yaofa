@@ -69,4 +69,8 @@
 	margin-right: 10px;
 }
 
+.loginPage .loginresetli{
+	display: flex;
+	justify-content: space-between;
+}
 

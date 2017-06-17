@@ -18,7 +18,8 @@ import {
     fillrealnameprofile_request,
     profit_set_profitid,
     userauthentication_result,
-    userauthenticationhtml_result
+    userauthenticationhtml_result,
+    register_result
 } from '../actions';
 
 // let weixininfo = this.props.weixin.info;
@@ -153,6 +154,19 @@ export function* wsrecvsagaflow() {
             type : "success"
         }
         yield put(set_weui({ toast }));
+    });
+
+    //注册回调
+    yield takeEvery(`${register_result}`, function*(action) {
+        console.log("register_result:::"+JSON.stringify(action));
+        let {payload:result} = action;
+        let toast = {
+            show : true,
+            text : "注册成功",
+            type : "success"
+        }
+        yield put(set_weui({ toast }));
+        yield put(replace('/'));
     });
 
     //错误反馈

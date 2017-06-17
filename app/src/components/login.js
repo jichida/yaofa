@@ -7,7 +7,8 @@ import { Fields, Field, reduxForm, Form } from 'redux-form';
 import {
   loginwithtoken_request,
   loginwithusername_request,
-  set_weui
+  set_weui,
+  user_type
 } from '../actions';
 import { required, InputValidation, phone } from "./tools/formvalidation"
 export class LoginPage extends Component {
@@ -19,6 +20,13 @@ export class LoginPage extends Component {
             this.props.dispatch(loginwithtoken_request({token}));
         }
     }
+
+    resetusertype=()=>{
+        this.props.dispatch(user_type(""));
+        localStorage.setItem('usertype', "");
+        this.props.history.replace("/");
+    }
+
     pagePush=(name)=>{
         this.props.history.push(name);
     }
@@ -55,12 +63,18 @@ export class LoginPage extends Component {
                         validate={[ required ]}
                     />
                 </div>
+                <div className="loginresetli">
                 <span 
                     className="getPassword"
                     onClick={()=>{this.pagePush("/resetpassword")}}
                     >
                     忘记密码?
                 </span>
+                <span 
+                    className="resetusertype"
+                    onClick={()=>{this.resetusertype()}}
+                    >重选用户类型</span>
+                </div>
 				<div className="submitBtn">
                     <span
                         className="btn login"
@@ -89,9 +103,12 @@ LoginPage = withRouter(LoginPage);
 
 export class Page extends Component {
     componentWillMount() {
-        if(this.props.usertype===''){
+        let usertype = this.props.usertype;
+        if(!!usertype && (usertype==='userborrow'||usertype==='useragency'||usertype==='userlender')){
+            
+        }else{
             this.props.history.replace("/usertype");
-        };
+        }
     };
     componentWillUnmount(){
         this.props.dispatch(set_weui({
@@ -136,7 +153,7 @@ export class Page extends Component {
     render() {
         return (
             <div className="loginPage AppPage">
-                <DocumentTitle title="登录" />
+                <DocumentTitle title="登录红领金" />
                 <LoginPage onClickLogin={this.onClickLogin} />
             </div>
         )

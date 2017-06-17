@@ -57,7 +57,11 @@ export class Page extends Component {
                 }
             },1000)
         }else{
-            this.props.history.replace("/login");
+            if(!!usertype && (usertype==='userborrow'||usertype==='useragency'||usertype==='userlender')){
+                this.props.history.replace("/login");
+            }else{
+                this.props.history.replace("/usertype");
+            }
         }
 
     };

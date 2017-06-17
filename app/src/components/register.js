@@ -103,8 +103,9 @@ export class RegisterPage extends Component {
                     />
                 </div>
 
-                <div className="litit">邀请码:</div>
-                {(usertype==="userborrow")?(
+                
+                {(usertype==="userborrow")?(<div> 
+                    <div className="litit">邀请码:</div>
                     <div className="li">
                         <Field
                             name="invitecode"
@@ -114,6 +115,7 @@ export class RegisterPage extends Component {
                             component={ InputValidation }
                             validate={[ required,length6 ]}
                         />
+                    </div>
                     </div>
                 ):''}
 
@@ -223,7 +225,8 @@ export class Page extends Component {
     }
 }
 
-const data = ({userlogin:{usertype}}) => {
+const data = ({}) => {
+    let usertype = localStorage.getItem('usertype');
     return {usertype};
 };
 
