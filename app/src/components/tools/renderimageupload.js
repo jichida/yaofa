@@ -1,6 +1,8 @@
 import React from 'react';
 import { Field } from 'redux-form';
-import { Upload, Icon, message } from 'antd';
+import {Upload} from 'antd/lib/upload';
+import {Icon} from 'antd/lib/icon';
+import {message} from 'antd/lib/message';
 //import 'antd/dist/antd.css';
 import './imageupload.css';
 import config from '../../env/config.js';
