@@ -61,6 +61,7 @@ const WithdrawcashlistEdit = (props) => {
                     { id: '未验证', name: '未验证' },
                     { id: '已验证', name: '已验证' },
                     { id: '已支付', name: '已支付' },
+                    { id: '已拒绝', name: '已拒绝' },
                 ]}/>
           </SimpleForm>
       </Edit>);
