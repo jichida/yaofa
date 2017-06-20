@@ -4,7 +4,8 @@
  */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+//import { withRouter } from 'react-router-dom';
+//import withRouter from 'react-router-dom/withRouter';
 import config from '../env/config.js';
 
 import {
@@ -20,8 +21,11 @@ export class Page extends Component {
         let access_token = localStorage.getItem("access_token");
         //console.log(openid);
 
+        //alert(openid);
+
         //fillprofile_request
         if(openid&&openid!==''){
+
             //更新用户头像和昵称数据
             this.props.dispatch(getweixinpic_request({openid: openid, access_token: access_token}));
 
@@ -33,7 +37,21 @@ export class Page extends Component {
 
         let usertype = localStorage.getItem('usertype');
         let loginsuccess = this.props.loginsuccess;
+        let profile = this.props.profile;
+        let local_nickname = localStorage.getItem("nickname");
+        let local_headimgurl = localStorage.getItem("headimgurl");
         if(loginsuccess){
+
+            if(profile.nickname!==local_nickname || profile.avatar!==local_headimgurl){
+                window.setTimeout(()=>{
+                    if(!!localStorage.getItem("nickname")){
+                        this.props.dispatch(fillprofile_request({
+                                nickname: local_nickname,
+                                avatar: local_headimgurl,
+                        }))
+                    }
+                },10)
+            }
 
             if(usertype==="userborrow"){
                 this.props.history.replace("/userindex");
@@ -44,18 +62,7 @@ export class Page extends Component {
             else if(usertype==="userlender"){
                 this.props.history.replace("/bossindex");
             }
-            window.setTimeout(()=>{
-                //console.log("set profile");
-                //console.log(!!localStorage.getItem("nickname"));
-                //console.log(localStorage.getItem("nickname"));
-                //console.log(localStorage.getItem("headimgurl"));
-                if(!!localStorage.getItem("nickname")){
-                    this.props.dispatch(fillprofile_request({
-                            nickname: localStorage.getItem("nickname"),
-                            avatar: localStorage.getItem("headimgurl"),
-                    }))
-                }
-            },1000)
+            
         }else{
             if(!!usertype && (usertype==='userborrow'||usertype==='useragency'||usertype==='userlender')){
                 this.props.history.replace("/login");
@@ -73,11 +80,10 @@ export class Page extends Component {
         )
     }
 }
-const data = ({userlogin:{usertype,loginsuccess}}) => {
-    return {usertype,loginsuccess};
+const data = ({userlogin:{usertype,loginsuccess,profile}}) => {
+    return {usertype,loginsuccess,profile};
 };
 Page = connect(data)(Page);
-Page = withRouter(Page);
 export default Page;
 //"img/myprofile/1.png"
 //

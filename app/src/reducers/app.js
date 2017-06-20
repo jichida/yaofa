@@ -2,7 +2,6 @@ import { createReducer } from 'redux-act';
 import {
   getsystemconfig_result
 } from '../actions/index.js';
-import $ from "jquery";
 import config from "../env/config.js";
 import request from "request";
 

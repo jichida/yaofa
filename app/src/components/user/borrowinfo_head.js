@@ -6,7 +6,7 @@ import DocumentTitle from "react-document-title";
 import '../../../public/css/borrowinfo.css';
 import { connect } from 'react-redux';
 import moment from "moment";
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';

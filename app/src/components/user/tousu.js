@@ -9,7 +9,7 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/tousu.css';
 import { connect } from 'react-redux';
 import moment from "moment";
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import { 
     set_borrowinfo,
     set_addloanid,

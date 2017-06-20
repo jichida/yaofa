@@ -11,8 +11,7 @@ import '../../../public/css/uservalidationinfo.css';
 import { connect } from 'react-redux';
 import moment from "moment";
 import _ from "lodash";
-import $ from "jquery";
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import { requestUrlGet } from '../../util/util';
 import config from '../../env/config';
 import { 

@@ -9,7 +9,6 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/borrowuserinfo.css';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import { Province } from "../province";
 import {

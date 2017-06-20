@@ -14,7 +14,6 @@ import 'react-weui/lib/react-weui.min.css';
 import _ from 'lodash';
 import { renderImageupload } from '../tools/renderimageupload';
 import { Field,Fields,reduxForm,Form} from 'redux-form';
-import { withRouter } from 'react-router-dom';
 const {
     Cells,
     Cell,

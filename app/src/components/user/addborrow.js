@@ -8,7 +8,7 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/addborrow.css';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import { Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {
     insertorder_request,

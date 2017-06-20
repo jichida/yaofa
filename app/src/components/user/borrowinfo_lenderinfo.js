@@ -9,7 +9,7 @@ import moment from "moment";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 const {
     Cells,
     Cell,

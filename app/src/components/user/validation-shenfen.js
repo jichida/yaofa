@@ -9,7 +9,6 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/validation-shenfen.css';
 import _ from 'lodash';
-import { withRouter } from 'react-router-dom';
 import {
     userauthentication_request,
     set_weui

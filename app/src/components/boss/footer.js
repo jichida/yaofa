@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 const {
     Tab,
     TabBarItem,

@@ -8,6 +8,7 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/agencyqrcode.css';
 import { connect } from 'react-redux';
+//import connect from 'react-redux/lib/connect';
 import QRCode from "qrcode.react";
 import config from '../../env/config.js';
 

@@ -14,7 +14,6 @@ import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import {
     set_lender_borrowlist_filler
 } from '../../actions';
-import { withRouter } from 'react-router-dom';
 
 import { 
     required, 
@@ -119,8 +118,6 @@ class FillerForm extends Component {
 // query:{
 //               orderstatus:{$nin:[-1,4]}
 //             },
-
-FillerForm = withRouter(FillerForm);
 
 
 class Page extends Component {

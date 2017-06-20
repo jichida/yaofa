@@ -4,6 +4,7 @@
 import React from 'react'
 import "./formvalidation.css"
 import { connect } from 'react-redux';
+//import connect from 'react-redux/lib/connect';
 import {
     set_weui
 } from '../../actions';

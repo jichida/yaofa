@@ -5,7 +5,6 @@ import DocumentTitle from "react-document-title";
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import $ from "jquery";
 import config from '../../env/config.js';
 import {
     settypeuserauthentication_request,
@@ -28,7 +27,7 @@ class Page extends Component {
             value.resulttaobao= 1;
         }
         let posturl = config.serverurl + "/vborrow/" + id + "/" + tp;
-        $.ajax({
+        window.$.ajax({
             type: "GET",
             url: posturl,
             success: function(msg){

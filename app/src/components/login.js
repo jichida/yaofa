@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import '../../public/css/login.css';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+//import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import { Fields, Field, reduxForm, Form } from 'redux-form';
 import {
   loginwithtoken_request,

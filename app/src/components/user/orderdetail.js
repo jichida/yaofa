@@ -9,7 +9,7 @@ import 'react-weui/lib/react-weui.min.css';
 import '../../../public/css/borrowinfo.css';
 import { connect } from 'react-redux';
 //import moment from "moment";
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import Borrowinfohead from "./borrowinfo_head";
 import BorrowinfoLenderinfo from "./borrowinfo_lenderinfo";
 import _ from "lodash";

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import '../../public/css/register.css';
 
 import {

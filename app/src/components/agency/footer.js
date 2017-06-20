@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
-import { withRouter } from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 
 class Page extends Component {
 
