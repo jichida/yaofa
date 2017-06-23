@@ -19,7 +19,8 @@ import {
     profit_set_profitid,
     userauthentication_result,
     userauthenticationhtml_result,
-    register_result
+    register_result,
+    getzhimascore_result
 } from '../actions';
 
 // let weixininfo = this.props.weixin.info;
@@ -49,6 +50,17 @@ export function* wsrecvsagaflow() {
         // yield put(set_weui({ loading }));
         window.location.href = action.payload.html.url;
 
+    });
+
+    //获取芝麻信息回调 getzhimascore_request
+    yield takeEvery(`${getzhimascore_result}`, function*(action) {
+        let toast = {
+            show : true,
+            text : "芝麻认证成功",
+            type : "success"
+        }
+        yield put(set_weui({ toast }));
+        yield put(replace("/validation"));
     });
 
     //登录

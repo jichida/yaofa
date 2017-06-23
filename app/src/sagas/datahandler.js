@@ -85,6 +85,9 @@ import {
     getweixinpic_result,
     getweixinpic_request,
 
+    getzhimascore_result,
+    getzhimascore_request
+
 
 
 } from '../actions';
@@ -93,6 +96,8 @@ import {
 exports.recvmessagetoresultpair = {
 
   'getweixinpic_result' : getweixinpic_result,
+
+  "getzhimascore_result" : getzhimascore_result,
 
   'insertcancelorderrecord_result' : insertcancelorderrecord_result,
   'gettodaycancelorderrecord_result' : gettodaycancelorderrecord_result,
@@ -129,6 +134,7 @@ exports.recvmessagetoresultpair = {
 exports.sendmessagefnsz = {
 
     'getweixinpic' : getweixinpic_request,
+    'getzhimascore' : getzhimascore_request,
 
     'gettodaycancelorderrecord' : gettodaycancelorderrecord_request,
     'insertcancelorderrecord' : insertcancelorderrecord_request,

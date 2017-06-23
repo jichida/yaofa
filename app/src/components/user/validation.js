@@ -67,7 +67,7 @@ class Page extends Component {
         let list = [
             {name: "身份认证", status: userlogin.resultid||false, url:'/validationshenfen'},
             {name: "运营商认证", status: userlogin.resultphone||false, url:'/validationhtml/phone'},
-            //{name: "芝麻认证", status: userlogin.resultzhima||false, url:'/validationhtml/taobao'},
+            {name: "芝麻认证", status: userlogin.resultzhima||false, url:'/validationzhima'},
             {name: "淘宝认证", status: userlogin.resulttaobao||false, url:'/validationhtml/taobao'},
             {name: "照片认证", status: userlogin.resultphoto||false, url:'/validationphoto'}
         ]

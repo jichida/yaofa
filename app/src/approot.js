@@ -62,6 +62,9 @@ import Uservalidationinfo from "./components/user/uservalidationinfo";
 import Loanshowborrowinfo from "./components/user/loanshowborrowinfo";
 import Loanshowborrowbaseinfo from "./components/user/loanshowborrowbaseinfo";
 
+//芝麻获取芝麻openid
+import Zhima from "./components/zhima";
+
 /*放款端*/
 //首页
 import BossIndex from "./components/boss/index";
@@ -98,10 +101,14 @@ import Tixian2 from "./components/agency/tixian2";
 //提现第二步
 import Tixian3 from "./components/agency/tixian3";
 
+
+
 //初始化的时候获取openid
 import Wxgetopenid from "./components/wxgetopenid";
 
 import {requireAuthentication} from './components/requireauthentication';
+
+
 
 //import Loaninfo from './components/requireauthentication';
 
@@ -171,6 +178,8 @@ const CoApp = (props) => {
             <CustomRoute exact path="/loanshowborrowinfo" component={requireAuthentication(Loanshowborrowinfo)}/>
             <CustomRoute exact path="/loanshowborrowbaseinfo" component={requireAuthentication(Loanshowborrowbaseinfo)}/>
             <CustomRoute exact path="/orderdetail/:id" component={requireAuthentication(Orderdetail)}/>
+
+            <CustomRoute exact path="/zhima/:openid" component={requireAuthentication(Zhima)}/>
 
             
         </Switch>

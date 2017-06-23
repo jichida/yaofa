@@ -1,55 +1,88 @@
 /*
-    个人中心
+    身份认证
 */
 import React, { Component } from 'react';
 import DocumentTitle from "react-document-title";
+import { Fields, Field, reduxForm, Form, formValueSelector } from 'redux-form';
 import WeUI from 'react-weui';
 import 'weui';
 import 'react-weui/lib/react-weui.min.css';
-import '../../../public/css/validation-zhima.css';
+import '../../../public/css/validation-shenfen.css';
 import _ from 'lodash';
+import {
+    userauthentication_request,
+    set_weui,
+    userauthenticationhtml_request
+    } from '../../actions';
 
 const {
-    Icon,
-    Form,
-    FormCell,
-    CellHeader,
-    Label,
+    CellsTitle,
+    Cells,
+    Cell,
     CellBody,
-    Input
+    CellFooter
     } = WeUI;
+
+import { connect } from 'react-redux';
+
 
 class Page extends Component {
 
-    render() {
 
+    zhimasub =(name, cardno)=>{
+        let loading = {
+            show : true,
+        }
+        this.props.dispatch(set_weui({ loading }));
+        this.props.dispatch(userauthenticationhtml_request({
+            type: "zhima",
+            data:{
+                name: name,
+                cert_no: cardno
+            }
+        }));
+    }
+
+    render() {
+        const {userlogin, resultid_json} = this.props;
         return (
-            <div className="validationZhimaPage AppPage">
+            <div className="validationShenfenPage AppPage">
                 <DocumentTitle title="芝麻认证" />
-                <Form>
-                    <FormCell>
-                        <CellHeader>
-                            <Label>姓名</Label>
-                        </CellHeader>
-                        <CellBody>
-                            <Input type="tel" placeholder="请输入您的真实姓名"/>
-                        </CellBody>
-                    </FormCell>
-                    <FormCell>
-                        <CellHeader>
-                            <Label>身份证号</Label>
-                        </CellHeader>
-                        <CellBody>
-                            <Input type="tel" placeholder="请输入身份证号"/>
-                        </CellBody>
-                    </FormCell>
-                </Form>
-                <div className="btn Primary">
-                    开始认证
+                <div className="list">
+                    <CellsTitle>身份信息</CellsTitle>
+                    <Cells>
+                        <Cell>
+                            <CellBody>
+                                姓名
+                            </CellBody>
+                            <CellFooter>
+                                {resultid_json.data.name}
+                            </CellFooter>
+                        </Cell>
+                        <Cell>
+                            <CellBody>
+                                身份证
+                            </CellBody>
+                            <CellFooter>
+                                {resultid_json.data.cardno}
+                            </CellFooter>
+                        </Cell>
+                    </Cells>
+                    <button
+                        className="btn Primary"
+                        onClick={()=>{this.zhimasub(resultid_json.data.name, resultid_json.data.cardno)}}
+                        >
+                        <span>开始认证</span>
+                    </button>
                 </div>
             </div>
         )
     }
 }
 
+const data = ({userlogin}) => {
+    let resultid_json =  JSON.parse(userlogin.resultid_obj); 
+    return {userlogin, resultid_json};
+};
+Page = connect(data)(Page);
 export default Page;
