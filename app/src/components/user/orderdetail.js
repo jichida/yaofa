@@ -617,12 +617,10 @@ class Page extends Component {
             this.props.dispatch(getmyorders_request({
                 query:{_id : this.props.match.params.id},
                 options:{
-                      sort: {},
-                      page: 1,
-                      limit: 100,
+                    sort: {},
                 }
             }));
-        },10);
+        },1000);
         
     }
     gotoUserBorrowInfo=(usertype)=>{
@@ -653,8 +651,13 @@ const data = ({order:{myorderlist}, app:{percentborrowreal,percentborrowpre}, us
     let orderInfo = null;
     
     let usertypes = localStorage.getItem('usertype');
+    let newallorderlist = {};
 
-    let newallorderlist = {...myorderlist, ...borrowlist}
+    if(!!myorderlist[orderid]){
+        newallorderlist = {...myorderlist}
+    }else{
+        newallorderlist = {...myorderlist, ...borrowlist}
+    }
     if(usertypes==="userlender"){
         orderInfo = newallorderlist[orderid];
     }else{

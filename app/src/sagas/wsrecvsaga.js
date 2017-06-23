@@ -145,7 +145,7 @@ export function* wsrecvsagaflow() {
             type : "success"
         }
         yield put(set_weui({ toast }));
-        yield put(replace("/borrowinfo"));
+        yield put(replace(`/orderdetail/${action.payload.updateditem._id}`));
     });
     //发送验证码
     yield takeEvery(`${md_loginsendauth_result}`, function*(action) {
