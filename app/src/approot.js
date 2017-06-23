@@ -34,7 +34,7 @@ import UserCenter from "./components/user/usercenter";
 //借款列表
 import BorrowList from "./components/user/borrowlist";
 //借款详情
-import BorrowInfo from "./components/user/borrowinfo";
+//import BorrowInfo from "./components/user/borrowinfo";
 import Orderdetail from "./components/user/orderdetail";
 //忘记密码
 import UserIndex from "./components/user/index";
@@ -43,13 +43,13 @@ import Validation from "./components/user/validation";
 //认证-身份认证
 import ValidationShenfen from "./components/user/validation-shenfen";
 //认证-手机运营商认证
-import ValidationPhone from "./components/user/validation-phone";
+//import ValidationPhone from "./components/user/validation-phone";
 //认证-芝麻认证
 import ValidationZhima from "./components/user/validation-zhima";
 //认证-照片认证
 import ValidationPhoto from "./components/user/validation-photo";
 //认证-照片认证
-import ValidationTaobao from "./components/user/validation-taobao";
+//import ValidationTaobao from "./components/user/validation-taobao";
 //用户借款资料详情
 import BorrowUserInfo from "./components/user/borrowuserinfo";
 //完善借款资料
@@ -106,7 +106,7 @@ import {requireAuthentication} from './components/requireauthentication';
 //import Loaninfo from './components/requireauthentication';
 
 //认证，集成第三方页面，运营商认证和淘宝认证
-import Validationhtml from './components/user/validationhtml';
+//import Validationhtml from './components/user/validationhtml';
 import NotifySuc from './components/user/notifysuc';
 import NotifyFailed from './components/user/notifyfailed';
 
@@ -145,14 +145,14 @@ const CoApp = (props) => {
             <CustomRoute exact path="/addBorrowUserInfo" component={requireAuthentication(AddBorrowUserInfo)}/>
             <CustomRoute exact path="/usercenter" component={requireAuthentication(UserCenter)}/>
             <CustomRoute exact path="/borrowlist" component={requireAuthentication(BorrowList)}/>
-            <CustomRoute exact path="/borrowinfo" component={requireAuthentication(BorrowInfo)}/>
+            
             <CustomRoute exact path="/validation" component={requireAuthentication(Validation)}/>
             <CustomRoute exact path="/agencyqrcode" component={requireAuthentication(AgencyQRcode)}/>
             <CustomRoute exact path="/borrowuserinfo" component={requireAuthentication(BorrowUserInfo)}/>
             <CustomRoute exact path="/addborrowuserinfo" component={requireAuthentication(AddBorrowUserInfo)}/>
             <CustomRoute exact path="/validationshenfen" component={requireAuthentication(ValidationShenfen)}/>
-            <CustomRoute exact path="/validationphone" component={requireAuthentication(ValidationPhone)}/>
-            <CustomRoute exact path="/validationtaobao" component={requireAuthentication(ValidationTaobao)}/>
+            
+            
             <CustomRoute exact path="/validationzhima" component={requireAuthentication(ValidationZhima)}/>
             <CustomRoute exact path="/validationphoto" component={requireAuthentication(ValidationPhoto)}/>
             <CustomRoute exact path="/agencyprofit" component={requireAuthentication(Agencyprofit)}/>
@@ -160,7 +160,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/tixian2" component={requireAuthentication(Tixian2)}/>
             <CustomRoute exact path="/tixian3" component={requireAuthentication(Tixian3)}/>
             <CustomRoute exact path="/tousu" component={requireAuthentication(Tousu)}/>
-            <CustomRoute exact path="/validationhtml/:type" component={requireAuthentication(Validationhtml)}/>
+            
             <CustomRoute exact path="/notifysuc/:type/:userid" component={NotifySuc}/>
             <CustomRoute exact path="/notifyfailed/:type/:userid" component={NotifyFailed}/>
             <CustomRoute exact path="/uservalidationinfo" component={requireAuthentication(Uservalidationinfo)}/>

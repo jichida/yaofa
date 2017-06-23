@@ -3,7 +3,14 @@ import {delay} from 'redux-saga';
 import {
     set_weui,
     login_result,
-    getmyborrowusers_request//例子《----
+    getabouthtml_request,
+    getmyorders_request,
+    getmyborrowusers_request,
+    getrechargerecords_request,
+    sendauth_request,
+    queryintrestedorder_request,
+    fillprofile_request,
+    gettodaycancelorderrecord_request,
 } from '../actions';
 import { push } from 'react-router-redux';
 import _ from 'lodash';
@@ -53,11 +60,11 @@ export function* createloadingflow(){
       const { result,err, timeout } = yield race({
           result: take(action_result),
           err: take(action_commonerr),
-          timeout: call(delay, 500)
+          timeout: call(delay, 800)
       });
 
       if(!!timeout){
-        //超过500毫秒才弹
+        //超过800毫秒才弹
         yield put(set_weui({
             loading : {
                 show : true
@@ -90,7 +97,14 @@ export function* createloadingflow(){
   //===========************===========
   yield takeLatest(
     [
-      `${getmyborrowusers_request}`,//例子《《-------
+      `${getmyborrowusers_request}`,
+      `${getabouthtml_request}`,
+      `${getmyorders_request}`,
+      `${getrechargerecords_request}`,
+      `${sendauth_request}`,
+      `${queryintrestedorder_request}`,
+      `${fillprofile_request}`,
+      `${gettodaycancelorderrecord_request}`
     ]
     , function*(action) {
       //目的地地址选中后

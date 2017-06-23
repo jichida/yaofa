@@ -18,7 +18,7 @@ import {
 
 const initial = {
     userlender: {
-        borrowlist : [],
+        borrowlist : {},
         borrowlistfiller : {},
         addloanid : '',
         myorderlist: {},
@@ -31,7 +31,12 @@ const initial = {
 
 const userlender = createReducer({
     [queryintrestedorder_result]: (state, payload) => {
-        return { ...state, borrowlist: payload.list };
+        let newborrowlist = {};
+        _.map(payload.list, (p,index)=>{
+            newborrowlist[p._id] = p;
+        })
+        let borrowlist = { ...state.borrowlist, ...newborrowlist };
+        return { ...state, borrowlist };
     },
     [set_lender_borrowlist_filler]: (state, payload) => {
         return { ...state, borrowlistfiller: payload };

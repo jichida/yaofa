@@ -65,24 +65,17 @@ class Page extends Component {
 
     componentWillMount() {
         this.pageStart(this.props.approvalstatus);
-        this.getList();
+        this.getList(0);
         bossindexgetlist = window.setInterval(()=>{
-            this.getList();
-        },5000);
+            this.getList(1);
+        },10000);
+
     }
 
     pageStart =(approvalstatus)=>{
         const {dispatch,truename} = this.props;
         if(approvalstatus==="已审核"){
-            // this.props.dispatch(set_weui({confirm:{
-            //     show : true,
-            //     title : "认证审核中...",
-            //     text : "认证资料已经递交",
-            //     buttonsCloseText : "关闭",
-            //     buttonsClickText : "完善借款资料",
-            //     buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
-            // }}))
-            //return false;
+            
         }else if(approvalstatus==="已拒绝"){
             this.setState({falsemark: true});
         }else{
@@ -103,25 +96,27 @@ class Page extends Component {
     }
 
     gotoBorrowInfo =(borrowinfo)=>{
-        //console.log(borrowinfo);
+        
         this.props.dispatch(set_orderinfo(borrowinfo));
-        this.pushUrl("/borrowinfo");
+        this.pushUrl(`/orderdetail/${borrowinfo._id}`);
     }
 
-    getList =()=>{
-        let query = {};
-        let borrowlistfiller = this.props.borrowlistfiller;
-        // borrowlistfiller.jiedaibaofuzai && 
-        // borrowlistfiller.limithuabei &&
-        // borrowlistfiller.realtimeforphoneyear && 
-        // borrowlistfiller.limitjiebei &&
-        // query:{
-        //       orderstatus:{$nin:[-1,4]}
-        //     },
-        // if(!!borrowlistfiller.jiedaibaofuzai){
-        //     query.jiedaibaofuzai 
+    getList =(i)=>{
+        let payload = {
+            query:{},
+            options:{
+                sort: { updated_at: -1 },
+                limit : 10
+            }
+        };
+        //const intrestedorder_time = localStorage.getItem('intrestedorder_time');
+        // if(i===1){
+        //     if(!!intrestedorder_time && intrestedorder_time!==""){
+        //         payload.query = {updated_at:{'$gt': new Date(intrestedorder_time)}}
+        //     }
         // }
-        this.props.dispatch(queryintrestedorder_request({query}))
+        let borrowlistfiller = this.props.borrowlistfiller;
+        this.props.dispatch(queryintrestedorder_request(payload))
     }
 
     componentWillUnmount(){

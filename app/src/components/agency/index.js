@@ -35,7 +35,7 @@ class Page extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getmyborrowusers_request({}));
+        window.setTimeout(()=>{this.props.dispatch(getmyborrowusers_request({}))},0);
     }
 
     clickitem =(borrowinfo)=>{
@@ -85,7 +85,7 @@ class Page extends Component {
                         }
                     </Cells>
                 )}
-                 </div>
+                </div>
                 <Footer action={0}/>
             </div>
     	)

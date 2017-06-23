@@ -19,8 +19,15 @@ const {
     Input,
     Label
     } = WeUI;
+import { set_orderinfo }  from "../../actions";
 
 class Page extends Component {
+
+    componentWillMount(){
+        
+        this.props.dispatch(set_orderinfo(this.props.orderinfo));
+        
+    }
 
     pushUrl = (name)=>{
         this.props.history.push(name);

@@ -27,7 +27,8 @@ import {
     insertcancelorderrecord_request,
     gettodaycancelorderrecord_request,
     fillrealnameprofile_request,
-    getmyorders_request
+    getmyorders_request,
+    queryintrestedorder_request
     }  from "../../actions";
 const {
     Cells,
@@ -314,6 +315,10 @@ export {BorrowConfirminput};
 
 class GetBorrowStatusInfo extends Component{
 
+    pushUrl = (name)=>{
+        this.props.history.push(name);
+    }
+    
     //商家确认接单
     gotoBossaddloan=(id)=>{
         this.props.dispatch(set_addloanid(id));
@@ -545,7 +550,7 @@ class GetBorrowStatusInfo extends Component{
                                                     <CellFooter>
                                                         <button
                                                             className="btn Primary"
-                                                            onClick={()=>{this.props.history("/agencyprofit")}}
+                                                            onClick={()=>{this.pushUrl("/agencyprofit")}}
                                                             ><span>去提现</span></button>
                                                     </CellFooter>
                                                 </Cell>
@@ -600,17 +605,24 @@ class Page extends Component {
         if(this.props.usertypes==="userlender"){
             //商家端获取商家放款失败的次数
             this.props.dispatch(gettodaycancelorderrecord_request({}));
+            let payload = {
+                query:{},
+                options:{
+                    sort: { updated_at: -1 },
+                }
+            };
+            this.props.dispatch(queryintrestedorder_request(payload))
         }
         window.setTimeout(()=>{
             this.props.dispatch(getmyorders_request({
-                query : {},
+                query:{_id : this.props.match.params.id},
                 options:{
-                    sort: { created_at: -1 },
-                    page: 1,
-                    limit: 100,        
-                },
+                      sort: {},
+                      page: 1,
+                      limit: 100,
+                }
             }));
-        },10)
+        },10);
         
     }
     gotoUserBorrowInfo=(usertype)=>{
@@ -634,13 +646,20 @@ class Page extends Component {
 }
 
 //dispatch(gettodaycancelorderrecord());
-const data = ({order:{myorderlist}, app:{percentborrowreal,percentborrowpre}}, props) => {
+const data = ({order:{myorderlist}, app:{percentborrowreal,percentborrowpre}, userlender:{borrowlist}}, props) => {
 
     let orderid = props.match.params.id;
 
-    let orderInfo = myorderlist[orderid];
+    let orderInfo = null;
     
     let usertypes = localStorage.getItem('usertype');
+
+    let newallorderlist = {...myorderlist, ...borrowlist}
+    if(usertypes==="userlender"){
+        orderInfo = newallorderlist[orderid];
+    }else{
+        orderInfo = myorderlist[orderid];
+    }
 
     return { orderInfo, percentborrowreal, percentborrowpre, usertypes };
 };

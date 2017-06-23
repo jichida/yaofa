@@ -42,7 +42,7 @@ export function* payflow() {
           let { payload:paysign } = yield take(`${getpaysign_result}`);
           let payresult = yield call(takepay,paysign,orderinfo);
           //console.log(`payresult:${JSON.stringify(payresult)}`);
-          // console.log
+          //console.log
           yield put(replace('/'));
     });
 

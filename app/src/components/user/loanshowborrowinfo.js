@@ -406,8 +406,7 @@ class IdInfo extends Component {
         }else{
             return (
                 <div className="nodata">
-                    <span>您还没有通过该项认证</span>
-                    <span className="btn Primary" onClick={()=>{history.push("/validation")}}>去认证</span>
+                    <span>Ta还没有通过该项认证</span>
                 </div>
             )
         }

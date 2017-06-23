@@ -38,7 +38,7 @@ class Page extends Component {
     } 
 
     componentWillMount() {
-        this.getList(this.props.myorderlistStatus);
+        window.setTimeout(()=>{this.getList(this.props.myorderlistStatus)},0);
         //this.getlistinterval = window.setInterval(this.getList.bind(this.props.myorderlistStatus),10000);
     }
 
@@ -75,7 +75,7 @@ class Page extends Component {
         const { myorderlist, myorderlistStatus } = this.props;
         return (
             <div className="borrowlistPage AppPage">
-                <DocumentTitle title="我的借款" />
+                <DocumentTitle title="借款订单" />
                 <Tab
                     className="list"
                     style={{flexGrow:"1"}}

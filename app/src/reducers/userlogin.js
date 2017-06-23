@@ -9,7 +9,8 @@ import {
     sendauth_result,
     logout_result,
     confirmorder_result,
-    fillrealnameprofile_result
+    fillrealnameprofile_result,
+    queryuserstatus_result
 } from '../actions/index.js';
 
 const initial = {
@@ -37,6 +38,11 @@ const initial = {
 };
 
 const userlogin = createReducer({
+
+    [queryuserstatus_result]:(state, payload) => {
+        //let usertype = localStorage.getItem("usertype");
+        return { ...state, ...payload};
+    },
 
     //登录回调
     [login_result]: (state, payload) => {

@@ -33,7 +33,7 @@ const {
 class Page extends Component {
 
     componentWillMount() {
-        this.getList(this.props.myorderlistStatus);
+        window.setTimeout(()=>{this.getList()}, 1000);
     }
 
     pushUrl = (name)=>{
@@ -42,7 +42,7 @@ class Page extends Component {
 
     setStatus = (status)=>{
         this.props.dispatch(set_myorderlistStatus(status));
-        this.getList(status);
+        //this.getList();
     }
 
     gotoBorrowInfo =(order)=>{
@@ -50,12 +50,16 @@ class Page extends Component {
         this.pushUrl(`/orderdetail/${order._id}`);
     }
 
-    getList =(status)=>{
-        let query = {};
-        this.props.dispatch(getmyorders_request({query,options:{
-                page: 1,
-                limit: 100,
-        }}));
+    getList =()=>{
+        let payload = {
+              query:{},
+              options:{
+                  sort: { updated_at: -1 },
+                  page: 1,
+                  limit: 100,
+              }
+        };
+        this.props.dispatch(getmyorders_request(payload));
     }
 
     render() {

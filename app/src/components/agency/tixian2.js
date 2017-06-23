@@ -29,14 +29,15 @@ import {
     WeuiInputValidation
     } from "../tools/formvalidation";
 import { _getBankInfoByCardNo } from "../tools/validationbank"
-import {
-    Fields,
-    Field,
-    reduxForm,
-    Form,
-    formValueSelector,
-    } from 'redux-form';
+import {Field, reduxForm, Form, formValueSelector } from 'redux-form';
+
 import BIN from "bankcardinfo";
+// import Field from 'redux-form/lib/Field';
+// import reduxForm from 'redux-form/lib/reduxForm';
+// import Form from 'redux-form/lib/Form';
+// import formValueSelector from 'redux-form/lib/formValueSelector';
+
+
 
 class PageForm extends Component{
     render(){
@@ -99,8 +100,35 @@ export class Page extends Component {
 
     onClickNext = (value)=> {
         //console.log(value);
-        _getBankInfoByCardNo(value.bankaccount, (err, info)=>{
-            if(err){
+        // _getBankInfoByCardNo(value.bankaccount, (info)=>{
+        //     if(err){
+        //         this.props.dispatch(set_weui({
+        //             toast:{
+        //                 show: true,
+        //                 text: '银行卡无法识别',
+        //                 type: 'warning'
+        //             }})
+        //         )
+        //     }else{
+                
+        //     }
+        // })
+        
+        let profitform = this.props.profitform;
+        _getBankInfoByCardNo(value.bankaccount, (info)=>{
+            
+            if(!!info){
+                this.props.dispatch(set_weui({
+                    loading:{
+                        show: true
+                    }})
+                )
+                profitform.bankname = info.bankName;
+                profitform.truename = value.truename;
+                profitform.bankaccount = value.bankaccount;
+                this.setTixianForm(profitform);
+                this.props.dispatch(withdrawcashapplyaddone_request(profitform));
+            }else{
                 this.props.dispatch(set_weui({
                     toast:{
                         show: true,
@@ -108,21 +136,25 @@ export class Page extends Component {
                         type: 'warning'
                     }})
                 )
-            }else{
-                let profitform = this.props.profitform;
-                this.props.dispatch(set_weui({
-                    loading:{
-                        show: true
-                    }})
-                )
-                profitform.truename = value.truename;
-                profitform.bankaccount = value.bankaccount;
-                profitform.bankname = info.bankName;
-                this.setTixianForm(profitform);
-                //console.log(profitform);
-                this.props.dispatch(withdrawcashapplyaddone_request(profitform));
             }
+
         })
+        // profitform.truename = value.truename;
+        // profitform.bankaccount = value.bankaccount;
+        // this.setTixianForm(profitform);
+        //console.log(profitform);
+        // this.props.dispatch(withdrawcashapplyaddone_request(profitform));
+        // value.cashmoney = parseFloat(value.cashmoney);
+        // if(this.props.balance<value.cashmoney){
+        //     let toast = {
+        //         show : true,
+        //         text : "提现超出余额",
+        //         type : "warning"
+        //     }
+        //     this.props.dispatch(set_weui({ toast }));
+        // }else{
+        //     this.props.dispatch(withdrawcashapplyaddone_request(value));
+        // }
         
     }
 

@@ -46,6 +46,7 @@ class Page extends Component {
 
             },
             options:{
+                sort: { updated_at: 1 },
                 page: 1,
                 limit: 100,
             }
@@ -181,7 +182,7 @@ class Page extends Component {
 }
 
 const data = ({order:{myorderlist}, userlogin}) => {
-    myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.created_at)).getTime(); }]);
+    myorderlist = _.sortBy(myorderlist, [function(o) { return -(new Date(o.updated_at)).getTime(); }]);
 
     return {myorderlist,userlogin};
 };

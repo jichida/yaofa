@@ -420,6 +420,11 @@ class GetBorrowStatusInfo extends Component{
         
     }
 
+    pushUrl = (name)=>{
+        this.props.history.push(name);
+    }
+
+
     render(){
         const {orderInfo} = this.props;
         let usertype = localStorage.getItem('usertype');
@@ -545,6 +550,7 @@ class GetBorrowStatusInfo extends Component{
                                                     <CellFooter>
                                                         <button
                                                             className="btn Primary"
+                                                            onClick={()=>{this.pushUrl("/agencyprofit")}}
                                                             ><span>去提现</span></button>
                                                     </CellFooter>
                                                 </Cell>
@@ -600,14 +606,7 @@ class Page extends Component {
             //商家端获取商家放款失败的次数
             this.props.dispatch(gettodaycancelorderrecord_request({}));
         }
-        this.props.dispatch(getmyorders_request({
-            query : {},
-            options:{
-                sort: { created_at: -1 },
-                page: 1,
-                limit: 100,        
-            },
-        }));
+        
     }
     gotoUserBorrowInfo=(usertype)=>{
         //这里需要更具用户id获取用户借贷信息

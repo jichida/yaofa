@@ -1490,7 +1490,7 @@
           delete info.patterns;
           delete info.reg;
           info['cardTypeName'] = getCardTypeName(info['cardType']);
-          return cbf(null, info);
+          return cbf(info);
         }
       }
     }

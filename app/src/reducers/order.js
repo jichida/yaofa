@@ -17,6 +17,7 @@ const initial = {
         myorderlistStatus : "借款中",
         tousucontent : "",
         myorderlist: {},
+        
     },
 };
 
@@ -32,7 +33,7 @@ const order = createReducer({
     },
     //借款人确认商家回调
     [confirmorder_result]:(state, payload) => {
-        console.log(payload);
+        //console.log(payload);
     	let orderInfo = { ...state.orderInfo, ...payload.updateditem };
 
         if(!!orderInfo._id){

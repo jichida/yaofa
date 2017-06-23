@@ -14,7 +14,6 @@
     "axios": "^0.16.1",
     "bankcardinfo": "^2.0.3",
     "idcard": "^3.2.4",
-    "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "normalizr": "^3.2.2",
