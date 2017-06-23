@@ -28,6 +28,19 @@ import { connect } from 'react-redux';
 
 class Page extends Component {
 
+    componentWillMount(){
+        const { resultid,history,dispatch } = this.props;
+        if(resultid===2){}else{
+            dispatch(set_weui({
+                toast: {
+                    show : true,
+                    text : "必须先完成身份认证",
+                    type : "warning"
+                },
+            }));
+            history.goBack();
+        }
+    }
 
     zhimasub =(name, cardno)=>{
         let loading = {
@@ -80,9 +93,12 @@ class Page extends Component {
     }
 }
 
+
 const data = ({userlogin}) => {
     let resultid_json =  JSON.parse(userlogin.resultid_obj); 
-    return {userlogin, resultid_json};
+    let resultid = userlogin.resultid;
+
+    return {userlogin, resultid_json, resultid};
 };
 Page = connect(data)(Page);
 export default Page;

@@ -20,7 +20,10 @@ import {
     userauthentication_result,
     userauthenticationhtml_result,
     register_result,
-    getzhimascore_result
+    getzhimascore_result,
+    md_queryuserstatus_result,
+    queryuserstatus_result,
+    
 } from '../actions';
 
 // let weixininfo = this.props.weixin.info;
@@ -223,5 +226,39 @@ export function* wsrecvsagaflow() {
         //yield put(goBack());
     });
 
+    //身份证照片审核回调
+    yield takeEvery(`${md_queryuserstatus_result}`, function*(action) {
+        //const {payload:result} = action;
+        //console.log(action);
+        //yield put(goBack());
+        // console.log("is m_queryuserstatus_result");
 
+        // let {payload:result} = action;
+        // let loading = {
+        //     show : false,
+        // }
+        // yield put(set_weui({ loading }));
+        // const local_openid = localStorage.getItem("openid");
+        // const local_accesstoken = localStorage.getItem("access_token");
+
+        // console.log("fillrealnameprofile_request::::::::>>>");
+        // console.log(result);
+
+        // if(userlogin.info.weixinopenid!==local_openid || userlogin.info.weixinaccesstoken!==local_accesstoken){
+        //     let payloads = {
+        //         data:{
+        //             'weixinopenid':local_openid,
+        //             'weixinaccesstoken':local_accesstoken,
+        //         }
+        //     };
+        //     console.log("fillrealnameprofile_request::::::::>>>");
+        //     console.log(payloads);
+            
+        //     yield put(fillrealnameprofile_request(payloads));
+        // }
+        
+        yield put(queryuserstatus_result(action));
+    });
+
+    //
 }

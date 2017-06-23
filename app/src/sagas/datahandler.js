@@ -71,6 +71,9 @@ import {
 
     queryuserstatus_request,
     queryuserstatus_result,
+
+    md_queryuserstatus_result,
+
     getsystemconfig_result,
     getsystemconfig_request,
 
@@ -99,11 +102,13 @@ exports.recvmessagetoresultpair = {
 
   "getzhimascore_result" : getzhimascore_result,
 
+  'queryuserstatus_result' : md_queryuserstatus_result,
+
   'insertcancelorderrecord_result' : insertcancelorderrecord_result,
   'gettodaycancelorderrecord_result' : gettodaycancelorderrecord_result,
 
   'getsystemconfig_result':getsystemconfig_result,
-  'queryuserstatus_result':queryuserstatus_result,
+  
   'payorder_result':payorder_result,
   'getpaysign_result':getpaysign_result,
 

@@ -33,10 +33,13 @@ const {
 class BaseInfo extends Component{
 
     render(){
-        const { data } = this.props;
+        const { data,resultzhima } = this.props;
         const greenhave = (<span className="green">有</span>);
         return (
             <div className="baseinfo">
+                <Cells>
+                    <Cell><CellBody>芝麻信用分</CellBody><CellFooter>{resultzhima?resultzhima:"未认证"}</CellFooter></Cell>
+                </Cells>
                 <Cells>
                     <Cell><CellBody>户籍</CellBody><CellFooter>{data.hukou?`${data.hukou}`:"未填写"}</CellFooter></Cell>
                     <Cell><CellBody>花呗额度</CellBody><CellFooter>{data.limithuabei?`${data.limithuabei}元`:"未填写"}</CellFooter></Cell>
@@ -46,7 +49,7 @@ class BaseInfo extends Component{
                     <Cell><CellBody>手机号实名时间</CellBody><CellFooter>{data.realtimeforphoneyear?`${data.realtimeforphoneyear}年`:"未填写"}</CellFooter></Cell>
                 </Cells>
                 <Cells>
-                    <Cell><CellBody>芝麻信用分</CellBody><CellFooter>{data.zhimapoint?data.zhimapoint:"未填写"}</CellFooter></Cell>
+                    
                     <Cell><CellBody>是否有固定资产</CellBody><CellFooter>{data.hasgudingzichan?greenhave:"无"}</CellFooter></Cell>
                     <Cell><CellBody>是否有工作单位</CellBody><CellFooter>{data.hasdanwei?greenhave:"无"}</CellFooter></Cell>
                     <Cell><CellBody>是否有公积金</CellBody><CellFooter>{data.hasgongjijin?greenhave:"无"}</CellFooter></Cell>
@@ -65,13 +68,13 @@ BaseInfo = withRouter(BaseInfo);
 class Page extends Component {
 
     render() {
-        const { navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo } = this.props;
+        const { navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo,resultzhima_obj } = this.props;
         return (
             <div className="borrowlistPage uservalidationinfoPage AppPage">
                 <DocumentTitle title="基本借款信息" />
                 <Tab>
                     <TabBody>
-                        <BaseInfo data={borrow_baseinfo}/>
+                        <BaseInfo data={borrow_baseinfo} resultzhima={resultzhima_obj}/>
                     </TabBody>
                 </Tab>
             </div>
@@ -80,7 +83,8 @@ class Page extends Component {
 }
 const data = ({order:{borrow_baseinfo},order}) => {
     let creator = order.orderInfo.creator;
-    return {borrow_baseinfo:creator};
+    let resultzhima_obj = creator.resultzhima==2?creator.resultzhima_obj:false;
+    return {borrow_baseinfo:creator, resultzhima_obj};
 };
 Page = connect(data)(Page);
 export default Page;
