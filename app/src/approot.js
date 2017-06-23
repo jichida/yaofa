@@ -24,6 +24,11 @@ import Settings from "./components/settings";
 //关于我们
 import Abouthtml from "./components/abouthtml";
 
+
+//关于我们
+import Usercenters from "./components/usercenters";
+
+
 /*
     借款人端
 */
@@ -180,6 +185,8 @@ const CoApp = (props) => {
             <CustomRoute exact path="/orderdetail/:id" component={requireAuthentication(Orderdetail)}/>
 
             <CustomRoute exact path="/zhima/:openid" component={requireAuthentication(Zhima)}/>
+            <CustomRoute exact path="/usercenters" component={requireAuthentication(Usercenters)}/>
+
 
             
         </Switch>
