@@ -55,8 +55,24 @@ class Page extends Component {
                     data:{}
                 }));
             }else{
-                this.props.history.push(url);
+                if(name==="照片认证"){
+                    if(this.props.userlogin.resultid===2){
+                        this.props.history.push(url);
+                    }else{
+                        this.props.dispatch(set_weui({
+                            toast: {
+                                show : true,
+                                text : "必须先完成身份认证",
+                                type : "warning"
+                            },
+                        }));
+                    }
+                }else{
+                    this.props.history.push(url);
+                }
+                
             }
+
         }
     }
 

@@ -80,7 +80,7 @@ export function* wsrecvsagaflow() {
         const userlogin = yield select(getuserinfo);
         const local_openid = localStorage.getItem("openid");
         const local_accesstoken = localStorage.getItem("access_token");
-
+        
 
         // console.log("get userlogin >>>>>>>");
         // console.log(userlogin);

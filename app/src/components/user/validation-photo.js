@@ -178,7 +178,7 @@ class Page extends Component {
         )
     }
 }
-const data = ({userlogin:{urlphoneid1,urlphoneid2,urlphoneid3,resultid}}) => {
+const data = ({userlogin:{urlphoneid1,urlphoneid2,urlphoneid3}}) => {
     return {urlphoneid1,urlphoneid2,urlphoneid3};
 };
 Page = connect(data)(Page);

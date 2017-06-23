@@ -41,7 +41,7 @@ const userlogin = createReducer({
 
     [queryuserstatus_result]:(state, payload) => {
         //let usertype = localStorage.getItem("usertype");
-        return { ...state, ...payload};
+        return { ...state,  ...payload.payload}
     },
 
     //登录回调
