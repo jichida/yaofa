@@ -17,6 +17,7 @@
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "normalizr": "^3.2.2",
+    "pica": "^3.0.4",
     "prop-types": "^15.5.8",
     "qrcode.react": "^0.7.1",
     "querystring": "^0.2.0",
