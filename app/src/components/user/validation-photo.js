@@ -95,17 +95,7 @@ class PageForm extends Component {
                         <span className="lnk blue" onClick={this.showYangli.bind(this,1)}>查看样例</span>
                     </div>
                 </div>
-                <div className="li">
-                    <Field 
-                        name="urlphoneid3" 
-                        component={renderImageupload} 
-                        loading = {this.showLoading.bind(this)}
-                    />
-                    <div>
-                        <span className="tit">手持身份证照片</span>
-                        <span className="lnk blue" onClick={this.showYangli.bind(this,2)}>查看样例</span>
-                    </div>
-                </div>
+                
                 <button className="btn Primary">
                     <span>确认</span>
                 </button>

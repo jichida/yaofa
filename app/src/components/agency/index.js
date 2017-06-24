@@ -76,7 +76,7 @@ class Page extends Component {
                                             </div>
                                         </CellHeader>
                                         <CellBody>
-                                            <div className="color_warning">{userborrow.username}</div>
+                                            
                                         </CellBody>
                                         <CellFooter/>
                                     </Cell>
