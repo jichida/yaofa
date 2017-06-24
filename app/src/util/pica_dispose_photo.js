@@ -95,9 +95,9 @@ class PicaDisposePhoto {
       .then(result => {
         return this.Pica.toBlob(result, file.type, this.picaQuality)
       })
-      .then(blob => {
-        return new File([ blob ], file.name, { type: file.type, lastModified: Date.now() })
-      })
+      // .then(blob => {
+      //   return new File([ blob ], file.name, { type: file.type, lastModified: Date.now() })
+      // })
       .catch(err => {
         if (err) {
           alert(err.toString())
