@@ -1,4 +1,4 @@
-let serverurl = 'http://xy.mrtejia.cn';
+let serverurl = 'http://wx.yaofabank.com';
 export default {
     restserverurl:serverurl +'/adminapi',
     serverurl:serverurl
