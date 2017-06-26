@@ -185,6 +185,7 @@ const selector = formValueSelector('selectingFormValues');
 class Page extends Component {
 
     subBorrowuserinfo=(value)=>{
+        console.log(value);
         const loading = {
             show : true,
         }
@@ -193,18 +194,20 @@ class Page extends Component {
         this.props.history.goBack();
     }
 
-
 	render() {
 
         PageForm = reduxForm({
             form: 'selectingFormValues',
             initialValues:{
                 hukou : this.props.hukou||"江苏",
-                limithuabei: this.props.limithuabei||"",
-                limitjiebei: this.props.limitjiebei||"",
-                jiedaibaofuzai: this.props.jiedaibaofuzai||"",
-                jiedaobaoyihuan: this.props.jiedaobaoyihuan||"",
-                realtimeforphoneyear: this.props.realtimeforphoneyear||"",
+                limithuabei: this.props.hasOwnProperty("limithuabei")?this.props.limithuabei:"",
+                limitjiebei: this.props.hasOwnProperty("limitjiebei")?this.props.limitjiebei:"",
+                jiedaibaofuzai: this.props.hasOwnProperty("jiedaibaofuzai")?this.props.jiedaibaofuzai:"",
+                jiedaobaoyihuan: this.props.hasOwnProperty("jiedaobaoyihuan")?this.props.jiedaobaoyihuan:"",
+                realtimeforphoneyear: this.props.hasOwnProperty("realtimeforphoneyear")?this.props.realtimeforphoneyear:"",
+                
+
+
                 hasgudingzichan : this.props.hasgudingzichan||false,
                 hasdanwei : this.props.hasdanwei||false,
                 hasgongjijin : this.props.hasgongjijin||false,

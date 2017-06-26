@@ -332,12 +332,14 @@ class BaseInfo extends Component{
                     <Cell><CellBody>芝麻信用分</CellBody><CellFooter>{resultzhima?resultzhima:"未认证"}</CellFooter></Cell>
                 </Cells>
                 <Cells>
-                    <Cell><CellBody>户籍</CellBody><CellFooter>{data.hukou?`${data.hukou}`:"未填写"}</CellFooter></Cell>
-                    <Cell><CellBody>花呗额度</CellBody><CellFooter>{data.limithuabei?`${data.limithuabei}元`:"未填写"}</CellFooter></Cell>
-                    <Cell><CellBody>借呗额度</CellBody><CellFooter>{data.limitjiebei?`${data.limitjiebei}元`:"未填写"}</CellFooter></Cell>
-                    <Cell><CellBody>借贷宝负债</CellBody><CellFooter>{data.jiedaibaofuzai?`${data.jiedaibaofuzai}元`:"未填写"}</CellFooter></Cell>
-                    <Cell><CellBody>借贷宝已还款</CellBody><CellFooter>{data.jiedaobaoyihuan?`${data.jiedaobaoyihuan}元`:"未填写"}</CellFooter></Cell>
-                    <Cell><CellBody>手机号实名时间</CellBody><CellFooter>{data.realtimeforphoneyear?`${data.realtimeforphoneyear}年`:"未填写"}</CellFooter></Cell>
+                
+                    <Cell><CellBody>户籍</CellBody><CellFooter>{data.hasOwnProperty("hukou")?`${data.hukou}`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>花呗额度</CellBody><CellFooter>{data.hasOwnProperty("limithuabei")?`${data.limithuabei}元`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>借呗额度</CellBody><CellFooter>{data.hasOwnProperty("limitjiebei")?`${data.limitjiebei}元`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>借贷宝负债</CellBody><CellFooter>{data.hasOwnProperty("jiedaibaofuzai")?`${data.jiedaibaofuzai}元`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>借贷宝已还款</CellBody><CellFooter>{data.hasOwnProperty("jiedaobaoyihuan")?`${data.jiedaobaoyihuan}元`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>手机号实名时间</CellBody><CellFooter>{data.hasOwnProperty("realtimeforphoneyear")?`${data.realtimeforphoneyear}年`:"未填写"}</CellFooter></Cell>
+
                 </Cells>
                 <Cells>
                     

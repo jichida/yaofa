@@ -28,7 +28,7 @@ const {
     } = WeUI;
 
 //判断是否必填
-export const required = value => value ? undefined : '必填项';
+export const required = value => ( value || value===0 )  ? undefined : '必填项';
 export const requiredImg = value => value ? undefined : '图片必须上传';
 //最长输入长度
 export const maxLength = max => value => value && value.length > max ? `超过字段最大长度${max}` : undefined;

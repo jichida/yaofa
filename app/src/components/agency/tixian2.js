@@ -50,15 +50,15 @@ class PageForm extends Component{
                     <Field 
                         name="truename" 
                         InputTit="姓名" 
-                        placeholder="请输入持卡人姓名" 
+                        placeholder="提现人姓名" 
                         type="text" 
                         component={WeuiInputValidation}
                         validate={[ required ]}
                         />
                     <Field 
                         name="bankaccount" 
-                        InputTit="银行卡号" 
-                        placeholder="请输入银行卡号" 
+                        InputTit="支付宝或银行卡" 
+                        placeholder="请输入"
                         type="number" 
                         component={InputBankValidation}
                         validate={[ required,validatebank ]}
