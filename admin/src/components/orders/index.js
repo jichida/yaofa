@@ -63,6 +63,7 @@ const OrderlistEdit = (props) => {
               <NumberField label="服务费" source="feeservice"  style={{ textAlign: 'left' }}/>
               <NumberField label="押金比" source="depositratio"  style={{ textAlign: 'left' }}/>
               <TextField label="放款人状态"  source="statusforlender" />
+              <TextField label="举报异常信息"  source="errorreason" />
               <ReferenceField label="放款人" source="userlender" reference="userlender" allowEmpty>
                 <TextField source="username" />
               </ReferenceField>
