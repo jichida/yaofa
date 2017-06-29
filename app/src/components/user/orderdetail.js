@@ -633,7 +633,7 @@ class Page extends Component {
         return (
     		<div className="borrowinfoPage AppPage">
                 <DocumentTitle title="借款详情" />
-                {!!orderInfo && <div>
+                {!!orderInfo && <div style={{height:window.innerHeight+"px", overflow:"scroll"}}>
                     <Borrowinfohead orderinfo={orderInfo} />
                     <BorrowinfoLenderinfo orderinfo={orderInfo} />
                     <GetBorrowStatusInfo orderInfo={orderInfo}/>

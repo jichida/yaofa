@@ -223,7 +223,7 @@ class Page extends Component {
     		<div className="borrowuserinfoPage addborrowuserinfoPage AppPage">
     			<DocumentTitle title="完善借款资料" />
                 <div className="pageTitle"><span>完善借款资料</span></div>
-                <div className="form">
+                <div className="form" style={{height:(window.innerHeight-50)+"px"}}>
                     <PageForm subBorrowuserinfo={this.subBorrowuserinfo} />
                 </div>
     		</div>

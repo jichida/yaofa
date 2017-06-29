@@ -13,9 +13,10 @@
 	font-size: 14px;
 	margin: 0;
 }
-.borrowinfoPage .headcontent .quota{
+.borrowinfoPage .headcontent span.quota{
 	font-size: 30px;
 	font-weight: bold;
+	display: inline-block;
 }
 .borrowinfoPage .userinfo{
 	display: flex;
@@ -34,6 +35,9 @@
 	font-size: 14px;
 	line-height: 26px;
 	flex-grow: 1;
+}
+.borrowinfoPage .userinfo > div span>span{
+	display: inline-block;
 }
 .borrowinfoPage .userinfo > div.borrowxiangxiinfolnk{
 	flex-grow: 0;
@@ -100,7 +104,6 @@
 	flex-grow: 1;
 	align-self: stretch;
 	margin: 0 20px;
-	height: 36px;
 }
 .getBorrowStatusInfo.btn .cont .weui-cells{
 	margin-top: 0;
@@ -161,6 +164,9 @@
 .loaninfoPage .info{
 	line-height: 30px;
 	font-size: 14px;
+}
+.loaninfoPage .info >div span{
+	display: inline-block;
 }
 .loaninfoPage .weui-media-box__desc{
 	-webkit-line-clamp: 1000;

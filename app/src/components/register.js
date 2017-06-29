@@ -13,14 +13,14 @@ import {
     } from 'redux-form';
 import {
     required,
-    InputValidation,
     phone,
     length4,
     length6,
     passwordA,
     passwordB,
     ischecked,
-    WeuiCheckboxValidation
+    WeuiCheckboxValidation,
+    WeuiInputValidation
     } from "./tools/formvalidation"
 
 import {
@@ -29,7 +29,18 @@ import {
     set_weui
     } from '../actions';
 
+
+
 export class RegisterPage extends Component {
+
+    componentWillMount(){
+        this.innerHeight = window.innerHeight-40;
+    }
+
+    constructor(props) {  
+        super(props);  
+        this.innerHeight= 440;  
+    } 
 
     pageReplace=(name)=>{
         this.props.history.replace(name);
@@ -51,6 +62,7 @@ export class RegisterPage extends Component {
             <Form
                 className="registerForm"
                 onSubmit={handleSubmit(onClickRegister)}
+                style={{height:this.innerHeight+"px"}}
                 >
 				<div className="li">
                     <Field
@@ -58,7 +70,7 @@ export class RegisterPage extends Component {
                         id="username"
                         placeholder="请输入手机号"
                         type="text"
-                        component={ InputValidation }
+                        component={ WeuiInputValidation }
                         validate={[ required, phone ]}
                     />
 				</div>
@@ -70,7 +82,7 @@ export class RegisterPage extends Component {
                         placeholder="请输入验证码"
                         type="text"
                         maxlength="4"
-                        component={ InputValidation }
+                        component={ WeuiInputValidation }
                         validate={[ required,length4 ]}
                     />
                     <span
@@ -88,7 +100,7 @@ export class RegisterPage extends Component {
                         id="password"
                         placeholder="请输入账号密码"
                         type="password"
-                        component={ InputValidation }
+                        component={ WeuiInputValidation }
                         validate={[ required, passwordA ]}
                     />
                 </div>
@@ -99,7 +111,7 @@ export class RegisterPage extends Component {
                         id="password2"
                         placeholder="再次输入账号密码"
                         type="password"
-                        component={ InputValidation }
+                        component={ WeuiInputValidation }
                         validate={[ required, passwordB ]}
                     />
                 </div>
@@ -113,7 +125,7 @@ export class RegisterPage extends Component {
                             id="invitecode"
                             placeholder="请输入邀请码"
                             type="text"
-                            component={ InputValidation }
+                            component={ WeuiInputValidation }
                             validate={[ required,length6 ]}
                         />
                     </div>

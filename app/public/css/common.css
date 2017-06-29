@@ -11,6 +11,9 @@
     font-weight: 200;
     border:none;
 }
+span{
+    display: block;
+}
 button {
     appearance: none;
     -moz-appearance: none;
@@ -25,23 +28,39 @@ input, textarea{
     resize: none;
 }
 .submitBtn{
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -moz-flex-direction: column;
+    -webkit-flex-direction: column;
     flex-direction: column;
+    -moz-flex-shrink: 0;
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
 }
 .btn{
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
     align-items: center;
     height: 44px;
     text-align: center;
     border-radius: 6px;
+    line-height: 44px;
 }
 .btn>span{
     display: block;
     text-align: center;
-    flex-grow: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
     font-size: 16px;
+    line-height: 44px;
 }
 .btn.Primary{
     background: #3479e1;
@@ -73,6 +92,7 @@ input, textarea{
     color: #FFF;
     font-size: 16px;
     text-align: center;
+    line-height: 44px;
 }
 .btn.login:active{
     background: #3479e1;
@@ -91,7 +111,10 @@ input, textarea{
     flex-grow: 1;
     overflow: hidden;
     position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -webkit-flex-direction:column;
     flex-direction: column;
 }
 .formStyle1 {
@@ -103,20 +126,35 @@ input, textarea{
     margin-right: 10px;
 }
 .formStyle1 .weui-cell{
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
     align-items: center;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
     justify-content: space-between;
 }
 .formStyle1 .weui-cell .weui-label{
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
     align-items: center;
 }
 .formStyle1 .weui-cell .weui-label > span{
     font-size: 14px;
     color: #666666;
+    display: inline-block;
 }
 .formStyle1 .weui-cell .weui-cell__bd{
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
     align-items: center;
     flex-grow: 1;
 }
@@ -125,6 +163,7 @@ input, textarea{
 }
 .formStyle1 .weui-cell .weui-cell__bd > span{
     margin-left: 10px;
+    display: inline-block;
 }
 .formStyle1 .weui-cell .weui-cell__bd input{
     text-align: right;
@@ -170,11 +209,23 @@ input, textarea{
 .footer{
     height: 53px;
     flex-shrink: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
     align-items: center;
+
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
     justify-content: space-between;
+
     background: #FFF;
     position: relative;
+
+    -moz-flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
 }
 .footer:before{
     content: "";
@@ -190,13 +241,22 @@ input, textarea{
     border-top: 1px solid #EEE;
 }
 .footer >div.item{
-    flex-grow: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-flex-direction:column;
     flex-direction: column;
     height: 53px;
+    -moz-flex-shrink: 0;
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     position: relative;
 }
 .footer >div.item > span.img > img{
@@ -209,6 +269,7 @@ input, textarea{
 }
 .footer >div.item > span.img{
     margin: 0;
+    margin-top: 1px;
     height: 30px;
 }
 
@@ -218,9 +279,15 @@ input, textarea{
     display: block;
     position: absolute;
     left: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -webkit-justify-content:center;
     justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
     align-items: center;
+
     bottom: 22px;
 }
 .footer >div.item > span.addBorrowBtn > span{
@@ -231,6 +298,9 @@ input, textarea{
     border-radius: 50px;
     position: relative;
     border:3px solid #EEE;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 }
 .footer >div.item > span.addBorrowBtn > span:before{
     content: "";
@@ -306,27 +376,44 @@ input, textarea{
 .swiper-slide img{
     max-width: 100%;
     display: flex;
+    width: 100%;
+}
+.swiper-container{
+    width: 100%;
 }
 /**/
 .pageTitle{
-    height:40px;
+    display: -webkit-box;
+    display: -webkit-flex;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    height:40px;
     align-items: center;
     background: #FFF;
     flex-shrink: 0;
     justify-content: space-between;
 }
+
 .pageTitle span{
     border-left: 3px solid #3479e1;
     font-size: 14px;
     padding-left: 15px;
     line-height: 24px;
 }
+.pageTitle span:first-child{
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1;
+}
+    
 .pageTitle span.rightlnk{
-    margin-right: 15px;
+    margin-right: 25px;
     border: none;
     display: flex;
-    align-items: center
+    align-items: center;
+    position: relative;
 }
 .pageTitle span.rightlnk:after{
     content: " ";
@@ -336,9 +423,15 @@ input, textarea{
     border-width: 2px 2px 0 0;
     border-color: #C8C8CD;
     border-style: solid;
+    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    -ms-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
     transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
     position: relative;
-    margin-left: 5px;
+    top: -2px;
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+    right: -10px;
 }
 .warningBox{
     background: #fffbf2;
@@ -360,6 +453,8 @@ input, textarea{
     padding-left: 6px;
 }
 .swiper-container {
+    -moz-flex-shrink: 0;
+    -webkit-flex-shrink: 0;
     flex-shrink: 0;
 }
 

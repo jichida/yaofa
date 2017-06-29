@@ -53,7 +53,7 @@ class Page extends Component {
                         </div>
                     </div>
                 )}
-                <div className="form">
+                <div className="form" style={{height:(window.innerHeight-104)+"px"}}>
                     <Cells>
                         <Cell><CellBody>户籍</CellBody><CellFooter>{borrowinfo.hasOwnProperty("hukou")?`${borrowinfo.hukou}`:"未填写"}</CellFooter></Cell>
                         <Cell><CellBody>花呗额度</CellBody><CellFooter>{borrowinfo.hasOwnProperty("limithuabei")?`${borrowinfo.limithuabei}元`:"未填写"}</CellFooter></Cell>
@@ -74,10 +74,10 @@ class Page extends Component {
                 </div>
                 {usertype=="userborrow"?(
                 <div className="submitBtn">
-                    <botton 
+                    <button 
                         className="btn Primary"
                         onClick={()=>{this.pushUrl("/addborrowuserinfo")}}
-                        ><span>去修改</span></botton>
+                        ><span>去修改</span></button>
                 </div>
                 ):""}
     		</div>

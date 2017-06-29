@@ -39,6 +39,12 @@ class Page extends Component {
         return data;
     }
 
+
+    constructor(props) {  
+        super(props);  
+        this.listHeight=300;  
+    } 
+
     componentWillMount() {
 
         this.props.dispatch(getmyorders_request({
@@ -51,6 +57,11 @@ class Page extends Component {
                 limit: 100,
             }
         }));
+
+        this.listHeight = window.innerHeight - ((window.innerWidth*0.3)+110);
+
+
+
 
         //console.log("userlog:::"+JSON.stringify(this.props.userlogin));
         let userlogin = this.props.userlogin;
@@ -124,7 +135,9 @@ class Page extends Component {
         return (
             <div className="indexPage AppPage">
                 <DocumentTitle title="红领金-借款端" />
-        		<SwiperBanner data={this.headBanner()} />
+                <div className="swiperContainer">
+        		    <SwiperBanner data={this.headBanner()} />
+                </div>
                 <div className="pageTitle">
                     <span>我的最新借款</span>
                     <span 
@@ -132,7 +145,7 @@ class Page extends Component {
                         onClick={()=>{this.pushUrl("/borrowlist")}}
                         >查看全部</span>
                 </div>
-                <div className="list">
+                <div className="list" style={{height:this.listHeight+"px"}}>
                     {myorderlist.length>0?(
                         <Cells>
                             {
@@ -166,12 +179,12 @@ class Page extends Component {
                         <div className="nodata">
                             <img src="img/21.png" />
                             <span>当前您暂无借款记录</span>
-                            <botton 
+                            <span 
                                 className="btn Primary"
                                 onClick={()=>{this.pushUrl("/addborrow")}}
                                 >
-                                立刻发布借款信息
-                            </botton>
+                                立刻借款
+                            </span>
                         </div>
                     )}
                 </div>

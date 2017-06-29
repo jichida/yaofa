@@ -86,12 +86,6 @@
 	border-radius: 60px;
 }
 
-.addborrowuserinfoPage .submitBtn{
-	display: flex;
-}
-.addborrowuserinfoPage .submitBtn button{
-	flex-grow: 1;
-}
 
 
 

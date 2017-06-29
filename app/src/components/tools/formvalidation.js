@@ -228,7 +228,7 @@ let WeuiCheckboxValidation = (props) => {
 	let style = "";
 	style = err1||err2?"warning":"";
 	return (
-		<FormCell className={style}>
+		<FormCell className={style} style={{padding:0}}>
 			<label className="weui-agree">
 				<input { ...input } className="weui-agree__checkbox" type={type} />
 				<span className="weui-agree__text">
@@ -305,12 +305,16 @@ let WeuiInputValidation = (props) => {
 	style = err1||err2?"warning":"";
 	return (
 	    <FormCell className={style}>
-            <CellHeader>
-                <Label>
-                	{HeadIcon?(<img src={HeadIcon} /> ):""}
-                	<span>{InputTit}</span>
-                </Label>
-            </CellHeader>
+	    	{!!HeadIcon||!!InputTit?(
+	    		<CellHeader>
+	                <Label>
+	                	{HeadIcon?(<img src={HeadIcon} /> ):""}
+	                	<span>{InputTit}</span>
+	                </Label>
+	            </CellHeader>
+	    	):""}
+            
+
             <CellBody>
                 <Input {...input} type={type} placeholder={placeholder}/>
                 <span>{Company}</span>

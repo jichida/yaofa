@@ -4,7 +4,11 @@
 	flex-grow: 1;
 	flex-shrink: 1;
 	justify-self: stretch;
+		
+	display: -webkit-box;
+    display: -webkit-flex;
 	display: flex;
+
 	align-items: center;
 }
 .formvalidation.form_input input{
@@ -23,11 +27,28 @@
 	color: #FFF;
 	font-size: 16px;
 	line-height: 20px;
+
+	display: -webkit-box;
+    display: -webkit-flex;
 	display: flex;
+
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
 	justify-content: center;
+
 	border-radius: 20px;
 	margin: 0 10px;
+	
+	-moz-flex-shrink: 0;
+	-webkit-flex-shrink: 0;
+	flex-shrink: 0;
 }
 .weui-cell_select .weui-cell__bd:after{
 	position: relative;	
+}
+span.weui-agree__text{
+	display: inline-block;
+}
+.weui-agree{
+	padding:0;
 }

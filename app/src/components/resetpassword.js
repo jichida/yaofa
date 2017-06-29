@@ -12,7 +12,7 @@ import {
     } from 'redux-form';
 import {
     required,
-    InputValidation,
+    WeuiInputValidation,
     phone,
     length4,
     passwordA,
@@ -50,7 +50,7 @@ export class ResetPasswordPage extends Component {
                         id="username"
                         placeholder="请输入手机号"
                         type="text"
-                        component={ InputValidation }
+                        component={ WeuiInputValidation }
                         validate={[ required, phone ]}
                     />
                 </div>
@@ -61,7 +61,7 @@ export class ResetPasswordPage extends Component {
                         placeholder="请输入验证码"
                         type="text"
                         maxlength="4"
-                        component={ InputValidation }
+                        component={ WeuiInputValidation }
                         validate={[ required,length4 ]}
                     />
                     <span
@@ -79,7 +79,7 @@ export class ResetPasswordPage extends Component {
                         id="password"
                         placeholder="请输入账号密码"
                         type="password"
-                        component={ InputValidation }
+                        component={ WeuiInputValidation }
                         validate={[ required, passwordA ]}
                     />
                 </div>
@@ -90,7 +90,7 @@ export class ResetPasswordPage extends Component {
                         id="password2"
                         placeholder="再次输入账号密码"
                         type="password"
-                        component={ InputValidation }
+                        component={ WeuiInputValidation }
                         validate={[ required, passwordB ]}
                     />
                 </div>

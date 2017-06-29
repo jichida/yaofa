@@ -15,6 +15,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 }
 .usertypePage .list .li img{
 	max-width: 70%;

@@ -364,13 +364,7 @@ class Page extends Component {
         return (
             <div className="borrowlistPage uservalidationinfoPage AppPage">
                 <DocumentTitle title="我的借款" />
-                {this.state.topicshow?(
-                    <span className="topicinfo">
-                        该信息平台将严格保密，只会开发给向你借款的商家查阅，不作为任何商业用途，如有泄漏情况，请及时联系客服
-                        <span onClick={this.hidetopic}></span>
-                    </span>
-                ):""}
-                <Tab>
+                <Tab style={{height:window.innerHeight+"px"}}>
                     <NavBar>
                         {
                             _.map(navlist, (list, index)=>{
