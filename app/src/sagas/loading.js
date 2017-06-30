@@ -64,12 +64,14 @@ export function* createloadingflow(){
       });
 
       if(!!timeout){
-        //超过800毫秒才弹
-        yield put(set_weui({
-            loading : {
-                show : true
-            },
-        }));
+        //超过800毫秒才弹 getmyorders queryuserstatus
+        if(actionstring!=="getmyorders" && actionstring!=="queryuserstatus" ){
+          yield put(set_weui({
+              loading : {
+                  show : true
+              },
+          }));
+        }
 
         const { result,err, timeout } = yield race({
             result: take(action_result),

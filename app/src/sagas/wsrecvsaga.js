@@ -256,7 +256,7 @@ export function* wsrecvsagaflow() {
             
         //     yield put(fillrealnameprofile_request(payloads));
         // }
-        
+        console.log("md_queryuserstatus_result");
         yield put(queryuserstatus_result(action));
     });
 

@@ -23,7 +23,7 @@
 	display: inline-block;
 	width: 20px;
 	height: 20px;
-	background: #C00;
+	
 	color: #FFF;
 	font-size: 16px;
 	line-height: 20px;
@@ -41,6 +41,7 @@
 	
 	-moz-flex-shrink: 0;
 	-webkit-flex-shrink: 0;
+	background: #C00;
 	flex-shrink: 0;
 }
 .weui-cell_select .weui-cell__bd:after{

@@ -20,7 +20,12 @@ const {
     CellHeader,
     Label,
     CellBody,
-    Input
+    Input,
+    Tab,
+    NavBar,
+    NavBarItem,
+    TabBody,
+    Cells,
     } = WeUI;
 import { 
     required, 
@@ -40,8 +45,16 @@ import BIN from "bankcardinfo";
 
 
 class PageForm extends Component{
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.type !== this.props.type) {
+            this.props.reset();
+        }
+    }
+
     render(){
-        const { handleSubmit,tixianSubmit } = this.props;
+        const { handleSubmit,tixianSubmit,type,reset } = this.props;
+        const placetxt = type?"支付宝账号":"银行卡卡号";
         return(
             <Form
                 onSubmit={handleSubmit(tixianSubmit)}
@@ -55,14 +68,27 @@ class PageForm extends Component{
                         component={WeuiInputValidation}
                         validate={[ required ]}
                         />
-                    <Field 
-                        name="bankaccount" 
-                        InputTit="支付宝或银行卡" 
-                        placeholder="请输入"
-                        type="number" 
-                        component={InputBankValidation}
-                        validate={[ required,validatebank ]}
-                        />
+
+                    {type?(
+                        <Field 
+                            name="bankaccount" 
+                            InputTit={placetxt}
+                            placeholder={`请输入${placetxt}`}
+                            type="姓名" 
+                            component={WeuiInputValidation}
+                            validate={[ required ]}
+                            />
+                    ):(
+                        <Field 
+                            name="bankaccount" 
+                            InputTit={placetxt}
+                            placeholder={`请输入${placetxt}`}
+                            type="number" 
+                            component={InputBankValidation}
+                            validate={[ required,validatebank ]}
+                            />
+                    )}
+
                 </FormUI>
                 <div className="submitBtn" style={{margin:"20px"}}>
                     <button className="btn Primary"><span>确定</span></button>
@@ -93,6 +119,16 @@ export class Page extends Component {
         )
     }
 
+    constructor(props) {  
+        super(props);
+        
+        this.state = {type: true};  
+    } 
+
+    seltype =(type) =>{
+        this.setState({type : type});
+    }
+
 
     setTixianForm = (payload)=>{
         this.props.dispatch(profit_set_tixianform({payload}));
@@ -113,32 +149,40 @@ export class Page extends Component {
                 
         //     }
         // })
-        
         let profitform = this.props.profitform;
-        _getBankInfoByCardNo(value.bankaccount, (info)=>{
-            
-            if(!!info){
-                this.props.dispatch(set_weui({
-                    loading:{
-                        show: true
-                    }})
-                )
-                profitform.bankname = info.bankName;
-                profitform.truename = value.truename;
-                profitform.bankaccount = value.bankaccount;
-                this.setTixianForm(profitform);
-                this.props.dispatch(withdrawcashapplyaddone_request(profitform));
-            }else{
-                this.props.dispatch(set_weui({
-                    toast:{
-                        show: true,
-                        text: '银行卡无法识别',
-                        type: 'warning'
-                    }})
-                )
-            }
 
-        })
+        if(this.state.type){//支付宝
+            profitform.bankname = "支付宝";
+            profitform.truename = value.truename;
+            profitform.bankaccount = value.bankaccount;
+            this.setTixianForm(profitform);
+            this.props.dispatch(withdrawcashapplyaddone_request(profitform));
+        }else{
+            _getBankInfoByCardNo(value.bankaccount, (info)=>{
+                
+                if(!!info){
+                    this.props.dispatch(set_weui({
+                        loading:{
+                            show: true
+                        }})
+                    )
+                    profitform.bankname = info.bankName;
+                    profitform.truename = value.truename;
+                    profitform.bankaccount = value.bankaccount;
+                    this.setTixianForm(profitform);
+                    this.props.dispatch(withdrawcashapplyaddone_request(profitform));
+                }else{
+                    this.props.dispatch(set_weui({
+                        toast:{
+                            show: true,
+                            text: '银行卡无法识别',
+                            type: 'warning'
+                        }})
+                    )
+                }
+
+            })
+        }
         // profitform.truename = value.truename;
         // profitform.bankaccount = value.bankaccount;
         // this.setTixianForm(profitform);
@@ -163,7 +207,28 @@ export class Page extends Component {
             <div className="tixianPage AppPage">
                 <DocumentTitle title="提现验证" />
                 <div className="AddressAddPage">
-                    <PageForm tixianSubmit={this.onClickNext} /> 
+
+                    <Tab style={{height:(window.innerHeight)+"px"}}>
+                        <NavBar>
+                            <NavBarItem 
+                                active={this.state.type}
+                                onClick={()=>{this.seltype(true)}}
+                            >
+                                提现到支付宝
+                            </NavBarItem>
+                            <NavBarItem 
+                                active={!this.state.type}
+                                onClick={()=>{this.seltype(false)}}
+                            >
+                                提现到银行卡
+                            </NavBarItem>
+                        </NavBar>
+                        <TabBody>
+                            <Cells>
+                                <PageForm tixianSubmit={this.onClickNext} type={this.state.type} /> 
+                            </Cells>
+                        </TabBody>
+                    </Tab>
                 </div>
             </div>
         );
