@@ -60,10 +60,13 @@ class Page extends Component {
         this.state = {
             showmark: false,
             falsemark : false,
+            
         };  
+        this.listHeight=300;  
     } 
 
     componentWillMount() {
+        this.listHeight = window.innerHeight - ((window.innerWidth*0.3)+110);
         this.pageStart(this.props.approvalstatus);
         this.getList(0);
         bossindexgetlist = window.setInterval(()=>{
@@ -201,7 +204,7 @@ class Page extends Component {
                     <span 
                         onClick={()=>{this.pushUrl("/bossfiller")}}
                         className="filler sel">
-                        筛选
+                        <i>筛选</i>
                         <img src="img/7.png" />
                     </span>
                     {
@@ -226,7 +229,7 @@ class Page extends Component {
                     </div>
                     ):""
                 }
-                <div className="list">
+                <div className="list" style={{height:this.listHeight+"px"}}>
                     {borrowlist.length>0?(
                         <Cells>
                             {

@@ -67,7 +67,7 @@ class Page extends Component {
         return (
             <div className="borrowlistPage AppPage">
                 <DocumentTitle title="我的借款" />
-                <Tab className="borrowlist">
+                <Tab className="borrowlist" style={{height:window.innerHeight+"px"}}>
                     <NavBar>
                         <NavBarItem 
                             active={myorderlistStatus=="借款中"}

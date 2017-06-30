@@ -36,7 +36,7 @@ class Page extends Component {
                         <span>{nickname}</span>
                     </div>
                 </div>
-                <div className="list">
+                <div className="list" style={{height:(window.innerHeight-((window.innerWidth*0.48)+55))+"px"}}>
                     <Cells>
                         <Cell 
                             onClick={()=>{this.pushUrl("/bossloanlist")}}

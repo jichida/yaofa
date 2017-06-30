@@ -34,7 +34,13 @@ class Page extends Component {
         return data;
     }
 
+    constructor(props) {  
+        super(props);   
+        this.listHeight=300;  
+    } 
+
     componentWillMount() {
+        this.listHeight = window.innerHeight - ((window.innerWidth*0.3)+110);
         window.setTimeout(()=>{this.props.dispatch(getmyborrowusers_request({}))},0);
     }
 
@@ -46,13 +52,13 @@ class Page extends Component {
 	render() {
         const { borrowlist,history } = this.props;
         return (
-            <div className="indexPage AppPage">
+            <div className="indexPage AppPage" >
                 <DocumentTitle title="红领金-借款端" />
         		<SwiperBanner data={this.headBanner()} />
                 <div className="pageTitle bossindexfiller">
                     <span>我的邀请列表</span>
                 </div>
-                <div className="list">
+                <div className="list" style={{height:this.listHeight+"px"}}>
                 {borrowlist.length==0?(
                     <div className="nodata">
                         <img src="img/21.png" />

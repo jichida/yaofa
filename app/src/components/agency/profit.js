@@ -98,7 +98,7 @@ class Page extends Component {
                         提现
                     </div>
                 </div>
-        		<Tab>
+        		<Tab style={{height:(window.innerHeight-160)+"px"}}>
                     <NavBar>
                         <NavBarItem 
                             active={profit.set_listtype===0}

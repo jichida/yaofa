@@ -78,7 +78,7 @@ class Page extends Component {
                 <DocumentTitle title="借款订单" />
                 <Tab
                     className="list"
-                    style={{flexGrow:"1"}}
+                    style={{flexGrow:"1",height:window.innerHeight+"px"}}
                     >
                     <NavBar>
                         <NavBarItem 

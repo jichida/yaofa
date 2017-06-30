@@ -109,7 +109,14 @@ class PageForm extends Component {
 }
 
 class Page extends Component {
+
+    constructor(props) {  
+        super(props);  
+        this.listHeight=300;  
+    } 
+
     componentWillMount () {
+        this.listHeight = window.innerHeight;
         const usertype = localStorage.getItem('usertype');
         if(usertype!="userlender"){
             this.props.history.replace("/");
@@ -149,7 +156,7 @@ class Page extends Component {
         })(PageForm);
 
         return (
-            <div className="validationPhotoPage loaninfoPage AppPage">
+            <div className="validationPhotoPage loaninfoPage AppPage" style={{height:this.listHeight+"px"}}>
                 <DocumentTitle title="完善身份信息" />
                 <div className="validationPhotoTitle">
                     完善身份信息

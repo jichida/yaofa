@@ -99,15 +99,26 @@
 	display: -webkit-box;
     display: -webkit-flex;
 	display: flex;
+	-moz-justify-content: space-between;
+	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
 .bossindexfiller .filler{
 	display: flex;
-	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
 	align-items: center;
 	border: none;
+	-moz-justify-content: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
 .bossindexfiller > div{
+	display: -webkit-box;
+    display: -webkit-flex;
+	display: flex;
+}
+span.filler.sel{
 	display: -webkit-box;
     display: -webkit-flex;
 	display: flex;
@@ -115,6 +126,12 @@
 .bossindexfiller > div span.filler.sel{
 	color: #3479e1;
 	padding-right: 15px;
+	display: -webkit-box;
+    display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	align-items: center;
 }
 
 .bossindexfiller > div > span{
@@ -130,9 +147,11 @@
     display: -webkit-flex;
 	display: flex;
 	flex-direction: row;
+	-webkit-flex-direction: row;
 	padding: 10px;
 	padding-bottom: 0;
 	background: #FFF;
+	-webkit-flex-wrap: wrap;
 	flex-wrap: wrap;
 	border-top: 1px solid #EEE;
 }
@@ -145,6 +164,7 @@
 	padding: 0 10px;
 	flex-shrink: 0;
 	margin-bottom: 10px;
+	display: inline-block;
 }
 
 .bossindexfiller .filler img{

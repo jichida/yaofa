@@ -99,6 +99,7 @@
 .profitPage .headcontent .price span{
 	font-size: 30px;
 	margin-right: 10px;
+	display: inline-block;
 }
 .profitPage .headcontent .btn{
 	text-align: center;
@@ -111,6 +112,7 @@
 	flex-grow: 0;
 	flex-shrink: 0;
 	align-self: center;
+	margin: auto;
 }
 .profitPage .headcontent .btn:active{
 	background: rgba(255,255,255,.2);

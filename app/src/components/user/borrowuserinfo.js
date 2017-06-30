@@ -55,6 +55,9 @@ class Page extends Component {
                 )}
                 <div className="form" style={{height:(window.innerHeight-104)+"px"}}>
                     <Cells>
+                        <Cell><CellBody>芝麻信用分</CellBody><CellFooter>{borrowinfo.hasOwnProperty("resultzhima")&&borrowinfo.resultzhima?`${borrowinfo.resultzhima}`:"未认证"}</CellFooter></Cell>
+                    </Cells>    
+                    <Cells>
                         <Cell><CellBody>户籍</CellBody><CellFooter>{borrowinfo.hasOwnProperty("hukou")?`${borrowinfo.hukou}`:"未填写"}</CellFooter></Cell>
                         <Cell><CellBody>花呗额度</CellBody><CellFooter>{borrowinfo.hasOwnProperty("limithuabei")?`${borrowinfo.limithuabei}元`:"未填写"}</CellFooter></Cell>
                         <Cell><CellBody>借呗额度</CellBody><CellFooter>{borrowinfo.hasOwnProperty("limitjiebei")?`${borrowinfo.limitjiebei}元`:"未填写"}</CellFooter></Cell>
