@@ -3,6 +3,7 @@ import {
   Edit,
   SimpleForm,
   TextInput,
+  NumberInput,
   Datagrid,
   TextField,
   DateField,
@@ -36,6 +37,7 @@ const UserAgencylistEdit = (props) => {
               <TextField label="邀请码" source="invitecode" />
               <TextField label="余额" source="balance" />
               <TextField label="weixinopenid" source="weixinopenid" />
+              <NumberInput label="提成比例" source="bonuslevel1" />
               <TextInput label="拒绝理由" source="approvalrejectseason" />
               <SelectInput  label="审核状态"  source="approvalstatus" choices={[
                   { id: '未递交', name: '未递交资料' },
