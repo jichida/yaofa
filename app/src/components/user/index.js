@@ -87,32 +87,35 @@ class Page extends Component {
         // urlphoneid2:String,//身份证照片反面
         // urlphoneid3:String,//身份证照片手持
 
-        if(userlogin.approvalstatus=="已审核"){
+        
+        //console.log(userlogin);
+        //userlogin.resultzhima&&
+        //userlogin.resultphoto===2&&
+        if( 
+            userlogin.resultid===2 && 
+            userlogin.resultphone===2 && 
+            // userlogin.resulttaobao===2 && 
+            userlogin.hasOwnProperty("hukou")
+            // userlogin.resultzhima===2
+        ){
+            // this.props.dispatch(set_weui({confirm:{
+            //     show : true,
+            //     title : "认证审核中...",
+            //     text : "认证资料已经递交",
+            //     buttonsCloseText : "关闭",
+            //     buttonsClickText : "完善借款资料",
+            //     buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
+            // }}))
             return false;
         }else{
-            //console.log(userlogin);
-            //userlogin.resultzhima&&
-            //userlogin.resultphoto===2&&
-            if( userlogin.resultid===2 && userlogin.resultphone===2 && userlogin.resulttaobao==2 && userlogin.hasOwnProperty("hukou") ){
-                // this.props.dispatch(set_weui({confirm:{
-                //     show : true,
-                //     title : "认证审核中...",
-                //     text : "认证资料已经递交",
-                //     buttonsCloseText : "关闭",
-                //     buttonsClickText : "完善借款资料",
-                //     buttonsClick : ()=>{this.props.history.push("/borrowuserinfo")}
-                // }}))
-                return false;
-            }else{
-                this.props.dispatch(set_weui({confirm:{
-                    show : true,
-                    title : "贷款信息未完善",
-                    text : "通过认证并且完善借款信息后才能进行借贷",
-                    buttonsCloseText : "暂不",
-                    buttonsClickText : "去完善",
-                    buttonsClick : ()=>{this.props.history.push("/validation")}
-                }}))
-            }
+            this.props.dispatch(set_weui({confirm:{
+                show : true,
+                title : "贷款信息未完善",
+                text : "通过认证并且完善借款信息后才能进行借贷",
+                buttonsCloseText : "暂不",
+                buttonsClickText : "去完善",
+                buttonsClick : ()=>{this.props.history.push("/validation")}
+            }}))
         }
 
         
