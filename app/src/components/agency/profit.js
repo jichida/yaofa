@@ -87,7 +87,7 @@ class Page extends Component {
         const { userlogin,profit,myorderlist,bonuslevel1 } = this.props;
         return (
             <div className="borrowlistPage profitPage AppPage">
-                <DocumentTitle title="借款人详情" />
+                <DocumentTitle title="我的钱包" />
                 <div className="headcontent">
                     <div className="tit">钱包余额</div>
                     <div className="price"><span>{userlogin.balance}</span>元</div>

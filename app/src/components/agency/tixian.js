@@ -45,7 +45,7 @@ export class Page extends Component {
     render() {
         return (
             <div className="tixianPage AppPage">
-                <DocumentTitle title="借款人详情" />
+                <DocumentTitle title="提现" />
                 <div className="headCont">
                     <div className="info">
                         <span className="profittit">提现金额</span>

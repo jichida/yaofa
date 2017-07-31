@@ -57,7 +57,7 @@ export class Page extends Component {
         let showphonenumber = this.props.username.substr(0,3)+"****"+this.props.username.substr(7,4);
         return (
             <div className="messageCode AppPage">
-                <DocumentTitle title="提现验证" />
+                <DocumentTitle title="提现" />
                 <div className="messageCodeContent">
                     <span className="tit">请输入<span className="phone">{showphonenumber}</span>收到的短信验证码</span>
                     <div className="messageCodeInput">
