@@ -109,9 +109,9 @@ class Page extends Component {
             if( 
                 userlogin.resultid===2 && 
                 userlogin.resultphone===2 && 
-                userlogin.resulttaobao===2 && 
+                // userlogin.resulttaobao===2 && 
                 userlogin.hasOwnProperty("hukou") &&
-                userlogin.resultphoto===2 &&
+                // userlogin.resultphoto===2 &&
                 userlogin.resultzhima===2
             ){
                 this.props.dispatch(insertorder_request(value));
