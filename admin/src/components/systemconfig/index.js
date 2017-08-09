@@ -21,6 +21,8 @@ import {
     LongTextInput,
     SimpleShowLayout,
     Show as ShowPage,
+    BooleanField,
+    BooleanInput,
     SimpleForm
 } from 'admin-on-rest/lib/mui';
 
@@ -42,7 +44,7 @@ const SystemconfigShow = (props) => (
                <TextField  label="超时时间（小时为单位）" source="timeexporder" />
                <TextField  label="每天取消次数" source="cancelcountperday" />
                <TextField  label="中介分成比例[0.1表示10%]" source="bonuslevel1" />
-
+               <BooleanField label="是否允许短信通知" source="smson" />
            </SimpleShowLayout>
        </ShowPage>
 );
@@ -63,6 +65,7 @@ const SystemconfigCreateTitle = ({ record }) => {
                 <NumberInput  label="超时时间（小时为单位）" source="timeexporder" />
                 <NumberInput  label="每天取消次数" source="cancelcountperday" />
                 <NumberInput  label="中介分成比例[0.1表示10%]" source="bonuslevel1" />
+                <BooleanInput label="是否允许短信通知" source="smson" />
            </SimpleForm>
        </Create>
 );
@@ -76,6 +79,7 @@ const SystemconfigCreateTitle = ({ record }) => {
                 <NumberInput  label="超时时间（小时为单位）" source="timeexporder" />
                 <NumberInput  label="每天取消次数" source="cancelcountperday" />
                 <NumberInput  label="中介分成比例[0.1表示10%]" source="bonuslevel1" />
+                <BooleanInput label="是否允许短信通知" source="smson" />
         </SimpleForm>
     </EditPage>
 );

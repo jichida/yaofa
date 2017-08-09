@@ -1,4 +1,4 @@
-let islocalhost = false;
+let islocalhost = true;
 let config = {
   serverurl:islocalhost?'http://localhost:43002':'http://wx.yaofabank.com',//'http://localhost:3100'
   appversion : "1.0",

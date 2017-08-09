@@ -58,7 +58,8 @@ export default {
         picvaild:'照片认证',
         realinfo:'实名资料',
         authresult:'认证结果',
-        personalasset:'个人资产'
+        personalasset:'个人资产',
+        contact:'常用联系人'
       }
     },
     withdrawcash:{

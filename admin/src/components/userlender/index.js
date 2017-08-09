@@ -12,6 +12,7 @@ import {
   SelectInput,
   BooleanField,
   BooleanInput,
+  NumberInput,
   ImageField,
   Filter
 } from 'admin-on-rest';
@@ -51,6 +52,8 @@ const UserLenderlistEdit = (props) => {
               <FormTab label="resources.userlender.tabs.canaccept">
                 <TextInput label="是否允许接单理由" source="canacceptreason" />
                 <BooleanInput label="是否允许接单" source="canaccept"  elStyle={{ float: 'left' }}/>
+                <NumberInput  label="预借款金额比例" source="percentborrowpre" />
+                <NumberInput  label="实际借款金额比例" source="percentborrowreal" />
               </FormTab>
               <FormTab label="resources.userlender.tabs.realinfo">
               <TextField label="真实姓名" source="truename" />

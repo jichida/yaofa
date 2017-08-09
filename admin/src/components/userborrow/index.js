@@ -123,6 +123,12 @@ const UserBorrowlistEdit = (props) => {
                   <BooleanField label="有无逾期记录" source="hasyuqijilu"  elStyle={{ float: 'left' }}/>
                   <BooleanField label="身份证原件" source="hasshenfenzhengyuanjian"   elStyle={{ float: 'left' }}/>
               </FormTab>
+              <FormTab label="resources.userborrower.tabs.contact">
+                <TextField label="常用联系人1姓名"  source="contact1.name" />
+                <TextField label="常用联系人1电话"  source="contact1.phonenumber" />
+                <TextField label="常用联系人2姓名"  source="contact2.name" />
+                <TextField label="常用联系人2电话"  source="contact2.phonenumber" />
+              </FormTab>
           </TabbedForm>
       </Edit>);
 
