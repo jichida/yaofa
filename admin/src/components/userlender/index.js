@@ -51,7 +51,13 @@ const UserLenderlistEdit = (props) => {
               </FormTab>
               <FormTab label="resources.userlender.tabs.canaccept">
                 <TextInput label="是否允许接单理由" source="canacceptreason" />
-                <BooleanInput label="是否允许接单" source="canaccept"  elStyle={{ float: 'left' }}/>
+                <BooleanInput label="是否允许接单" source="canaccept"  elStyle={{ 
+                    width: "260px",
+                    borderBottom: "1px solid #DDD",
+                    height: "31px",
+                    marginTop: "18px",
+                    marginBottom: "10px"
+                }}/>
                 <NumberInput  label="预借款金额比例" source="percentborrowpre" />
                 <NumberInput  label="实际借款金额比例" source="percentborrowreal" />
               </FormTab>
