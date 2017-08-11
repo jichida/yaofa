@@ -18,6 +18,7 @@ import {
   Filter
 } from 'admin-on-rest';
 import ApproveButton from './btn';
+import BtnGroup from './btngroup';
 
 export const UserBorrowFilter = props => (
     <Filter {...props}>
@@ -90,7 +91,9 @@ const UserBorrowlistEdit = (props) => {
                      { id: 2, name: '认证成功' },
                  ]} />
                <TextField label="结果"  source="resultphone_obj" />
-               <TextInput label="详情"  source="resultphone_detail" />
+               <TextInput label="文本详情"  source="resultphone_detail" />
+               <TextInput label="Excel详情"  source="resultphone_detail_excel" />
+               <BtnGroup />
                <SelectInput  label="芝麻分认证结果"  source="resultzhima" choices={[
                      { id: -1, name: '认证失败' },
                      { id: 0 , name: '未递交资料' },
