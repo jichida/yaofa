@@ -27,6 +27,7 @@ class Page extends Component {
             value.resulttaobao= 1;
         }
         let posturl = config.serverurl + "/vborrow/" + id + "/" + tp;
+        console.log("这里是修改状态为认证中地址参数～～～～～:::"+posturl);
         window.$.ajax({
             type: "GET",
             url: posturl,

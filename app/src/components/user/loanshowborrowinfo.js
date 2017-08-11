@@ -62,8 +62,10 @@ class PhoneInfo extends Component {
                 dataType: "json", 
                 url : config.serverurl + this.props.data,
                 success: (msg, status)=>{
-                    this.setState({datainfo : msg});
-                    this.setState({showinfo : true})
+                    if(!!msg.phoneInfo){
+                        this.setState({datainfo : msg});
+                        this.setState({showinfo : true});
+                    }
                 }
             });
         }
@@ -73,6 +75,9 @@ class PhoneInfo extends Component {
         
         if(this.state.showinfo){
             const { phoneInfo,phone_no,status,userInfo,callRecordsInfo,deceitRisk,messageRecordsInfo,contactAreaInfo,phoneOffInfos } = this.state.datainfo;
+
+            let newcallRecordsInfo = _.sortBy(callRecordsInfo, [function(o) { return -o.connTimes; }]);
+
             return (
                 <div className="pageInfo loanshowborrowinfoPageinfo">
                     <CellsTitle>运营商信息</CellsTitle>
@@ -99,21 +104,26 @@ class PhoneInfo extends Component {
                         <Cell><CellBody>是否出现法院相关号码 呼叫</CellBody><CellFooter>{deceitRisk.calledByCourtNo==="True"?"是":"否"}</CellFooter></Cell>
                         <Cell><CellBody>运营商是否实名</CellBody><CellFooter>{deceitRisk.phoneIsAuth==="True"?"是":"否"}</CellFooter></Cell>
                     </Cells>
-                    <CellsTitle>通话记录分析</CellsTitle>
+                    <CellsTitle>
+                        <div className="CallRecordsInfoTitle">
+                            <span>通话记录分析</span>
+                            <a href="" download={`${phoneInfo.realName}通话记录`}>下载通话记录</a>
+                        </div>
+                    </CellsTitle>
                     <div className="loanshowborrowinfotable">
                         <table>
                             <tr>
                                 <th>号码(地区)</th>
-                                <th>通话时长</th>
+                                <th>通话次数</th>
                                 <th>被叫次</th>
                                 <th>主叫次</th>
                             </tr>
                             {
-                                _.map(callRecordsInfo, (info,index)=>{
+                                _.map(newcallRecordsInfo, (info,index)=>{
                                     return (
                                         <tr key={index}>
                                             <td>{info.phoneNo}<br/>{info.belongArea}</td>
-                                            <td>{info.connTime}</td>
+                                            <td>{info.connTimes}</td>
                                             <td>{info.calledTimes}</td>
                                             <td>{info.callTimes}</td>
                                         </tr>

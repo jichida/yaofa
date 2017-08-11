@@ -59,7 +59,7 @@ class ShenfenvalidationForm extends Component {
                         name="cardno"
                         id="cardno"
                         placeholder="请输入身份证号"
-                        type="number"
+                        type="text"
                         component={ WeuiInputValidation }
                         validate={[ required ]}
                         InputTit="身份证号"

@@ -87,6 +87,37 @@
 }
 
 
+.connectuserlist{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    padding: 10px 15px;
+    border-bottom: 1px solid #EEE;
+    line-height: 40px;
+}
+
+.connectuserlist span{
+	-moz-flex-shrink: 0;
+	-webkit-flex-shrink: 0;
+	flex-shrink: 0;
+	font-size: 14px;
+}
+
+.connectuserlist >div{
+    border: 1px solid #EEE;
+    -moz-flex-shrink: 1;
+	-webkit-flex-shrink: 1;
+	flex-shrink: 1;
+}
+.connectuserlist >div input{
+    height: 40px;
+    padding-left: 10px;
+    width: 100%;
+}
+.connectuserlist >div{
+    margin-left:10px;
+}
 
 
 

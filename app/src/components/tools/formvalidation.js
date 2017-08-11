@@ -261,14 +261,14 @@ let WeuiCheckboxValidation = (props) => {
 let InputValidation = (props) => {
 
 	const {onError,input, placeholder, type, meta: { touched, error, warning }} = props;
-	let err1 = (touched && error);
-	let err2 = (touched && warning);
+	let err1 = error;
+	let err2 = warning;
 	let style = "formvalidation form_input";
 	style = err1||err2?"formvalidation form_input warning":"formvalidation form_input";
 	return (
 	  	<div className={style}>
 		    <input {...input} placeholder={placeholder} type={type}/>
-		    {	touched && 
+		    {	 
 		    	((error && 
 		    		<span 
 		    			className="warningtext"

@@ -17,6 +17,7 @@ import {
 } from '../../actions';
 import {
     required,
+    phone,
     InputValidation,
     WeuiInputValidation,
     WeuiSelectValidation,
@@ -169,6 +170,38 @@ class PageForm extends Component {
                             InputTit="身份证原件"
                         />
                     </FormUI>
+                    <FormUI>
+                        <div className="connectuserlist">
+                            <span>常用联系人1:</span>
+                            <Field
+                                name="contact1_name"
+                                id="contact1_name"
+                                placeholder="手机号"
+                                component={ InputValidation }
+                            />
+                            <Field
+                                name="contact1_phonenumber"
+                                id="contact1_phonenumber"
+                                placeholder="姓名"
+                                component={ InputValidation }
+                            />
+                        </div>
+                        <div className="connectuserlist">
+                            <span>常用联系人1:</span>
+                            <Field
+                                name="contact2_name"
+                                id="contact2_name"
+                                placeholder="手机号"
+                                component={ InputValidation }
+                            />
+                            <Field
+                                name="contact2_phonenumber"
+                                id="contact2_phonenumber"
+                                placeholder="姓名"
+                                component={ InputValidation }
+                            />
+                        </div>
+                    </FormUI>
                 </div>
                 <div className="submitBtn">
                     <button className="btn Primary"><span>确定</span></button>
@@ -186,6 +219,14 @@ class Page extends Component {
 
     subBorrowuserinfo=(value)=>{
         console.log(value);
+
+        if(!!value.contact1_name && !!value.contact1_phonenumber){
+            value['contact1'] = {name:value.contact1_name, phonenumber:value.contact1_phonenumber};
+        }
+        if(!!value.contact2_name && !!value.contact2_phonenumber){
+            value['contact2'] = {name:value.contact2_name, phonenumber:value.contact2_phonenumber};
+        }
+
         const loading = {
             show : true,
         }
@@ -206,8 +247,6 @@ class Page extends Component {
                 jiedaobaoyihuan: this.props.hasOwnProperty("jiedaobaoyihuan")?this.props.jiedaobaoyihuan:"",
                 realtimeforphoneyear: this.props.hasOwnProperty("realtimeforphoneyear")?this.props.realtimeforphoneyear:"",
                 
-
-
                 hasgudingzichan : this.props.hasgudingzichan||false,
                 hasdanwei : this.props.hasdanwei||false,
                 hasgongjijin : this.props.hasgongjijin||false,
@@ -216,6 +255,11 @@ class Page extends Component {
                 hasjinrihuankuan : this.props.hasjinrihuankuan||false,
                 hasyuqijilu : this.props.hasyuqijilu||false,
                 hasshenfenzhengyuanjian : this.props.hasshenfenzhengyuanjian||false,
+
+                contact1_name : this.props.contact1.name||'',
+                contact1_phonenumber : this.props.contact1.phonenumber||'',
+                contact2_name : this.props.contact2.name||'',
+                contact2_phonenumber : this.props.contact2.phonenumber||'',
             }
         })(PageForm);
 

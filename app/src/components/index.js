@@ -31,7 +31,7 @@ export class Page extends Component {
 
         }else{
             //console.log(config.redirect_uri_renzheng);
-            window.location.href= config.redirect_uri_renzheng;
+            //window.location.href= config.redirect_uri_renzheng;
             //console.log("index getopenid");
         }
 

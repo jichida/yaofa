@@ -12,7 +12,7 @@
     border:none;
 }
 span{
-    display: block;
+    display: inline-block;
 }
 button {
     appearance: none;
@@ -491,5 +491,23 @@ input, textarea{
     from {margin-bottom : -100px;}
     to {margin-bottom : 33px;}
 }
+.bossindexlistnumber{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+
+}
+
+.CallRecordsInfoTitle {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    display: -webkit-flex;
+    -moz-justify-content: space-between;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+
 
 

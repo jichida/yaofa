@@ -74,6 +74,11 @@ class Page extends Component {
                         <Cell><CellBody>有无今日还款</CellBody><CellFooter>{borrowinfo.hasjinrihuankuan?greenhave:"无"}</CellFooter></Cell>
                         <Cell><CellBody>有无身份证原件</CellBody><CellFooter>{borrowinfo.hasshenfenzhengyuanjian?greenhave:"无"}</CellFooter></Cell>
                     </Cells>
+                    <Cells>
+                        <Cell><CellBody>常用联系人1</CellBody><CellFooter>{borrowinfo.contact1?`${borrowinfo.contact1.name} ${borrowinfo.contact1.phonenumber}`:"未填写"}</CellFooter></Cell>
+                        <Cell><CellBody>常用联系人2</CellBody><CellFooter>{borrowinfo.contact2?`${borrowinfo.contact2.name} ${borrowinfo.contact2.phonenumber}`:"未填写"}</CellFooter></Cell>
+                    </Cells>
+
                 </div>
                 {usertype=="userborrow"?(
                 <div className="submitBtn">

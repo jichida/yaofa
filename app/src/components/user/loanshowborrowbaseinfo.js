@@ -58,6 +58,10 @@ class BaseInfo extends Component{
                     <Cell><CellBody>有无今日还款</CellBody><CellFooter>{data.hasjinrihuankuan?greenhave:"无"}</CellFooter></Cell>
                     <Cell><CellBody>有无身份证原件</CellBody><CellFooter>{data.hasshenfenzhengyuanjian?greenhave:"无"}</CellFooter></Cell>
                 </Cells>
+                <Cells>
+                    <Cell><CellBody>常用联系人1</CellBody><CellFooter>{data.contact1?`${data.contact1.name} ${data.contact1.phonenumber}`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>常用联系人2</CellBody><CellFooter>{data.contact2?`${data.contact2.name} ${data.contact2.phonenumber}`:"未填写"}</CellFooter></Cell>
+                </Cells>
             </div>
         )
     }

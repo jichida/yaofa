@@ -385,6 +385,25 @@ class GetBorrowStatusInfo extends Component{
         }
     }
 
+    //商家取消放款
+    lenderOffOrder=(id)=>{
+        let payload = {
+            query:{_id:id},
+            data:{
+                orderstatus : 0
+            }
+        };
+        this.props.dispatch(set_weui({confirm:{
+            show : true,
+            title : "取消放款",
+            text : "您确定要取消此次放款服务吗？",
+            buttonsCloseText : "取消",
+            buttonsClickText : "确定",
+            buttonsClick : ()=>{this.props.dispatch(confirmorder_request(payload))}
+        }}))
+
+    }
+
     //完成放款
     show_LenderConfirminput=(status)=>{
         this.props.dispatch(lender_set_endorder_status(status));
@@ -446,7 +465,7 @@ class GetBorrowStatusInfo extends Component{
                                 <span className="info color_warning">{orderstatusArray[showorderstatus][0]}</span>
                                 {
                                     //抢单
-                                    orderInfo.orderstatus==0?(
+                                    orderInfo.orderstatus===0?(
                                         <span
                                             className="btn Primary"
                                             onClick={()=>{this.lenderGetOrder(orderInfo._id)}}
@@ -454,8 +473,17 @@ class GetBorrowStatusInfo extends Component{
                                     ):""
                                 }
                                 {
+                                    //抢单
+                                    orderInfo.orderstatus===1?(
+                                        <span
+                                            className="btn Default"
+                                            onClick={()=>{this.lenderOffOrder(orderInfo._id)}}
+                                            >取消放款</span>
+                                    ):""
+                                }
+                                {
                                     //用户已经确认，获取用户联系方式
-                                    orderInfo.orderstatus==2?(
+                                    orderInfo.orderstatus===2?(
                                         <div className="btnlist">
                                             <div className="btn Primary phonelnk">
                                                 <a href={"tel:"+orderInfo.creator.username}>联系借款人</a>

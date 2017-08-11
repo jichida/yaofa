@@ -251,7 +251,7 @@ class Page extends Component {
                                                 </div>
                                             </CellHeader>
                                             <CellBody>
-                                                <div>借 <span className="blue">{borrow.moneylimit}</span> 元</div>
+                                                <div className="bossindexlistnumber">借 <span className="blue">{borrow.moneylimit}</span> 元</div>
                                                 <div>{borrow.statusforlender}</div>
                                             </CellBody>
                                             <CellFooter/>
