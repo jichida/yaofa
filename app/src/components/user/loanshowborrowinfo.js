@@ -107,7 +107,9 @@ class PhoneInfo extends Component {
                     <CellsTitle>
                         <div className="CallRecordsInfoTitle">
                             <span>通话记录分析</span>
-                            <a href="" download={`${phoneInfo.realName}通话记录`}>下载通话记录</a>
+                            { !!this.props.dataexcel && 
+                                <a href={`${config.serverurl}${this.props.dataexcel}`} download={`${phoneInfo.realName}通话记录`}>下载通话记录</a>
+                            }
                         </div>
                     </CellsTitle>
                     <div className="loanshowborrowinfotable">
@@ -453,7 +455,7 @@ class Page extends Component {
     }
 
     render() {
-        const { navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo,resultzhima_obj } = this.props;
+        const { navlist,resultid_obj,resulttaobao_detail,resultphone_detail,resultphone_detail_excel,borrow_baseinfo,resultzhima_obj } = this.props;
         return (
             <div className="borrowlistPage uservalidationinfoPage AppPage">
                 <DocumentTitle title="借款人的认证信息" />
@@ -476,7 +478,7 @@ class Page extends Component {
                     <TabBody>
                         {this.state.status==="shengfen"?(<IdInfo data={resultid_obj}/>):""}
                         {this.state.status==="taobao"?(<TaobaoInfo data={resulttaobao_detail}/>):""}
-                        {this.state.status==="phone"?(<PhoneInfo data={resultphone_detail}/>):""}
+                        {this.state.status==="phone"?(<PhoneInfo data={resultphone_detail} dataexcel={resultphone_detail_excel}/>):""}
                         {this.state.status==="base"?(<BaseInfo data={borrow_baseinfo} resultzhima={resultzhima_obj}/>):""}
                     </TabBody>
                 </Tab>
