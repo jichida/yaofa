@@ -71,7 +71,9 @@ class PhoneInfo extends Component {
         }
     }
     render(){
-        const { data,history } = this.props;
+        const { data,history,dataexcel } = this.props;
+
+        console.log("dataexcel:::"+this.props.dataexcel);
         
         if(this.state.showinfo){
             const { phoneInfo,phone_no,status,userInfo,callRecordsInfo,deceitRisk,messageRecordsInfo,contactAreaInfo,phoneOffInfos } = this.state.datainfo;
@@ -107,7 +109,7 @@ class PhoneInfo extends Component {
                     <CellsTitle>
                         <div className="CallRecordsInfoTitle">
                             <span>通话记录分析</span>
-                            { !!this.props.dataexcel && 
+                            { !!dataexcel && 
                                 <a href={`${config.serverurl}${this.props.dataexcel}`} download={`${phoneInfo.realName}通话记录`}>下载通话记录</a>
                             }
                         </div>
@@ -489,34 +491,17 @@ class Page extends Component {
 const data = ({order:{borrow_baseinfo},order}) => {
     let creator = order.orderInfo.creator;
     let navlist = [
-        {
-            name : "淘宝信息",
-            type : "taobao"
-        },
-        {
-            name : "运营商信息",
-            type : "phone"
-        },
-        {
-            name : "身份信息",
-            type : "shengfen"
-        },
-        {
-            name : "其他借款信息",
-            type : "base"
-        }
+        {name : "淘宝信息",type : "taobao"},
+        {name : "运营商信息",type : "phone"},
+        {name : "身份信息",type : "shengfen"},
+        {name : "其他借款信息",type : "base"}
     ];
     let resultid_obj = creator.resultid==2?JSON.parse(creator.resultid_obj):false;
     let resultphone_detail = creator.resultphone==2?creator.resultphone_detail:false;
+    let resultphone_detail_excel = !!creator.resultphone_detail_excel?creator.resultphone_detail_excel:false;
     let resulttaobao_detail = creator.resulttaobao==2?creator.resulttaobao_detail:false;
     let resultzhima_obj = creator.resultzhima==2?creator.resultzhima_obj:false;
-    // console.log("~~~~~~~~~~~~~~~");
-    // console.log(resultid_obj);
-    // console.log(resultphone_detail);
-    // console.log(resulttaobao_detail);
-
-    return {navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo:creator, resultzhima_obj};
-
+    return {navlist,resultid_obj,resulttaobao_detail,resultphone_detail,borrow_baseinfo:creator, resultzhima_obj, resultphone_detail_excel};
 };
 Page = connect(data)(Page);
 export default Page;
