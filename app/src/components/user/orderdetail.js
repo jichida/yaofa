@@ -603,7 +603,7 @@ class GetBorrowStatusInfo extends Component{
 }
 //approvalstatus已审核
 const dataGetBorrowStatusInfo = ({
-    userlogin:{canaccept,canacceptreason,approvalstatus},
+    userlogin,
     app:{percentborrowreal,percentborrowpre,cancelforpay,cancelcountperday},
     userlender:{bosscancelorder},
     order:{myorderlist}
@@ -618,6 +618,13 @@ const dataGetBorrowStatusInfo = ({
     if(new_bosscancelorder.length>0){ 
         first_cancel_order = new_bosscancelorder[0];
     }
+
+    //:{canaccept,canacceptreason,approvalstatus,percentborrowreal,percentborrowpre},
+    let canaccept = userlogin.canaccept;
+    let canacceptreason = userlogin.canacceptreason;
+    let approvalstatus = userlogin.approvalstatus;
+    percentborrowreal = !!userlogin.percentborrowreal? userlogin.percentborrowreal : percentborrowreal;
+    percentborrowpre = !!userlogin.percentborrowpre? userlogin.percentborrowpre : percentborrowpre;
 
     return {canaccept,canacceptreason,approvalstatus,percentborrowreal,percentborrowpre,first_cancel_order,cancelforpay,cancelcountperday};
 };
