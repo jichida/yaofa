@@ -46,8 +46,12 @@ class Page extends Component {
     }
 
     gotoBorrowInfo =(order)=>{
-        this.props.dispatch(set_orderinfo(order));
-        this.pushUrl(`/orderdetail/${order._id}`);
+        
+        if(order.orderstatus!==-3){
+            this.props.dispatch(set_orderinfo(order));
+            //this.pushUrl("/borrowinfo");
+            this.pushUrl(`/orderdetail/${order._id}`);
+        }
     }
 
     getList =()=>{
@@ -103,13 +107,15 @@ class Page extends Component {
                                                 </div>
                                             </CellHeader>
                                             <CellBody>
-                                                <span>{order.statusforlender}</span>
+
+                                                {order.orderstatus===-3 && "超时失效"}
+                                                {order.orderstatus!==-3 && <span>{order.statusforlender}</span>}
                                                 {order.paystatus=="未支付"&&order.moneyreal>0?(
                                                     <span className="color_error">去支付</span>
                                                 ):""}
                                                 
                                             </CellBody>
-                                            <CellFooter/>
+                                            {order.orderstatus!==-3 && <CellFooter/>}
                                         </Cell>
                                     )
                                 })}

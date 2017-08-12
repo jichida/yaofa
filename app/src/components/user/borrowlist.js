@@ -41,9 +41,11 @@ class Page extends Component {
     }
 
     gotoBorrowInfo =(order)=>{
-        this.props.dispatch(set_orderinfo(order));
-        //this.pushUrl("/borrowinfo");
-        this.pushUrl(`/orderdetail/${order._id}`);
+        if(order.orderstatus!==-3){
+            this.props.dispatch(set_orderinfo(order));
+            //this.pushUrl("/borrowinfo");
+            this.pushUrl(`/orderdetail/${order._id}`);
+        }
     }
 
     // getList =(status)=>{
@@ -96,9 +98,10 @@ class Page extends Component {
                                                 </div>
                                             </CellHeader>
                                             <CellBody>
-                                                {order.statusforlender}
+                                                {order.orderstatus===-3 && "超时失效"}
+                                                {order.orderstatus!==-3 && order.statusforlender}
                                             </CellBody>
-                                            <CellFooter/>
+                                            {order.orderstatus!==-3 && <CellFooter/>}
                                         </Cell>
                                     )
                                 })}
@@ -115,7 +118,8 @@ class Page extends Component {
 }
 
 const data = ({order:{myorderlistStatus,myorderlist}}) => {
-    myorderlist=_.sortBy(myorderlist, [function(o){ 
+    let newmyorderlist = myorderlist;
+    newmyorderlist=_.sortBy(newmyorderlist, [function(o){ 
         if(o.orderstatus<0){
             o.orderstatus=-(o.orderstatus)+4
         }
@@ -123,10 +127,10 @@ const data = ({order:{myorderlistStatus,myorderlist}}) => {
     }]);
     let fillerorderlist={};
     if(myorderlistStatus==="借款中"){
-        fillerorderlist=_.filter(myorderlist, function(o) { return o.statusforborrower!=="订单完成"; });
+        fillerorderlist=_.filter(newmyorderlist, function(o) { return o.statusforborrower!=="订单完成"; });
     }
     if(myorderlistStatus==="已完成"){
-        fillerorderlist=_.filter(myorderlist, function(o) { return o.statusforborrower==="订单完成"; });
+        fillerorderlist=_.filter(newmyorderlist, function(o) { return o.statusforborrower==="订单完成"; });
     }
 
     return {fillerorderlist, myorderlistStatus};

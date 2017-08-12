@@ -110,7 +110,7 @@ class PhoneInfo extends Component {
                         <div className="CallRecordsInfoTitle">
                             <span>通话记录分析</span>
                             { !!dataexcel && 
-                                <a href={`${config.serverurl}${this.props.dataexcel}`} download={`${phoneInfo.realName}通话记录`}>下载通话记录</a>
+                                <a href={`${config.serverurl}${this.props.dataexcel}`} target="_blank">下载通话记录</a>
                             }
                         </div>
                     </CellsTitle>

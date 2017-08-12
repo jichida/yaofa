@@ -128,9 +128,11 @@ class Page extends Component {
     }
 
     gotoBorrowInfo =(order)=>{
-        this.props.dispatch(set_orderinfo(order));
-        //this.pushUrl("/borrowinfo");
-        this.pushUrl(`/orderdetail/${order._id}`);
+        if(order.orderstatus!==-3){
+            this.props.dispatch(set_orderinfo(order));
+            //this.pushUrl("/borrowinfo");
+            this.pushUrl(`/orderdetail/${order._id}`);
+        }
     }
 
 	render() {
@@ -170,9 +172,10 @@ class Page extends Component {
                                                 </div>
                                             </CellHeader>
                                             <CellBody>
-                                                {order.statusforlender}
+                                                {order.orderstatus===-3 && "超时失效"}
+                                                {order.orderstatus!==-3 && order.statusforlender}
                                             </CellBody>
-                                            <CellFooter/>
+                                            {order.orderstatus!==-3 && <CellFooter/>}
                                         </Cell>
                                     )
                                 })
