@@ -390,6 +390,25 @@ class GetBorrowStatusInfo extends Component{
         }
     }
 
+    //商家取消放款
+    lenderOffOrder=(id)=>{
+        let payload = {
+            query:{_id:id},
+            data:{
+                orderstatus : 0
+            }
+        };
+        this.props.dispatch(set_weui({confirm:{
+            show : true,
+            title : "取消放款",
+            text : "您确定要取消此次放款服务吗？",
+            buttonsCloseText : "取消",
+            buttonsClickText : "确定",
+            buttonsClick : ()=>{this.props.dispatch(confirmorder_request(payload))}
+        }}))
+
+    }
+
     //完成放款
     show_LenderConfirminput=(status)=>{
         this.props.dispatch(lender_set_endorder_status(status));
@@ -451,6 +470,15 @@ class GetBorrowStatusInfo extends Component{
                                             className="btn Primary"
                                             onClick={()=>{this.lenderGetOrder(orderInfo._id)}}
                                             >放贷抢单</span>
+                                    ):""
+                                }
+                                {
+                                    //抢单
+                                    orderInfo.orderstatus===1?(
+                                        <span
+                                            className="btn Default"
+                                            onClick={()=>{this.lenderOffOrder(orderInfo._id)}}
+                                            >取消放款</span>
                                     ):""
                                 }
                                 {
