@@ -67,11 +67,11 @@ class BaseInfo extends Component{
         let contact2num = 0;
 
         if(!!data.contact1 && !!callRecordsInfo){
-            let s1 = _.filter(callRecordsInfo, function(o) { return o.phoneNo===data.contact1; });
+            let s1 = _.filter(callRecordsInfo, function(o) { return o.phoneNo===data.contact1.phonenumber; });
             contact1num = s1.connTimes;
         }
-        if(!!data.contact1 && !!callRecordsInfo){
-            let s2 = _.filter(callRecordsInfo, function(o) { return o.phoneNo===data.contact2; });
+        if(!!data.contact2 && !!callRecordsInfo){
+            let s2 = _.filter(callRecordsInfo, function(o) { return o.phoneNo===data.contact2.phonenumber; });
             contact2num = s2.connTimes;
         }
 
