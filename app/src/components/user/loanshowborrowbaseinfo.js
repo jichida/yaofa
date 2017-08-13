@@ -32,9 +32,49 @@ const {
 
 class BaseInfo extends Component{
 
+    constructor(props) {
+        super(props);  
+        this.state = {
+            datainfo : {},
+            showinfo : false
+        };
+    }
+    componentWillMount () {
+        this.getlist();
+    }
+    getlist =()=>{
+        if(this.props.data){
+            window.$.ajax({
+                type: "GET",
+                dataType: "json", 
+                url : config.serverurl + this.props.data.resultphone_detail,
+                success: (msg, status)=>{
+                    if(!!msg.phoneInfo){
+                        this.setState({datainfo : msg});
+                        this.setState({showinfo : true});
+                    }
+                }
+            });
+        }
+    }
+
     render(){
         const { data,resultzhima } = this.props;
         const greenhave = (<span className="green">有</span>);
+        const { callRecordsInfo } = this.state.datainfo;
+
+        let contact1num = 0;
+        let contact2num = 0;
+
+        if(!!data.contact1 && !!callRecordsInfo){
+            let s1 = _.filter(callRecordsInfo, function(o) { return o.phoneNo===data.contact1; });
+            contact1num = s1.connTimes;
+        }
+        if(!!data.contact1 && !!callRecordsInfo){
+            let s2 = _.filter(callRecordsInfo, function(o) { return o.phoneNo===data.contact2; });
+            contact2num = s2.connTimes;
+        }
+
         return (
             <div className="baseinfo">
                 <Cells>
@@ -59,8 +99,8 @@ class BaseInfo extends Component{
                     <Cell><CellBody>有无身份证原件</CellBody><CellFooter>{data.hasshenfenzhengyuanjian?greenhave:"无"}</CellFooter></Cell>
                 </Cells>
                 <Cells>
-                    <Cell><CellBody>常用联系人1</CellBody><CellFooter>{data.contact1?`${data.contact1.name} ${data.contact1.phonenumber}`:"未填写"}</CellFooter></Cell>
-                    <Cell><CellBody>常用联系人2</CellBody><CellFooter>{data.contact2?`${data.contact2.name} ${data.contact2.phonenumber}`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>常用联系人1</CellBody><CellFooter>{data.contact1?`${data.contact1.name} ${data.contact1.phonenumber} ${contact1num}次` :"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>常用联系人2</CellBody><CellFooter>{data.contact2?`${data.contact2.name} ${data.contact2.phonenumber} ${contact2num}次`:"未填写"}</CellFooter></Cell>
                 </Cells>
             </div>
         )
