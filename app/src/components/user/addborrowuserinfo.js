@@ -176,28 +176,28 @@ class PageForm extends Component {
                             <Field
                                 name="contact1_name"
                                 id="contact1_name"
-                                placeholder="手机号"
+                                placeholder="姓名"
                                 component={ InputValidation }
                             />
                             <Field
                                 name="contact1_phonenumber"
                                 id="contact1_phonenumber"
-                                placeholder="姓名"
+                                placeholder="手机号"
                                 component={ InputValidation }
                             />
                         </div>
                         <div className="connectuserlist">
-                            <span>常用联系人1:</span>
+                            <span>常用联系人2:</span>
                             <Field
                                 name="contact2_name"
                                 id="contact2_name"
-                                placeholder="手机号"
+                                placeholder="姓名"
                                 component={ InputValidation }
                             />
                             <Field
                                 name="contact2_phonenumber"
                                 id="contact2_phonenumber"
-                                placeholder="姓名"
+                                placeholder="手机号"
                                 component={ InputValidation }
                             />
                         </div>

@@ -47,47 +47,103 @@ const initial = {
 
 const userlogin = createReducer({
 
+
+
+
     [queryuserstatus_result]:(state, payload) => {
-        const { hukou,
-    limithuabei,
-    limitjiebei,
-    jiedaibaofuzai,
-    jiedaobaoyihuan,
-    realtimeforphoneyear,
-    hasgudingzichan,
-    hasdanwei,
-    hasgongjijin,
-    hasshebao,
-    hassanhaotongyi,
-    hasjinrihuankuan,
-    hasyuqijilu,
-    hasshenfenzhengyuanjian,
-    contact1:payloadcontact1,
-    contact2:payloadcontact2,
-    ...rest } = payload;
-    let contact1 = state.contact1;
-    contact1.name = payloadcontact1.name;
-    contact1.phonenumber = payloadcontact1.phonenumber;
-    let contact2 = state.contact2;
-    contact2.name = payloadcontact2.name;
-    contact2.phonenumber = payloadcontact2.phonenumber;
-        return { ...state, hukou,
-    limithuabei,
-    limitjiebei,
-    jiedaibaofuzai,
-    jiedaobaoyihuan,
-    realtimeforphoneyear,
-    hasgudingzichan,
-    hasdanwei,
-    hasgongjijin,
-    hasshebao,
-    hassanhaotongyi,
-    hasjinrihuankuan,
-    hasyuqijilu,
-    hasshenfenzhengyuanjian,
-    contact1,
-    contact2,
-    ...rest}
+        const {
+            approvalrejectseason,
+            approvalstatus,
+            contact1:payloadcontact1,
+            contact2:payloadcontact2,
+            hasdanwei,
+            hasgongjijin,
+            hasgudingzichan,
+            hasjinrihuankuan,
+            hassanhaotongyi,
+            hasshebao,
+            hasshenfenzhengyuanjian,
+            hasyuqijilu,
+            hukou,
+            jiedaibaofuzai,
+            jiedaobaoyihuan,
+            limithuabei,
+            limitjiebei,
+            realtimeforphoneyear,
+            resultid,
+            resultid_obj,
+            resultphone,
+            resultphone_detail,
+            resultphone_detail_excel,
+            resultphone_obj,
+            resultphoto,
+            resultphoto1_obj,
+            resultphoto2_obj,
+            resultrealname,
+            resulttaobao,
+            resultzhima,
+            truename,
+            urlphoneid1,
+            urlphoneid2,
+            urlphoneid3,
+            useragencyfrom,
+            userid,
+            username,
+            weixinaccesstoken,
+            weixinopenid,
+            ...rest
+        } = payload;
+
+        let contact1 = state.contact1;
+        contact1.name = payloadcontact1.name;
+        contact1.phonenumber = payloadcontact1.phonenumber;
+        let contact2 = state.contact2;
+        contact2.name = payloadcontact2.name;
+        contact2.phonenumber = payloadcontact2.phonenumber;
+
+        return {
+            ...state,
+            approvalrejectseason,
+            approvalstatus,
+            contact1,
+            contact2,
+            hasdanwei,
+            hasgongjijin,
+            hasgudingzichan,
+            hasjinrihuankuan,
+            hassanhaotongyi,
+            hasshebao,
+            hasshenfenzhengyuanjian,
+            hasyuqijilu,
+            hukou,
+            jiedaibaofuzai,
+            jiedaobaoyihuan,
+            limithuabei,
+            limitjiebei,
+            realtimeforphoneyear,
+            resultid,
+            resultid_obj,
+            resultphone,
+            resultphone_detail,
+            resultphone_detail_excel,
+            resultphone_obj,
+            resultphoto,
+            resultphoto1_obj,
+            resultphoto2_obj,
+            resultrealname,
+            resulttaobao,
+            resultzhima,
+            truename,
+            urlphoneid1,
+            urlphoneid2,
+            urlphoneid3,
+            useragencyfrom,
+            userid,
+            username,
+            weixinaccesstoken,
+            weixinopenid,
+            ...rest
+        }
     },
 
     //登录回调
