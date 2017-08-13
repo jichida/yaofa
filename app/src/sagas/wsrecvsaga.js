@@ -23,7 +23,7 @@ import {
     getzhimascore_result,
     md_queryuserstatus_result,
     queryuserstatus_result,
-    
+
 } from '../actions';
 
 // let weixininfo = this.props.weixin.info;
@@ -80,7 +80,7 @@ export function* wsrecvsagaflow() {
         const userlogin = yield select(getuserinfo);
         const local_openid = localStorage.getItem("openid");
         const local_accesstoken = localStorage.getItem("access_token");
-        
+
 
         // console.log("get userlogin >>>>>>>");
         // console.log(userlogin);
@@ -96,10 +96,10 @@ export function* wsrecvsagaflow() {
             };
             console.log("fillrealnameprofile_request::::::::>>>");
             console.log(payloads);
-            
+
             yield put(fillrealnameprofile_request(payloads));
         }
-        
+
         yield put(login_result(result));
         //yield put(replace('/'));
     });
@@ -253,11 +253,11 @@ export function* wsrecvsagaflow() {
         //     };
         //     console.log("fillrealnameprofile_request::::::::>>>");
         //     console.log(payloads);
-            
+
         //     yield put(fillrealnameprofile_request(payloads));
         // }
         console.log("md_queryuserstatus_result");
-        yield put(queryuserstatus_result(action));
+        yield put(queryuserstatus_result(action.payload));
     });
 
     //

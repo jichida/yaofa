@@ -290,6 +290,8 @@ const data = ({userlogin:{
     hasjinrihuankuan,
     hasyuqijilu,
     hasshenfenzhengyuanjian,
+    contact1,
+    contact2,
 }}) => {
     return {
         hukou,
@@ -306,6 +308,8 @@ const data = ({userlogin:{
         hasjinrihuankuan,
         hasyuqijilu,
         hasshenfenzhengyuanjian,
+        contact1,
+        contact2,
     };
 };
 Page = connect(data)(Page);

@@ -21,6 +21,14 @@ const initial = {
         userid: '',
         token: '',
         profile: {},
+        contact1:{
+          name:'',
+          phonenumber:''
+        },
+        contact2:{
+          name:'',
+          phonenumber:''
+        },
         invitecode: '',
         balance: 0,
         weixinopenid: '',
@@ -33,15 +41,53 @@ const initial = {
         urlphoneid1:'',//身份证照片正面
         urlphoneid2:'',//身份证照片反面
         urlphoneid3:'',//身份证照片手持
-        
+
     },
 };
 
 const userlogin = createReducer({
 
     [queryuserstatus_result]:(state, payload) => {
-        //let usertype = localStorage.getItem("usertype");
-        return { ...state,  ...payload.payload}
+        const { hukou,
+    limithuabei,
+    limitjiebei,
+    jiedaibaofuzai,
+    jiedaobaoyihuan,
+    realtimeforphoneyear,
+    hasgudingzichan,
+    hasdanwei,
+    hasgongjijin,
+    hasshebao,
+    hassanhaotongyi,
+    hasjinrihuankuan,
+    hasyuqijilu,
+    hasshenfenzhengyuanjian,
+    contact1:payloadcontact1,
+    contact2:payloadcontact2,
+    ...rest } = payload;
+    let contact1 = state.contact1;
+    contact1.name = payloadcontact1.name;
+    contact1.phonenumber = payloadcontact1.phonenumber;
+    let contact2 = state.contact2;
+    contact2.name = payloadcontact2.name;
+    contact2.phonenumber = payloadcontact2.phonenumber;
+        return { ...state, hukou,
+    limithuabei,
+    limitjiebei,
+    jiedaibaofuzai,
+    jiedaobaoyihuan,
+    realtimeforphoneyear,
+    hasgudingzichan,
+    hasdanwei,
+    hasgongjijin,
+    hasshebao,
+    hassanhaotongyi,
+    hasjinrihuankuan,
+    hasyuqijilu,
+    hasshenfenzhengyuanjian,
+    contact1,
+    contact2,
+    ...rest}
     },
 
     //登录回调
@@ -55,7 +101,7 @@ const userlogin = createReducer({
         }else{
             return { ...state }
         }
-        
+
     },
     [logout_result]:(state, result) => {
         //alert("logout_result");
