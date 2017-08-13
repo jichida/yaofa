@@ -80,13 +80,13 @@ class AddborrowForm extends Component {
 }
 
 AddborrowForm = reduxForm({
-    form: 'selectingFormValues',
+    form: 'addborrowform',
     initialValues:{
         moneyusefor : "临时周转",
 
     }
 })(AddborrowForm);
-const selector = formValueSelector('selectingFormValues');
+const selector = formValueSelector('addborrowform');
 AddborrowForm = withRouter(AddborrowForm);
 
 class Page extends Component {
@@ -106,10 +106,10 @@ class Page extends Component {
         if(userlogin.approvalstatus=="已审核"){
             this.props.dispatch(insertorder_request(value));
         }else{
-            if( 
-                userlogin.resultid===2 && 
-                userlogin.resultphone===2 && 
-                // userlogin.resulttaobao===2 && 
+            if(
+                userlogin.resultid===2 &&
+                userlogin.resultphone===2 &&
+                // userlogin.resulttaobao===2 &&
                 userlogin.hasOwnProperty("hukou") &&
                 // userlogin.resultphoto===2 &&
                 userlogin.resultzhima===2
@@ -143,9 +143,3 @@ const data = ({userlogin}) => {
 };
 Page = connect(data)(Page);
 export default Page;
-
-
-
-
-
-

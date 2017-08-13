@@ -15,11 +15,11 @@ export function requireAuthentication(Component) {
       }else{
         return (<Redirect to={loginroute}/>)
       }
-      
+
     };
 
-    const mapStateToProps =  ({userlogin}) =>{
-      return userlogin;
+    const mapStateToProps =  ({userlogin:{loginsuccess}}) =>{
+      return {loginsuccess};
     };
 
     return connect(mapStateToProps)(AuthenticatedComponent);

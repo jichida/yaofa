@@ -14,7 +14,7 @@ import 'weui';
 import 'react-weui/lib/react-weui.min.css';
 
 
-const { 
+const {
     Form:FormUI,
     FormCell,
     CellHeader,
@@ -27,8 +27,8 @@ const {
     TabBody,
     Cells,
     } = WeUI;
-import { 
-    required, 
+import {
+    required,
     InputBankValidation,
     validatebank,
     WeuiInputValidation
@@ -60,30 +60,30 @@ class PageForm extends Component{
                 onSubmit={handleSubmit(tixianSubmit)}
                 >
                 <FormUI className="formStyle1">
-                    <Field 
-                        name="truename" 
-                        InputTit="姓名" 
-                        placeholder="提现人姓名" 
-                        type="text" 
+                    <Field
+                        name="truename"
+                        InputTit="姓名"
+                        placeholder="提现人姓名"
+                        type="text"
                         component={WeuiInputValidation}
                         validate={[ required ]}
                         />
 
                     {type?(
-                        <Field 
-                            name="bankaccount" 
+                        <Field
+                            name="bankaccount"
                             InputTit={placetxt}
                             placeholder={`请输入${placetxt}`}
-                            type="姓名" 
+                            type="姓名"
                             component={WeuiInputValidation}
                             validate={[ required ]}
                             />
                     ):(
-                        <Field 
-                            name="bankaccount" 
+                        <Field
+                            name="bankaccount"
                             InputTit={placetxt}
                             placeholder={`请输入${placetxt}`}
-                            type="number" 
+                            type="number"
                             component={InputBankValidation}
                             validate={[ required,validatebank ]}
                             />
@@ -98,7 +98,7 @@ class PageForm extends Component{
     }
 }
 PageForm = reduxForm({
-    form: 'PageForm',
+    form: 'tixianform',
     destroyOnUnmount: false,        // <------ preserve form data
     forceUnregisterOnUnmount: true,  // <------ unregister fields on unmount
 })(PageForm);
@@ -146,7 +146,7 @@ export class Page extends Component {
         //             }})
         //         )
         //     }else{
-                
+
         //     }
         // })
         let profitform = this.props.profitform;
@@ -159,7 +159,7 @@ export class Page extends Component {
             this.props.dispatch(withdrawcashapplyaddone_request(profitform));
         }else{
             _getBankInfoByCardNo(value.bankaccount, (info)=>{
-                
+
                 if(!!info){
                     this.props.dispatch(set_weui({
                         loading:{
@@ -199,7 +199,7 @@ export class Page extends Component {
         // }else{
         //     this.props.dispatch(withdrawcashapplyaddone_request(value));
         // }
-        
+
     }
 
     render() {
@@ -210,13 +210,13 @@ export class Page extends Component {
 
                     <Tab style={{height:(window.innerHeight)+"px"}}>
                         <NavBar>
-                            <NavBarItem 
+                            <NavBarItem
                                 active={this.state.type}
                                 onClick={()=>{this.seltype(true)}}
                             >
                                 提现到支付宝
                             </NavBarItem>
-                            <NavBarItem 
+                            <NavBarItem
                                 active={!this.state.type}
                                 onClick={()=>{this.seltype(false)}}
                             >
@@ -225,7 +225,7 @@ export class Page extends Component {
                         </NavBar>
                         <TabBody>
                             <Cells>
-                                <PageForm tixianSubmit={this.onClickNext} type={this.state.type} /> 
+                                <PageForm tixianSubmit={this.onClickNext} type={this.state.type} />
                             </Cells>
                         </TabBody>
                     </Tab>

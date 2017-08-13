@@ -6,7 +6,7 @@ import DocumentTitle from "react-document-title";
 import '../../../public/css/validation-photo.css';
 import { connect } from 'react-redux';
 import config from '../../env/config.js';
-import { 
+import {
     fillrealnameprofile_request,
     set_weui,
     userauthentication_request
@@ -63,20 +63,20 @@ class PageForm extends Component {
     hideYangli=()=>{
         this.setState({showyangli: "showyangli"});
     }
-     
+
     render(){
         const { handleSubmit,submitfn } = this.props;
 
 
         return(
-            <Form 
+            <Form
                 className="list"
                 onSubmit={handleSubmit(submitfn)}
                 >
                 <div className="li">
-                    <Field 
-                        name="urlphoneid1" 
-                        component={renderImageupload} 
+                    <Field
+                        name="urlphoneid1"
+                        component={renderImageupload}
                         loading = {this.showLoading.bind(this)}
                     />
                     <div>
@@ -85,8 +85,8 @@ class PageForm extends Component {
                     </div>
                 </div>
                 <div className="li">
-                    <Field 
-                        name="urlphoneid2" 
+                    <Field
+                        name="urlphoneid2"
                         component={renderImageupload}
                         loading = {this.showLoading.bind(this)}
                     />
@@ -95,7 +95,7 @@ class PageForm extends Component {
                         <span className="lnk blue" onClick={this.showYangli.bind(this,1)}>查看样例</span>
                     </div>
                 </div>
-                
+
                 <button className="btn Primary">
                     <span>确认</span>
                 </button>
@@ -104,7 +104,7 @@ class PageForm extends Component {
                     >
                     <img src={this.state.yangliimg} />
                 </div>
-            </Form>  
+            </Form>
         )
      }
 }
@@ -148,7 +148,7 @@ class Page extends Component {
     render() {
         const { urlphoneid1,urlphoneid2,urlphoneid3 } = this.props;
         PageForm = reduxForm({
-            form: 'selectingFormValues',
+            form: 'validationform',
             initialValues:{
                 urlphoneid1: urlphoneid1 || "img/11.png",
                 urlphoneid2: urlphoneid2 || "img/12.png",
@@ -163,7 +163,7 @@ class Page extends Component {
                     请拍摄实时照片
                 </div>
                 <PageForm submitfn={this.submitfn} />
-                
+
             </div>
         )
     }
@@ -173,6 +173,3 @@ const data = ({userlogin:{urlphoneid1,urlphoneid2,urlphoneid3}}) => {
 };
 Page = connect(data)(Page);
 export default Page;
-
-
-

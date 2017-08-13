@@ -157,14 +157,14 @@ const CoApp = (props) => {
             <CustomRoute exact path="/addBorrowUserInfo" component={requireAuthentication(AddBorrowUserInfo)}/>
             <CustomRoute exact path="/usercenter" component={requireAuthentication(UserCenter)}/>
             <CustomRoute exact path="/borrowlist" component={requireAuthentication(BorrowList)}/>
-            
+
             <CustomRoute exact path="/validation" component={requireAuthentication(Validation)}/>
             <CustomRoute exact path="/agencyqrcode" component={requireAuthentication(AgencyQRcode)}/>
             <CustomRoute exact path="/borrowuserinfo" component={requireAuthentication(BorrowUserInfo)}/>
             <CustomRoute exact path="/addborrowuserinfo" component={requireAuthentication(AddBorrowUserInfo)}/>
             <CustomRoute exact path="/validationshenfen" component={requireAuthentication(ValidationShenfen)}/>
-            
-            
+
+
             <CustomRoute exact path="/validationzhima" component={requireAuthentication(ValidationZhima)}/>
             <CustomRoute exact path="/validationphoto" component={requireAuthentication(ValidationPhoto)}/>
             <CustomRoute exact path="/agencyprofit" component={requireAuthentication(Agencyprofit)}/>
@@ -172,7 +172,7 @@ const CoApp = (props) => {
             <CustomRoute exact path="/tixian2" component={requireAuthentication(Tixian2)}/>
             <CustomRoute exact path="/tixian3" component={requireAuthentication(Tixian3)}/>
             <CustomRoute exact path="/tousu" component={requireAuthentication(Tousu)}/>
-            
+
             <CustomRoute exact path="/notifysuc/:type/:userid" component={NotifySuc}/>
             <CustomRoute exact path="/notifyfailed/:type/:userid" component={NotifyFailed}/>
             <CustomRoute exact path="/uservalidationinfo" component={requireAuthentication(Uservalidationinfo)}/>
@@ -188,7 +188,6 @@ const CoApp = (props) => {
             <CustomRoute exact path="/usercenters" component={requireAuthentication(Usercenters)}/>
 
 
-            
         </Switch>
     );
 }

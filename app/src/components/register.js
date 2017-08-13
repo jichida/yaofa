@@ -116,8 +116,8 @@ export class RegisterPage extends Component {
                     />
                 </div>
 
-                
-                {(usertype==="userborrow")?(<div> 
+
+                {(usertype==="userborrow")?(<div>
                     <div className="litit">邀请码:</div>
                     <div className="li">
                         <Field
@@ -165,13 +165,13 @@ export class RegisterPage extends Component {
 }
 
 RegisterPage = reduxForm({
-    form: 'selectingFormValues',
+    form: 'registerform',
     initialValues:{
         invitecode: localStorage.getItem("invitecode") || "",
     }
 })(RegisterPage);
 
-const selector = formValueSelector('selectingFormValues');
+const selector = formValueSelector('registerform');
 RegisterPage = connect(
     state => {
         const hasAggree = selector(state, 'hasAggree');

@@ -27,17 +27,17 @@ const {
     Select,
     CellsTitle
     } = WeUI;
-import { 
-    required, 
+import {
+    required,
     phone,
-    InputValidation, 
+    InputValidation,
     WeuiInputValidation,
     WeuiSelectValidation
     } from "../tools/formvalidation"
 
 class PageForm extends Component {
 
-    
+
 
     showLoading =(status)=>{
         this.props.dispatch(set_weui({
@@ -46,13 +46,13 @@ class PageForm extends Component {
             },
         }));
     }
-     
+
     render(){
         const { handleSubmit,submitfn } = this.props;
 
 
         return(
-            <Form 
+            <Form
                 className="list loaninfoForm"
                 onSubmit={handleSubmit(submitfn)}
                 >
@@ -79,9 +79,9 @@ class PageForm extends Component {
                     />
                 </div>
                 <div className="li">
-                    <Field 
-                        name="urlphoneid1" 
-                        component={renderImageupload} 
+                    <Field
+                        name="urlphoneid1"
+                        component={renderImageupload}
                         loading = {this.showLoading.bind(this)}
                     />
                     <div>
@@ -90,8 +90,8 @@ class PageForm extends Component {
                     </div>
                 </div>
                 <div className="li">
-                    <Field 
-                        name="urlphoneid2" 
+                    <Field
+                        name="urlphoneid2"
                         component={renderImageupload}
                         loading = {this.showLoading.bind(this)}
                     />
@@ -103,7 +103,7 @@ class PageForm extends Component {
                 <button className="btn Primary">
                     <span>确认</span>
                 </button>
-            </Form>  
+            </Form>
         )
      }
 }
@@ -141,12 +141,12 @@ class Page extends Component {
             }
             this.props.dispatch(set_weui({ toast }));
         }
-        
+
     }
     render() {
         const { urlphoneid1,urlphoneid2,truename,phonenumber } = this.props;
         PageForm = reduxForm({
-            form: 'selectingFormValues',
+            form: 'loaninfoform',
             initialValues:{
                 urlphoneid1: urlphoneid1 || "img/11.png",
                 urlphoneid2: urlphoneid2 || "img/12.png",
@@ -162,7 +162,7 @@ class Page extends Component {
                     完善身份信息
                 </div>
                 <PageForm submitfn={this.submitfn} />
-                
+
             </div>
         )
     }
@@ -172,6 +172,3 @@ const data = ({userlogin:{urlphoneid1,urlphoneid2,truename,phonenumber}}) => {
 };
 Page = connect(data)(Page);
 export default Page;
-
-
-

@@ -212,7 +212,7 @@ class PageForm extends Component {
 }
 
 
-const selector = formValueSelector('selectingFormValues');
+// const selector = formValueSelector('addborrowinfoform');
 
 
 class Page extends Component {
@@ -238,7 +238,7 @@ class Page extends Component {
 	render() {
 
         PageForm = reduxForm({
-            form: 'selectingFormValues',
+            form: 'addborrowinfoform',
             initialValues:{
                 hukou : this.props.hukou||"江苏",
                 limithuabei: this.props.hasOwnProperty("limithuabei")?this.props.limithuabei:"",
@@ -246,7 +246,7 @@ class Page extends Component {
                 jiedaibaofuzai: this.props.hasOwnProperty("jiedaibaofuzai")?this.props.jiedaibaofuzai:"",
                 jiedaobaoyihuan: this.props.hasOwnProperty("jiedaobaoyihuan")?this.props.jiedaobaoyihuan:"",
                 realtimeforphoneyear: this.props.hasOwnProperty("realtimeforphoneyear")?this.props.realtimeforphoneyear:"",
-                
+
                 hasgudingzichan : this.props.hasgudingzichan||false,
                 hasdanwei : this.props.hasdanwei||false,
                 hasgongjijin : this.props.hasgongjijin||false,
@@ -256,10 +256,10 @@ class Page extends Component {
                 hasyuqijilu : this.props.hasyuqijilu||false,
                 hasshenfenzhengyuanjian : this.props.hasshenfenzhengyuanjian||false,
 
-                contact1_name : this.props.contact1.name||'',
-                contact1_phonenumber : this.props.contact1.phonenumber||'',
-                contact2_name : this.props.contact2.name||'',
-                contact2_phonenumber : this.props.contact2.phonenumber||'',
+                contact1_name : _.get(this.props,'contact1.name',''),
+                contact1_phonenumber : _.get(this.props,'contact1.phonenumber',''),
+                contact2_name : _.get(this.props,'contact2.name',''),
+                contact2_phonenumber : _.get(this.props,'contact2.phonenumber',''),
             }
         })(PageForm);
 
