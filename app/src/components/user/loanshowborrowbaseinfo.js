@@ -35,8 +35,9 @@ class BaseInfo extends Component{
     constructor(props) {
         super(props);  
         this.state = {
-            datainfo : {},
-            showinfo : false
+            showinfo : false,
+            contact1num : 0,
+            contact2num : 0
         };
     }
     componentWillMount () {
@@ -52,6 +53,15 @@ class BaseInfo extends Component{
                     if(!!msg.phoneInfo){
                         this.setState({datainfo : msg});
                         this.setState({showinfo : true});
+
+                        if(!!this.props.data.contact1 && !!msg.callRecordsInfo){
+                            let s1 = _.filter(msg.callRecordsInfo, function(o) { return o.phoneNo===data.contact1.phonenumber; });
+                            this.setState({contact1num : s1.connTimes});
+                        }
+                        if(!!this.props.data.contact2 && !!msg.callRecordsInfo){
+                            let s2 = _.filter(msg.callRecordsInfo, function(o) { return o.phoneNo===data.contact2.phonenumber; });
+                            this.setState({contact2num : s2.connTimes});
+                        }
                     }
                 }
             });
@@ -61,19 +71,6 @@ class BaseInfo extends Component{
     render(){
         const { data,resultzhima } = this.props;
         const greenhave = (<span className="green">有</span>);
-        const { callRecordsInfo } = this.state.datainfo;
-
-        let contact1num = 0;
-        let contact2num = 0;
-
-        if(!!data.contact1 && !!callRecordsInfo){
-            let s1 = _.filter(callRecordsInfo, function(o) { return o.phoneNo===data.contact1.phonenumber; });
-            contact1num = s1.connTimes;
-        }
-        if(!!data.contact2 && !!callRecordsInfo){
-            let s2 = _.filter(callRecordsInfo, function(o) { return o.phoneNo===data.contact2.phonenumber; });
-            contact2num = s2.connTimes;
-        }
 
         return (
             <div className="baseinfo">
@@ -99,8 +96,8 @@ class BaseInfo extends Component{
                     <Cell><CellBody>有无身份证原件</CellBody><CellFooter>{data.hasshenfenzhengyuanjian?greenhave:"无"}</CellFooter></Cell>
                 </Cells>
                 <Cells>
-                    <Cell><CellBody>常用联系人1</CellBody><CellFooter>{data.contact1?`${data.contact1.name} ${data.contact1.phonenumber} ${contact1num}次` :"未填写"}</CellFooter></Cell>
-                    <Cell><CellBody>常用联系人2</CellBody><CellFooter>{data.contact2?`${data.contact2.name} ${data.contact2.phonenumber} ${contact2num}次`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>常用联系人1</CellBody><CellFooter>{data.contact1?`${data.contact1.name} ${data.contact1.phonenumber} ${this.state.contact1num}次` :"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>常用联系人2</CellBody><CellFooter>{data.contact2?`${data.contact2.name} ${data.contact2.phonenumber} ${this.state.contact2num}次`:"未填写"}</CellFooter></Cell>
                 </Cells>
             </div>
         )
