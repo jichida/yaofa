@@ -168,8 +168,8 @@ class Page extends Component {
         )
     }
 }
-const data = ({userlogin:{urlphoneid1,urlphoneid2,urlphoneid3}}) => {
-    return {urlphoneid1,urlphoneid2,urlphoneid3};
+const data = ({userlogin:{urlphoneid1,urlphoneid2,urlphoneid3,resultid}}) => {
+    return {urlphoneid1,urlphoneid2,urlphoneid3,resultid};
 };
 Page = connect(data)(Page);
 export default Page;
