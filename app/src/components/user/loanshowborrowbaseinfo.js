@@ -56,11 +56,15 @@ class BaseInfo extends Component{
 
                         if(!!this.props.data.contact1 && !!msg.callRecordsInfo){
                             let s1 = _.filter(msg.callRecordsInfo, (o)=> { return o.phoneNo===this.props.data.contact1.phonenumber; });
-                            this.setState({contact1num : s1.connTimes});
+                            if(s1.length>0){
+                                this.setState({contact1num : s1[0].connTimes});
+                            }
                         }
                         if(!!this.props.data.contact2 && !!msg.callRecordsInfo){
                             let s2 = _.filter(msg.callRecordsInfo, (o)=> { return o.phoneNo===this.props.data.contact2.phonenumber; });
-                            this.setState({contact2num : s2.connTimes});
+                            if(s2.length>0){
+                                this.setState({contact2num : s2[0].connTimes});
+                            }
                         }
                     }
                 }
