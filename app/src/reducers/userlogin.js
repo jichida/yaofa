@@ -12,7 +12,7 @@ import {
     fillrealnameprofile_result,
     queryuserstatus_result
 } from '../actions/index.js';
-
+import _ from 'lodash';
 const initial = {
     userlogin: {
         editusername: '',//用户昵称
@@ -95,11 +95,11 @@ const userlogin = createReducer({
         } = payload;
 
         let contact1 = state.contact1;
-        contact1.name = payloadcontact1.name;
-        contact1.phonenumber = payloadcontact1.phonenumber;
+        contact1.name = _.get(payloadcontact1,'name','');
+        contact1.phonenumber = _.get(payloadcontact1,'phonenumber','');
         let contact2 = state.contact2;
-        contact2.name = payloadcontact2.name;
-        contact2.phonenumber = payloadcontact2.phonenumber;
+        contact2.name = _.get(payloadcontact2,'name','');
+        contact2.phonenumber = _.get(payloadcontact2,'phonenumber','');
 
         return {
             ...state,
