@@ -14,6 +14,7 @@ import _ from "lodash";
 import withRouter from 'react-router-dom/withRouter';
 import { requestUrlGet } from '../../util/util';
 import config from '../../env/config';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import { 
     getmyorders_request,
     set_myorderlistStatus,
@@ -34,14 +35,6 @@ const {
     LoadMore,
     CellsTitle
     } = WeUI;
-
-// {
-//     "cardno": "321283198505066819", 
-//     "birthday": "1985-05-06", 
-//     "sex": "M", 
-//     "name": "焦文晖", 
-//     "address": "江苏省泰州市泰兴市"
-// }
 
 
 class PhoneInfo extends Component {
@@ -70,10 +63,19 @@ class PhoneInfo extends Component {
             });
         }
     }
-    render(){
-        const { data,history,dataexcel } = this.props;
 
-        console.log("dataexcel:::"+this.props.dataexcel);
+    copyurl =(url)=>{
+        console.log(url)
+        this.props.dispatch(set_weui({alert:{
+            show : true,
+            title : "拷贝文件地址到电脑端下载",
+            text : url,
+        }}))
+    }
+
+    render(){
+        const { data,history,dataexcel,creator } = this.props;
+        const timedata = (new Date()).getTime();
         
         if(this.state.showinfo){
             const { phoneInfo,phone_no,status,userInfo,callRecordsInfo,deceitRisk,messageRecordsInfo,contactAreaInfo,phoneOffInfos } = this.state.datainfo;
@@ -110,7 +112,12 @@ class PhoneInfo extends Component {
                         <div className="CallRecordsInfoTitle">
                             <span>通话记录分析</span>
                             { !!dataexcel && 
-                                <a href={`${config.serverurl}${this.props.dataexcel}`} target="_blank">下载通话记录</a>
+                                <CopyToClipboard 
+                                    text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}
+                                    onCopy={()=>{this.copyurl(`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}}
+                                    >
+                                    <span>下载通话纪录</span>
+                                </CopyToClipboard>
                             }
                         </div>
                     </CellsTitle>
@@ -172,6 +179,8 @@ class PhoneInfo extends Component {
     }
 }
 PhoneInfo = withRouter(PhoneInfo);
+PhoneInfo = connect()(PhoneInfo);
+
 
 class TaobaoInfo extends Component {
     
@@ -480,7 +489,7 @@ class Page extends Component {
                     <TabBody>
                         {this.state.status==="shengfen"?(<IdInfo data={resultid_obj}/>):""}
                         {this.state.status==="taobao"?(<TaobaoInfo data={resulttaobao_detail}/>):""}
-                        {this.state.status==="phone"?(<PhoneInfo data={resultphone_detail} dataexcel={resultphone_detail_excel}/>):""}
+                        {this.state.status==="phone"?(<PhoneInfo data={resultphone_detail} dataexcel={resultphone_detail_excel} creator={borrow_baseinfo}  />):""}
                         {this.state.status==="base"?(<BaseInfo data={borrow_baseinfo} resultzhima={resultzhima_obj}/>):""}
                     </TabBody>
                 </Tab>

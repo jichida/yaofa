@@ -100,8 +100,8 @@ class BaseInfo extends Component{
                     <Cell><CellBody>有无身份证原件</CellBody><CellFooter>{data.hasshenfenzhengyuanjian?greenhave:"无"}</CellFooter></Cell>
                 </Cells>
                 <Cells>
-                    <Cell><CellBody>常用联系人1</CellBody><CellFooter>{data.contact1?`${data.contact1.name} ${data.contact1.phonenumber} ${this.state.contact1num}次` :"未填写"}</CellFooter></Cell>
-                    <Cell><CellBody>常用联系人2</CellBody><CellFooter>{data.contact2?`${data.contact2.name} ${data.contact2.phonenumber} ${this.state.contact2num}次`:"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>常用联系人1</CellBody><CellFooter>{data.contact1?`${data.contact1.name} ${data.contact1.phonenumber.substr(0,3)}****${data.contact1.phonenumber.substr(7,4)} ${this.state.contact1num}次` :"未填写"}</CellFooter></Cell>
+                    <Cell><CellBody>常用联系人2</CellBody><CellFooter>{data.contact2?`${data.contact2.name} ${data.contact2.phonenumber.substr(0,3)}****${data.contact2.phonenumber.substr(7,4)} ${this.state.contact2num}次` :"未填写"}</CellFooter></Cell>
                 </Cells>
             </div>
         )
