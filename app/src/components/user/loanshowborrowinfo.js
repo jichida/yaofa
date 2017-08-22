@@ -116,7 +116,7 @@ class PhoneInfo extends Component {
                                     text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}
                                     onCopy={()=>{this.copyurl(`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}}
                                     >
-                                    <span>下载通话纪录</span>
+                                    <a style={{color:"#336699"}}>下载通话纪录</a>
                                 </CopyToClipboard>
                             }
                         </div>
