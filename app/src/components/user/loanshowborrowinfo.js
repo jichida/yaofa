@@ -113,12 +113,11 @@ class PhoneInfo extends Component {
                             <span>通话记录分析</span>
                             { !!dataexcel && 
                                 <ClipboardButton 
-                                    component="a" 
-                                    button-href="javascript:;"
+                                    component="span"
                                     data-clipboard-text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}
                                     onSuccess={()=>{this.copyurl(`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}}
                                     >
-                                    下载通话纪录
+                                    <span style={{color:"#3479e1", fontWeight:"bold"}}>下载通话纪录</span>
                                 </ClipboardButton>
                             }
                         </div>
