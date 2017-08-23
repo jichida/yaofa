@@ -114,7 +114,7 @@ class PhoneInfo extends Component {
                             { !!dataexcel && 
                                 <ClipboardButton 
                                     component="a" 
-                                    button-href="#"
+                                    button-href="javascript:;"
                                     data-clipboard-text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}
                                     onSuccess={()=>{this.copyurl(`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}}
                                     >
