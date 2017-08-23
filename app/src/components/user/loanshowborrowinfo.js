@@ -15,6 +15,9 @@ import withRouter from 'react-router-dom/withRouter';
 import { requestUrlGet } from '../../util/util';
 import config from '../../env/config';
 import ClipboardButton from 'react-clipboard.js';
+import Clipboard from 'clipboard';
+
+
 import { 
     getmyorders_request,
     set_myorderlistStatus,
@@ -48,6 +51,12 @@ class PhoneInfo extends Component {
     componentWillMount () {
         this.getlist();
     }
+
+    componentDidMount(){
+        //copybtn
+        new Clipboard('.copybtn');
+    }
+
     getlist =()=>{
         if(this.props.data){
             window.$.ajax({
@@ -65,7 +74,8 @@ class PhoneInfo extends Component {
     }
 
     copyurl =(url)=>{
-        console.log(url)
+        console.log(url);
+        alert(url);
         this.props.dispatch(set_weui({alert:{
             show : true,
             title : "拷贝文件地址到其他浏览器端下载(IOS用户需要拷贝链接到电脑端下载)",
@@ -174,6 +184,9 @@ class PhoneInfo extends Component {
             return (
                 <div className="nodata">
                     <span>Ta还没有通过该项认证</span>
+                    <button className="copybtn" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
+                        Copy to clipboard
+                    </button>
                 </div>
             )
         }
