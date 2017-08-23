@@ -92,7 +92,7 @@ export class Page extends Component {
                         [
                             {
                                 type: 'primary',
-                                label: "确定",
+                                label: "拷贝",
                                 onClick: this.alertClick.bind(this,alert,this.props.dispatch)
                             }
                         ]

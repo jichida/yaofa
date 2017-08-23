@@ -59,6 +59,11 @@
 .uservalidationinfoPage .nodata span.btn{
 	margin: 20px;
 }
+
+.uservalidationinfoPage .nodata a{
+	font-weight: bold;
+	color:#3479e1;
+}
 .uservalidationinfoPage .weui-navbar__item{
 	overflow: hidden;
 	text-overflow:ellipsis;

@@ -68,7 +68,7 @@ class PhoneInfo extends Component {
         console.log(url)
         this.props.dispatch(set_weui({alert:{
             show : true,
-            title : "拷贝文件地址到电脑端下载",
+            title : "拷贝文件地址到其他浏览器端下载(IOS用户需要拷贝链接到电脑端下载)",
             text : url,
         }}))
     }
@@ -113,10 +113,12 @@ class PhoneInfo extends Component {
                             <span>通话记录分析</span>
                             { !!dataexcel && 
                                 <ClipboardButton 
+                                    component="a" 
+                                    button-href="#"
                                     data-clipboard-text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}
                                     onSuccess={()=>{this.copyurl(`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}}
                                     >
-                                    <a style={{color:"#336699"}}>下载通话纪录</a>
+                                    下载通话纪录
                                 </ClipboardButton>
                             }
                         </div>
