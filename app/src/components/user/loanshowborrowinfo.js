@@ -14,7 +14,7 @@ import _ from "lodash";
 import withRouter from 'react-router-dom/withRouter';
 import { requestUrlGet } from '../../util/util';
 import config from '../../env/config';
-import CopyToClipboard from 'react-copy-to-clipboard';
+import ClipboardButton from 'react-clipboard.js';
 import { 
     getmyorders_request,
     set_myorderlistStatus,
@@ -112,12 +112,12 @@ class PhoneInfo extends Component {
                         <div className="CallRecordsInfoTitle">
                             <span>通话记录分析</span>
                             { !!dataexcel && 
-                                <CopyToClipboard 
-                                    text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}
-                                    onCopy={()=>{this.copyurl(`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}}
+                                <ClipboardButton 
+                                    data-clipboard-text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}
+                                    onSuccess={()=>{this.copyurl(`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}}
                                     >
                                     <a style={{color:"#336699"}}>下载通话纪录</a>
-                                </CopyToClipboard>
+                                </ClipboardButton>
                             }
                         </div>
                     </CellsTitle>
