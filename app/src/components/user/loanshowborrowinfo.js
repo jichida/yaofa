@@ -14,9 +14,9 @@ import _ from "lodash";
 import withRouter from 'react-router-dom/withRouter';
 import { requestUrlGet } from '../../util/util';
 import config from '../../env/config';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import ClipboardButton from 'react-clipboard.js';
 import Clipboard from 'clipboard';
-
 
 import { 
     getmyorders_request,
@@ -38,14 +38,15 @@ const {
     LoadMore,
     CellsTitle
     } = WeUI;
-
+let newClipboard = null;
 
 class PhoneInfo extends Component {
     constructor(props) {
         super(props);  
         this.state = {
             datainfo : {},
-            showinfo : false
+            showinfo : false,
+            isSupported : false,
         };
     }
     componentWillMount () {
@@ -54,9 +55,13 @@ class PhoneInfo extends Component {
 
     componentDidMount(){
         //copybtn
-        new Clipboard('.copybtn');
+        newClipboard = new Clipboard('.copybtn');
+        this.setState({isSupported : Clipboard.isSupported()});
+        newClipboard.on('success', (e)=>{
+            // alert(e.text);
+            this.copyurl(e.text);
+        });
     }
-
     getlist =()=>{
         if(this.props.data){
             window.$.ajax({
@@ -73,12 +78,36 @@ class PhoneInfo extends Component {
         }
     }
 
+    ioscopyurl = (url)=>{
+        this.props.dispatch(set_weui({ioscopy:{
+            show : true,
+            title : "选中并拷贝下面链接地址(IOS用户需要在电脑端打开链接进行文件下载)",
+            text : url,
+        }}))
+        
+
+        // if (document.selection) {
+        //     console.log("console.log(document.selection)");
+        //     console.log(document.selection)
+        //     let range = document.body.createTextRange();
+        //     range.moveToElementText(document.getElementById('ioscopyspan'));
+        //     range.select();
+        // } else if (window.getSelection) {
+        //     console.log("console.log(window.getSelection)");
+        //     console.log(window.getSelection);
+        //     let range = document.createRange();
+        //     console.log(range);
+        //     range.selectNode(document.getElementById('ioscopyspan'));
+        //     console.log(document.getElementById('ioscopyspan'));
+        //     window.getSelection().addRange(range);
+        // }
+    }
+
     copyurl =(url)=>{
-        console.log(url);
-        alert(url);
+        console.log(url)
         this.props.dispatch(set_weui({alert:{
             show : true,
-            title : "拷贝文件地址到其他浏览器端下载(IOS用户需要拷贝链接到电脑端下载)",
+            title : "拷贝文件地址到其他浏览器端下载(IOS用户需要在电脑端打开链接进行下载)",
             text : url,
         }}))
     }
@@ -122,13 +151,16 @@ class PhoneInfo extends Component {
                         <div className="CallRecordsInfoTitle">
                             <span>通话记录分析</span>
                             { !!dataexcel && 
-                                <ClipboardButton 
-                                    component="span"
-                                    data-clipboard-text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}
-                                    onSuccess={()=>{this.copyurl(`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}}
-                                    >
-                                    <span style={{color:"#3479e1", fontWeight:"bold"}}>下载通话纪录</span>
-                                </ClipboardButton>
+                                <div>
+                                {
+                                    !this.state.isSupported && <span style={{color:"#3479e1", fontWeight: "bold"}} onClick={this.ioscopyurl.bind(this, `${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}>下载通话纪录</span>
+                                }
+                                {
+                                    this.state.isSupported && <span className="copybtn" data-clipboard-text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}>
+                                        <span style={{color:"#3479e1", fontWeight: "bold"}}>下载通话纪录</span>
+                                    </span>
+                                }
+                                </div>
                             }
                         </div>
                     </CellsTitle>
@@ -184,9 +216,7 @@ class PhoneInfo extends Component {
             return (
                 <div className="nodata">
                     <span>Ta还没有通过该项认证</span>
-                    <button className="copybtn" data-clipboard-text="Just because you can doesn't mean you should — clipboard.js">
-                        Copy to clipboard
-                    </button>
+                    
                 </div>
             )
         }
@@ -484,7 +514,7 @@ class Page extends Component {
         return (
             <div className="borrowlistPage uservalidationinfoPage AppPage">
                 <DocumentTitle title="借款人的认证信息" />
-                <Tab>
+                <Tab style={{minHeight : window.innerHeight +"px"}}>
                     <NavBar>
                         {
                             _.map(navlist, (list, index)=>{

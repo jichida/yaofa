@@ -49,6 +49,12 @@ const initial = {
                     onClick: ()=>{}
                 }
             ]
+        },
+        ioscopy : {
+            show : false,
+            title : "",
+            text : "",
+            buttonsClick : ()=>{}
         }
     },
 };

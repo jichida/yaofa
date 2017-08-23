@@ -11,6 +11,20 @@
     font-weight: 200;
     border:none;
 }
+#ioscopyspan {
+    -webkit-user-select:auto;
+    -moz-user-select:auto;
+    -ms-user-select:auto;
+    user-select:auto;
+}
+
+#weuiioscopy .weui-textarea-counter{
+    display: none;
+}
+#weuiioscopy .weui-dialog__title{
+    line-height: 18px;
+    font-size: 16px;
+}
 span{
     display: inline-block;
 }
@@ -27,6 +41,10 @@ input, textarea{
     outline: none;
     resize: none;
 }
+#weuiioscopy #ioscopyspan{
+    height: 120px;
+}
+
 .submitBtn{
     display: -webkit-box;
     display: -webkit-flex;

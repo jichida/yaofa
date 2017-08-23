@@ -8,6 +8,8 @@ import { set_weui } from '../../actions/index.js';
 const {
     Toast,
     Dialog,
+    TextArea,
+    Input
 } = WeUI;
 
 const icon = {
@@ -28,6 +30,13 @@ const confirmDefault = {
 }
 
 const alertDefault = {
+    show : false,
+    title : "",
+    text : "",
+    buttonsClick : ()=>{}
+}
+
+const ioscopyDefault = {
     show : false,
     title : "",
     text : "",
@@ -68,6 +77,15 @@ export class Page extends Component {
         }
         dispatch(set_weui({ alert:alertDefault }));
     };
+
+    ioscopyClick =(ioscopy,dispatch)=>{
+        if(ioscopy.hasOwnProperty("buttonsClick")){
+            ioscopy.buttonsClick();
+        }
+        dispatch(set_weui({ ioscopy:alertDefault }));
+    };
+
+
     render(){
         const {
             toast,
@@ -75,6 +93,7 @@ export class Page extends Component {
             confirm,
             loading,
             action,
+            ioscopy,
         } = this.props;
 
         return (
@@ -101,6 +120,28 @@ export class Page extends Component {
                     >
                     {alert.text}
                 </Dialog>
+
+                <Dialog
+                    style={{zIndex:"1002"}}
+                    id="weuiioscopy"
+                    type="ios"
+                    title={ioscopy.title}
+                    buttons={
+                        [
+                            {
+                                type: 'primary',
+                                label: "已经完成拷贝",
+                                onClick: this.ioscopyClick.bind(this,ioscopy,this.props.dispatch)
+                            }
+                        ]
+                    }
+                    show={ioscopy.show}
+                    >
+                    <TextArea value={ioscopy.text} id="ioscopyspan" readOnly />
+                </Dialog>
+
+
+
 
                 <Dialog
                     style={{zIndex:"1001"}}
