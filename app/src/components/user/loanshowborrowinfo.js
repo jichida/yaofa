@@ -51,12 +51,13 @@ class PhoneInfo extends Component {
     }
     componentWillMount () {
         this.getlist();
+        newClipboard = null;
     }
 
     componentDidMount(){
         //copybtn
         newClipboard = new Clipboard('.copybtn');
-        this.setState({isSupported : Clipboard.isSupported()});
+        this.setState({isSupported : !!Clipboard.isSupported()});
         newClipboard.on('success', (e)=>{
             // alert(e.text);
             this.copyurl(e.text);
@@ -156,9 +157,9 @@ class PhoneInfo extends Component {
                                     !this.state.isSupported && <span style={{color:"#3479e1", fontWeight: "bold"}} onClick={this.ioscopyurl.bind(this, `${config.serverurl}/getexcelfile/${creator._id}/${timedata}`)}>下载通话纪录</span>
                                 }
                                 {
-                                    this.state.isSupported && <span className="copybtn" data-clipboard-text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}>
-                                        <span style={{color:"#3479e1", fontWeight: "bold"}}>下载通话纪录</span>
-                                    </span>
+                                    this.state.isSupported && <button className="copybtn" style={{color:"#3479e1", fontWeight: "bold", fontSize: "16px", background: "none", padding: 0, margin:0}} data-clipboard-text={`${config.serverurl}/getexcelfile/${creator._id}/${timedata}`}>
+                                        下载通话纪录
+                                    </button>
                                 }
                                 </div>
                             }
@@ -216,7 +217,6 @@ class PhoneInfo extends Component {
             return (
                 <div className="nodata">
                     <span>Ta还没有通过该项认证</span>
-                    
                 </div>
             )
         }
